@@ -1,3 +1,4 @@
+<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="ko">
 <head>
@@ -41,15 +42,15 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <a class="navbar-brand title" href="index.jsp">위드휴일</a>
+        <a class="navbar-brand title" href="/">위드휴일</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
         </button>
 
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a href="blog.html" class="nav-link">호스트등록</a></li>
-                <li class="nav-item"><a href="file:///C:/Users/admin/Desktop/layout/login-form/loginForm.html" class="nav-link">로그인</a></li>
+                <li class="nav-item"><a href="/host" class="nav-link">호스트등록</a></li>
+                <li class="nav-item"><a href="/loginForm" class="nav-link">로그인</a></li>
             </ul>
         </div>
     </div>
@@ -57,7 +58,7 @@
 <!-- END nav -->
 
 <section class="home-slider owl-carousel">
-    <div class="slider-item" style="background-image:url(images/bg_1.jpg);">
+    <div class="slider-item" style="background-image:url(static/home/images/bg_1.jpg);">
         <div class="overlay"></div>
         <div class="container">
             <div class="row no-gutters slider-text align-items-center justify-content-center">
@@ -157,14 +158,13 @@
         <div class="row">
             <div class="col-sm col-md-6 col-lg-4 ftco-animate">
                 <div class="room">
-                    <a href="rooms.html" class="img d-flex justify-content-center align-items-center" style="background-image: url(images/room-1.jpg);">
+                    <a href="hotelList.jsp" class="img d-flex justify-content-center align-items-center" style="background-image: url(static/home/images/room-1.jpg);">
                         <div class="icon d-flex justify-content-center align-items-center">
                             <span class="icon-search2"></span>
                         </div>
                     </a>
                     <div class="text p-3 text-center">
-                        <h3 class="mb-3"><a href="rooms.html">서울</a></h3>
-                        <!-- <p><span class="price mr-2">$120.00</span> <span class="per">per night</span></p> -->
+                        <h3 class="mb-3"><a href="hotelList.jsp">서울</a></h3>
                         <hr>
                         <p class="pt-1"><a href="room-single.html" class="btn-custom">지금 찾아보기 <span class="icon-long-arrow-right"></span></a></p>
                     </div>
@@ -172,13 +172,13 @@
             </div>
             <div class="col-sm col-md-6 col-lg-4 ftco-animate">
                 <div class="room">
-                    <a href="rooms.html" class="img d-flex justify-content-center align-items-center" style="background-image: url(images/room-2.jpg);">
+                    <a href="hotelList.jsp" class="img d-flex justify-content-center align-items-center" style="background-image: url(static/home/images/room-2.jpg);">
                         <div class="icon d-flex justify-content-center align-items-center">
                             <span class="icon-search2"></span>
                         </div>
                     </a>
                     <div class="text p-3 text-center">
-                        <h3 class="mb-3"><a href="rooms.html">부산</a></h3>
+                        <h3 class="mb-3"><a href="hotelList.jsp">부산</a></h3>
                         <!-- <p><span class="price mr-2">$20.00</span> <span class="per">per night</span></p> -->
                         <hr>
                         <p class="pt-1"><a href="room-single.html" class="btn-custom">지금 찾아보기 <span class="icon-long-arrow-right"></span></a></p>
@@ -187,13 +187,13 @@
             </div>
             <div class="col-sm col-md-6 col-lg-4 ftco-animate">
                 <div class="room">
-                    <a href="rooms.html" class="img d-flex justify-content-center align-items-center" style="background-image: url(images/room-3.jpg);">
+                    <a href="hotelList.jsp" class="img d-flex justify-content-center align-items-center" style="background-image: url(static/home/images/room-3.jpg);">
                         <div class="icon d-flex justify-content-center align-items-center">
                             <span class="icon-search2"></span>
                         </div>
                     </a>
                     <div class="text p-3 text-center">
-                        <h3 class="mb-3"><a href="rooms.html">제주</a></h3>
+                        <h3 class="mb-3"><a href="hotelList.jsp">제주</a></h3>
                         <!-- <p><span class="price mr-2">$150.00</span> <span class="per">per night</span></p> -->
                         <hr>
                         <p class="pt-1"><a href="room-single.html" class="btn-custom">지금 찾아보기 <span class="icon-long-arrow-right"></span></a></p>
@@ -202,13 +202,13 @@
             </div>
             <div class="col-sm col-md-6 col-lg-4 ftco-animate">
                 <div class="room">
-                    <a href="rooms.html" class="img d-flex justify-content-center align-items-center" style="background-image: url(images/room-4.jpg);">
+                    <a href="hotelList.jsp" class="img d-flex justify-content-center align-items-center" style="background-image: url(static/home/images/room-4.jpg);">
                         <div class="icon d-flex justify-content-center align-items-center">
                             <span class="icon-search2"></span>
                         </div>
                     </a>
                     <div class="text p-3 text-center">
-                        <h3 class="mb-3"><a href="rooms.html">경기</a></h3>
+                        <h3 class="mb-3"><a href="hotelList.jsp">경기</a></h3>
                         <!-- <p><span class="price mr-2">$130.00</span> <span class="per">per night</span></p> -->
                         <hr>
                         <p class="pt-1"><a href="room-single.html" class="btn-custom">지금 찾아보기 <span class="icon-long-arrow-right"></span></a></p>
@@ -217,13 +217,13 @@
             </div>
             <div class="col-sm col-md-6 col-lg-4 ftco-animate">
                 <div class="room">
-                    <a href="rooms.html" class="img d-flex justify-content-center align-items-center" style="background-image: url(images/room-5.jpg);">
+                    <a href="hotelList.jsp" class="img d-flex justify-content-center align-items-center" style="background-image: url(static/home/images/room-5.jpg);">
                         <div class="icon d-flex justify-content-center align-items-center">
                             <span class="icon-search2"></span>
                         </div>
                     </a>
                     <div class="text p-3 text-center">
-                        <h3 class="mb-3"><a href="rooms.html">인천</a></h3>
+                        <h3 class="mb-3"><a href="hotelList.jsp">인천</a></h3>
                         <!-- <p><span class="price mr-2">$300.00</span> <span class="per">per night</span></p> -->
                         <hr>
                         <p class="pt-1"><a href="room-single.html" class="btn-custom">지금 찾아보기 <span class="icon-long-arrow-right"></span></a></p>
@@ -232,13 +232,13 @@
             </div>
             <div class="col-sm col-md-6 col-lg-4 ftco-animate">
                 <div class="room">
-                    <a href="rooms.html" class="img d-flex justify-content-center align-items-center" style="background-image: url(images/room-6.jpg);">
+                    <a href="hotelList.jsp" class="img d-flex justify-content-center align-items-center" style="background-image: url(static/home/images/room-6.jpg);">
                         <div class="icon d-flex justify-content-center align-items-center">
                             <span class="icon-search2"></span>
                         </div>
                     </a>
                     <div class="text p-3 text-center">
-                        <h3 class="mb-3"><a href="rooms.html">강원</a></h3>
+                        <h3 class="mb-3"><a href="hotelList.jsp">강원</a></h3>
                         <hr>
                         <p class="pt-1"><a href="room-single.html" class="btn-custom">지금 찾아보기 <span class="icon-long-arrow-right"></span></a></p>
                     </div>

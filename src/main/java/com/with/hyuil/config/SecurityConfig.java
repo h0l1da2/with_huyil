@@ -30,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .disable() // HttpBasic 방식도 안 쓸게요
 
                 .authorizeRequests()
-                .antMatchers("/host/**")
+                .antMatchers("/hosts/**")
                 .access("hasRole('HOST') or hasRole('ADMIN')")
                 .antMatchers("/admin/**")
                 .access("hasRole('ADMIN')")
