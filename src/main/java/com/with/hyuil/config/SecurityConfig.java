@@ -19,15 +19,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable() // csrf 기능 안 쓸게요 - 세션기반 인증 아니어서 안 써도 됨. 안전
+        http.csrf().disable()
                 .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // 시큐리티 세션 사용 안 할게요
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
                 .and()
                 .formLogin()
-                .disable() //시큐리티 제공 loginForm 안 쓸게요
+                .disable()
                 .httpBasic()
-                .disable() // HttpBasic 방식도 안 쓸게요
+                .disable()
 
                 .authorizeRequests()
                 .antMatchers("/hosts/**")
