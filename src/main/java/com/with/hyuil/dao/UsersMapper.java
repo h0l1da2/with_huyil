@@ -1,6 +1,7 @@
 package com.with.hyuil.dao;
 
-import com.with.hyuil.model.UsersVo;
+import com.with.hyuil.model.users.AdminVo;
+import com.with.hyuil.model.users.UsersVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -9,4 +10,6 @@ import org.springframework.stereotype.Repository;
 public interface UsersMapper {
 
     int insertUser(UsersVo usersVo);
+    int insertUserLog();
+    int insertAdmin(AdminVo adminVo);
 }
