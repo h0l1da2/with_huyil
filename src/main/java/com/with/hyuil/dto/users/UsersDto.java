@@ -1,6 +1,6 @@
 package com.with.hyuil.dto.users;
 
-import com.with.hyuil.model.users.BusinessVo;
+import com.with.hyuil.model.BusinessVo;
 import com.with.hyuil.model.enumaration.Role;
 import com.with.hyuil.model.enumaration.Wheres;
 import lombok.Data;

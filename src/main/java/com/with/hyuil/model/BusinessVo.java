@@ -1,4 +1,4 @@
-package com.with.hyuil.model.users;
+package com.with.hyuil.model;
 
 import lombok.Getter;
 

@@ -3,8 +3,8 @@ package com.with.hyuil.service;
 import com.with.hyuil.dao.UsersMapper;
 import com.with.hyuil.dto.users.AdminDto;
 import com.with.hyuil.dto.users.UsersDto;
-import com.with.hyuil.model.users.AdminVo;
-import com.with.hyuil.model.users.UsersVo;
+import com.with.hyuil.model.AdminVo;
+import com.with.hyuil.model.UsersVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +16,6 @@ public class UsersServiceImpl {
     private final UsersMapper usersMapper;
 
     public int saveUser(UsersDto usersDto) {
-        usersMapper.insertUserLog();
         return usersMapper.insertUser(new UsersVo(usersDto));
     }
 

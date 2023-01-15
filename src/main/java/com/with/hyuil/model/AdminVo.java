@@ -1,4 +1,4 @@
-package com.with.hyuil.model.users;
+package com.with.hyuil.model;
 
 import com.with.hyuil.dto.users.AdminDto;
 import com.with.hyuil.model.enumaration.Role;

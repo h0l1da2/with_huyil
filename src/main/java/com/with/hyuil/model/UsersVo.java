@@ -1,4 +1,4 @@
-package com.with.hyuil.model.users;
+package com.with.hyuil.model;
 
 import com.with.hyuil.dto.users.UsersDto;
 import com.with.hyuil.model.enumaration.Role;
@@ -32,7 +32,7 @@ public class UsersVo {
 
     protected UsersVo() {}
 
-    public UsersVo(String userId, String password, String email, String tel, String name, Wheres wheres, Role role, BusinessVo businessVo) {
+    public UsersVo(String userId, String password, String email, String tel, String name, Wheres wheres, Role role) {
         this.userId = userId;
         this.password = password;
         this.email = email;
@@ -40,7 +40,6 @@ public class UsersVo {
         this.name = name;
         this.wheres = wheres;
         this.role = role;
-        this.businessVo = businessVo;
     }
 
     public UsersVo(UsersDto usersDto) {
@@ -52,5 +51,9 @@ public class UsersVo {
         this.wheres = usersDto.getWheres();
         this.role = usersDto.getRole();
         this.businessVo = usersDto.getBusinessVo();
+    }
+
+    public void hostUser(BusinessVo businessVo) {
+        this.businessVo = businessVo;
     }
 }
