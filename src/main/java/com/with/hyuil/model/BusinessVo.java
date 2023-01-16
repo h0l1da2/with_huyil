@@ -19,4 +19,5 @@ public class BusinessVo {
         this.bNumber = bNumber;
         this.bank = bank;
     }
+
 }

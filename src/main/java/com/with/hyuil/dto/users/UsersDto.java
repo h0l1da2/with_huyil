@@ -1,6 +1,5 @@
 package com.with.hyuil.dto.users;
 
-import com.with.hyuil.model.BusinessVo;
 import com.with.hyuil.model.enumaration.Role;
 import com.with.hyuil.model.enumaration.Wheres;
 import lombok.Data;
@@ -19,8 +18,8 @@ public class UsersDto {
     private String name;
     private Wheres wheres;
     private Role role;
-    private BusinessVo businessVo;
-
-
+    private String account; //사업자번호
+    private String bNumber;
+    private String bank;
 
 }

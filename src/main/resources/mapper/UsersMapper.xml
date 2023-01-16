@@ -33,7 +33,7 @@
         FROM USERS
     </select>
 
-    <select id="selectBusiness" parameterType="Map" resultType="BusinessVo">
+    <select id="findBusinessByAccount" parameterType="String" resultType="BusinessVo">
         SELECT *
         FROM BUSINESS
         WHERE ACCOUNT = #{account}

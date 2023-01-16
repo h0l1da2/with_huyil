@@ -8,11 +8,11 @@
     <meta name="author" content="" />
     <title>Shop Item - Start Bootstrap Template</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="static/host/assets/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="<c:url value='/static/host/assets/favicon.ico'/>" />
     <!-- Bootstrap icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="static/host/css/styles.css" rel="stylesheet" />
+    <link href="<c:url value='/static/host/css/styles.css'/>" rel="stylesheet" />
 </head>
 <body style="height: 600px;">
 <!-- Navigation-->
@@ -44,7 +44,7 @@
                     </p>
                 </div>
                 <div class="d-flex">
-                    <button type="button" class="form-control btn btn-primary submit px-3">당장 함께하기</button>
+                    <button onclick="location.href='<c:url value='/host/login'/>'" type="button" class="form-control btn btn-primary submit px-3">당장 함께하기</button>
                 </div>
             </div>
             <div id="map" style="width:600px; height:500px;"></div>
@@ -58,7 +58,7 @@
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
-<script src="static/host/js/scripts.js"></script>
+<script src="<c:url value='/static/host/js/scripts.js'/>"></script>
 <!-- 카카오맵 -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9093f985faa6566619ee93146e47c723"></script>
 <script>

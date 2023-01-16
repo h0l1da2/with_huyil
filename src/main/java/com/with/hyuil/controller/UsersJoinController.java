@@ -9,7 +9,6 @@ import com.with.hyuil.service.interfaces.UsersService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -19,7 +18,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/user")
 @RequiredArgsConstructor
-public class UsersController {
+public class UsersJoinController {
     private final UsersService usersService;
     private final EmailService emailService;
 
@@ -45,11 +44,11 @@ public class UsersController {
                             (UsersDto) session.getAttribute("userDto"));
             usersVo.userRoleWheres();
             usersService.saveUser(usersVo);
-            session.removeAttribute("randomCode");
-            session.removeAttribute("userDto");
+            sessionRemoveCodeAndDto(session);
             return "joinComplete";
         }
-        return "joinEmailSend";
+        sessionRemoveCodeAndDto(session);
+        return "joinError";
     }
 
 
@@ -62,5 +61,10 @@ public class UsersController {
     @GetMapping("/login")
     public String loginUser() {
         return "loginForm";
+    }
+
+    private void sessionRemoveCodeAndDto(HttpSession session) {
+        session.removeAttribute("randomCode");
+        session.removeAttribute("userDto");
     }
 }

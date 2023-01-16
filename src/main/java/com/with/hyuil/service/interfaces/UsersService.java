@@ -9,4 +9,5 @@ public interface UsersService {
     int saveUser(UsersVo usersVo);
     int saveAdmin(AdminDto adminDto);
     boolean idCheck(UserIdDto userIdDto);
+    int saveHost(UsersVo usersVo);
 }
