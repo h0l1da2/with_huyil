@@ -38,7 +38,7 @@
         FROM BUSINESS
         WHERE ACCOUNT = #{account}
     </select>
-    <select id="selectUsers" parameterType="Map" resultType="UsersVo">
+    <select id="findByUserId" parameterType="String" resultType="UsersVo">
         SELECT *
         FROM USERS
         WHERE USER_ID = #{userId}

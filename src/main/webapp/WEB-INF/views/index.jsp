@@ -1,5 +1,5 @@
-<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="ko">
 <head>
     <title>위드휴일</title>
@@ -50,7 +50,7 @@
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a href="/host" class="nav-link">호스트등록</a></li>
-                <li class="nav-item"><a href="/loginForm" class="nav-link">로그인</a></li>
+                <li class="nav-item"><a href="/user/login" class="nav-link">로그인</a></li>
             </ul>
         </div>
     </div>
