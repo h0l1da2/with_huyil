@@ -1,6 +1,5 @@
 package com.with.hyuil.dao;
 
-import com.with.hyuil.dto.users.UserIdDto;
 import com.with.hyuil.model.AdminVo;
 import com.with.hyuil.model.BusinessVo;
 import com.with.hyuil.model.UsersVo;
@@ -18,5 +17,6 @@ public interface UsersMapper {
     int insertBusiness(BusinessVo businessVo);
     int insertHost(UsersVo usersVo);
     UsersVo findByUserId(String userId);
-    BusinessVo selectBusiness(Map map);
+    BusinessVo findBusinessByAccount(String account);
+    AdminVo findByAdminId(String adminId);
 }

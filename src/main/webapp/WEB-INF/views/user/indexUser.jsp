@@ -156,13 +156,13 @@
     		<div class="row">
     			<div class="col-sm col-md-6 col-lg-4 ftco-animate">
     				<div class="room">
-    					<a href="hotelList.jsp" class="img d-flex justify-content-center align-items-center" style="background-image: url(images/room-1.jpg);">
+    					<a href="../hotelList.jsp" class="img d-flex justify-content-center align-items-center" style="background-image: url(images/room-1.jpg);">
     						<div class="icon d-flex justify-content-center align-items-center">
     							<span class="icon-search2"></span>
     						</div>
     					</a>
     					<div class="text p-3 text-center">
-    						<h3 class="mb-3"><a href="hotelList.jsp">서울</a></h3>
+    						<h3 class="mb-3"><a href="../hotelList.jsp">서울</a></h3>
     						<hr>
     						<p class="pt-1"><a href="room-single.html" class="btn-custom">지금 찾아보기 <span class="icon-long-arrow-right"></span></a></p>
     					</div>
@@ -170,13 +170,13 @@
     			</div>
     			<div class="col-sm col-md-6 col-lg-4 ftco-animate">
     				<div class="room">
-    					<a href="hotelList.jsp" class="img d-flex justify-content-center align-items-center" style="background-image: url(images/room-2.jpg);">
+    					<a href="../hotelList.jsp" class="img d-flex justify-content-center align-items-center" style="background-image: url(images/room-2.jpg);">
     						<div class="icon d-flex justify-content-center align-items-center">
     							<span class="icon-search2"></span>
     						</div>
     					</a>
     					<div class="text p-3 text-center">
-    						<h3 class="mb-3"><a href="hotelList.jsp">부산</a></h3>
+    						<h3 class="mb-3"><a href="../hotelList.jsp">부산</a></h3>
     						<hr>
     						<p class="pt-1"><a href="room-single.html" class="btn-custom">지금 찾아보기 <span class="icon-long-arrow-right"></span></a></p>
     					</div>
@@ -184,13 +184,13 @@
     			</div>
     			<div class="col-sm col-md-6 col-lg-4 ftco-animate">
     				<div class="room">
-    					<a href="hotelList.jsp" class="img d-flex justify-content-center align-items-center" style="background-image: url(images/room-3.jpg);">
+    					<a href="../hotelList.jsp" class="img d-flex justify-content-center align-items-center" style="background-image: url(images/room-3.jpg);">
     						<div class="icon d-flex justify-content-center align-items-center">
     							<span class="icon-search2"></span>
     						</div>
     					</a>
     					<div class="text p-3 text-center">
-    						<h3 class="mb-3"><a href="hotelList.jsp">제주</a></h3>
+    						<h3 class="mb-3"><a href="../hotelList.jsp">제주</a></h3>
     						<hr>
     						<p class="pt-1"><a href="room-single.html" class="btn-custom">지금 찾아보기 <span class="icon-long-arrow-right"></span></a></p>
     					</div>
@@ -198,13 +198,13 @@
     			</div>
     			<div class="col-sm col-md-6 col-lg-4 ftco-animate">
     				<div class="room">
-    					<a href="hotelList.jsp" class="img d-flex justify-content-center align-items-center" style="background-image: url(images/room-4.jpg);">
+    					<a href="../hotelList.jsp" class="img d-flex justify-content-center align-items-center" style="background-image: url(images/room-4.jpg);">
     						<div class="icon d-flex justify-content-center align-items-center">
     							<span class="icon-search2"></span>
     						</div>
     					</a>
     					<div class="text p-3 text-center">
-    						<h3 class="mb-3"><a href="hotelList.jsp">경기</a></h3>
+    						<h3 class="mb-3"><a href="../hotelList.jsp">경기</a></h3>
     						<hr>
     						<p class="pt-1"><a href="room-single.html" class="btn-custom">지금 찾아보기 <span class="icon-long-arrow-right"></span></a></p>
     					</div>
@@ -212,13 +212,13 @@
     			</div>
     			<div class="col-sm col-md-6 col-lg-4 ftco-animate">
     				<div class="room">
-    					<a href="hotelList.jsp" class="img d-flex justify-content-center align-items-center" style="background-image: url(images/room-5.jpg);">
+    					<a href="../hotelList.jsp" class="img d-flex justify-content-center align-items-center" style="background-image: url(images/room-5.jpg);">
     						<div class="icon d-flex justify-content-center align-items-center">
     							<span class="icon-search2"></span>
     						</div>
     					</a>
     					<div class="text p-3 text-center">
-    						<h3 class="mb-3"><a href="hotelList.jsp">인천</a></h3>
+    						<h3 class="mb-3"><a href="../hotelList.jsp">인천</a></h3>
     						<hr>
     						<p class="pt-1"><a href="room-single.html" class="btn-custom">지금 찾아보기 <span class="icon-long-arrow-right"></span></a></p>
     					</div>
@@ -226,13 +226,13 @@
     			</div>
     			<div class="col-sm col-md-6 col-lg-4 ftco-animate">
     				<div class="room">
-    					<a href="hotelList.jsp" class="img d-flex justify-content-center align-items-center" style="background-image: url(images/room-6.jpg);">
+    					<a href="../hotelList.jsp" class="img d-flex justify-content-center align-items-center" style="background-image: url(images/room-6.jpg);">
     						<div class="icon d-flex justify-content-center align-items-center">
     							<span class="icon-search2"></span>
     						</div>
     					</a>
     					<div class="text p-3 text-center">
-    						<h3 class="mb-3"><a href="hotelList.jsp">강원</a></h3>
+    						<h3 class="mb-3"><a href="../hotelList.jsp">강원</a></h3>
     						<hr>
     						<p class="pt-1"><a href="room-single.html" class="btn-custom">지금 찾아보기 <span class="icon-long-arrow-right"></span></a></p>
     					</div>

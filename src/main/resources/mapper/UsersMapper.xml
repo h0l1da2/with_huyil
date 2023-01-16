@@ -32,8 +32,7 @@
         SELECT COUNT(*)
         FROM USERS
     </select>
-
-    <select id="selectBusiness" parameterType="Map" resultType="BusinessVo">
+    <select id="findBusinessByAccount" parameterType="String" resultType="BusinessVo">
         SELECT *
         FROM BUSINESS
         WHERE ACCOUNT = #{account}
@@ -42,5 +41,10 @@
         SELECT *
         FROM USERS
         WHERE USER_ID = #{userId}
+    </select>
+    <select id="findByAdminId" parameterType="String" resultType="AdminVo">
+        SELECT *
+        FROM ADMIN
+        WHERE ADMIN_ID = #{adminId}
     </select>
 </mapper>

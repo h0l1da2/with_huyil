@@ -9,7 +9,6 @@ import com.with.hyuil.service.interfaces.UsersService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -19,13 +18,13 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/user")
 @RequiredArgsConstructor
-public class UsersController {
+public class UsersJoinController {
     private final UsersService usersService;
     private final EmailService emailService;
 
     @GetMapping("/join")
     public String joinUser() {
-        return "joinForm";
+        return "user/joinForm";
     }
 
     @PostMapping("/join/email")
@@ -33,7 +32,7 @@ public class UsersController {
         String randomCode = emailService.joinMailSend(usersDto.getEmail());
         session.setAttribute("userDto", usersDto);
         session.setAttribute("randomCode", randomCode);
-        return "joinEmailSend";
+        return "user/joinEmailSend";
     }
 
     @PostMapping("/join/emailCode")
@@ -45,11 +44,12 @@ public class UsersController {
                             (UsersDto) session.getAttribute("userDto"));
             usersVo.userRoleWheres();
             usersService.saveUser(usersVo);
-            session.removeAttribute("randomCode");
-            session.removeAttribute("userDto");
-            return "joinComplete";
+            sessionRemoveCodeAndDto(session);
+            log.info("유저 회원 가입 = {}", usersVo.getUserId());
+            return "user/joinComplete";
         }
-        return "joinEmailSend";
+        sessionRemoveCodeAndDto(session);
+        return "user/joinError";
     }
 
 
@@ -61,6 +61,11 @@ public class UsersController {
 
     @GetMapping("/login")
     public String loginUser() {
-        return "loginForm";
+        return "user/loginForm";
+    }
+
+    private void sessionRemoveCodeAndDto(HttpSession session) {
+        session.removeAttribute("randomCode");
+        session.removeAttribute("userDto");
     }
 }

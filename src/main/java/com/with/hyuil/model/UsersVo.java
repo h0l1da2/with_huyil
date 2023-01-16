@@ -50,7 +50,6 @@ public class UsersVo {
         this.name = usersDto.getName();
         this.wheres = usersDto.getWheres();
         this.role = usersDto.getRole();
-        this.businessVo = usersDto.getBusinessVo();
     }
 
     public void userRoleWheres() {
@@ -62,7 +61,13 @@ public class UsersVo {
         this.password = password;
     }
 
-    public void hostUser(BusinessVo businessVo) {
+    public void hostUser(UsersDto usersDto) {
+        this.role = Role.HOST;
+        this.wheres = Wheres.WITH_HYUIL;
+        this.businessVo = new BusinessVo(usersDto.getAccount(), usersDto.getBNumber(), usersDto.getBank());;
+    }
+
+    public void myBusiness(BusinessVo businessVo) {
         this.businessVo = businessVo;
     }
 }
