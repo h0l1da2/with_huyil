@@ -7,6 +7,7 @@ import com.with.hyuil.model.AdminVo;
 import com.with.hyuil.model.UsersVo;
 import com.with.hyuil.service.interfaces.UsersService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,9 +16,11 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class UsersServiceImpl implements UsersService {
     private final UsersMapper usersMapper;
-
+    private final BCryptPasswordEncoder passwordEncoder;
     @Override
     public int saveUser(UsersVo usersVo) {
+        String encodePwd = passwordEncoder.encode(usersVo.getPassword());
+        usersVo.passwordEncode(encodePwd);
         return usersMapper.insertUser(usersVo);
     }
     @Override

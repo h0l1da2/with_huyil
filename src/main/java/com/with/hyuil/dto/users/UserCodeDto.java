@@ -5,10 +5,7 @@ import lombok.RequiredArgsConstructor;
 
 @Data
 @RequiredArgsConstructor
-public class BusinessDto {
+public class UserCodeDto {
 
-    private Long id;
-    private String account;
-    private String bNumber;
-    private String bank;
+    private String randomCode;
 }

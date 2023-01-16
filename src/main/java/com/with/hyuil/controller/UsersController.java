@@ -1,7 +1,9 @@
 package com.with.hyuil.controller;
 
+import com.with.hyuil.dto.users.UserCodeDto;
 import com.with.hyuil.dto.users.UserIdDto;
 import com.with.hyuil.dto.users.UsersDto;
+import com.with.hyuil.model.UsersVo;
 import com.with.hyuil.service.interfaces.EmailService;
 import com.with.hyuil.service.interfaces.UsersService;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
 
 
 @Slf4j
@@ -25,12 +29,29 @@ public class UsersController {
     }
 
     @PostMapping("/join/email")
-    public String joinEmail(@ModelAttribute UsersDto usersDto, Model model) {
+    public String joinEmail(@ModelAttribute UsersDto usersDto, HttpSession session) {
         String randomCode = emailService.joinMailSend(usersDto.getEmail());
-        model.addAttribute("userDto", usersDto);
-        model.addAttribute("randomCode", randomCode);
+        session.setAttribute("userDto", usersDto);
+        session.setAttribute("randomCode", randomCode);
         return "joinEmailSend";
     }
+
+    @PostMapping("/join/emailCode")
+    public String checkEmail(@ModelAttribute UserCodeDto userCodeDto, HttpSession session) {
+        String randomCode = (String) session.getAttribute("randomCode");
+        if(randomCode.equals(userCodeDto.getRandomCode())) {
+            UsersVo usersVo =
+                    new UsersVo(
+                            (UsersDto) session.getAttribute("userDto"));
+            usersVo.userRoleWheres();
+            usersService.saveUser(usersVo);
+            session.removeAttribute("randomCode");
+            session.removeAttribute("userDto");
+            return "joinComplete";
+        }
+        return "joinEmailSend";
+    }
+
 
     @ResponseBody
     @PostMapping("/join/id")

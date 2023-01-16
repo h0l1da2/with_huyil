@@ -53,6 +53,15 @@ public class UsersVo {
         this.businessVo = usersDto.getBusinessVo();
     }
 
+    public void userRoleWheres() {
+        this.role = Role.USER;
+        this.wheres = Wheres.WITH_HYUIL;
+    }
+
+    public void passwordEncode(String password) {
+        this.password = password;
+    }
+
     public void hostUser(BusinessVo businessVo) {
         this.businessVo = businessVo;
     }
