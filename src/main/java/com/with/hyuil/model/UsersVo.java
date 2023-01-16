@@ -1,8 +1,13 @@
 package com.with.hyuil.model;
 
+import com.with.hyuil.dto.users.UsersDto;
+import com.with.hyuil.model.enumaration.Role;
+import com.with.hyuil.model.enumaration.Wheres;
 import lombok.Getter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Email;
+import java.time.LocalDateTime;
 
 @Getter
 public class UsersVo {
@@ -16,6 +21,14 @@ public class UsersVo {
     private String name;
     private Wheres wheres;
     private Role role;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime joinDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime lastLogin;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime out;
+    private BusinessVo businessVo;
+
 
     protected UsersVo() {}
 
@@ -27,5 +40,29 @@ public class UsersVo {
         this.name = name;
         this.wheres = wheres;
         this.role = role;
+    }
+
+    public UsersVo(UsersDto usersDto) {
+        this.userId = usersDto.getUserId();
+        this.password = usersDto.getPassword();
+        this.email = usersDto.getEmail();
+        this.tel = usersDto.getTel();
+        this.name = usersDto.getName();
+        this.wheres = usersDto.getWheres();
+        this.role = usersDto.getRole();
+        this.businessVo = usersDto.getBusinessVo();
+    }
+
+    public void userRoleWheres() {
+        this.role = Role.USER;
+        this.wheres = Wheres.WITH_HYUIL;
+    }
+
+    public void passwordEncode(String password) {
+        this.password = password;
+    }
+
+    public void hostUser(BusinessVo businessVo) {
+        this.businessVo = businessVo;
     }
 }

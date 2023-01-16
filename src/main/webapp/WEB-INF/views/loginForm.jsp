@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="ko">
   <head>
   	<title>위드휴일 - 로그인</title>
@@ -9,7 +10,7 @@
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	
-	<link rel="stylesheet" href="static/loginForm/css/style.css">
+	<link rel="stylesheet" href="/static/loginForm/css/style.css">
 
 	<style>
 		.join {
@@ -18,7 +19,7 @@
 		}
 	</style>
 	</head>
-	<body class="img js-fullheight" style="background-image: url(static/loginForm/images/bg.jpg);">
+	<body class="img js-fullheight" style="background-image: url(<c:url value='/static/loginForm/images/bg.jpg'/>);">
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">
@@ -54,7 +55,7 @@
 	            </div>
 	          </form>
 			  <div class="social d-flex text-center">
-				<a href="/joinForm" class="px-2 py-2 mr-md-1 rounded join"><span class="ion-logo-facebook mr-2"></span> 회원가입</a>
+				<a href="<c:url value='/user/join'/>" class="px-2 py-2 mr-md-1 rounded join"><span class="ion-logo-facebook mr-2"></span> 회원가입</a>
 			</div>
 	          <p class="w-100 text-center">&mdash; With SNS &mdash;</p>
 			  <div class="social d-flex text-center">
@@ -69,10 +70,10 @@
 		</div>
 	</section>
 
-	<script src="static/loginForm/js/jquery.min.js"></script>
-  <script src="static/loginForm/js/popper.js"></script>
-  <script src="static/loginForm/js/bootstrap.min.js"></script>
-  <script src="static/loginForm/js/main.js"></script>
+	<script src="/static/loginForm/js/jquery.min.js"></script>
+  <script src="/static/loginForm/js/popper.js"></script>
+  <script src="/static/loginForm/js/bootstrap.min.js"></script>
+  <script src="/static/loginForm/js/main.js"></script>
 
 	</body>
 </html>

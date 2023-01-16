@@ -1,4 +1,4 @@
-package com.with.hyuil.model;
+package com.with.hyuil.model.enumaration;
 
 public enum Role {
 

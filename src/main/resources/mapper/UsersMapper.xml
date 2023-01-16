@@ -6,13 +6,41 @@
 <mapper namespace="com.with.hyuil.dao.UsersMapper">
     <insert id="insertUser" parameterType="UsersVo">
         INSERT INTO USERS
-            ( ID, USER_ID, PASSWORD, EMAIL, TEL, NAME, WHERES, ROLE )
+            ( ID, USER_ID, PASSWORD, EMAIL, TEL, NAME, WHERES, ROLE, JOIN_DATE, LAST_LOGIN )
         VALUES
-            ( USERS_SEQ.NEXTVAL, #{userId}, #{password}, #{email}, #{tel}, #{name}, #{wheres}, #{role} )
+            ( USERS_SEQ.NEXTVAL, #{userId}, #{password}, #{email}, #{tel}, #{name}, #{wheres}, #{role}, SYSDATE, SYSDATE )
     </insert>
-
+    <insert id="insertAdmin" parameterType="AdminVo">
+        INSERT INTO ADMIN
+            ( ID, ADMIN_ID, PASSWORD, NAME, JOIN_DATE, LAST_LOGIN, ROLE )
+        VALUES
+            ( ADMIN_SEQ.NEXTVAL, #{adminId}, #{password}, #{name}, SYSDATE, SYSDATE, #{role}  )
+    </insert>
+    <insert id="insertHost" parameterType="UsersVo">
+        INSERT INTO USERS
+            ( ID, USER_ID, PASSWORD, EMAIL, TEL, NAME, WHERES, ROLE, JOIN_DATE, LAST_LOGIN, BUSINESS_ID )
+        VALUES
+            ( USERS_SEQ.NEXTVAL, #{userId}, #{password}, #{email}, #{tel}, #{name}, #{wheres}, #{role}, SYSDATE, SYSDATE, #{businessVo.id, jdbcType=VARCHAR} )
+        </insert>
+    <insert id="insertBusiness" parameterType="BusinessVo">
+        INSERT INTO BUSINESS
+            ( ID, ACCOUNT, B_NUMBER, BANK )
+        VALUES
+            ( BUSINESS_SEQ.NEXTVAL, #{account}, #{bNumber}, #{bank} )
+    </insert>
     <select id="count" resultType="Integer">
         SELECT COUNT(*)
         FROM USERS
+    </select>
+
+    <select id="selectBusiness" parameterType="Map" resultType="BusinessVo">
+        SELECT *
+        FROM BUSINESS
+        WHERE ACCOUNT = #{account}
+    </select>
+    <select id="findByUserId" parameterType="String" resultType="UsersVo">
+        SELECT *
+        FROM USERS
+        WHERE USER_ID = #{userId}
     </select>
 </mapper>

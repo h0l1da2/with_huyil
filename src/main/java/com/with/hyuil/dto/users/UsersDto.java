@@ -1,13 +1,16 @@
-package com.with.hyuil.dto;
+package com.with.hyuil.dto.users;
 
-import com.with.hyuil.model.Role;
-import com.with.hyuil.model.Wheres;
+import com.with.hyuil.model.BusinessVo;
+import com.with.hyuil.model.enumaration.Role;
+import com.with.hyuil.model.enumaration.Wheres;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 import javax.validation.constraints.Email;
 
+@Data
 @RequiredArgsConstructor
-public class UserDto {
+public class UsersDto {
     private String userId;
     private String password;
     @Email
@@ -16,5 +19,8 @@ public class UserDto {
     private String name;
     private Wheres wheres;
     private Role role;
+    private BusinessVo businessVo;
+
+
 
 }
