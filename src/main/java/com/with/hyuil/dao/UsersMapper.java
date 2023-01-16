@@ -18,4 +18,5 @@ public interface UsersMapper {
     int insertHost(UsersVo usersVo);
     UsersVo findByUserId(String userId);
     BusinessVo findBusinessByAccount(String account);
+    AdminVo findByAdminId(String adminId);
 }

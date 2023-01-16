@@ -1,6 +1,6 @@
 package com.with.hyuil.model;
 
-import com.with.hyuil.dto.users.AdminDto;
+import com.with.hyuil.dto.users.AdminJoinDto;
 import com.with.hyuil.model.enumaration.Role;
 import lombok.Getter;
 
@@ -28,10 +28,14 @@ public class AdminVo {
         this.role = Role.ADMIN;
     }
 
-    public AdminVo(AdminDto adminDto) {
-        this.adminId = adminDto.getAdminId();
-        this.password = adminDto.getPassword();
-        this.name = adminDto.getName();
+    public AdminVo(AdminJoinDto adminJoinDto) {
+        this.adminId = adminJoinDto.getAdminId();
+        this.password = adminJoinDto.getPassword();
+        this.name = adminJoinDto.getName();
         this.role = Role.ADMIN;
+    }
+
+    public void passwordEncode(String encodePwd) {
+        this.password = encodePwd;
     }
 }

@@ -45,6 +45,7 @@ public class UsersJoinController {
             usersVo.userRoleWheres();
             usersService.saveUser(usersVo);
             sessionRemoveCodeAndDto(session);
+            log.info("유저 회원 가입 = {}", usersVo.getUserId());
             return "user/joinComplete";
         }
         sessionRemoveCodeAndDto(session);

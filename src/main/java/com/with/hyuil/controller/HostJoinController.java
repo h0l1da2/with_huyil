@@ -60,6 +60,8 @@ public class HostJoinController {
             usersVo.hostUser(usersDto);
             usersService.saveHost(usersVo);
             sessionRemoveCodeAndDto(session);
+
+            log.info("호스트 회원 가입 = {}", usersDto.getUserId());
             return "host/hostJoinComplete";
         }
         sessionRemoveCodeAndDto(session);
