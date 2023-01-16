@@ -24,7 +24,7 @@ public class UsersJoinController {
 
     @GetMapping("/join")
     public String joinUser() {
-        return "joinForm";
+        return "user/joinForm";
     }
 
     @PostMapping("/join/email")
@@ -32,7 +32,7 @@ public class UsersJoinController {
         String randomCode = emailService.joinMailSend(usersDto.getEmail());
         session.setAttribute("userDto", usersDto);
         session.setAttribute("randomCode", randomCode);
-        return "joinEmailSend";
+        return "user/joinEmailSend";
     }
 
     @PostMapping("/join/emailCode")
@@ -45,10 +45,10 @@ public class UsersJoinController {
             usersVo.userRoleWheres();
             usersService.saveUser(usersVo);
             sessionRemoveCodeAndDto(session);
-            return "joinComplete";
+            return "user/joinComplete";
         }
         sessionRemoveCodeAndDto(session);
-        return "joinError";
+        return "user/joinError";
     }
 
 
@@ -60,7 +60,7 @@ public class UsersJoinController {
 
     @GetMapping("/login")
     public String loginUser() {
-        return "loginForm";
+        return "user/loginForm";
     }
 
     private void sessionRemoveCodeAndDto(HttpSession session) {

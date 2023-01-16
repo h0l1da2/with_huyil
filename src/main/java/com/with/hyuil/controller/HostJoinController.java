@@ -24,17 +24,17 @@ public class HostJoinController {
 
     @GetMapping
     public String hostMain() {
-        return "host";
+        return "host/host";
     }
 
     @GetMapping("/login")
     public String loginForm() {
-        return "hostLoginForm";
+        return "host/hostLoginForm";
     }
 
     @GetMapping("/join")
     public String joinForm() {
-        return "hostJoinForm";
+        return "host/hostJoinForm";
     }
 
     @ResponseBody
@@ -48,7 +48,7 @@ public class HostJoinController {
         String randomCode = emailService.joinMailSend(usersDto.getEmail());
         session.setAttribute("usersDto", usersDto);
         session.setAttribute("randomCode", randomCode);
-        return "hostJoinEmailSend";
+        return "host/hostJoinEmailSend";
     }
 
     @PostMapping("/join/emailCode")
@@ -60,10 +60,10 @@ public class HostJoinController {
             usersVo.hostUser(usersDto);
             usersService.saveHost(usersVo);
             sessionRemoveCodeAndDto(session);
-            return "hostJoinComplete";
+            return "host/hostJoinComplete";
         }
         sessionRemoveCodeAndDto(session);
-        return "hostJoinError";
+        return "host/hostJoinError";
     }
 
     private void sessionRemoveCodeAndDto(HttpSession session) {
