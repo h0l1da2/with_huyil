@@ -5,6 +5,7 @@ import com.with.hyuil.dto.users.AdminDto;
 import com.with.hyuil.dto.users.UserIdDto;
 import com.with.hyuil.model.AdminVo;
 import com.with.hyuil.model.UsersVo;
+import com.with.hyuil.service.interfaces.UsersService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

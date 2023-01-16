@@ -1,10 +1,9 @@
-package com.with.hyuil.service;
+package com.with.hyuil.service.interfaces;
 
 import com.with.hyuil.dto.users.AdminDto;
 import com.with.hyuil.dto.users.UserIdDto;
 import com.with.hyuil.model.UsersVo;
 
-import java.util.Map;
 
 public interface UsersService {
     int saveUser(UsersVo usersVo);

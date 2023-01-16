@@ -2,7 +2,8 @@ package com.with.hyuil.controller;
 
 import com.with.hyuil.dto.users.UserIdDto;
 import com.with.hyuil.dto.users.UsersDto;
-import com.with.hyuil.service.UsersService;
+import com.with.hyuil.service.interfaces.EmailService;
+import com.with.hyuil.service.interfaces.UsersService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class UsersController {
     private final UsersService usersService;
+    private final EmailService emailService;
 
     @GetMapping("/join")
     public String joinUser() {
@@ -24,9 +26,10 @@ public class UsersController {
 
     @PostMapping("/join/email")
     public String joinEmail(@ModelAttribute UsersDto usersDto, Model model) {
-
+        String randomCode = emailService.joinMailSend(usersDto.getEmail());
         model.addAttribute("userDto", usersDto);
-        return "joinForm";
+        model.addAttribute("randomCode", randomCode);
+        return "joinEmailSend";
     }
 
     @ResponseBody
