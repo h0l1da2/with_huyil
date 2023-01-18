@@ -1,7 +1,6 @@
 package com.with.hyuil.config.jwt;
 
 import com.with.hyuil.config.auth.PrincipalDetails;
-import com.with.hyuil.model.UsersVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -36,18 +35,9 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
             log.info("어선티케이션시작");
-            UsernamePasswordAuthenticationToken token;
             String userId = request.getParameter("userId");
-            String adminId = request.getParameter("adminId");
 
-            if (userId != null) {
-                return whoRequest(request, userId);
-            }
-            if (adminId != null) {
-                return whoRequest(request, adminId);
-            }
-
-        return null;
+            return whoRequest(request, userId);
     }
 
     // 성공

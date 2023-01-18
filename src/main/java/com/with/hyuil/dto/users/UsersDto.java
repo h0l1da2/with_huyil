@@ -17,7 +17,6 @@ public class UsersDto {
     private String tel;
     private String name;
     private Wheres wheres;
-    private Role role;
     private String account; //사업자번호
     private String bNumber;
     private String bank;

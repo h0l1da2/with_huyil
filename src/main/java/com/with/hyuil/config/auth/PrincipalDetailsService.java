@@ -17,6 +17,9 @@ public class PrincipalDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UsersVo usersVo = usersService.loginForFind(username);
-        return new PrincipalDetails(usersVo);
+        if (usersVo != null) {
+            return new PrincipalDetails(usersVo);
+        }
+        return null;
     }
 }

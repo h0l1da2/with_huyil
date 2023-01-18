@@ -39,7 +39,7 @@
 					<div class="login-wrap p-0">
 		      	<form id="form" action="<c:url value='/admins/join'/>" class="signin-form" method="POST" onsubmit="return formCheck(this)">
 		      		<div class="form-group">
-		      			<input type="text" id="adminId" name="adminId" class="form-control" placeholder="아이디" required>
+		      			<input type="text" id="userId" name="userId" class="form-control" placeholder="아이디" required>
 		      		</div>
 					<div class="form-group">
 						<button type="button" id="idCheck" name="idCheck" class="form-control btn btn-primary submit px-3">중복확인</button>
@@ -55,7 +55,7 @@
 					<input type="text" id="name" name="name" class="form-control" placeholder="이름" required>
 				</div>
 					<div class="form-group">
-					<input type="password" id="adminPwd" name="adminPwd" class="form-control" placeholder="관리자 비밀번호" required>
+					<input type="password" id="adminCode" name="adminCode" class="form-control" placeholder="관리자 비밀번호" required>
 				</div>
 	            <div class="form-group">
 	            	<button type="submit" class="form-control btn btn-primary submit px-3">가입</button>
@@ -97,7 +97,7 @@
 						return false;
 					}
 			});
-			$("#adminId").on("propertychange change keyup paste input", function() {
+			$("#userId").on("propertychange change keyup paste input", function() {
 				var currentVal = $(this).val();
 				if(currentVal == oldVal) {
 					return;
@@ -107,17 +107,17 @@
 			});
 		});
 		$('#idCheck').click(function () {
-			let adminId = document.getElementById("adminId").value;
-			if(adminId=="") {
+			let userId = document.getElementById("userId").value;
+			if(userId=="") {
 				alert("아이디를 입력하세요");
-				document.getElementById("adminId").focus();
+				document.getElementById("userId").focus();
 				return false;
 			}
 			$.ajax({
 				type: 'POST',
 				url: '/admins/join/id',
 				contentType: "application/json",
-				data: JSON.stringify({adminId:adminId}),
+				data: JSON.stringify({userId:userId}),
 				dataType: 'text',
 				success: function (result) {
 					if(result=="true") {
@@ -125,7 +125,7 @@
 						check=1;
 					} else {
 						alert("중복입니다");
-						document.getElementById('adminId').focus();
+						document.getElementById('userId').focus();
 					}
 				},
 			error: function(result) {

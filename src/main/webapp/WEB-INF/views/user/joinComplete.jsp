@@ -36,7 +36,7 @@
                     <h3 class="mb-4 text-center">여행을 떠나볼까요?</h3>
                     <form action="#" class="signin-form">
                         <div class="form-group">
-                            <a href="<c:url value='/user/login'/>">
+                            <a href="<c:url value='/user/loginForm'/>">
                                 <button type="button" class="form-control btn btn-primary submit px-3">여행못참지ㅋㅋ</button></a>
                         </div>
                         <div class="form-group d-md-flex">

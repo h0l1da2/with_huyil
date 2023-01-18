@@ -1,12 +1,13 @@
 package com.with.hyuil.dto.users;
 
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 @Data
+@RequiredArgsConstructor
 public class AdminJoinDto {
-    private Long id;
-    private String adminId;
+    private String userId;
     private String password;
     private String name;
-    private String adminPwd;
+    private String adminCode;
 }

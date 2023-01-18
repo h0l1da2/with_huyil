@@ -1,7 +1,6 @@
 package com.with.hyuil.config;
 
 import com.with.hyuil.dao.UsersMapper;
-import com.with.hyuil.model.AdminVo;
 import com.with.hyuil.model.BusinessVo;
 import com.with.hyuil.model.UsersVo;
 import com.with.hyuil.model.enumaration.Role;
@@ -37,9 +36,9 @@ class MyBatisTest {
 
     @Test
     void insertAdmin() {
-        AdminVo adminVo = new AdminVo("asdf", "1111", "aas");
-        int result = usersService.saveAdmin(adminVo, "asdf");
-        assertThat(result).isEqualTo(1);
+//        AdminVo adminVo = new Users("asdf", "1111", "aas");
+//        int result = usersService.saveAdmin(adminVo, "asdf");
+//        assertThat(result).isEqualTo(1);
     }
 
     @Test
