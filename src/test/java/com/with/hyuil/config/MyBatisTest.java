@@ -1,19 +1,17 @@
 package com.with.hyuil.config;
 
 import com.with.hyuil.dao.UsersMapper;
+import com.with.hyuil.model.AdminVo;
 import com.with.hyuil.model.BusinessVo;
+import com.with.hyuil.model.UsersVo;
 import com.with.hyuil.model.enumaration.Role;
 import com.with.hyuil.model.enumaration.Wheres;
-import com.with.hyuil.model.AdminVo;
-import com.with.hyuil.model.UsersVo;
+import com.with.hyuil.service.interfaces.UsersService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -24,6 +22,8 @@ class MyBatisTest {
 
     @Autowired
     private UsersMapper usersMapper;
+    @Autowired
+    private UsersService usersService;
 
     @Test
     void insertUser() {
@@ -37,8 +37,8 @@ class MyBatisTest {
 
     @Test
     void insertAdmin() {
-        AdminVo adminVo = new AdminVo("asdf", "asdf", "aas");
-        int result = usersMapper.insertAdmin(adminVo);
+        AdminVo adminVo = new AdminVo("asdf", "1111", "aas");
+        int result = usersService.saveAdmin(adminVo, "asdf");
         assertThat(result).isEqualTo(1);
     }
 
@@ -49,13 +49,11 @@ class MyBatisTest {
                 "asdf","asdf","asd@asd.com","asdf","asdf",
                 Wheres.WITH_HYUIL, Role.HOST);
         int i = usersMapper.insertBusiness(businessVo);
-        Map map = new HashMap();
-        map.put("account", "1111");
 
-        BusinessVo businessVo1 = usersMapper.selectBusiness(map);
+        BusinessVo businessVo1 = usersMapper.findBusinessByAccount(businessVo.getAccount());
         log.info("비즈니스 id = {}", businessVo1.getId());
         assertThat(businessVo1).isNotNull();
-        assertThat(businessVo1.getAccount()).isEqualTo(map.get("account"));
+        assertThat(businessVo1.getAccount()).isEqualTo(businessVo.getAccount());
 
         int i1 = usersMapper.insertHost(usersVo);
         assertThat(i1).isEqualTo(1);

@@ -3,6 +3,7 @@ package com.with.hyuil.model;
 import com.with.hyuil.dto.users.UsersDto;
 import com.with.hyuil.model.enumaration.Role;
 import com.with.hyuil.model.enumaration.Wheres;
+import lombok.Builder;
 import lombok.Getter;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -10,6 +11,7 @@ import javax.validation.constraints.Email;
 import java.time.LocalDateTime;
 
 @Getter
+@Builder
 public class UsersVo {
 
     private Long id;
@@ -28,7 +30,6 @@ public class UsersVo {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime out;
     private BusinessVo businessVo;
-
 
     protected UsersVo() {}
 
@@ -68,6 +69,21 @@ public class UsersVo {
     }
 
     public void myBusiness(BusinessVo businessVo) {
+        this.businessVo = businessVo;
+    }
+
+    public UsersVo(Long id, String userId, String password, String email, String tel, String name, Wheres wheres, Role role, LocalDateTime joinDate, LocalDateTime lastLogin, LocalDateTime out, BusinessVo businessVo) {
+        this.id = id;
+        this.userId = userId;
+        this.password = password;
+        this.email = email;
+        this.tel = tel;
+        this.name = name;
+        this.wheres = wheres;
+        this.role = role;
+        this.joinDate = joinDate;
+        this.lastLogin = lastLogin;
+        this.out = out;
         this.businessVo = businessVo;
     }
 }

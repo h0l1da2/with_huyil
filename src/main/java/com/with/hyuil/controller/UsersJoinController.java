@@ -27,6 +27,11 @@ public class UsersJoinController {
         return "user/joinForm";
     }
 
+//    @GetMapping("/login")
+//    public String loginUsers() {
+//        return "index";
+//    }
+
     @PostMapping("/join/email")
     public String joinEmail(@ModelAttribute UsersDto usersDto, HttpSession session) {
         String randomCode = emailService.joinMailSend(usersDto.getEmail());
@@ -59,7 +64,7 @@ public class UsersJoinController {
         return String.valueOf(usersService.idCheck(userIdDto));
     }
 
-    @GetMapping("/login")
+    @GetMapping("/loginForm")
     public String loginUser() {
         return "user/loginForm";
     }

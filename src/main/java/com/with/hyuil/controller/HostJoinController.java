@@ -27,7 +27,7 @@ public class HostJoinController {
         return "host/host";
     }
 
-    @GetMapping("/login")
+    @GetMapping("/loginForm")
     public String loginForm() {
         return "host/hostLoginForm";
     }

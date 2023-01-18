@@ -65,6 +65,11 @@ public class UsersServiceImpl implements UsersService {
         return false;
     }
 
+    @Override
+    public UsersVo loginForFind(String userId) {
+        return usersMapper.findByUserId(userId);
+    }
+
     private String passwordEncoding(String adminVo) {
         return passwordEncoder.encode(adminVo);
     }

@@ -44,7 +44,7 @@
                     </p>
                 </div>
                 <div class="d-flex">
-                    <button onclick="location.href='<c:url value='/host/login'/>'" type="button" class="form-control btn btn-primary submit px-3">당장 함께하기</button>
+                    <button onclick="location.href='<c:url value='/host/loginForm'/>'" type="button" class="form-control btn btn-primary submit px-3">당장 함께하기</button>
                 </div>
             </div>
             <div id="map" style="width:600px; height:500px;"></div>

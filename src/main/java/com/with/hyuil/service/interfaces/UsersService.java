@@ -10,6 +10,6 @@ public interface UsersService {
     int saveAdmin(AdminVo adminVo,String adminPwd);
     boolean idCheck(UserIdDto userIdDto);
     int saveHost(UsersVo usersVo);
-
     boolean adminIdCheck(String adminId);
+    UsersVo loginForFind(String userId);
 }
