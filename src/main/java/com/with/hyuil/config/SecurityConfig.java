@@ -1,6 +1,5 @@
 package com.with.hyuil.config;
 
-//import com.with.hyuil.config.jwt.HostAuthenticationProvider;
 import com.with.hyuil.config.jwt.JwtAuthenticationFilter;
 import com.with.hyuil.config.jwt.JwtTokenParser;
 import com.with.hyuil.config.jwt.JwtTokenProvider;
@@ -8,7 +7,6 @@ import com.with.hyuil.dao.UsersMapper;
 import com.with.hyuil.service.UsersServiceImpl;
 import com.with.hyuil.service.interfaces.UsersService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -62,10 +60,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .disable()
 
                 .authorizeRequests()
-                .antMatchers("/hosts/**")
-                .access("hasRole('HOST') or hasRole('ADMIN')")
-                .antMatchers("/admin/**")
-                .access("hasRole('ADMIN')")
+//                .antMatchers("/hosts/**")
+//                .access("hasRole('HOST') or hasRole('ADMIN')")
+//                .antMatchers("/admin/**")
+//                .access("hasRole('ADMIN')")
                 .anyRequest()
                 .permitAll()
 
@@ -96,6 +94,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring() // 정적파일들 필터 검사 ㄴㄴ
-                .requestMatchers(PathRequest.toStaticResources().atCommonLocations());
+                .antMatchers("/static/**")
+                .antMatchers("/user/**");
     }
 }
