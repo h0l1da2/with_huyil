@@ -1,10 +1,12 @@
 package com.with.hyuil.config;
 
+
 import com.with.hyuil.config.auth.CustomOAuth2UserService;
 import com.with.hyuil.config.auth.CustomUserDetailsService;
 import com.with.hyuil.config.handler.AuthenticationExceptionHandler;
 import com.with.hyuil.config.handler.UserLoginFailureHandler;
 import com.with.hyuil.config.handler.UserLoginSuccessHandler;
+
 import com.with.hyuil.dao.UsersMapper;
 import com.with.hyuil.service.UsersServiceImpl;
 import com.with.hyuil.service.interfaces.UsersService;
@@ -114,5 +116,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring() // 정적파일들 필터 검사 ㄴㄴ
                 .mvcMatchers("/resources/static/**")
         ;
+
     }
 }
