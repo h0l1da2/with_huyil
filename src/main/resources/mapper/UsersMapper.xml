@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.with.hyuil.dao.UsersMapper">
+    <insert id="insertUser" parameterType="UsersVo">
+        INSERT INTO USERS
+            ( ID, USER_ID, PASSWORD, EMAIL, TEL, NAME, WHERES, JOIN_DATE, LAST_LOGIN )
+        VALUES
+            ( USERS_SEQ.NEXTVAL, #{userId}, #{password}, #{email}, #{tel}, #{name}, #{wheres}, SYSDATE, SYSDATE )
+    </insert>
+    <insert id="insertAdmin" parameterType="UsersVo">
+        INSERT INTO USERS
+            ( ID, USER_ID, PASSWORD, NAME, JOIN_DATE, LAST_LOGIN )
+        VALUES
+            ( ADMIN_SEQ.NEXTVAL, #{userId}, #{password}, #{name}, SYSDATE, SYSDATE )
+    </insert>
+    <insert id="insertHost" parameterType="UsersVo">
+        INSERT INTO USERS
+            ( ID, USER_ID, PASSWORD, EMAIL, TEL, NAME, WHERES, JOIN_DATE, LAST_LOGIN, BUSINESS_ID )
+        VALUES
+            ( USERS_SEQ.NEXTVAL, #{userId}, #{password}, #{email}, #{tel}, #{name}, #{wheres}, SYSDATE, SYSDATE, #{businessVo.id, jdbcType=VARCHAR} )
+        </insert>
+    <insert id="insertBusiness" parameterType="BusinessVo">
+        INSERT INTO BUSINESS
+            ( ID, ACCOUNT, B_NUMBER, BANK )
+        VALUES
+            ( BUSINESS_SEQ.NEXTVAL, #{account}, #{bNumber}, #{bank} )
+    </insert>
+    <insert id="insertRoles" parameterType="RolesVo">
+        INSERT INTO ROLES
+            ( ID, ROLE_NAME, USER_ID )
+        VALUES
+            ( ROLES_SEQ.NEXTVAL, #{roleName}, #{usersVo.id, jdbcType=VARCHAR} )
+    </insert>
+    <select id="count" resultType="Integer">
+        SELECT COUNT(*)
+        FROM USERS
+    </select>
+    <select id="findBusinessByAccount" parameterType="String" resultType="BusinessVo">
+        SELECT *
+        FROM BUSINESS
+        WHERE ACCOUNT = #{account}
+    </select>
+    <select id="findByUserId" parameterType="String" resultType="UsersVo">
+        SELECT *
+        FROM USERS
+        WHERE USER_ID = #{userId}
+    </select>
+    <select id="findRoles" parameterType="String" resultType="RolesVo">
+        SELECT *
+        FROM ROLES
+        WHERE USER_ID = #{userId}
+    </select>
+</mapper>
