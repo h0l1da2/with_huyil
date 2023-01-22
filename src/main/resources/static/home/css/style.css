@@ -6173,9 +6173,7 @@ button.bg-dark:focus {
 
 .mb-4,
 .my-4 {
-  /*margin-bottom: 0rem !important; }*/
   margin-bottom: 1.5rem !important; }
-
 
 .ml-4,
 .mx-4 {
@@ -9120,14 +9118,3 @@ textarea.form-control {
   100% {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px; } }
-<<<<<<< HEAD
-    
-.col-md-6:nth-child(even) {
-	left: 50px;
-}    
-
-.col-md-6:nth-child(odd) {
-	left: 0px;
-}
-=======
->>>>>>> 1eadeeb (커밋확인)
