@@ -10,7 +10,7 @@
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	
-	<link rel="stylesheet" href="/static/loginForm/css/style.css">
+	<link rel="stylesheet" href="/resources/static/loginForm/css/style.css">
 
 	<style>
 		.join {
@@ -19,7 +19,7 @@
 		}
 	</style>
 	</head>
-	<body class="img js-fullheight" style="background-image: url(<c:url value='/static/loginForm/images/bg.jpg'/>);">
+	<body class="img js-fullheight" style="background-image: url(<c:url value='/resources/static/loginForm/images/bg.jpg'/>);">
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">
@@ -70,10 +70,10 @@
 		</div>
 	</section>
 
-	<script src="/static/loginForm/js/jquery.min.js"></script>
-  <script src="/static/loginForm/js/popper.js"></script>
-  <script src="/static/loginForm/js/bootstrap.min.js"></script>
-  <script src="/static/loginForm/js/main.js"></script>
+	<script src="/resources/static/loginForm/js/jquery.min.js"></script>
+  <script src="/resources/static/loginForm/js/popper.js"></script>
+  <script src="/resources/static/loginForm/js/bootstrap.min.js"></script>
+  <script src="/resources/static/loginForm/js/main.js"></script>
 
 	</body>
 </html>
