@@ -155,7 +155,11 @@
 
   var dateAndTime = function() {
     $('#m_date').datepicker({
+<<<<<<< HEAD
       'format': 'yyyy-mm-dd',
+=======
+      'format': 'm/d/yyyy',
+>>>>>>> 2c9c0c4 (view test)
       'autoclose': true
     });
     $('#checkin_date, #checkout_date').datepicker({
