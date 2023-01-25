@@ -9,26 +9,26 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i" rel="stylesheet">
 
-    <link rel="stylesheet" href="<c:url value='/static/home/css/open-iconic-bootstrap.min.css'/>">
-    <link rel="stylesheet" href="<c:url value='/static/home/css/open-iconic-bootstrap.min.css'/>">
-    <link rel="stylesheet" href="<c:url value='/static/home/css/open-iconic-bootstrap.min.css'/>">
+    <link rel="stylesheet" href="<c:url value='/resources/static/home/css/open-iconic-bootstrap.min.css'/>">
+    <link rel="stylesheet" href="<c:url value='/resources/static/home/css/open-iconic-bootstrap.min.css'/>">
+    <link rel="stylesheet" href="<c:url value='/resources/static/home/css/open-iconic-bootstrap.min.css'/>">
 
-    <link rel="stylesheet" href="<c:url value='/static/home/css/animate.css'/>">
+    <link rel="stylesheet" href="<c:url value='/resources/static/home/css/animate.css'/>">
 
-    <link rel="stylesheet" href="<c:url value='/static/home/css/owl.carousel.min.css'/>">
-    <link rel="stylesheet" href="<c:url value='/static/home/css/owl.theme.default.min.css'/>">
-    <link rel="stylesheet" href="<c:url value='/static/home/css/magnific-popup.css'/>">
+    <link rel="stylesheet" href="<c:url value='/resources/static/home/css/owl.carousel.min.css'/>">
+    <link rel="stylesheet" href="<c:url value='/resources/static/home/css/owl.theme.default.min.css'/>">
+    <link rel="stylesheet" href="<c:url value='/resources/static/home/css/magnific-popup.css'/>">
 
-    <link rel="stylesheet" href="<c:url value='/static/home/css/aos.css'/>">
+    <link rel="stylesheet" href="<c:url value='/resources/static/home/css/aos.css'/>">
 
-    <link rel="stylesheet" href="<c:url value='/static/home/css/ionicons.min.css'/>">
+    <link rel="stylesheet" href="<c:url value='/resources/static/home/css/ionicons.min.css'/>">
 
-    <link rel="stylesheet" href="<c:url value='/static/home/css/bootstrap-datepicker.css'/>">
-    <link rel="stylesheet" href="<c:url value='/static/home/css/jquery.timepicker.css'/>">
+    <link rel="stylesheet" href="<c:url value='/resources/static/home/css/bootstrap-datepicker.css'/>">
+    <link rel="stylesheet" href="<c:url value='/resources/static/home/css/jquery.timepicker.css'/>">
 
-    <link rel="stylesheet" href="<c:url value='/static/home/css/flaticon.css'/>">
-    <link rel="stylesheet" href="<c:url value='/static/home/css/icomoon.css'/>">
-    <link rel="stylesheet" href="<c:url value='/static/home/css/style.css'/>">
+    <link rel="stylesheet" href="<c:url value='/resources/static/home/css/flaticon.css'/>">
+    <link rel="stylesheet" href="<c:url value='/resources/static/home/css/icomoon.css'/>">
+    <link rel="stylesheet" href="<c:url value='/resources/static/home/css/style.css'/>">
     <style>
         .title {
             font-family: 'yg-jalnan';
@@ -58,7 +58,7 @@
 <!-- END nav -->
 
 <section class="home-slider owl-carousel">
-    <div class="slider-item" style="background-image:url(static/home/images/bg_1.jpg);">
+    <div class="slider-item" style="background-image:url(/resources/static/home/images/bg_1.jpg);">
         <div class="overlay"></div>
         <div class="container">
             <div class="row no-gutters slider-text align-items-center justify-content-center">
@@ -158,7 +158,7 @@
         <div class="row">
             <div class="col-sm col-md-6 col-lg-4 ftco-animate">
                 <div class="room">
-                    <a href="hotelList.jsp" class="img d-flex justify-content-center align-items-center" style="background-image: url(static/home/images/room-1.jpg);">
+                    <a href="hotelList.jsp" class="img d-flex justify-content-center align-items-center" style="background-image: url(/resources/static/home/images/room-1.jpg);">
                         <div class="icon d-flex justify-content-center align-items-center">
                             <span class="icon-search2"></span>
                         </div>
@@ -172,7 +172,7 @@
             </div>
             <div class="col-sm col-md-6 col-lg-4 ftco-animate">
                 <div class="room">
-                    <a href="hotelList.jsp" class="img d-flex justify-content-center align-items-center" style="background-image: url(static/home/images/room-2.jpg);">
+                    <a href="hotelList.jsp" class="img d-flex justify-content-center align-items-center" style="background-image: url(/resources/static/home/images/room-2.jpg);">
                         <div class="icon d-flex justify-content-center align-items-center">
                             <span class="icon-search2"></span>
                         </div>
@@ -310,23 +310,23 @@
 <!-- loader -->
 <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
-<script src="<c:url value='/static/home/js/jquery.min.js'/>"></script>
-<script src="<c:url value='/static/home/js/jquery-migrate-3.0.1.min.js'/>"></script>
-<script src="<c:url value='/static/home/js/popper.min.js'/>"></script>
-<script src="<c:url value='/static/home/js/bootstrap.min.js'/>"></script>
-<script src="<c:url value='/static/home/js/jquery.easing.1.3.js'/>"></script>
-<script src="<c:url value='/static/home/js/jquery.waypoints.min.js'/>"></script>
-<script src="<c:url value='/static/home/js/jquery.stellar.min.js'/>"></script>
-<script src="<c:url value='/static/home/js/owl.carousel.min.js'/>"></script>
-<script src="<c:url value='/static/home/js/jquery.magnific-popup.min.js'/>"></script>
-<script src="<c:url value='/static/home/js/aos.js'/>"></script>
-<script src="<c:url value='/static/home/js/jquery.animateNumber.min.js'/>"></script>
-<script src="<c:url value='/static/home/js/bootstrap-datepicker.js'/>"></script>
-<script src="<c:url value='/static/home/js/jquery.timepicker.min.js'/>"></script>
-<script src="<c:url value='/static/home/js/scrollax.min.js'/>"></script>
+<script src="<c:url value='/resources/static/home/js/jquery.min.js'/>"></script>
+<script src="<c:url value='/resources/static/home/js/jquery-migrate-3.0.1.min.js'/>"></script>
+<script src="<c:url value='/resources/static/home/js/popper.min.js'/>"></script>
+<script src="<c:url value='/resources/static/home/js/bootstrap.min.js'/>"></script>
+<script src="<c:url value='/resources/static/home/js/jquery.easing.1.3.js'/>"></script>
+<script src="<c:url value='/resources/static/home/js/jquery.waypoints.min.js'/>"></script>
+<script src="<c:url value='/resources/static/home/js/jquery.stellar.min.js'/>"></script>
+<script src="<c:url value='/resources/static/home/js/owl.carousel.min.js'/>"></script>
+<script src="<c:url value='/resources/static/home/js/jquery.magnific-popup.min.js'/>"></script>
+<script src="<c:url value='/resources/static/home/js/aos.js'/>"></script>
+<script src="<c:url value='/resources/static/home/js/jquery.animateNumber.min.js'/>"></script>
+<script src="<c:url value='/resources/static/home/js/bootstrap-datepicker.js'/>"></script>
+<script src="<c:url value='/resources/static/home/js/jquery.timepicker.min.js'/>"></script>
+<script src="<c:url value='/resources/static/home/js/scrollax.min.js'/>"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-<script src="<c:url value='/static/home/js/google-map.js'/>"></script>
-<script src="<c:url value='/static/home/js/main.js'/>"></script>
+<script src="<c:url value='/resources/static/home/js/google-map.js'/>"></script>
+<script src="<c:url value='/resources/static/home/js/main.js'/>"></script>
 <script>
     var count=0;
     function increase(){
