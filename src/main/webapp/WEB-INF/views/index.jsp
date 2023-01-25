@@ -11,11 +11,6 @@
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i" rel="stylesheet">
 
     <link rel="stylesheet" href="<c:url value='/resources/static/home/css/open-iconic-bootstrap.min.css'/>">
-<<<<<<< HEAD
-=======
-    <link rel="stylesheet" href="<c:url value='/resources/static/home/css/open-iconic-bootstrap.min.css'/>">
-    <link rel="stylesheet" href="<c:url value='/resources/static/home/css/open-iconic-bootstrap.min.css'/>">
->>>>>>> a1069a7 (view 확인 남수)
 
     <link rel="stylesheet" href="<c:url value='/resources/static/home/css/animate.css'/>">
 
@@ -166,11 +161,7 @@
         <div class="row">
             <div class="col-sm col-md-6 col-lg-4 ftco-animate">
                 <div class="room">
-<<<<<<< HEAD
                     <a href="<c:url value="/hotel/list/서울"/>" class="img d-flex justify-content-center align-items-center" style="background-image: url(/resources/static/home/images/room-1.jpg);">
-=======
-                    <a href="hotelList.jsp" class="img d-flex justify-content-center align-items-center" style="background-image: url(/resources/static/home/images/room-1.jpg);">
->>>>>>> a1069a7 (view 확인 남수)
                         <div class="icon d-flex justify-content-center align-items-center">
                             <span class="icon-search2"></span>
                         </div>
@@ -184,11 +175,7 @@
             </div>
             <div class="col-sm col-md-6 col-lg-4 ftco-animate">
                 <div class="room">
-<<<<<<< HEAD
                     <a href="<c:url value="/hotel/list/부산"/>" class="img d-flex justify-content-center align-items-center" style="background-image: url(/resources/static/home/images/room-2.jpg);">
-=======
-                    <a href="hotelList.jsp" class="img d-flex justify-content-center align-items-center" style="background-image: url(/resources/static/home/images/room-2.jpg);">
->>>>>>> a1069a7 (view 확인 남수)
                         <div class="icon d-flex justify-content-center align-items-center">
                             <span class="icon-search2"></span>
                         </div>
@@ -343,14 +330,5 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 <script src="<c:url value='/resources/static/home/js/google-map.js'/>"></script>
 <script src="<c:url value='/resources/static/home/js/main.js'/>"></script>
-<<<<<<< HEAD
-=======
-<script>
-    var count=0;
-    function increase(){
-        count=count+1;
-        document.querySelector("#countBtn").innerText=count;
-    }</script>
->>>>>>> a1069a7 (view 확인 남수)
 </body>
 </html>

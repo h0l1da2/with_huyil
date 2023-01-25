@@ -156,10 +156,14 @@
   var dateAndTime = function() {
     $('#m_date').datepicker({
 <<<<<<< HEAD
+<<<<<<< HEAD
       'format': 'yyyy-mm-dd',
 =======
       'format': 'm/d/yyyy',
 >>>>>>> 2c9c0c4 (view test)
+=======
+      'format': 'm/d/yyyy',
+>>>>>>> 749a2ce (휴일/남수/창현 뷰 커밋  (#14))
       'autoclose': true
     });
     $('#checkin_date, #checkout_date').datepicker({
