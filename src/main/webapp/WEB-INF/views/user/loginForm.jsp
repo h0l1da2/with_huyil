@@ -40,7 +40,8 @@
 	              <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
 	            </div>
 	            <div class="form-group">
-	            	<button type="submit" class="form-control btn btn-primary submit px-3">로그인</button>
+<%--	            	<button type="submit" class="form-control btn btn-primary submit px-3">로그인</button>--%>
+	            	<button type="button" id="loginBtn" name="loginBtn" class="form-control btn btn-primary submit px-3">로그인</button>
 	            </div>
 	            <div class="form-group d-md-flex">
 	            	<div class="w-50">
@@ -71,10 +72,40 @@
 	</section>
 
 	<script src="/resources/static/loginForm/js/jquery.min.js"></script>
-  <script src="/resources/static/loginForm/js/popper.js"></script>
-  <script src="/resources/static/loginForm/js/bootstrap.min.js"></script>
-  <script src="/resources/static/loginForm/js/main.js"></script>
+	<script src="/resources/static/loginForm/js/popper.js"></script>
+	<script src="/resources/static/loginForm/js/bootstrap.min.js"></script>
+	<script src="/resources/static/loginForm/js/main.js"></script>
+	<script>
+		$( document ).ready( function() {
+			$('#loginBtn').click(function () {
+				let userId = document.getElementById("userId").value;
+				let password = document.getElementById("password-field").value;
 
+				if(userId=="") {
+					alert("아이디를 입력하세요");
+					document.getElementById("userId").focus();
+					return false;
+				}
+				if(password=="") {
+					alert("패스워드를 입력하세요");
+					document.getElementById("password-field").focus();
+					return false;
+				}
+				$.ajax({
+					type: 'POST',
+					url: '/user/login',
+					contentType: "application/json",
+					data: JSON.stringify({userId:userId, password:password}),
+					dataType: 'text',
+					success: function (result) {
+						localStorage.setItem("jwt", result);
+					},
+					error: function() {
+						alert("아이디나 비밀번호를 확인하세요");
+					}})
+			})
+		})
+	</script>
 	</body>
 </html>
 

@@ -1,4 +1,4 @@
-package com.with.hyuil.controller;
+package com.with.hyuil.controller.login;
 
 import com.with.hyuil.dto.users.UserCodeDto;
 import com.with.hyuil.dto.users.UserIdDto;
