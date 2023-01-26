@@ -18,6 +18,7 @@ public interface UsersService {
     UsersVo loginForFind(String userId);
     UsersVo login(UsersVo usersVo);
     RolesVo roleForLogin(Long id);
+<<<<<<< HEAD
     void updateLoginDate(String userId);
     UsersVo emailValid(EmailDto emailDto);
     int modifyEmail(EmailDto emailDto);
@@ -28,3 +29,6 @@ public interface UsersService {
     UsersVo findId(FindIdDto findIdDto);
     UsersVo findTel(FindIdDto findIdDto);
 }
+=======
+}
+>>>>>>> 317a2e1 (User 로그인 JWT 토큰 반환 완성)

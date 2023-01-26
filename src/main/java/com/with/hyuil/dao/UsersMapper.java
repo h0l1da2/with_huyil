@@ -43,6 +43,11 @@ public interface UsersMapper {
 =======
     UsersVo findByUserId(String userId);
     BusinessVo findBusinessByAccount(String account);
+<<<<<<< HEAD
     RolesVo findRoles(String userId);
 >>>>>>> 8cc50b4 (view, 어드민 빼고..)
+=======
+    RolesVo findRoles(Long id);
+    UsersVo findByUserIdAndPassword(UsersVo usersVo);
+>>>>>>> 317a2e1 (User 로그인 JWT 토큰 반환 완성)
 }

@@ -9,7 +9,11 @@
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> 317a2e1 (User 로그인 JWT 토큰 반환 완성)
 	<link rel="stylesheet" href="<c:url value='/resources/static/loginForm/css/style.css'/>">
 
 	<style>
@@ -82,6 +86,7 @@
 				</div>
 			</div>
 		</div>
+<<<<<<< HEAD
 	</div>
 </section>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -96,6 +101,25 @@
 			return false;
 		}else {
 			return true;
+=======
+	</section>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="<c:url value='/resources/static/loginForm/js/jquery.min.js'/>"></script>
+  <script src="<c:url value='/resources/static/loginForm/js/popper.js'/>"></script>
+  <script src="<c:url value='/resources/static/loginForm/js/bootstrap.min.js'/>"></script>
+  <script src="<c:url value='/resources/static/loginForm/js/main.js'/>"></script>
+	<script>
+		function formCheck(form) {
+			if(check == 0) {
+				alert("아이디 중복 확인을 해주세요");
+				return false;
+			}
+			if($('#passwordCheckP').css('display') == 'block') {
+				alert("비밀번호가 같아야합니다");
+				document.getElementById("passwordCheck").focus();
+				return false;
+			}
+>>>>>>> 317a2e1 (User 로그인 JWT 토큰 반환 완성)
 		}
 	}
 	function CheckUserId(str){

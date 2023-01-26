@@ -92,7 +92,11 @@ public class UsersServiceImpl implements UsersService {
     public UsersVo login(UsersVo usersVo) {
         UsersVo user = usersMapper.findByUserId(usersVo.getUserId());
         if (user == null) {
+<<<<<<< HEAD
             throw new NoSuchElementException("유저가없음 아이디");
+=======
+            throw new RuntimeException("유저가없음 아이디");
+>>>>>>> 317a2e1 (User 로그인 JWT 토큰 반환 완성)
         }
         boolean passMatches = passwordEncoder.matches(usersVo.getPassword(), user.getPassword());
         if (!passMatches) {
@@ -104,6 +108,7 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public RolesVo roleForLogin(Long id) {
         return usersMapper.findRoles(id);
+<<<<<<< HEAD
     }
 
     @Override
@@ -239,6 +244,8 @@ public class UsersServiceImpl implements UsersService {
     }
     public RolesVo roleForLogin(String userId) {
         return usersMapper.findRoles(userId);
+=======
+>>>>>>> 317a2e1 (User 로그인 JWT 토큰 반환 완성)
     }
 
     private String passwordEncoding(String password) {

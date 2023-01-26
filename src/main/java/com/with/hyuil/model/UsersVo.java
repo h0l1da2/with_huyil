@@ -3,9 +3,13 @@ package com.with.hyuil.model;
 import com.with.hyuil.dto.users.AdminJoinDto;
 import com.with.hyuil.dto.users.UsersDto;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import com.with.hyuil.dto.users.UsersLoginDto;
 import com.with.hyuil.model.enumaration.Type;
 =======
+=======
+import com.with.hyuil.dto.users.UsersLoginDto;
+>>>>>>> 317a2e1 (User 로그인 JWT 토큰 반환 완성)
 import com.with.hyuil.model.enumaration.Role;
 >>>>>>> 8cc50b4 (view, 어드민 빼고..)
 import com.with.hyuil.model.enumaration.Wheres;
@@ -52,13 +56,19 @@ public class UsersVo {
     protected UsersVo() {}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 317a2e1 (User 로그인 JWT 토큰 반환 완성)
     public UsersVo(UsersLoginDto usersLoginDto) {
         this.userId = usersLoginDto.getUserId();
         this.password = usersLoginDto.getPassword();
     }
 
+<<<<<<< HEAD
 =======
 >>>>>>> 8cc50b4 (view, 어드민 빼고..)
+=======
+>>>>>>> 317a2e1 (User 로그인 JWT 토큰 반환 완성)
     public UsersVo(String userId, String password, String email, String tel, String name, Wheres wheres) {
         this.userId = userId;
         this.password = password;
@@ -85,10 +95,13 @@ public class UsersVo {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     public void userType(Type type) {
         this.type = type;
     }
 
+=======
+>>>>>>> 317a2e1 (User 로그인 JWT 토큰 반환 완성)
     public UsersVo(Long id) {
         this.id = id;
     }
