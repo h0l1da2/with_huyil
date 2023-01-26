@@ -1,23 +1,25 @@
 package com.with.hyuil.controller.login;
 
+import com.with.hyuil.config.jwt.JwtTokenProvider;
 import com.with.hyuil.dto.users.UserCodeDto;
 import com.with.hyuil.dto.users.UserIdDto;
 import com.with.hyuil.dto.users.UsersDto;
 import com.with.hyuil.dto.users.UsersLoginDto;
+import com.with.hyuil.model.RolesVo;
 import com.with.hyuil.model.UsersVo;
-import com.with.hyuil.service.LoginServiceImpl;
 import com.with.hyuil.service.interfaces.EmailService;
 import com.with.hyuil.service.interfaces.UsersService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.Map;
 
 
 @Slf4j
@@ -28,7 +30,11 @@ import java.util.Map;
 public class UsersJoinController {
     private final UsersService usersService;
     private final EmailService emailService;
-    private final LoginServiceImpl loginService;
+    private final JwtTokenProvider jwtTokenProvider;
+    private String jwtToken;
+
+    @Value("${jwt.valid.time}")
+    private Long validTime;
 
     @GetMapping("/join")
     public String joinUser() {
@@ -37,9 +43,23 @@ public class UsersJoinController {
 
     @ResponseBody
     @PostMapping("/login")
-    public Map<String, String> loginUsers(@RequestBody UsersLoginDto loginDto, HttpServletResponse response, HttpServletRequest request) {
-        Map<String, String> map = loginService.login(usersService, loginDto, request, response);
-        return map;
+    public String loginUsers(@RequestBody UsersLoginDto loginDto, HttpServletResponse response, HttpServletRequest request) {
+        log.info("id = {}", loginDto.getUserId());
+        log.info("password = {}", loginDto.getPassword());
+        UsersVo user = usersService.login(new UsersVo(loginDto));
+        String userId = user.getUserId();
+        RolesVo rolesVo = usersService.roleForLogin(user.getId());
+        jwtToken = jwtTokenProvider.createJwtToken(userId, rolesVo.getRoleName().toString());
+        String refreshToken = jwtTokenProvider.createRefreshToken();
+        response.setHeader("Authorization", "Bearer "+jwtToken);
+
+        ResponseCookie cookie = ResponseCookie.from("refresh_token", refreshToken)
+                .maxAge(60 * 60 * 3 * 1)
+                .httpOnly(true)
+                .build();
+
+        response.setHeader("Cookie", refreshToken);
+        return jwtToken;
     }
 
     @PostMapping("/join/email")
@@ -75,8 +95,7 @@ public class UsersJoinController {
     }
 
     @GetMapping("/loginForm")
-    public String loginUser(HttpServletRequest request, HttpServletResponse response) {
-        loginService.haveRedirectURI(request, response);
+    public String loginUser() {
         return "user/loginForm";
     }
 
