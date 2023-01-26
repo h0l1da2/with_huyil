@@ -6,20 +6,18 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
 
-@Service
 @RequiredArgsConstructor
-public class PrincipalDetailsService implements UserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService {
     private final UsersService usersService;
 
-    // id 비밀번호 검증해주는 애
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UsersVo usersVo = usersService.loginForFind(username);
-        if (usersVo != null) {
-            return new PrincipalDetails(usersVo);
+        UsersVo user = usersService.loginForFind(username);
+
+        if (user == null) {
+            throw new UsernameNotFoundException("아이디가 틀립니다");
         }
-        return null;
+        return new CustomUserDetails(user);
     }
 }
