@@ -70,8 +70,21 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public RolesVo roleForLogin(String userId) {
-        return usersMapper.findRoles(userId);
+    public UsersVo login(UsersVo usersVo) {
+        UsersVo user = usersMapper.findByUserId(usersVo.getUserId());
+        if (user == null) {
+            throw new RuntimeException("유저가없음 아이디");
+        }
+        boolean passMatches = passwordEncoder.matches(usersVo.getPassword(), user.getPassword());
+        if (!passMatches) {
+            throw new RuntimeException("유저가없음 패스워드");
+        }
+        return user;
+    }
+
+    @Override
+    public RolesVo roleForLogin(Long id) {
+        return usersMapper.findRoles(id);
     }
 
     private String passwordEncoding(String password) {

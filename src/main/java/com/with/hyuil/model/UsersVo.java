@@ -2,6 +2,7 @@ package com.with.hyuil.model;
 
 import com.with.hyuil.dto.users.AdminJoinDto;
 import com.with.hyuil.dto.users.UsersDto;
+import com.with.hyuil.dto.users.UsersLoginDto;
 import com.with.hyuil.model.enumaration.Role;
 import com.with.hyuil.model.enumaration.Wheres;
 import lombok.Builder;
@@ -34,6 +35,11 @@ public class UsersVo {
 
     protected UsersVo() {}
 
+    public UsersVo(UsersLoginDto usersLoginDto) {
+        this.userId = usersLoginDto.getUserId();
+        this.password = usersLoginDto.getPassword();
+    }
+
     public UsersVo(String userId, String password, String email, String tel, String name, Wheres wheres) {
         this.userId = userId;
         this.password = password;
@@ -57,6 +63,10 @@ public class UsersVo {
         this.password = adminJoinDto.getPassword();
         this.name = adminJoinDto.getName();
 
+    }
+
+    public UsersVo(Long id) {
+        this.id = id;
     }
 
     public void userRoleWheres() {

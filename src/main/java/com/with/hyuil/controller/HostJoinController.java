@@ -40,6 +40,7 @@ public class HostJoinController {
     @ResponseBody
     @PostMapping("/join/id")
     public String joinUser(@RequestBody UserIdDto userIdDto) {
+        log.info("유저아이디? = {}", userIdDto.getUserId());
         return String.valueOf(usersService.idCheck(userIdDto));
     }
 

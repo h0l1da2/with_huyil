@@ -11,5 +11,6 @@ public interface UsersService {
     boolean idCheck(UserIdDto userIdDto);
     int saveHost(UsersVo usersVo);
     UsersVo loginForFind(String userId);
-    RolesVo roleForLogin(String userId);
+    UsersVo login(UsersVo usersVo);
+    RolesVo roleForLogin(Long id);
 }

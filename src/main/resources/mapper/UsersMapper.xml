@@ -48,9 +48,14 @@
         FROM USERS
         WHERE USER_ID = #{userId}
     </select>
-    <select id="findRoles" parameterType="String" resultType="RolesVo">
+    <select id="findByUserIdAndPassword" parameterType="String" resultType="UsersVo">
+        SELECT *
+        FROM USERS
+        WHERE USER_ID = #{userId} AND PASSWORD = #{password}
+    </select>
+    <select id="findRoles" parameterType="Long" resultType="RolesVo">
         SELECT *
         FROM ROLES
-        WHERE USER_ID = #{userId}
+        WHERE USER_ID = #{userId, jdbcType=VARCHAR}
     </select>
 </mapper>

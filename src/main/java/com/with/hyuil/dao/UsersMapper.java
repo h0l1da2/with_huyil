@@ -17,5 +17,6 @@ public interface UsersMapper {
     int insertRoles(RolesVo rolesVo);
     UsersVo findByUserId(String userId);
     BusinessVo findBusinessByAccount(String account);
-    RolesVo findRoles(String userId);
+    RolesVo findRoles(Long id);
+    UsersVo findByUserIdAndPassword(UsersVo usersVo);
 }
