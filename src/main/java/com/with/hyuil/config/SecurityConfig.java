@@ -1,6 +1,7 @@
 package com.with.hyuil.config;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import com.with.hyuil.config.auth.CustomOAuth2UserService;
 import com.with.hyuil.config.auth.CustomUserDetailsService;
 import com.with.hyuil.config.handler.AuthenticationExceptionHandler;
@@ -15,11 +16,12 @@ import com.with.hyuil.config.jwt.JwtTokenProvider;
 import com.with.hyuil.dao.UsersMapper;
 import com.with.hyuil.service.UsersServiceImpl;
 import com.with.hyuil.service.interfaces.UsersService;
+=======
+>>>>>>> ea333e3 (JWT 토큰 만들기 위한 base 클래스들)
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -30,16 +32,19 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 =======
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+<<<<<<< HEAD
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 >>>>>>> 317a2e1 (User 로그인 JWT 토큰 반환 완성)
+=======
+>>>>>>> ea333e3 (JWT 토큰 만들기 위한 base 클래스들)
 
 @EnableWebSecurity
 @Configuration
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     private final UsersMapper usersMapper;
     private final AuthenticationExceptionHandler authenticationExceptionHandler;
@@ -58,10 +63,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new CustomUserDetailsService(usersService());
 >>>>>>> 317a2e1 (User 로그인 JWT 토큰 반환 완성)
     }
+=======
+>>>>>>> ea333e3 (JWT 토큰 만들기 위한 base 클래스들)
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
     @Bean
     public UsersService usersService() {
         return new UsersServiceImpl(usersMapper, bCryptPasswordEncoder());
@@ -75,6 +83,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected AuthenticationManager authenticationManager() throws Exception {
         return super.authenticationManager();
     }
+<<<<<<< HEAD
 <<<<<<< HEAD
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -97,6 +106,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 <<<<<<< HEAD
 =======
 
+=======
+
+    @Override
+    protected void configure(final HttpSecurity http) throws Exception {
+>>>>>>> ea333e3 (JWT 토큰 만들기 위한 base 클래스들)
         http.csrf().disable()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -133,6 +147,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
 
                 .and()
+<<<<<<< HEAD
 <<<<<<< HEAD
                 .formLogin()
                 .loginPage("/host/loginForm")
@@ -178,17 +193,41 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticationEntryPoint(new JwtAuthenticationEntryPoint())
 >>>>>>> c49688c (LoginService 추가해서 Controller 수정)
         ;
+=======
+                .formLogin()
+                .loginPage("/user/loginForm")
+                .loginProcessingUrl("/user/login")
+>>>>>>> ea333e3 (JWT 토큰 만들기 위한 base 클래스들)
 
+                .and()
+                .formLogin()
+                .loginPage("/host/loginForm")
+//                .successHandler(hostAuthenticationProvider)
+//                .failureHandler()
+                .defaultSuccessUrl("/host")
+
+                .and()
+                .formLogin()
+                .loginPage("/admins")
+                .loginProcessingUrl("/admins/login")
+                .defaultSuccessUrl("/")
+
+                .and()
+        ;
     }
 
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring() // 정적파일들 필터 검사 ㄴㄴ
 <<<<<<< HEAD
+<<<<<<< HEAD
                 .mvcMatchers("/resources/static/**")
         ;
 =======
                 .mvcMatchers("/static/**")
+=======
+                .antMatchers("/resources/static/**")
+>>>>>>> ea333e3 (JWT 토큰 만들기 위한 base 클래스들)
                 ;
 >>>>>>> 317a2e1 (User 로그인 JWT 토큰 반환 완성)
     }
