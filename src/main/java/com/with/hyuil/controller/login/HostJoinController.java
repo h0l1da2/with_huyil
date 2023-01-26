@@ -108,7 +108,7 @@ public class HostJoinController {
         session.removeAttribute("randomCode");
         session.removeAttribute("userDto");
     }
-
+    
     @GetMapping("/hostForm")
 	public String balondor(Model model) {
 		String id = "messi";
@@ -124,5 +124,5 @@ public class HostJoinController {
 		UsersVo usersvo = usersService.loginForFind(id);
 		return "redirect:/host/hotelForm";
 	}
-
+    
 }

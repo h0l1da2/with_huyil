@@ -2,6 +2,11 @@ package com.with.hyuil.controller.login;
 
 import com.with.hyuil.dto.users.AdminJoinDto;
 import com.with.hyuil.dto.users.UserIdDto;
+<<<<<<< HEAD
+=======
+import com.with.hyuil.dto.users.UsersDto;
+import com.with.hyuil.dto.users.UsersLoginDto;
+>>>>>>> 62589e9 (jwt 토큰 로컬스토리지 저장)
 import com.with.hyuil.model.UsersVo;
 import com.with.hyuil.service.interfaces.UsersService;
 import lombok.RequiredArgsConstructor;
@@ -9,10 +14,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+<<<<<<< HEAD
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+=======
+>>>>>>> 62589e9 (jwt 토큰 로컬스토리지 저장)
 @Slf4j
 @Controller
 @RequiredArgsConstructor
@@ -22,9 +30,13 @@ public class AdminJoinController {
     private final UsersService usersService;
 
     @GetMapping
+<<<<<<< HEAD
     public String adminLoginForm(HttpServletRequest request, HttpServletResponse response) throws IOException {
         StringBuffer requestURL = request.getRequestURL();
         request.setAttribute("requestURL", requestURL);
+=======
+    public String adminLoginForm() {
+>>>>>>> 62589e9 (jwt 토큰 로컬스토리지 저장)
         return "admin/adminLoginForm";
     }
 
@@ -51,10 +63,13 @@ public class AdminJoinController {
         }
         return "admin/adminJoinError";
     }
+<<<<<<< HEAD
 
     @GetMapping("/loginForm")
     public String loginHost(HttpServletRequest request, HttpServletResponse response) {
         return "host/hostLoginForm";
     }
 
+=======
+>>>>>>> 62589e9 (jwt 토큰 로컬스토리지 저장)
 }

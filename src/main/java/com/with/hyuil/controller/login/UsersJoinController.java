@@ -1,20 +1,38 @@
 package com.with.hyuil.controller.login;
 
+<<<<<<< HEAD
 import com.with.hyuil.dto.info.FindIdDto;
+=======
+import com.with.hyuil.config.jwt.JwtTokenProvider;
+>>>>>>> 62589e9 (jwt 토큰 로컬스토리지 저장)
 import com.with.hyuil.dto.users.UserCodeDto;
 import com.with.hyuil.dto.users.UserIdDto;
 import com.with.hyuil.dto.users.UsersDto;
 import com.with.hyuil.dto.users.UsersLoginDto;
+<<<<<<< HEAD
+=======
+import com.with.hyuil.model.RolesVo;
+>>>>>>> 62589e9 (jwt 토큰 로컬스토리지 저장)
 import com.with.hyuil.model.UsersVo;
 import com.with.hyuil.service.interfaces.EmailService;
 import com.with.hyuil.service.interfaces.UsersService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+<<<<<<< HEAD
 import org.springframework.context.annotation.PropertySource;
+=======
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.http.ResponseCookie;
+>>>>>>> 62589e9 (jwt 토큰 로컬스토리지 저장)
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+<<<<<<< HEAD
+=======
+import javax.servlet.http.HttpServletResponse;
+>>>>>>> 62589e9 (jwt 토큰 로컬스토리지 저장)
 import javax.servlet.http.HttpSession;
 
 
@@ -26,20 +44,56 @@ import javax.servlet.http.HttpSession;
 public class UsersJoinController {
     private final UsersService usersService;
     private final EmailService emailService;
+<<<<<<< HEAD
+=======
+    private final JwtTokenProvider jwtTokenProvider;
+    private String jwtToken;
+
+    @Value("${jwt.valid.time}")
+    private Long validTime;
+>>>>>>> 62589e9 (jwt 토큰 로컬스토리지 저장)
 
     @GetMapping("/join")
     public String joinUser() {
         return "user/joinForm";
     }
 
+<<<<<<< HEAD
     @PostMapping("/join/email")
     public String joinEmail(@ModelAttribute UsersDto usersDto, HttpSession session) {
         String randomCode = emailService.codeMailSend("WITH HYUIL 가입 인증", usersDto.getEmail());
+=======
+    @ResponseBody
+    @PostMapping("/login")
+    public String loginUsers(@RequestBody UsersLoginDto loginDto, HttpServletResponse response, HttpServletRequest request) {
+        log.info("id = {}", loginDto.getUserId());
+        log.info("password = {}", loginDto.getPassword());
+        UsersVo user = usersService.login(new UsersVo(loginDto));
+        String userId = user.getUserId();
+        RolesVo rolesVo = usersService.roleForLogin(user.getId());
+        jwtToken = jwtTokenProvider.createJwtToken(userId, rolesVo.getRoleName().toString());
+        String refreshToken = jwtTokenProvider.createRefreshToken();
+        response.setHeader("Authorization", "Bearer "+jwtToken);
+
+        ResponseCookie cookie = ResponseCookie.from("refresh_token", refreshToken)
+                .maxAge(60 * 60 * 3 * 1)
+                .httpOnly(true)
+                .build();
+
+        response.setHeader("Cookie", refreshToken);
+        return jwtToken;
+    }
+
+    @PostMapping("/join/email")
+    public String joinEmail(@ModelAttribute UsersDto usersDto, HttpSession session) {
+        String randomCode = emailService.joinMailSend(usersDto.getEmail());
+>>>>>>> 62589e9 (jwt 토큰 로컬스토리지 저장)
         session.setAttribute("userDto", usersDto);
         session.setAttribute("randomCode", randomCode);
         return "user/joinEmailSend";
     }
 
+<<<<<<< HEAD
     @ResponseBody
     @PostMapping("/join/telValid")
     public String emailValid(@RequestBody FindIdDto findIdDto, HttpSession session) {
@@ -50,6 +104,8 @@ public class UsersJoinController {
         return "중복아님";
     }
 
+=======
+>>>>>>> 62589e9 (jwt 토큰 로컬스토리지 저장)
     @PostMapping("/join/emailCode")
     public String checkEmail(@ModelAttribute UserCodeDto userCodeDto, HttpSession session) {
         String randomCode = (String) session.getAttribute("randomCode");
@@ -75,6 +131,7 @@ public class UsersJoinController {
     }
 
     @GetMapping("/loginForm")
+<<<<<<< HEAD
     public String loginUser(HttpServletRequest request) {
 
         return "user/loginForm";
@@ -86,6 +143,12 @@ public class UsersJoinController {
         return "login";
     }
 
+=======
+    public String loginUser() {
+        return "user/loginForm";
+    }
+
+>>>>>>> 62589e9 (jwt 토큰 로컬스토리지 저장)
     private void sessionRemoveCodeAndDto(HttpSession session) {
         session.removeAttribute("randomCode");
         session.removeAttribute("userDto");
