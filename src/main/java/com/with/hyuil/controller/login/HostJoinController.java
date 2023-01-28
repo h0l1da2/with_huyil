@@ -108,21 +108,21 @@ public class HostJoinController {
         session.removeAttribute("randomCode");
         session.removeAttribute("userDto");
     }
-    
+
     @GetMapping("/hostForm")
-	public String balondor(Model model) {
-		String id = "messi";
-		UsersVo usersvo = usersService.loginForFind(id);
-		System.out.println(usersvo.getBusinessVo());
-		model.addAttribute("users", usersvo);
-		return "/hotel/hostForm";
-	}
-    
+    public String balondor(Model model) {
+        String id = "messi";
+        UsersVo usersvo = usersService.loginForFind(id);
+        System.out.println(usersvo.getBusinessVo());
+        model.addAttribute("users", usersvo);
+        return "/hotel/hostForm";
+    }
+
     @PostMapping("/hostForm")
-	public String benzema(BusinessVo businessvo) {
-    	String id = "messi";
-		UsersVo usersvo = usersService.loginForFind(id);
-		return "redirect:/host/hotelForm";
-	}
-    
+    public String benzema(BusinessVo businessvo) {
+        String id = "messi";
+        UsersVo usersvo = usersService.loginForFind(id);
+        return "redirect:/host/hotelForm";
+    }
+
 }

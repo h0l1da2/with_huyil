@@ -8,6 +8,7 @@ import com.with.hyuil.config.handler.UserLoginFailureHandler;
 import com.with.hyuil.config.handler.UserLoginSuccessHandler;
 =======
 import com.with.hyuil.config.auth.CustomUserDetailsService;
+import com.with.hyuil.config.auth.JwtAuthenticationEntryPoint;
 import com.with.hyuil.config.jwt.JwtRequestFilter;
 import com.with.hyuil.config.jwt.JwtTokenProvider;
 >>>>>>> 317a2e1 (User 로그인 JWT 토큰 반환 완성)
@@ -61,7 +62,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
     @Bean
     public UsersService usersService() {
         return new UsersServiceImpl(usersMapper, bCryptPasswordEncoder());
@@ -75,6 +75,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected AuthenticationManager authenticationManager() throws Exception {
         return super.authenticationManager();
     }
+<<<<<<< HEAD
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService())
@@ -82,6 +83,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         ;
     }
 
+=======
+>>>>>>> c49688c (LoginService 추가해서 Controller 수정)
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService())
@@ -91,6 +94,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
+<<<<<<< HEAD
+=======
+
+        http.csrf().disable()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+>>>>>>> c49688c (LoginService 추가해서 Controller 수정)
 
         http
                 .csrf().disable()
@@ -98,25 +108,32 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .authorizeRequests()
 <<<<<<< HEAD
+<<<<<<< HEAD
 
                 .mvcMatchers("/users/**")
                 .hasRole("USER")
                 .mvcMatchers("/user/info/**")
                 .hasAnyRole("USER", "HOST")
+=======
+>>>>>>> c49688c (LoginService 추가해서 Controller 수정)
                 .mvcMatchers("/hosts/**")
                 .hasAnyRole("HOST", "ADMIN")
                 .mvcMatchers("/admin/**")
                 .hasRole("ADMIN")
+<<<<<<< HEAD
 =======
 //                .mvcMatchers("/hosts/**")
 //                .hasAnyRole("HOST", "ADMIN")
 //                .mvcMatchers("/admin/**")
 //                .hasRole("ADMIN")
 >>>>>>> 317a2e1 (User 로그인 JWT 토큰 반환 완성)
+=======
+>>>>>>> c49688c (LoginService 추가해서 Controller 수정)
                 .anyRequest()
                 .permitAll()
 
                 .and()
+<<<<<<< HEAD
                 .formLogin()
                 .loginPage("/host/loginForm")
 <<<<<<< HEAD
@@ -155,6 +172,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 =======
                 .addFilterBefore(new JwtRequestFilter(jwtTokenProvider, userDetailsService()), UsernamePasswordAuthenticationFilter.class)
 >>>>>>> 317a2e1 (User 로그인 JWT 토큰 반환 완성)
+=======
+                .addFilterBefore(new JwtRequestFilter(jwtTokenProvider, userDetailsService()), UsernamePasswordAuthenticationFilter.class)
+                .exceptionHandling()
+                .authenticationEntryPoint(new JwtAuthenticationEntryPoint())
+>>>>>>> c49688c (LoginService 추가해서 Controller 수정)
         ;
 
     }

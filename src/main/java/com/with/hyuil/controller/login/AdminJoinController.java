@@ -3,11 +3,15 @@ package com.with.hyuil.controller.login;
 import com.with.hyuil.dto.users.AdminJoinDto;
 import com.with.hyuil.dto.users.UserIdDto;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import com.with.hyuil.dto.users.UsersDto;
+=======
+>>>>>>> c49688c (LoginService 추가해서 Controller 수정)
 import com.with.hyuil.dto.users.UsersLoginDto;
 >>>>>>> 62589e9 (jwt 토큰 로컬스토리지 저장)
 import com.with.hyuil.model.UsersVo;
+import com.with.hyuil.service.interfaces.LoginService;
 import com.with.hyuil.service.interfaces.UsersService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,12 +19,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 =======
 >>>>>>> 62589e9 (jwt 토큰 로컬스토리지 저장)
+=======
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
+
+>>>>>>> c49688c (LoginService 추가해서 Controller 수정)
 @Slf4j
 @Controller
 @RequiredArgsConstructor
@@ -28,6 +39,7 @@ import java.io.IOException;
 public class AdminJoinController {
 //서비스에서 생긴 예외 컨트롤러에서 예외 처리?
     private final UsersService usersService;
+    private final LoginService loginService;
 
     @GetMapping
 <<<<<<< HEAD
@@ -64,6 +76,7 @@ public class AdminJoinController {
         return "admin/adminJoinError";
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     @GetMapping("/loginForm")
     public String loginHost(HttpServletRequest request, HttpServletResponse response) {
@@ -72,4 +85,19 @@ public class AdminJoinController {
 
 =======
 >>>>>>> 62589e9 (jwt 토큰 로컬스토리지 저장)
+=======
+
+    @GetMapping("/loginForm")
+    public String loginHost(HttpServletRequest request, HttpServletResponse response) {
+        loginService.haveRedirectURI(request, response);
+        return "host/hostLoginForm";
+    }
+
+    @ResponseBody
+    @PostMapping("/login")
+    public Map<String, String> loginHost(@RequestBody UsersLoginDto loginDto, HttpServletResponse response, HttpServletRequest request) {
+        Map<String, String> map = loginService.login(usersService, loginDto, request, response);
+        return map;
+    }
+>>>>>>> c49688c (LoginService 추가해서 Controller 수정)
 }
