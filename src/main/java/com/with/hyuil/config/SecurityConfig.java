@@ -21,6 +21,7 @@ import com.with.hyuil.service.interfaces.UsersService;
 >>>>>>> ea333e3 (JWT 토큰 만들기 위한 base 클래스들)
 =======
 import com.with.hyuil.config.auth.CustomUserDetailsService;
+import com.with.hyuil.config.auth.JwtAuthenticationEntryPoint;
 import com.with.hyuil.config.jwt.JwtRequestFilter;
 import com.with.hyuil.config.jwt.JwtTokenProvider;
 import com.with.hyuil.dao.UsersMapper;
@@ -91,7 +92,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
     @Bean
     public UsersService usersService() {
         return new UsersServiceImpl(usersMapper, bCryptPasswordEncoder());
@@ -105,6 +105,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected AuthenticationManager authenticationManager() throws Exception {
         return super.authenticationManager();
     }
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     @Override
@@ -123,6 +124,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 ;
     }
 
+=======
+>>>>>>> 6ab50a3 (LoginService 추가해서 Controller 수정)
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService())
@@ -133,6 +136,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 =======
@@ -140,6 +144,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
 >>>>>>> ea333e3 (JWT 토큰 만들기 위한 base 클래스들)
+=======
+
+>>>>>>> 6ab50a3 (LoginService 추가해서 Controller 수정)
         http.csrf().disable()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -153,6 +160,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
                 .mvcMatchers("/users/**")
                 .hasRole("USER")
@@ -160,10 +168,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .hasAnyRole("USER", "HOST")
 =======
 >>>>>>> c49688c (LoginService 추가해서 Controller 수정)
+=======
+>>>>>>> 6ab50a3 (LoginService 추가해서 Controller 수정)
                 .mvcMatchers("/hosts/**")
                 .hasAnyRole("HOST", "ADMIN")
                 .mvcMatchers("/admin/**")
                 .hasRole("ADMIN")
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 =======
@@ -178,10 +189,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 >>>>>>> c49688c (LoginService 추가해서 Controller 수정)
 =======
 >>>>>>> e2072f0 (User 로그인 JWT 토큰 반환 완성)
+=======
+>>>>>>> 6ab50a3 (LoginService 추가해서 Controller 수정)
                 .anyRequest()
                 .permitAll()
 
                 .and()
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                 .formLogin()
@@ -246,7 +260,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/")
 
                 .and()
+=======
+>>>>>>> 6ab50a3 (LoginService 추가해서 Controller 수정)
                 .addFilterBefore(new JwtRequestFilter(jwtTokenProvider, userDetailsService()), UsernamePasswordAuthenticationFilter.class)
+                .exceptionHandling()
+                .authenticationEntryPoint(new JwtAuthenticationEntryPoint())
         ;
 
     }
