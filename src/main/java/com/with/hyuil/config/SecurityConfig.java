@@ -1,6 +1,7 @@
 package com.with.hyuil.config;
 
 import com.with.hyuil.config.auth.CustomUserDetailsService;
+import com.with.hyuil.config.auth.JwtAuthenticationEntryPoint;
 import com.with.hyuil.config.jwt.JwtRequestFilter;
 import com.with.hyuil.config.jwt.JwtTokenProvider;
 import com.with.hyuil.dao.UsersMapper;
@@ -39,13 +40,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
     @Bean
     @Override
     protected AuthenticationManager authenticationManager() throws Exception {
         return super.authenticationManager();
     }
-
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService())
@@ -55,6 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
+
         http.csrf().disable()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -64,31 +64,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .disable()
 
                 .authorizeRequests()
-//                .mvcMatchers("/hosts/**")
-//                .hasAnyRole("HOST", "ADMIN")
-//                .mvcMatchers("/admin/**")
-//                .hasRole("ADMIN")
+                .mvcMatchers("/hosts/**")
+                .hasAnyRole("HOST", "ADMIN")
+                .mvcMatchers("/admin/**")
+                .hasRole("ADMIN")
                 .anyRequest()
                 .permitAll()
 
                 .and()
-                .formLogin()
-                .loginPage("/user/loginForm")
-                .loginProcessingUrl("/user/login")
-
-                .and()
-                .formLogin()
-                .loginPage("/host/loginForm")
-                .defaultSuccessUrl("/host")
-
-                .and()
-                .formLogin()
-                .loginPage("/admins")
-                .loginProcessingUrl("/admins/login")
-                .defaultSuccessUrl("/")
-
-                .and()
                 .addFilterBefore(new JwtRequestFilter(jwtTokenProvider, userDetailsService()), UsernamePasswordAuthenticationFilter.class)
+                .exceptionHandling()
+                .authenticationEntryPoint(new JwtAuthenticationEntryPoint())
         ;
 
     }

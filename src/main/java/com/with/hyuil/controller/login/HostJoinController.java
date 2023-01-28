@@ -3,15 +3,20 @@ package com.with.hyuil.controller.login;
 import com.with.hyuil.dto.users.UserCodeDto;
 import com.with.hyuil.dto.users.UserIdDto;
 import com.with.hyuil.dto.users.UsersDto;
+import com.with.hyuil.dto.users.UsersLoginDto;
 import com.with.hyuil.model.UsersVo;
 import com.with.hyuil.service.interfaces.EmailService;
+import com.with.hyuil.service.interfaces.LoginService;
 import com.with.hyuil.service.interfaces.UsersService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 @Slf4j
 @Controller
@@ -21,6 +26,7 @@ public class HostJoinController {
 
     private final UsersService usersService;
     private final EmailService emailService;
+    private final LoginService loginService;
 
     @GetMapping
     public String hostMain() {
@@ -28,8 +34,16 @@ public class HostJoinController {
     }
 
     @GetMapping("/loginForm")
-    public String loginForm() {
+    public String loginHost(HttpServletRequest request, HttpServletResponse response) {
+        loginService.haveRedirectURI(request, response);
         return "host/hostLoginForm";
+    }
+
+    @ResponseBody
+    @PostMapping("/login")
+    public Map<String, String> loginHost(@RequestBody UsersLoginDto loginDto, HttpServletResponse response, HttpServletRequest request) {
+        Map<String, String> map = loginService.login(usersService, loginDto, request, response);
+        return map;
     }
 
     @GetMapping("/join")

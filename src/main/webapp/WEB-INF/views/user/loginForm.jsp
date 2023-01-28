@@ -98,8 +98,11 @@
 					data: JSON.stringify({userId:userId, password:password}),
 					dataType: 'text',
 					success: function (result) {
-						localStorage.setItem("jwt", result);
-					},
+						var response = JSON.parse(result);
+						console.log(response);
+						localStorage.setItem("jwt", response.jwtToken);
+						window.location = response.redirectUri;
+						},
 					error: function() {
 						alert("아이디나 비밀번호를 확인하세요");
 					}})

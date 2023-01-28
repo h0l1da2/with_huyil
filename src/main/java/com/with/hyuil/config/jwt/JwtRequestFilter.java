@@ -39,6 +39,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 boolean refreshTokenValid = jwtTokenProvider.validRefreshToken(request);
                 if (refreshTokenValid) {
                     token = jwtTokenProvider.reCreateTokens(token, request);
+                } else {
+                    filterChain.doFilter(request, response);
                 }
             }
             Claims claims = jwtTokenProvider.getClaims(token);
