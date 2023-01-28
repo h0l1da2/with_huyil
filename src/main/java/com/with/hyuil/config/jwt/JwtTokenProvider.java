@@ -87,8 +87,6 @@ public class JwtTokenProvider {
         String role = claims.get("role", String.class);
         String jwtToken = createJwtToken(userId, role);
         String refreshToken = createRefreshToken();
-        HttpSession session = request.getSession();
-        session.setAttribute("refresh_token", refreshToken);
 
         return jwtToken;
     }
