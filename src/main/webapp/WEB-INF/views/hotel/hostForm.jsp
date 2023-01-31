@@ -10,13 +10,13 @@
     <meta name="keywords" content="" />
     <meta name="author" content="" />
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=|Roboto+Sans:400,700|Playfair+Display:400,700">
-	<link rel="stylesheet" type="text/css" href="/static/hotelForm/css/state.css">	
+	<link rel="stylesheet" type="text/css" href="/resources/static/hotelForm/css/state.css">	
 
     <!-- Theme Style -->
-    <link rel="stylesheet" href="/static/hotelForm/css/style.css">
+    <link rel="stylesheet" href="/resources/static/hotelForm/css/style.css">
 	
 	<!-- 네비바, 풋 css따오기 -->    
-    <link rel="stylesheet" href="/static/home/css/style.css">
+    <link rel="stylesheet" href="/resources/static/home/css/style.css">
 </head>
 <body>
     
@@ -166,15 +166,15 @@
     </div>
 </footer>
     
-    <script src="/static/hotelForm/js/jquery-3.3.1.min.js"></script>
-    <script src="/static/hotelForm/js/jquery-migrate-3.0.1.min.js"></script>
-    <script src="/static/hotelForm/js/owl.carousel.min.js"></script>
-    <script src="/static/hotelForm/js/jquery.stellar.min.js"></script>
-    <script src="/static/hotelForm/js/jquery.fancybox.min.js"></script>
-    <script src="/static/hotelForm/js/aos.js"></script>
+    <script src="/resources/static/hotelForm/js/jquery-3.3.1.min.js"></script>
+    <script src="/resources/static/hotelForm/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="/resources/static/hotelForm/js/owl.carousel.min.js"></script>
+    <script src="/resources/static/hotelForm/js/jquery.stellar.min.js"></script>
+    <script src="/resources/static/hotelForm/js/jquery.fancybox.min.js"></script>
+    <script src="/resources/static/hotelForm/js/aos.js"></script>
      
     	<!-- 네비bar 고정 -->
-	<script src="/static/home/js/scrollax.min.js"></script>
-	<script src="/static/home/js/main.js"></script>
+	<script src="/resources/static/home/js/scrollax.min.js"></script>
+	<script src="/resources/static/home/js/main.js"></script>
 </body>
 </html>

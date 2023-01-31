@@ -10,27 +10,27 @@
     
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="/static/hotelDetail/css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="/static/hotelDetail/css/animate.css">
+    <link rel="stylesheet" href="/resources/static/hotelDetail/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="/resources/static/hotelDetail/css/animate.css">
     
-    <link rel="stylesheet" href="/static/hotelDetail/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="/static/hotelDetail/css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="/static/hotelDetail/css/magnific-popup.css">
+    <link rel="stylesheet" href="/resources/static/hotelDetail/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/resources/static/hotelDetail/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/resources/static/hotelDetail/css/magnific-popup.css">
 
-    <link rel="stylesheet" href="/static/hotelDetail/css/aos.css">
+    <link rel="stylesheet" href="/resources/static/hotelDetail/css/aos.css">
 
-    <link rel="stylesheet" href="/static/hotelDetail/css/ionicons.min.css">
+    <link rel="stylesheet" href="/resources/static/hotelDetail/css/ionicons.min.css">
 
-    <link rel="stylesheet" href="/static/hotelDetail/css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="/static/hotelDetail/css/jquery.timepicker.css">
+    <link rel="stylesheet" href="/resources/static/hotelDetail/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="/resources/static/hotelDetail/css/jquery.timepicker.css">
 
     
-    <link rel="stylesheet" href="/static/hotelDetail/css/flaticon.css">
-    <link rel="stylesheet" href="/static/hotelDetail/css/icomoon.css">
-    <link rel="stylesheet" href="/static/hotelDetail/css/style.css">
+    <link rel="stylesheet" href="/resources/static/hotelDetail/css/flaticon.css">
+    <link rel="stylesheet" href="/resources/static/hotelDetail/css/icomoon.css">
+    <link rel="stylesheet" href="/resources/static/hotelDetail/css/style.css">
     
 	<!-- 네비바, 풋 css따오기 -->    
-    <link rel="stylesheet" href="/static/home/css/style.css">
+    <link rel="stylesheet" href="/resources/static/home/css/style.css">
     
   </head>
   <body>
@@ -51,7 +51,7 @@
     </div>
 	</nav>
     <!-- END nav -->
-		<div class="hero-wrap" style="background-image: url('/static/hotelDetail/images/bg_3.jpg');">
+		<div class="hero-wrap" style="background-image: url('/resources/static/hotelDetail/images/bg_3.jpg');">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text d-flex align-itemd-center justify-content-center">
@@ -73,7 +73,7 @@
           		<div class="col-md-12 ftco-animate">
           			<div class="single-slider owl-carousel">
           				<div class="item">
-          					<div class="room-img" style="background-image: url(/static/hotelDetail/images/room-4.jpg);"></div>
+          					<div class="room-img" style="background-image: url(/resources/static/hotelDetail/images/room-4.jpg);"></div>
           				</div>
           			</div>
           		</div>
@@ -303,25 +303,25 @@
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
 
-  <script src="/static/hotelDetail/js/jquery.min.js"></script>
-  <script src="/static/hotelDetail/js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="/static/hotelDetail/js/popper.min.js"></script>
-  <script src="/static/hotelDetail/js/bootstrap.min.js"></script>
-  <script src="/static/hotelDetail/js/jquery.easing.1.3.js"></script>
-  <script src="/static/hotelDetail/js/jquery.waypoints.min.js"></script>
-  <script src="/static/hotelDetail/js/jquery.stellar.min.js"></script>
-  <script src="/static/hotelDetail/js/owl.carousel.min.js"></script>
-  <script src="/static/hotelDetail/js/jquery.magnific-popup.min.js"></script>
-  <script src="/static/hotelDetail/js/aos.js"></script>
-  <script src="/static/hotelDetail/js/jquery.animateNumber.min.js"></script>
-  <script src="/static/hotelDetail/js/bootstrap-datepicker.js"></script>
-  <script src="/static/hotelDetail/js/scrollax.min.js"></script>
-  <script src="/static/hotelDetail/js/main.js"></script>
+  <script src="/resources/static/hotelDetail/js/jquery.min.js"></script>
+  <script src="/resources/static/hotelDetail/js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="/resources/static/hotelDetail/js/popper.min.js"></script>
+  <script src="/resources/static/hotelDetail/js/bootstrap.min.js"></script>
+  <script src="/resources/static/hotelDetail/js/jquery.easing.1.3.js"></script>
+  <script src="/resources/static/hotelDetail/js/jquery.waypoints.min.js"></script>
+  <script src="/resources/static/hotelDetail/js/jquery.stellar.min.js"></script>
+  <script src="/resources/static/hotelDetail/js/owl.carousel.min.js"></script>
+  <script src="/resources/static/hotelDetail/js/jquery.magnific-popup.min.js"></script>
+  <script src="/resources/static/hotelDetail/js/aos.js"></script>
+  <script src="/resources/static/hotelDetail/js/jquery.animateNumber.min.js"></script>
+  <script src="/resources/static/hotelDetail/js/bootstrap-datepicker.js"></script>
+  <script src="/resources/static/hotelDetail/js/scrollax.min.js"></script>
+  <script src="/resources/static/hotelDetail/js/main.js"></script>
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e8df5130f0b97930c8e8a1f3c35073d1&libraries=services"></script>
-  <script src="/static/hotelDetail/js/kakaomap.js"></script>
+  <script src="/resources/static/hotelDetail/js/kakaomap.js"></script>
   
   <!-- nav바 고정 -->
-  <script src="/static/home/js/scrollax.min.js"></script>
-  <script src="/static/home/js/main.js"></script>
+  <script src="/resources/static/home/js/scrollax.min.js"></script>
+  <script src="/resources/static/home/js/main.js"></script>
   </body>
 </html>
