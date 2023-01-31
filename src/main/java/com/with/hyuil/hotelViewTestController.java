@@ -18,6 +18,7 @@ public class hotelViewTestController {
 
 	@Autowired
 	private HotelinfoServiceImpl infoservice;
+	@Autowired
 	private HotelServiceImpl hotelservice;
 	
 	@GetMapping("/hotelDetail")

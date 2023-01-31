@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="/resources/static/hotelDetail/css/icomoon.css">
     <link rel="stylesheet" href="/resources/static/hotelDetail/css/style.css">
     
-	<!-- ³×ºñ¹Ù, Ç² cssµû¿À±â -->    
+	<!-- ë„¤ë¹„ë°”, í’‹ cssë”°ì˜¤ê¸° -->    
     <link rel="stylesheet" href="/resources/static/home/css/style.css">
     
   </head>
@@ -37,15 +37,15 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <a class="navbar-brand title" href="/">À§µåÈÞÀÏ</a>
+        <a class="navbar-brand title" href="/">ìœ„ë“œíœ´ì¼</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
         </button>
 
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a href="/host" class="nav-link">È£½ºÆ®µî·Ï</a></li>
-                <li class="nav-item"><a href="/user/login" class="nav-link">·Î±×ÀÎ</a></li>
+                <li class="nav-item"><a href="/host" class="nav-link">í˜¸ìŠ¤íŠ¸ë“±ë¡</a></li>
+                <li class="nav-item"><a href="/user/login" class="nav-link">ë¡œê·¸ì¸</a></li>
             </ul>
         </div>
     </div>
@@ -78,13 +78,13 @@
           			</div>
           		</div>
           		<div class="col-md-12 room-single mt-4 mb-5 ftco-animate">
-          			<h2 class="mb-4">È£ÅÚ¸í <span>- (»ç¿ë°¡´ÉÇÑ ¹æ °¹¼ö)</span></h2>
-          					<p>º°Á¡</p>
-    						<p>È£ÅÚ¼Ò°³±Û</p>
+          			<h2 class="mb-4">í˜¸í…”ëª… <span>- (ì‚¬ìš©ê°€ëŠ¥í•œ ë°© ê°¯ìˆ˜)</span></h2>
+          					<p>ë³„ì </p>
+    						<p>í˜¸í…”ì†Œê°œê¸€</p>
 						</div>
 						<table>
-						<tr> <td style="padding: 0 20px 0 20px;">°´½Ç¼±ÅÃ</td> <td style="padding: 0 20px 0 20px;">À§Ä¡/±³Åë</td> 
-							 <td style="padding: 0 20px 0 20px;">½Ã¼³/¼­ºñ½º</td> <td style="padding: 0 20px 0 20px;">¼÷¼ÒÁ¤Ã¥</td> <td style="padding: 0 20px 0 20px;">¸®ºä</td> </tr>
+						<tr> <td style="padding: 0 20px 0 20px;">ê°ì‹¤ì„ íƒ</td> <td style="padding: 0 20px 0 20px;">ìœ„ì¹˜/êµí†µ</td> 
+							 <td style="padding: 0 20px 0 20px;">ì‹œì„¤/ì„œë¹„ìŠ¤</td> <td style="padding: 0 20px 0 20px;">ìˆ™ì†Œì •ì±…</td> <td style="padding: 0 20px 0 20px;">ë¦¬ë·°</td> </tr>
 						</table> <br><br>
 						
 	<!-- Rooms Section Begin -->
@@ -93,10 +93,10 @@
             <div class="row">
                 <div class="col-lg-4 col-md-6" style="margin-right:200px;">
                     <div class="room-item" style="width: 400px;">
-                        <img src="static/hotelDetail/img/room/room-1.jpg" alt="">
+                        <img src="/resources/static/hotelDetail/img/room/room-1.jpg" alt="">
                         <div class="ri-text">
-                            <h4>¹æ ÀÌ¸§</h4>
-                            <h3>°¡°Ý<span>/1¹Ú</span></h3>
+                            <h4>ë°© ì´ë¦„</h4>
+                            <h3>ê°€ê²©<span>/1ë°•</span></h3>
                             <table>
                                 <tbody>
                                     <tr>
@@ -105,7 +105,7 @@
                                     </tr>
                                     <tr>
                                         <td class="r-o">Maximum</td>
-                                        <td> ÀÎ¿ø¼ö</td>
+                                        <td> ì¸ì›ìˆ˜</td>
                                     </tr>
                                     <tr>
                                         <td class="r-o">bed</td>
@@ -119,7 +119,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="room-item" style="width: 400px;">
-                        <img src="static/hotelDetail/img/room/room-2.jpg" alt="">
+                        <img src="/resources/static/hotelDetail/img/room/room-2.jpg" alt="">
                         <div class="ri-text">
                             <h4>Deluxe Room</h4>
                             <h3>159$<span>/Pernight</span></h3>
@@ -149,7 +149,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6" style="margin-right:200px; top:30px">
                     <div class="room-item" style="width: 400px;">
-                        <img src="static/hotelDetail/img/room/room-3.jpg" alt="">
+                        <img src="/resources/static/hotelDetail/img/room/room-3.jpg" alt="">
                         <div class="ri-text">
                             <h4>Double Room</h4>
                             <h3>159$<span>/Pernight</span></h3>
@@ -179,7 +179,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6" style="top:30px;">
                     <div class="room-item" style="width: 400px;">
-                        <img src="static/hotelDetail/img/room/room-3.jpg" alt="">
+                        <img src="/resources/static/hotelDetail/img/room/room-3.jpg" alt="">
                         <div class="ri-text">
                             <h4>Double Room</h4>
                             <h3>159$<span>/Pernight</span></h3>
@@ -187,7 +187,7 @@
                                 <tbody>
                                     <tr>
                                         <td class="r-o">Size:</td>
-                                        <td>ÀÎÆ®·Î</td>
+                                        <td>ì¸íŠ¸ë¡œ</td>
                                     </tr>
                                     <tr>
                                         <td class="r-o">Capacity:</td>
@@ -215,21 +215,45 @@
            	    </div>
             </div>
             <div class="col-md-12 room-single ftco-animate mb-5 mt-4"> <br><br>
-          		<h1 class="mb-4 bread">È£ÅÚ»ó¼¼³»¿ª</h1> <br>
-          		<h4 class="heading mb-3">È£ÅÚ¼­ºñ½º</h4>          		
+          		<h1 class="mb-4 bread">í˜¸í…”ìƒì„¸ë‚´ì—­</h1> <br>
+          		<h4 class="heading mb-3">í˜¸í…”ì„œë¹„ìŠ¤</h4>          		
           		<table>
-          			<tr> <td width="130">(¾ÆÀÌÄÜ)WiFi</td> <td width="130">(¾ÆÀÌÄÜ)ÁÖÂ÷°¡´É</td> </tr>
-          			<tr> <td width="130">(¾ÆÀÌÄÜ)WiFi</td> <td width="130">(¾ÆÀÌÄÜ)ÁÖÂ÷°¡´É</td> </tr>
-          			<tr> <td width="130">(¾ÆÀÌÄÜ)WiFi</td> <td width="130">(¾ÆÀÌÄÜ)ÁÖÂ÷°¡´É</td> </tr>
+          			<tr> <td width="130">(ì•„ì´ì½˜)WiFi</td> <td width="130">(ì•„ì´ì½˜)ì£¼ì°¨ê°€ëŠ¥</td> </tr>
+          			<tr> <td width="130">(ì•„ì´ì½˜)WiFi</td> <td width="130">(ì•„ì´ì½˜)ì£¼ì°¨ê°€ëŠ¥</td> </tr>
+          			<tr> <td width="130">(ì•„ì´ì½˜)WiFi</td> <td width="130">(ì•„ì´ì½˜)ì£¼ì°¨ê°€ëŠ¥</td> </tr>
           		</table> <br> <br>
-          		<h4 class="heading mb-3">À§Ä¡¹× Áöµµ</h4>
+          		<h4 class="heading mb-3">ìœ„ì¹˜ë° ì§€ë„</h4>
 				<div id="map" style="width:100%;height:300px;"></div>
-				<p>±³Åë¾È³»</p> <p>³Ê³×Áý¿¡¼­ 5ºÐ°Å¸®</p> <br>
-				<p>ÁÖº¯¸í¼Ò</p> <p>ÆíÀÇÁ¡</p> <br>
-				<h4 class="heading mb-3">È£ÅÚÁ¤Ã¥</h4> 
-				<span>ÀÌ¿ë½Ã°£</span> <br> <span>Ã¼Å©ÀÎ°¡´É½Ã°£ : 00:00ºÎÅÍ</span> <span>Ã¼Å©¾Æ¿ô½Ã°£ : 00:00±îÁö</span> <br><br>
-				<p>È£ÅÚÁ¤Ã¥ ¼à¶ó¼à¶ó</p> <br>
-				<h4 class="heading mb-3">¸®ºä</h4>
+				<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e8df5130f0b97930c8e8a1f3c35073d1&libraries=services"></script>
+				<script>
+				var mapContainer = document.getElementById('map'),
+			    mapOption = {
+			        center: new kakao.maps.LatLng(33.450701, 126.570667),
+			        level: 3
+			    };  			 
+				var map = new kakao.maps.Map(mapContainer, mapOption); 
+				var geocoder = new kakao.maps.services.Geocoder();
+				geocoder.addressSearch('ê²½ê¸°ë„ ìˆ˜ì›ì‹œ ì˜í™”ë¡œ25ë²ˆê¸¸ 22', function(result, status) {
+			     	if (status === kakao.maps.services.Status.OK) {
+				        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+			        	var marker = new kakao.maps.Marker({
+				            map: map,
+			            	position: coords
+			        	});
+			        	var infowindow = new kakao.maps.InfoWindow({
+				            content: '<div style="width:150px;text-align:center;padding:6px 0;">íƒœì˜ì•„íŒŒíŠ¸</div>'
+			        	});
+			        	infowindow.open(map, marker);
+			        	map.setCenter(coords);
+			    	} 
+				});    
+				</script>
+				<p>êµí†µì•ˆë‚´</p> <p>ë„ˆë„¤ì§‘ì—ì„œ 5ë¶„ê±°ë¦¬</p> <br>
+				<p>ì£¼ë³€ëª…ì†Œ</p> <p>íŽ¸ì˜ì </p> <br>
+				<h4 class="heading mb-3">í˜¸í…”ì •ì±…</h4> 
+				<span>ì´ìš©ì‹œê°„</span> <br> <span>ì²´í¬ì¸ê°€ëŠ¥ì‹œê°„ : 00:00ë¶€í„°</span> <span>ì²´í¬ì•„ì›ƒì‹œê°„ : 00:00ê¹Œì§€</span> <br><br>
+				<p>í˜¸í…”ì •ì±… ì†°ë¼ì†°ë¼</p> <br>
+				<h4 class="heading mb-3">ë¦¬ë·°</h4>
           	</div>
         </div>
       </div>  
@@ -246,15 +270,15 @@
         <div class="row mb-5">
             <div class="col-md">
                 <div class="ftco-footer-widget mb-4">
-                    <h2 class="ftco-heading-2">³õÄ¥ ¼ö ¾ø´Ù</h2>
-                    <p>ÁøÂ¥ °³Â¼´Â È£ÅÚÁøÂ¥ °³Â¼´Â È£ÅÚÁøÂ¥ °³Â¼´Â È£ÅÚÁøÂ¥ °³Â¼´Â È£ÅÚÁøÂ¥ °³Â¼´Â È£ÅÚÁøÂ¥ °³Â¼´Â È£ÅÚÁøÂ¥ °³Â¼´Â È£ÅÚÁøÂ¥ °³Â¼´Â È£ÅÚÁøÂ¥ °³Â¼´Â È£ÅÚ¤·¤·</p>
+                    <h2 class="ftco-heading-2">ë†“ì¹  ìˆ˜ ì—†ë‹¤</h2>
+                    <p>ì§„ì§œ ê°œì©ŒëŠ” í˜¸í…”ì§„ì§œ ê°œì©ŒëŠ” í˜¸í…”ì§„ì§œ ê°œì©ŒëŠ” í˜¸í…”ì§„ì§œ ê°œì©ŒëŠ” í˜¸í…”ì§„ì§œ ê°œì©ŒëŠ” í˜¸í…”ì§„ì§œ ê°œì©ŒëŠ” í˜¸í…”ì§„ì§œ ê°œì©ŒëŠ” í˜¸í…”ì§„ì§œ ê°œì©ŒëŠ” í˜¸í…”ì§„ì§œ ê°œì©ŒëŠ” í˜¸í…”ã…‡ã…‡</p>
                 </div>
             </div>
             <div class="col-md">
                 <div class="ftco-footer-widget mb-4 ml-md-5">
-                    <h2 class="ftco-heading-2">ºí·Î±×</h2>
+                    <h2 class="ftco-heading-2">ë¸”ë¡œê·¸</h2>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="py-2 d-block">°­ÈÞÀÏ</a></li>
+                        <li><a href="#" class="py-2 d-block">ê°•íœ´ì¼</a></li>
                         <li><a href="#" class="py-2 d-block">Rooms</a></li>
                         <li><a href="#" class="py-2 d-block">Amenities</a></li>
                         <li><a href="#" class="py-2 d-block">Gift Card</a></li>
@@ -264,9 +288,9 @@
             </div>
             <div class="col-md">
                 <div class="ftco-footer-widget mb-4">
-                    <h2 class="ftco-heading-2">±êÇãºê</h2>
+                    <h2 class="ftco-heading-2">ê¹ƒí—ˆë¸Œ</h2>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="py-2 d-block">°­ÈÞÀÏ</a></li>
+                        <li><a href="#" class="py-2 d-block">ê°•íœ´ì¼</a></li>
                         <li><a href="#" class="py-2 d-block">About Us</a></li>
                         <li><a href="#" class="py-2 d-block">Contact Us</a></li>
                         <li><a href="#" class="py-2 d-block">Services</a></li>
@@ -276,10 +300,10 @@
             </div>
             <div class="col-md">
                 <div class="ftco-footer-widget mb-4">
-                    <h2 class="ftco-heading-2">°í°´Áö¿ø</h2>
+                    <h2 class="ftco-heading-2">ê³ ê°ì§€ì›</h2>
                     <div class="block-23 mb-3">
                         <ul>
-                            <li><span class="icon icon-map-marker"></span><span class="text">¼­¿ïÆ¯º°½Ã ±ÝÃµ±¸<br/>°¡»êµðÁöÅÐ1·Î 70<br/>È£¼­´ëº¥Ã³Å¸¿ö 4Ãþ</span></li>
+                            <li><span class="icon icon-map-marker"></span><span class="text">ì„œìš¸íŠ¹ë³„ì‹œ ê¸ˆì²œêµ¬<br/>ê°€ì‚°ë””ì§€í„¸1ë¡œ 70<br/>í˜¸ì„œëŒ€ë²¤ì²˜íƒ€ì›Œ 4ì¸µ</span></li>
                             <li><a href="#"><span class="icon icon-phone"></span><span class="text">010 8346 8610</span></a></li>
                             <li><a href="#"><span class="icon icon-envelope"></span><span class="text">whaleee@naver.com</span></a></li>
                         </ul>
@@ -317,10 +341,8 @@
   <script src="/resources/static/hotelDetail/js/bootstrap-datepicker.js"></script>
   <script src="/resources/static/hotelDetail/js/scrollax.min.js"></script>
   <script src="/resources/static/hotelDetail/js/main.js"></script>
-  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e8df5130f0b97930c8e8a1f3c35073d1&libraries=services"></script>
-  <script src="/resources/static/hotelDetail/js/kakaomap.js"></script>
   
-  <!-- nav¹Ù °íÁ¤ -->
+  <!-- navë°” ê³ ì • -->
   <script src="/resources/static/home/js/scrollax.min.js"></script>
   <script src="/resources/static/home/js/main.js"></script>
   </body>

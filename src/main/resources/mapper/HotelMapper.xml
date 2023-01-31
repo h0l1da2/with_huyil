@@ -19,6 +19,6 @@
 	</resultMap>
 	
 	<insert id="insertHotel" parameterType="HotelVo">
-		insert into values(seq_hotel.nextval, #{name}, #{infoid}, 70, #{service}, #{bed}, #{address}, #{zonecode}, #{sigungu}, #{detail}, sysdate)
+		insert into hotel values(seq_hotel.nextval, #{name}, #{infoid}, 70, #{service}, #{bed}, #{address}, #{zonecode}, #{sigungu}, #{detail}, sysdate)
 	</insert>
 </mapper>
