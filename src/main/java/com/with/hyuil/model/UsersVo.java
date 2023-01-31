@@ -7,6 +7,7 @@ import com.with.hyuil.model.enumaration.Role;
 import com.with.hyuil.model.enumaration.Wheres;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Email;
@@ -71,6 +72,9 @@ public class UsersVo {
 
     public void userRoleWheres() {
         this.wheres = Wheres.WITH_HYUIL;
+    }
+    public void myRole(RolesVo rolesVo) {
+        this.rolesVo = rolesVo;
     }
 
     public void passwordEncode(String password) {

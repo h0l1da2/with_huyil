@@ -62,6 +62,7 @@
 <!-- 카카오맵 -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9093f985faa6566619ee93146e47c723"></script>
 <script>
+
     var container = document.getElementById('map');
     var options = {
         center: new kakao.maps.LatLng(37.47228753186775, 126.8860873478374),
