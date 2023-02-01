@@ -64,8 +64,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .disable()
 
                 .authorizeRequests()
-                .mvcMatchers("/hosts/**")
-                .hasAnyRole("HOST", "ADMIN")
+                //.mvcMatchers("/hosts/**")
+                //.hasAnyRole("HOST", "ADMIN")
                 .mvcMatchers("/admin/**")
                 .hasRole("ADMIN")
                 .anyRequest()
