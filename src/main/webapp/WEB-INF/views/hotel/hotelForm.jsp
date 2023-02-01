@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -6,14 +5,12 @@
 <script>
     function setThumbnail(event){
         var reader = new FileReader();
-
         reader.onload = function(event){
             var img = document.createElement("img");
             img.setAttribute("src", event.target.result);
             img.setAttribute("class", "col-lg-6");
             document.querySelector("div#image_container").appendChild(img);
         };
-
         reader.readAsDataURL(event.target.files[0]);
     }
 </script>
@@ -45,7 +42,7 @@
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a href="/host" class="nav-link">호스트등록</a></li>
-                <li class="nav-item"><a href="/user/login" class="nav-link">로그인</a></li>
+                <li class="nav-item"><a href="/user/loginForm" class="nav-link">로그인</a></li>
             </ul>
         </div>
     </div>
@@ -58,7 +55,7 @@
             <div class="col-md-10 text-center" data-aos="fade">
                 <h1 class="heading mb-3">Hotel</h1>
                 <ul class="custom-breadcrumbs mb-4">
-                    <li><a href="/host">Home</a></li>
+                    <li><a href="/">Home</a></li>
                 </ul>
             </div>
         </div>
@@ -112,7 +109,9 @@
                 <input class="form-control form-control-user" type="file"
                        name="uploadFile" id="product_image" onchange="setThumbnail(event);" style="width:300px; height:50px;">
 
-                <div style=width:6 id="image_container"></div> <br>
+                <div id="image_container">
+                </div>
+                <br>
 
                 <label for="exampleFormControlInput1">서비스</label>
                 <table style='margin-top:0px; border:1px solid #000; height:60px;' cellspacing=0 cellpadding=10>

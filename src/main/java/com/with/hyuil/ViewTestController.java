@@ -9,6 +9,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class ViewTestController {
 
+<<<<<<< HEAD
+=======
+    @GetMapping("/")
+    public String test() {
+
+        return "index";
+    }
+
+>>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))
     @ResponseBody
     @GetMapping("/hosts/aaa")
     public String test1() {

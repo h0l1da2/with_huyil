@@ -4,14 +4,16 @@ import com.with.hyuil.dto.users.AdminJoinDto;
 import com.with.hyuil.dto.users.UserIdDto;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import com.with.hyuil.dto.users.UsersDto;
 =======
 >>>>>>> c49688c (LoginService 추가해서 Controller 수정)
 import com.with.hyuil.dto.users.UsersLoginDto;
 >>>>>>> 62589e9 (jwt 토큰 로컬스토리지 저장)
+=======
+>>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))
 import com.with.hyuil.model.UsersVo;
-import com.with.hyuil.service.interfaces.LoginService;
 import com.with.hyuil.service.interfaces.UsersService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +31,7 @@ import java.io.IOException;
 =======
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Map;
+import java.io.IOException;
 
 >>>>>>> c49688c (LoginService 추가해서 Controller 수정)
 @Slf4j
@@ -39,9 +41,9 @@ import java.util.Map;
 public class AdminJoinController {
 //서비스에서 생긴 예외 컨트롤러에서 예외 처리?
     private final UsersService usersService;
-    private final LoginService loginService;
 
     @GetMapping
+<<<<<<< HEAD
 <<<<<<< HEAD
     public String adminLoginForm(HttpServletRequest request, HttpServletResponse response) throws IOException {
         StringBuffer requestURL = request.getRequestURL();
@@ -49,6 +51,11 @@ public class AdminJoinController {
 =======
     public String adminLoginForm() {
 >>>>>>> 62589e9 (jwt 토큰 로컬스토리지 저장)
+=======
+    public String adminLoginForm(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        StringBuffer requestURL = request.getRequestURL();
+        request.setAttribute("requestURL", requestURL);
+>>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))
         return "admin/adminLoginForm";
     }
 
@@ -89,10 +96,10 @@ public class AdminJoinController {
 
     @GetMapping("/loginForm")
     public String loginHost(HttpServletRequest request, HttpServletResponse response) {
-        loginService.haveRedirectURI(request, response);
         return "host/hostLoginForm";
     }
 
+<<<<<<< HEAD
     @ResponseBody
     @PostMapping("/login")
     public Map<String, String> loginHost(@RequestBody UsersLoginDto loginDto, HttpServletResponse response, HttpServletRequest request) {
@@ -100,4 +107,6 @@ public class AdminJoinController {
         return map;
     }
 >>>>>>> c49688c (LoginService 추가해서 Controller 수정)
+=======
+>>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))
 }

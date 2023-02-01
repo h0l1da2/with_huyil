@@ -34,7 +34,6 @@ import com.with.hyuil.model.RolesVo;
 =======
 >>>>>>> 6ab50a3 (LoginService 추가해서 Controller 수정)
 import com.with.hyuil.model.UsersVo;
-import com.with.hyuil.service.LoginServiceImpl;
 import com.with.hyuil.service.interfaces.EmailService;
 import com.with.hyuil.service.interfaces.UsersService;
 import lombok.RequiredArgsConstructor;
@@ -65,11 +64,13 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import javax.servlet.http.HttpServletResponse;
 >>>>>>> 62589e9 (jwt 토큰 로컬스토리지 저장)
+=======
+>>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))
 import javax.servlet.http.HttpSession;
-import java.util.Map;
 
 
 @Slf4j
@@ -80,6 +81,7 @@ import java.util.Map;
 public class UsersJoinController {
     private final UsersService usersService;
     private final EmailService emailService;
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -102,12 +104,15 @@ public class UsersJoinController {
 =======
     private final LoginServiceImpl loginService;
 >>>>>>> 6ab50a3 (LoginService 추가해서 Controller 수정)
+=======
+>>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))
 
     @GetMapping("/join")
     public String joinUser() {
         return "user/joinForm";
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     @PostMapping("/join/email")
     public String joinEmail(@ModelAttribute UsersDto usersDto, HttpSession session) {
@@ -120,6 +125,8 @@ public class UsersJoinController {
         return map;
     }
 
+=======
+>>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))
     @PostMapping("/join/email")
     public String joinEmail(@ModelAttribute UsersDto usersDto, HttpSession session) {
         String randomCode = emailService.joinMailSend(usersDto.getEmail());
@@ -171,6 +178,7 @@ public class UsersJoinController {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     public String loginUser(HttpServletRequest request) {
 
 =======
@@ -180,6 +188,10 @@ public class UsersJoinController {
     public String loginUser(HttpServletRequest request, HttpServletResponse response) {
         loginService.haveRedirectURI(request, response);
 >>>>>>> 6ab50a3 (LoginService 추가해서 Controller 수정)
+=======
+    public String loginUser(HttpServletRequest request) {
+
+>>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))
         return "user/loginForm";
     }
 
@@ -189,6 +201,7 @@ public class UsersJoinController {
         return "login";
     }
 
+<<<<<<< HEAD
 =======
     public String loginUser() {
 =======
@@ -199,6 +212,8 @@ public class UsersJoinController {
     }
 
 >>>>>>> 62589e9 (jwt 토큰 로컬스토리지 저장)
+=======
+>>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))
     private void sessionRemoveCodeAndDto(HttpSession session) {
         session.removeAttribute("randomCode");
         session.removeAttribute("userDto");

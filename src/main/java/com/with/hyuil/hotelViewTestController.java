@@ -36,29 +36,29 @@ public class hotelViewTestController {
 	@Autowired
 	private HotelServiceImpl hotelService;
 	@Autowired
-	private RoomServiceImpl roomService;	
+	private RoomServiceImpl roomService;
 	@Autowired
 	private FileServiceImpl fileService;
-	
+
 	@GetMapping("/hotelDetail")
 	public String messi() {
 		return "/hotel/hotelDetail";
 	}
-	
+
 	@GetMapping("/hotelForm")
 	public String lionel() {
 		return "/hotel/hotelForm";
 	}
-	
+
 	@GetMapping("/roomForm")
 	public String winner() {
 		return "/hotel/roomForm";
 	}
-	
+
 	@PostMapping("/hotelForm")
 	public ModelAndView lionelmessi(HttpServletRequest req,
-			@ModelAttribute("article") FileVo article, MultipartHttpServletRequest mhsq,
-			HotelVo hotelvo, HotelInfoVo infovo, MultipartFile file)throws IllegalStateException, IOException {
+									@ModelAttribute("article") FileVo article, MultipartHttpServletRequest mhsq,
+									HotelVo hotelvo, HotelInfoVo infovo, MultipartFile file)throws IllegalStateException, IOException {
 		infoService.addInfo(infovo);
 		String[] service = req.getParameterValues("service");
 		String textservice = "";
@@ -97,7 +97,7 @@ public class hotelViewTestController {
 		}
 		return new ModelAndView("redirect:/host/roomForm");
 	}
-	
+
 	@PostMapping("/roomForm")
 	public String pique(RoomVo roomvo) {
 		long id = 170;
@@ -106,5 +106,5 @@ public class hotelViewTestController {
 		roomService.addRoom(roomvo);
 		return "redirect:/host";
 	}
-	
+
 }

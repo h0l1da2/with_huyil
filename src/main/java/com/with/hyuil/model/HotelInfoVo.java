@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package com.with.hyuil.model;
 
 import lombok.Data;
@@ -13,3 +14,20 @@ public class HotelInfoVo {
     private String checkIn;
     private String checkOut;
 }
+=======
+package com.with.hyuil.model;
+
+import lombok.Data;
+
+@Data
+public class HotelInfoVo {
+
+    private Long id;
+    private String traffic;
+    private String intro;
+    private String spot;
+    private String policy;
+    private String checkIn;
+    private String checkOut;
+}
+>>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))

@@ -21,9 +21,8 @@ import com.with.hyuil.service.interfaces.UsersService;
 >>>>>>> ea333e3 (JWT 토큰 만들기 위한 base 클래스들)
 =======
 import com.with.hyuil.config.auth.CustomUserDetailsService;
-import com.with.hyuil.config.auth.JwtAuthenticationEntryPoint;
-import com.with.hyuil.config.jwt.JwtRequestFilter;
-import com.with.hyuil.config.jwt.JwtTokenProvider;
+import com.with.hyuil.config.handler.AuthenticationExceptionHandler;
+import com.with.hyuil.config.handler.UserLoginSuccessHandler;
 import com.with.hyuil.dao.UsersMapper;
 import com.with.hyuil.service.UsersServiceImpl;
 import com.with.hyuil.service.interfaces.UsersService;
@@ -47,6 +46,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 >>>>>>> 317a2e1 (User 로그인 JWT 토큰 반환 완성)
 =======
@@ -54,12 +54,15 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 =======
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 >>>>>>> e2072f0 (User 로그인 JWT 토큰 반환 완성)
+=======
+>>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))
 
 @EnableWebSecurity
 @Configuration
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -72,7 +75,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 =======
 >>>>>>> e2072f0 (User 로그인 JWT 토큰 반환 완성)
     private final JwtTokenProvider jwtTokenProvider;
+=======
+>>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))
     private final UsersMapper usersMapper;
+    private final AuthenticationExceptionHandler authenticationExceptionHandler;
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
     @Bean
     public UsersService usersService() {
         return new UsersServiceImpl(usersMapper, bCryptPasswordEncoder());
@@ -89,6 +100,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 >>>>>>> e2072f0 (User 로그인 JWT 토큰 반환 완성)
     @Bean
+<<<<<<< HEAD
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
@@ -101,6 +113,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new CustomUserDetailsService(usersService());
     }
     @Bean
+=======
+>>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))
     @Override
     protected AuthenticationManager authenticationManager() throws Exception {
         return super.authenticationManager();
@@ -139,6 +153,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 <<<<<<< HEAD
 =======
 
+<<<<<<< HEAD
 =======
 
     @Override
@@ -152,6 +167,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 >>>>>>> c49688c (LoginService 추가해서 Controller 수정)
 
+=======
+>>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))
         http
                 .csrf().disable()
                 .httpBasic().disable()
@@ -198,6 +215,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                 .formLogin()
                 .loginPage("/host/loginForm")
 <<<<<<< HEAD
@@ -208,21 +226,33 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
 >>>>>>> 317a2e1 (User 로그인 JWT 토큰 반환 완성)
+=======
+                .formLogin()
+                .loginPage("/host/loginForm")
+                .loginPage("/user/loginForm")
+>>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))
                 .loginPage("/admins")
                 .usernameParameter("userId")
                 .passwordParameter("password")
                 .loginProcessingUrl("/login")
                 .successHandler(new UserLoginSuccessHandler(usersService()))
+<<<<<<< HEAD
                 .failureHandler(new UserLoginFailureHandler())
                 .permitAll()
 
                 .and()
 <<<<<<< HEAD
+=======
+                .permitAll()
+
+                .and()
+>>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))
                 .logout()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/")
 
                 .and()
+<<<<<<< HEAD
                 .exceptionHandling()
                 .authenticationEntryPoint(authenticationExceptionHandler)
 
@@ -263,8 +293,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 =======
 >>>>>>> 6ab50a3 (LoginService 추가해서 Controller 수정)
                 .addFilterBefore(new JwtRequestFilter(jwtTokenProvider, userDetailsService()), UsernamePasswordAuthenticationFilter.class)
+=======
+>>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))
                 .exceptionHandling()
-                .authenticationEntryPoint(new JwtAuthenticationEntryPoint())
+                .authenticationEntryPoint(authenticationExceptionHandler)
+
         ;
 
     }
@@ -272,6 +305,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring() // 정적파일들 필터 검사 ㄴㄴ
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -287,5 +321,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 >>>>>>> e2072f0 (User 로그인 JWT 토큰 반환 완성)
                 ;
 >>>>>>> 317a2e1 (User 로그인 JWT 토큰 반환 완성)
+=======
+                .mvcMatchers("/resources/static/**")
+        ;
+>>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))
     }
 }

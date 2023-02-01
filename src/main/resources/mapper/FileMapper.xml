@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
 		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
@@ -21,4 +22,20 @@
 		values
 		(seq_files.nextval, #{type}, #{name}, #{uuid}, #{path}, #{size}, null, #{hotelInfoId} <if test="roomId != 0">, #{roomId} </if>)
 	</insert>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.with.hyuil.dao.FileMapper">
+	<resultMap type="FileVo" id="filevo">
+		<result property="id" column="id"/>
+		<result property="type" column="type"/>
+		<result property="name" column="name"/>
+		<result property="uuid" column="uuid"/>
+		<result property="path" column="path"/>
+		<result property="size" column="size"/>
+		<result property="removed" column="removed"/>
+	</resultMap>
+>>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))
 </mapper>

@@ -15,6 +15,7 @@ import com.with.hyuil.model.enumaration.Role;
 import com.with.hyuil.model.enumaration.Wheres;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Email;
@@ -112,11 +113,14 @@ public class UsersVo {
     public void myRole(RolesVo rolesVo) {
         this.rolesVo = rolesVo;
     }
+<<<<<<< HEAD
 =======
     public void userRoleWheres() {
         this.wheres = Wheres.WITH_HYUIL;
     }
 >>>>>>> 8cc50b4 (view, 어드민 빼고..)
+=======
+>>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))
 
     public void passwordEncode(String password) {
         this.password = password;

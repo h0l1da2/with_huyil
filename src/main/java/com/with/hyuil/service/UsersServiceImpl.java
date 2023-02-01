@@ -22,9 +22,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+<<<<<<< HEAD
 
 import java.util.*;
 import java.util.stream.Collectors;
+=======
+import java.util.HashMap;
+import java.util.Map;
+>>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))
 
 @Slf4j
 @Service
@@ -34,6 +39,7 @@ import java.util.stream.Collectors;
 public class UsersServiceImpl implements UsersService {
     private final UsersMapper usersMapper;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final Map map = new HashMap();
     @Value("${admin.secret.code}")
     private String adminSecretCode;
     @Override
@@ -43,26 +49,40 @@ public class UsersServiceImpl implements UsersService {
 
         usersVo.userType(Type.USER);
         usersMapper.insertUser(usersVo);
+<<<<<<< HEAD
         UsersVo findUsers = usersMapper.findByUserId(usersVo.getUserId());
         return usersMapper.insertRoles(new RolesVo(Role.ROLE_USER, findUsers));
 
+=======
+        map.put("userId", usersVo.getUserId());
+        UsersVo findUsers = usersMapper.findByUserId(map);
+        return usersMapper.insertRoles(new RolesVo(Role.ROLE_USER, findUsers));
+>>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))
     }
     @Override
     public int saveAdmin(UsersVo usersVo, String adminJoinCode) {
         if(adminJoinCode.equals(adminSecretCode)) {
             usersVo.passwordEncode(passwordEncoder.encode(usersVo.getPassword()));
+<<<<<<< HEAD
             usersVo.userType(Type.ADMIN);
             usersMapper.insertAdmin(usersVo);
             UsersVo findUsers = usersMapper.findByUserId(usersVo.getUserId());
             return usersMapper.insertRoles(new RolesVo(Role.ROLE_ADMIN, findUsers));
 
+=======
+            usersMapper.insertAdmin(usersVo);
+            map.put("userId", usersVo.getUserId());
+            UsersVo findUsers = usersMapper.findByUserId(map);
+            return usersMapper.insertRoles(new RolesVo(Role.ROLE_ADMIN, findUsers));
+>>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))
         }
         return 0;
     }
 
     @Override
     public boolean idCheck(UserIdDto userIdDto) {
-        UsersVo findUser = usersMapper.findByUserId(userIdDto.getUserId());
+        map.put("userId", userIdDto.getUserId());
+        UsersVo findUser = usersMapper.findByUserId(map);
         if (findUser == null) {
             return true;
         }
@@ -79,18 +99,25 @@ public class UsersServiceImpl implements UsersService {
         usersVo.userType(Type.HOST);
         usersVo.myBusiness(businessByAccount);
         usersMapper.insertHost(usersVo);
+<<<<<<< HEAD
         UsersVo findUsers = usersMapper.findByUserId(usersVo.getUserId());
+=======
+        map.put("userId", usersVo.getUserId());
+        UsersVo findUsers = usersMapper.findByUserId(map);
+>>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))
         return usersMapper.insertRoles(new RolesVo(Role.ROLE_HOST, findUsers));
     }
 
     @Override
     public UsersVo loginForFind(String userId) {
-        return usersMapper.findByUserId(userId);
+        map.put("userId", userId);
+        return usersMapper.findByUserId(map);
     }
 
     @Override
     public UsersVo login(UsersVo usersVo) {
-        UsersVo user = usersMapper.findByUserId(usersVo.getUserId());
+        map.put("userId", usersVo.getUserId());
+        UsersVo user = usersMapper.findByUserId(map);
         if (user == null) {
 <<<<<<< HEAD
             throw new NoSuchElementException("유저가없음 아이디");
@@ -246,6 +273,11 @@ public class UsersServiceImpl implements UsersService {
         return usersMapper.findRoles(userId);
 =======
 >>>>>>> 317a2e1 (User 로그인 JWT 토큰 반환 완성)
+    }
+
+    @Override
+    public void updateLoginDate(String userId) {
+        usersMapper.updateLastLogin(userId);
     }
 
     private String passwordEncoding(String password) {

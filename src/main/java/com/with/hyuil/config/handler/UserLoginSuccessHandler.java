@@ -10,12 +10,18 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
+<<<<<<< HEAD
 import org.springframework.ui.Model;
+=======
+>>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+<<<<<<< HEAD
 import javax.servlet.http.HttpSession;
+=======
+>>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,15 +35,29 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
+<<<<<<< HEAD
         usersService.updateLoginDate(authentication.getName());
         List<String> roleNames = getRoleNames(authentication);
         SavedRequest savedRequest = requestCache.getRequest(request, response);
+=======
+
+        usersService.updateLoginDate(authentication.getName());
+
+        List<String> roleNames = getRoleNames(authentication);
+
+        SavedRequest savedRequest = requestCache.getRequest(request, response);
+
+>>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))
         if (savedRequest == null) {
             if (roleNames.contains("ROLE_USER")) {
                 redirectStrategy.sendRedirect(request, response, "/");
             }
             if (roleNames.contains("ROLE_HOST")) {
+<<<<<<< HEAD
                 redirectStrategy.sendRedirect(request, response, "/host");
+=======
+                redirectStrategy.sendRedirect(request, response, "/");
+>>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))
             }
             if (roleNames.contains("ROLE_ADMIN")) {
                 redirectStrategy.sendRedirect(request, response, "/");

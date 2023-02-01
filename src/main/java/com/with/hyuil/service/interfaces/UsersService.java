@@ -19,6 +19,7 @@ public interface UsersService {
     UsersVo login(UsersVo usersVo);
     RolesVo roleForLogin(Long id);
 <<<<<<< HEAD
+<<<<<<< HEAD
     void updateLoginDate(String userId);
     UsersVo emailValid(EmailDto emailDto);
     int modifyEmail(EmailDto emailDto);
@@ -28,6 +29,9 @@ public interface UsersService {
     String deleteUser(DeleteDto deleteDto);
     UsersVo findId(FindIdDto findIdDto);
     UsersVo findTel(FindIdDto findIdDto);
+=======
+    void updateLoginDate(String userId);
+>>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))
 }
 =======
 }

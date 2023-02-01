@@ -14,10 +14,15 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import java.util.Map;
 
 =======
 >>>>>>> 8cc50b4 (view, 어드민 빼고..)
+=======
+import java.util.Map;
+
+>>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))
 @Mapper
 @Repository
 public interface UsersMapper {
@@ -27,6 +32,7 @@ public interface UsersMapper {
     int insertHost(UsersVo usersVo);
     int insertAdmin(UsersVo usersVo);
     int insertRoles(RolesVo rolesVo);
+<<<<<<< HEAD
 <<<<<<< HEAD
     int insertWhyDelete(DeleteDto deleteDto); //
     UsersVo findByUserId(String userId);
@@ -50,4 +56,11 @@ public interface UsersMapper {
     RolesVo findRoles(Long id);
     UsersVo findByUserIdAndPassword(UsersVo usersVo);
 >>>>>>> 317a2e1 (User 로그인 JWT 토큰 반환 완성)
+=======
+    UsersVo findByUserId(Map value);
+    BusinessVo findBusinessByAccount(String account);
+    RolesVo findRoles(Long id);
+    void updateLastLogin(String userId);
+
+>>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))
 }
