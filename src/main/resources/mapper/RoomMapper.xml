@@ -12,6 +12,7 @@
 		<result property="bed" column="bed"/>
 		<result property="n_price" column="normal_price"/>
 		<result property="h_price" column="holiday_price"/>
+		<result property="admin_id" column="admin_check_id"/>
 	</resultMap>
 	
 	<insert id="insertRoom" parameterType="RoomVo">

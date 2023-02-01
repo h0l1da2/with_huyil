@@ -63,7 +63,7 @@ public class hotelViewTestController {
 	
 	@PostMapping("/roomForm")
 	public String pique(HttpServletRequest req, RoomVo roomvo) {
-		long id = 150;
+		long id = 170;
 		HotelVo hotelvo = hotelservice.findByHotelId(id);
 		roomvo.setHotel_id(hotelvo.getId());
 		roomservice.addRoom(roomvo);
