@@ -10,8 +10,6 @@
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i" rel="stylesheet">
 
     <link rel="stylesheet" href="<c:url value='/resources/static/home/css/open-iconic-bootstrap.min.css'/>">
-    <link rel="stylesheet" href="<c:url value='/resources/static/home/css/open-iconic-bootstrap.min.css'/>">
-    <link rel="stylesheet" href="<c:url value='/resources/static/home/css/open-iconic-bootstrap.min.css'/>">
 
     <link rel="stylesheet" href="<c:url value='/resources/static/home/css/animate.css'/>">
 
@@ -328,6 +326,25 @@
 <script src="<c:url value='/resources/static/home/js/google-map.js'/>"></script>
 <script src="<c:url value='/resources/static/home/js/main.js'/>"></script>
 <script>
+
+    let token = localStorage.getItem('jwt');
+
+    // $( document ).ready( function() {
+    //     $('#hostGo').click(function () {
+    //         $.ajax({
+    //             type: 'GET',
+    //             url: '/hosts/aaa',
+    //             headers: { "Authorization" : token },
+    //             success: function (result) {
+    //                 window.location.href = "/hosts/aaa";
+    //             },
+    //             error: function() {
+    //                 alert("아이디나 비밀번호를 확인하세요");
+    //             }})
+    //     })
+    // })
+
+
     var count=0;
     function increase(){
         count=count+1;

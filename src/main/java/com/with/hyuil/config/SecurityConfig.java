@@ -1,9 +1,8 @@
 package com.with.hyuil.config;
 
 import com.with.hyuil.config.auth.CustomUserDetailsService;
-import com.with.hyuil.config.auth.JwtAuthenticationEntryPoint;
-import com.with.hyuil.config.jwt.JwtRequestFilter;
-import com.with.hyuil.config.jwt.JwtTokenProvider;
+import com.with.hyuil.config.handler.AuthenticationExceptionHandler;
+import com.with.hyuil.config.handler.UserLoginSuccessHandler;
 import com.with.hyuil.dao.UsersMapper;
 import com.with.hyuil.service.UsersServiceImpl;
 import com.with.hyuil.service.interfaces.UsersService;
@@ -19,15 +18,19 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @EnableWebSecurity
 @Configuration
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final JwtTokenProvider jwtTokenProvider;
     private final UsersMapper usersMapper;
+    private final AuthenticationExceptionHandler authenticationExceptionHandler;
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
     @Bean
     public UsersService usersService() {
         return new UsersServiceImpl(usersMapper, bCryptPasswordEncoder());
@@ -35,10 +38,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public UserDetailsService userDetailsService() {
         return new CustomUserDetailsService(usersService());
-    }
-    @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
     }
     @Bean
     @Override
@@ -55,13 +54,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
 
-        http.csrf().disable()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-
-                .and()
-                .httpBasic()
-                .disable()
+        http
+                .csrf().disable()
+                .httpBasic().disable()
 
                 .authorizeRequests()
                 .mvcMatchers("/hosts/**")
@@ -72,9 +67,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
 
                 .and()
-                .addFilterBefore(new JwtRequestFilter(jwtTokenProvider, userDetailsService()), UsernamePasswordAuthenticationFilter.class)
+                .formLogin()
+                .loginPage("/host/loginForm")
+                .loginPage("/user/loginForm")
+                .loginPage("/admins")
+                .usernameParameter("userId")
+                .passwordParameter("password")
+                .loginProcessingUrl("/login")
+                .successHandler(new UserLoginSuccessHandler(usersService()))
+                .permitAll()
+
+                .and()
+                .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/")
+
+                .and()
                 .exceptionHandling()
-                .authenticationEntryPoint(new JwtAuthenticationEntryPoint())
+                .authenticationEntryPoint(authenticationExceptionHandler)
+
         ;
 
     }
@@ -82,7 +93,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring() // 정적파일들 필터 검사 ㄴㄴ
-                .mvcMatchers("/static/**")
-                ;
+                .mvcMatchers("/resources/static/**")
+        ;
     }
 }

@@ -1,8 +1,6 @@
 package com.with.hyuil.model.enumaration;
 
-import java.util.Arrays;
-
 public enum Role {
-    USER, HOST, ADMIN
+    ROLE_USER, ROLE_HOST, ROLE_ADMIN
 
 }
