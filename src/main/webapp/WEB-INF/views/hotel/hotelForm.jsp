@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <script>
@@ -18,33 +18,33 @@ function setThumbnail(event){
 </script>
 <head>
 <meta charset="EUC-KR">
-    <title>with hyuil È£ÅÚµî·Ï</title>
+    <title>with hyuil í˜¸í…”ë“±ë¡</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <meta name="author" content="" />
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=|Roboto+Sans:400,700|Playfair+Display:400,700">
-	<link rel="stylesheet" type="text/css" href="/static/hotelForm/css/state.css">	
+	<link rel="stylesheet" type="text/css" href="/resources/static/hotelForm/css/state.css">	
 
     <!-- Theme Style -->
-    <link rel="stylesheet" href="/static/hotelForm/css/style.css">
+    <link rel="stylesheet" href="/resources/static/hotelForm/css/style.css">
 	
-	<!-- ³×ºñ¹Ù, Ç² cssµû¿À±â -->    
-    <link rel="stylesheet" href="/static/home/css/style.css">
+	<!-- ë„¤ë¹„ë°”, í’‹ cssë”°ì˜¤ê¸° -->    
+    <link rel="stylesheet" href="/resources/static/home/css/style.css">
 </head>
 <body>
     
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <a class="navbar-brand title" href="/">À§µåÈŞÀÏ</a>
+        <a class="navbar-brand title" href="/">ìœ„ë“œíœ´ì¼</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
         </button>
 
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a href="/host" class="nav-link">È£½ºÆ®µî·Ï</a></li>
-                <li class="nav-item"><a href="/user/login" class="nav-link">·Î±×ÀÎ</a></li>
+                <li class="nav-item"><a href="/host" class="nav-link">í˜¸ìŠ¤íŠ¸ë“±ë¡</a></li>
+                <li class="nav-item"><a href="/user/login" class="nav-link">ë¡œê·¸ì¸</a></li>
             </ul>
         </div>
     </div>
@@ -67,111 +67,110 @@ function setThumbnail(event){
 <div class="step-box">
    <div class="step-state step2">
     <ul>
-      <li><p>¸¶ÀÌÆäÀÌÁö</p></li>
-      <li><p>È£ÅÚµî·Ï</p></li>
-      <li><p>°´½Çµî·Ï</p></li>
+      <li><p>ë§ˆì´í˜ì´ì§€</p></li>
+      <li><p>í˜¸í…”ë“±ë¡</p></li>
+      <li><p>ê°ì‹¤ë“±ë¡</p></li>
     </ul>
   </div>
 </div>	
 
 <section id="hotelForm">
-<form>
+<form action="/hotelForm" method="post" enctype="multipart/form-data">
   <div style="margin:0 0 30px 100px;" class="form-group">
   <br>
-    <label for="exampleFormControlInput1">È£ÅÚ¸í</label>
-    <input type="text" id="name" style="width:300px; height:50px;">
+    <label for="exampleFormControlInput1">í˜¸í…”ëª…</label>
+    <input type="text" name="name" style="width:300px; height:50px;">
     <br> <br>
 
-    <label for="exampleFormControlInput1">ÁÖ¼Ò &nbsp;&nbsp;</label> 
-    <input type="text" id="zonecode" name="postcode" placeholder="¿ìÆí¹øÈ£" style="width:200px; height:50px;"> &nbsp;&nbsp;
-
-    <input type="text" id="sigoon9" placeholder="½Ã/±º/±¸" style="width:200px; height:50px;"> &nbsp;&nbsp;
-  
-    <input type="text" id="address" placeholder="µµ·Î¸íÁÖ¼Ò" size="40" style="width:200px; height:50px;"> &nbsp;&nbsp;
+    <label for="exampleFormControlInput1">ì£¼ì†Œ &nbsp;&nbsp;</label> 
+    <input type="text" id="postcode" name="zonecode" placeholder="ìš°í¸ë²ˆí˜¸" style="width:200px; height:50px;"> &nbsp;&nbsp;
+    <input type="text" id="sigu" name="sigungu" placeholder="ì‹œ/êµ°/êµ¬" style="width:200px; height:50px;">
     <button class="w-btn w-btn-green" type="button" onclick="sample4_execDaumPostcode()">
-        ¿ìÆí¹øÈ£ Ã£±â
-    </button> <br> <br>
+        ìš°í¸ë²ˆí˜¸ ì°¾ê¸°
+    </button> <br> <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="text" id="addr" name="address" placeholder="ë„ë¡œëª…ì£¼ì†Œ" size="40" style="width:400px; height:50px;"> &nbsp;&nbsp;
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script>
+	function sample4_execDaumPostcode(){
+		new daum.Postcode({
+        	oncomplete: function(data) {
+            	document.getElementById('postcode').value = data.zonecode;
+            	document.getElementById("addr").value = data.roadAddress;
+            	document.getElementById("sigu").value = data.sigungu;
+            	document.getElementById("content").focus();
+            
+        }
+    }).open();
+}
+</script>
+	<input type="text" id="content" name="detail" placeholder="ìƒì„¸ì£¼ì†Œ" style="width:200px; height:50px;"><br><br>
+	
     <div class="form-group">
-    
-    <label for="exampleFormControlInput1">È£ÅÅ¼Ò°³ ÀÌ¹ÌÁö(1Àå)</label>
+    <label for="exampleFormControlInput1">í˜¸íƒ¤ì†Œê°œ ì´ë¯¸ì§€(1ì¥)</label> 
 	<input class="form-control form-control-user" type="file" 
-	name="product_image" id="product_image" onchange="setThumbnail(event);" style="width:300px; height:50px;"> <br>
+	name="file" id="product_image" onchange="setThumbnail(event);" style="width:300px; height:50px;">
 
 	<div style=width:6 id="image_container"></div> <br>
 
-    <label for="exampleFormControlInput1">¼­ºñ½º</label>
+    <label for="exampleFormControlInput1">ì„œë¹„ìŠ¤</label>
     <table style='margin-top:0px; border:1px solid #000' cellspacing=0 cellpadding=10>
     <tr>
     <td>
     <select name="bed" style="width:100px; height:50px;">
-    <option value="" selected>Ä§´ë »çÀÌÁî</option>
-    <option value="1">single bed</option>
-    <option value="2">double bed</option>
-    <option value="3">king bed</option>
+    <option value="" selected>ì¹¨ëŒ€ ì‚¬ì´ì¦ˆ</option>
+    <option value="single bed">single bed</option>
+    <option value="double bed">double bed</option>
+    <option value="king bed">king bed</option>
     </select>
     </td>
-    <td style="padding:0 20px 0 20px"> <input type="checkbox" name="service" value=1>Breakfast</td>
-    <td style="padding:0 20px 0 20px"> <input type="checkbox" name="service" value=2>Pool</td>
-    <td style="padding:0 20px 0 20px"> <input type="checkbox" name="service" value=3>Parking</td>
-    <td style="padding:0 20px 0 20px"> <input type="checkbox" name="service" value=4>WiFi</td>
-    <td style="padding:0 20px 0 20px"> <input type="checkbox" name="service" value=5>Fitness</td>
+    <td style="padding:0 20px 0 20px"> <input type="checkbox" name="service" value=Breakfast>Breakfast</td>
+    <td style="padding:0 20px 0 20px"> <input type="checkbox" name="service" value=Pool>Pool</td>
+    <td style="padding:0 20px 0 20px"> <input type="checkbox" name="service" value=Parking>Parking</td>
+    <td style="padding:0 20px 0 20px"> <input type="checkbox" name="service" value=WiFi>WiFi</td>
+    <td style="padding:0 20px 0 20px"> <input type="checkbox" name="service" value=Fitness>Fitness</td>
     </tr>
     </table> <br>
     
-    <label for="exampleFormControlInput1">È£ÅÚ¼Ò°³±Û</label> <br>
+    <label for="exampleFormControlInput1">í˜¸í…”ì†Œê°œê¸€</label> <br>
     <textArea style=resize:none; name="intro" rows="7" cols="100"></textArea> <br> <br>
     
-    <label for="exampleFormControlInput1">±³Åë¾È³»</label> <br>
+    <label for="exampleFormControlInput1">êµí†µì•ˆë‚´</label> <br>
+    <textArea style=resize:none; name="traffic" rows="5" cols="70"></textArea> <br> <br>
+    
+    <label for="exampleFormControlInput1">ì£¼ë³€ëª…ì†Œ</label> <br>
     <textArea style=resize:none; name="spot" rows="5" cols="70"></textArea> <br> <br>
     
-    <label for="exampleFormControlInput1">ÁÖº¯¸í¼Ò</label> <br>
-    <textArea style=resize:none; name="spot" rows="5" cols="70"></textArea> <br> <br>
+    <label for="exampleFormControlInput1">í˜¸í…”ì •ì±…</label> <br>
+    <textArea style=resize:none; name="policy" rows="7" cols="100"></textArea> <br> <br>
     
-    <label for="exampleFormControlInput1">È£ÅÚÁ¤Ã¥</label> <br>
-    <textArea style=resize:none; name="spot" rows="7" cols="100"></textArea> <br> <br>
-    
-    <label for="exampleFormControlInput1">ÀÌ¿ë½Ã°£</label> <br>
-    <select name="checkin">
-    <option value="" selected>Ã¼Å©ÀÎ °¡´É½Ã°£</option>
-    <option value="1">¿ÀÈÄ 01:00</option>
-    <option value="2">¿ÀÈÄ 02:00</option>
-    <option value="3">¿ÀÈÄ 03:00</option>
-    <option value="4">¿ÀÈÄ 04:00</option>
-    <option value="5">¿ÀÈÄ 05:00</option>
-    <option value="6">¿ÀÈÄ 06:00</option>
-    <option value="7">¿ÀÈÄ 07:00</option>
-    <option value="8">¿ÀÈÄ 08:00</option>
+    <label for="exampleFormControlInput1">ì´ìš©ì‹œê°„</label> <br>
+    <select name="checkIn">
+    <option value="" selected>ì²´í¬ì¸ ê°€ëŠ¥ì‹œê°„</option>
+    <option value="ì˜¤í›„ 01:00">ì˜¤í›„ 01:00</option>
+    <option value="ì˜¤í›„ 02:00">ì˜¤í›„ 02:00</option>
+    <option value="ì˜¤í›„ 03:00">ì˜¤í›„ 03:00</option>
+    <option value="ì˜¤í›„ 04:00">ì˜¤í›„ 04:00</option>
+    <option value="ì˜¤í›„ 05:00">ì˜¤í›„ 05:00</option>
+    <option value="ì˜¤í›„ 06:00">ì˜¤í›„ 06:00</option>
+    <option value="ì˜¤í›„ 07:00">ì˜¤í›„ 07:00</option>
+    <option value="ì˜¤í›„ 08:00">ì˜¤í›„ 08:00</option>
     </select> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     
-    <select name="checkout">
-    <option value="" selected>Ã¼Å©¾Æ¿ô °¡´É½Ã°£</option>
-    <option value="1">¿ÀÀü 10:00</option>
-    <option value="2">¿ÀÀü 11:00</option>
-    <option value="3">¿ÀÀü 12:00</option>
-    <option value="4">¿ÀÈÄ 01:00</option>
-    <option value="5">¿ÀÈÄ 02:00</option>
-    <option value="6">¿ÀÈÄ 03:00</option>
-    <option value="7">¿ÀÈÄ 04:00</option>
-    <option value="8">¿ÀÈÄ 05:00</option>
+    <select name="checkOut">
+    <option value="" selected>ì²´í¬ì•„ì›ƒ ê°€ëŠ¥ì‹œê°„</option>
+    <option value="ì˜¤ì „ 10:00">ì˜¤ì „ 10:00</option>
+    <option value="ì˜¤ì „ 11:00">ì˜¤ì „ 11:00</option>
+    <option value="ì˜¤ì „ 12:00">ì˜¤ì „ 12:00</option>
+    <option value="ì˜¤í›„ 01:00">ì˜¤í›„ 01:00</option>
+    <option value="ì˜¤í›„ 02:00">ì˜¤í›„ 02:00</option>
+    <option value="ì˜¤í›„ 03:00">ì˜¤í›„ 03:00</option>
+    <option value="ì˜¤í›„ 04:00">ì˜¤í›„ 04:00</option>
+    <option value="ì˜¤í›„ 05:00">ì˜¤í›„ 05:00</option>
     </select> <br><br>
-    
-    <label for="exampleFormControlInput1">¿¹¾à¸¶°¨½Ã°£</label> <br>
-    <select name="close">
-    <option value="" selected>--½Ã°£¼±ÅÃ--</option>
-    <option value="1">¿ÀÈÄ 06:00</option>
-    <option value="2">¿ÀÈÄ 07:00</option>
-    <option value="3">¿ÀÈÄ 08:00</option>
-    <option value="4">¿ÀÈÄ 09:00</option>
-    <option value="5">¿ÀÈÄ 10:00</option>
-    <option value="6">¿ÀÈÄ 11:00</option>
-    <option value="7">¿ÀÈÄ 12:00</option>
-    <option value="8">¿ÀÈÄ 01:00</option>
-    <option value="9">¿ÀÈÄ 02:00</option>
-    </select>
     
     <br> <br>
     <button class="w-btn-neon2" type="submit">
-        ´ÙÀ½´Ü°è
+        ë‹¤ìŒë‹¨ê³„
     </button>
     </div>
   </div>
@@ -183,15 +182,15 @@ function setThumbnail(event){
         <div class="row mb-5">
             <div class="col-md">
                 <div class="ftco-footer-widget mb-4">
-                    <h2 class="ftco-heading-2">³õÄ¥ ¼ö ¾ø´Ù</h2>
-                    <p>ÁøÂ¥ °³Â¼´Â È£ÅÚÁøÂ¥ °³Â¼´Â È£ÅÚÁøÂ¥ °³Â¼´Â È£ÅÚÁøÂ¥ °³Â¼´Â È£ÅÚÁøÂ¥ °³Â¼´Â È£ÅÚÁøÂ¥ °³Â¼´Â È£ÅÚÁøÂ¥ °³Â¼´Â È£ÅÚÁøÂ¥ °³Â¼´Â È£ÅÚÁøÂ¥ °³Â¼´Â È£ÅÚ¤·¤·</p>
+                    <h2 class="ftco-heading-2">ë†“ì¹  ìˆ˜ ì—†ë‹¤</h2>
+                    <p>ì§„ì§œ ê°œì©ŒëŠ” í˜¸í…”ì§„ì§œ ê°œì©ŒëŠ” í˜¸í…”ì§„ì§œ ê°œì©ŒëŠ” í˜¸í…”ì§„ì§œ ê°œì©ŒëŠ” í˜¸í…”ì§„ì§œ ê°œì©ŒëŠ” í˜¸í…”ì§„ì§œ ê°œì©ŒëŠ” í˜¸í…”ì§„ì§œ ê°œì©ŒëŠ” í˜¸í…”ì§„ì§œ ê°œì©ŒëŠ” í˜¸í…”ì§„ì§œ ê°œì©ŒëŠ” í˜¸í…”ã…‡ã…‡</p>
                 </div>
             </div>
             <div class="col-md">
                 <div class="ftco-footer-widget mb-4 ml-md-5">
-                    <h2 class="ftco-heading-2">ºí·Î±×</h2>
+                    <h2 class="ftco-heading-2">ë¸”ë¡œê·¸</h2>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="py-2 d-block">°­ÈŞÀÏ</a></li>
+                        <li><a href="#" class="py-2 d-block">ê°•íœ´ì¼</a></li>
                         <li><a href="#" class="py-2 d-block">Rooms</a></li>
                         <li><a href="#" class="py-2 d-block">Amenities</a></li>
                         <li><a href="#" class="py-2 d-block">Gift Card</a></li>
@@ -201,9 +200,9 @@ function setThumbnail(event){
             </div>
             <div class="col-md">
                 <div class="ftco-footer-widget mb-4">
-                    <h2 class="ftco-heading-2">±êÇãºê</h2>
+                    <h2 class="ftco-heading-2">ê¹ƒí—ˆë¸Œ</h2>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="py-2 d-block">°­ÈŞÀÏ</a></li>
+                        <li><a href="#" class="py-2 d-block">ê°•íœ´ì¼</a></li>
                         <li><a href="#" class="py-2 d-block">About Us</a></li>
                         <li><a href="#" class="py-2 d-block">Contact Us</a></li>
                         <li><a href="#" class="py-2 d-block">Services</a></li>
@@ -213,10 +212,10 @@ function setThumbnail(event){
             </div>
             <div class="col-md">
                 <div class="ftco-footer-widget mb-4">
-                    <h2 class="ftco-heading-2">°í°´Áö¿ø</h2>
+                    <h2 class="ftco-heading-2">ê³ ê°ì§€ì›</h2>
                     <div class="block-23 mb-3">
                         <ul>
-                            <li><span class="icon icon-map-marker"></span><span class="text">¼­¿ïÆ¯º°½Ã ±İÃµ±¸<br/>°¡»êµğÁöÅĞ1·Î 70<br/>È£¼­´ëº¥Ã³Å¸¿ö 4Ãş</span></li>
+                            <li><span class="icon icon-map-marker"></span><span class="text">ì„œìš¸íŠ¹ë³„ì‹œ ê¸ˆì²œêµ¬<br/>ê°€ì‚°ë””ì§€í„¸1ë¡œ 70<br/>í˜¸ì„œëŒ€ë²¤ì²˜íƒ€ì›Œ 4ì¸µ</span></li>
                             <li><a href="#"><span class="icon icon-phone"></span><span class="text">010 8346 8610</span></a></li>
                             <li><a href="#"><span class="icon icon-envelope"></span><span class="text">whaleee@naver.com</span></a></li>
                         </ul>
@@ -235,15 +234,15 @@ function setThumbnail(event){
     </div>
 </footer>
     
-    <script src="/static/hotelForm/js/jquery-3.3.1.min.js"></script>
-    <script src="/static/hotelForm/js/jquery-migrate-3.0.1.min.js"></script>
-    <script src="/static/hotelForm/js/owl.carousel.min.js"></script>
-    <script src="/static/hotelForm/js/jquery.stellar.min.js"></script>
-    <script src="/static/hotelForm/js/jquery.fancybox.min.js"></script>
-    <script src="/static/hotelForm/js/aos.js"></script>
+    <script src="/resources/static/hotelForm/js/jquery-3.3.1.min.js"></script>
+    <script src="/resources/static/hotelForm/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="/resources/static/hotelForm/js/owl.carousel.min.js"></script>
+    <script src="/resources/static/hotelForm/js/jquery.stellar.min.js"></script>
+    <script src="/resources/static/hotelForm/js/jquery.fancybox.min.js"></script>
+    <script src="/resources/static/hotelForm/js/aos.js"></script>
      
-    	<!-- ³×ºñbar °íÁ¤ -->
-	<script src="/static/home/js/scrollax.min.js"></script>
-	<script src="/static/home/js/main.js"></script>
+    	<!-- ë„¤ë¹„bar ê³ ì • -->
+	<script src="/resources/static/home/js/scrollax.min.js"></script>
+	<script src="/resources/static/home/js/main.js"></script>
   </body>
 </html>
