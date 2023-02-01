@@ -10,6 +10,7 @@ import lombok.Data;
 @Data
 public class HotelVo {
 
+
 	private long id;
 	private String name;
 	private long infoid;

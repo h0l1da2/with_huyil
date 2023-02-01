@@ -132,7 +132,6 @@ function setThumbnail(event){
     </div>
 </form>
 </section> <br>
-
     <footer class="ftco-footer ftco-bg-dark ftco-section">
     <div class="container">
         <div class="row mb-5">

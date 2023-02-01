@@ -66,9 +66,9 @@ public class hotelViewTestController {
 		long id = 150;
 		HotelVo hotelvo = hotelservice.findByHotelId(id);
 		roomvo.setHotel_id(hotelvo.getId());
-		System.out.println(roomvo.getHotel_id());
 		roomservice.addRoom(roomvo);
 		return "redirect:/host";
+
 	}
 	
 }

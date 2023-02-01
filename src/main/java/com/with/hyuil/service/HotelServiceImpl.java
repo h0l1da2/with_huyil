@@ -19,5 +19,5 @@ public class HotelServiceImpl {
 	public HotelVo findByHotelId(Long id) {
 		return mapper.findByHotelId(id);
 	}
-	
+
 }

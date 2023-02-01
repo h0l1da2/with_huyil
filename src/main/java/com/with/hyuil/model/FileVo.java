@@ -16,6 +16,6 @@ public class FileVo {
     private String name;
     private String uuid;
     private String path;
-    private Long size;
+    private long size;
     private String removed;
 }
