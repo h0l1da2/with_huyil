@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class FileVo {
 
-    private Long id;
+    private long id;
     private String type;
     private String name;
     private String uuid;

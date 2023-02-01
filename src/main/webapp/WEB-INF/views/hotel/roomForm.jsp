@@ -75,11 +75,11 @@ function setThumbnail(event){
 </div>	
 
 <section id="hotelForm">
-<form>
+<form action="/host/roomForm" method="post" enctype="multipart/form-data">
   <div style="margin:0 0 30px 100px;" class="form-group">
   <br>
     <label for="exampleFormControlInput1">객실명</label> &nbsp;&nbsp;
-    <input type="text" id="name" style="width:300px; height:50px;" placeholder="예)디럭스 더블 트윈">
+    <input type="text" name="name" style="width:300px; height:50px;" placeholder="예)디럭스 더블 트윈">
     <br> <br>
     
     <label for="exampleFormControlInput1">객실소개 이미지(1장)</label>
@@ -90,8 +90,13 @@ function setThumbnail(event){
 	<label for="exampleFormControlInput1">객실소개글</label> <br>
     <textArea style=resize:none; name="content" rows="7" cols="100"></textArea> <br> <br>
     
-    <label for="exampleFormControlInput1">최대인원</label> <br>
-    <select name="최대인원수">
+    <table>
+    <tr>
+    <td width="200"> <label for="exampleFormControlInput1">최대인원</label> </td>
+    <td> <label for="exampleFormControlInput1">침대 사이즈</label> </td>
+    </tr>
+    <tr><td>
+    <select name="max">
     <option value="" selected>--인원선택--</option>
     <option value="1">1인</option>
     <option value="2">2인</option>
@@ -99,23 +104,34 @@ function setThumbnail(event){
     <option value="4">4인</option>
     <option value="5">5인</option>
     <option value="6">6인 이상</option>
-    </select> <br><br><br>
+    </select></td><td>
+    <select name="bed">
+    <option value="" selected>--침대사이즈--</option>
+    <option value="Single">Single</option>
+    <option value="Super single">Super single</option>
+    <option value="Queen">Queen</option>
+    <option value="King">King</option>
+    <option value="Double">Double</option>
+    <option value="Large king">Large king</option>
+    <option value="California king">California king</option>
+    </select></td></tr>
+    </table> <br><br><br>
     
     <h4>객실요금</h4> <br>
     <label for="exampleFormControlInput1">일반요금</label>
-    <input type="text" id="n_price" style="width:200px; height:50px; padding-right: 10px; text-align: right" placeholder="예)50000">원
+    <input type="text" name="n_price" style="width:200px; height:50px; padding-right: 10px; text-align: right" placeholder="예)50000">원
     &nbsp;&nbsp;&nbsp;&nbsp;/ &nbsp;&nbsp;&nbsp;&nbsp; 
     
     <label for="exampleFormControlInput1">주말요금</label>
-    <input type="text" id="h_price" style="width:200px; height:50px; padding-right: 10px; text-align: right" placeholder="예)80000">원
-    <br> <br>	
+    <input type="text" name="h_price" style="width:200px; height:50px; padding-right: 10px; text-align: right" placeholder="예)80000">원
+    <br> <br> <br>
     
     <button class="w-btn-neon2" type="submit">
         등록
     </button>
     </div>
 </form>
-</section>
+</section> <br>
 
     <footer class="ftco-footer ftco-bg-dark ftco-section">
     <div class="container">

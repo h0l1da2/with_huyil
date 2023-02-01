@@ -75,7 +75,7 @@ function setThumbnail(event){
 </div>	
 
 <section id="hotelForm">
-<form action="/hotelForm" method="post" enctype="multipart/form-data">
+<form action="/host/hotelForm" method="post" enctype="multipart/form-data">
   <div style="margin:0 0 30px 100px;" class="form-group">
   <br>
     <label for="exampleFormControlInput1">호텔명</label>
@@ -84,6 +84,7 @@ function setThumbnail(event){
 
     <label for="exampleFormControlInput1">주소 &nbsp;&nbsp;</label> 
     <input type="text" id="postcode" name="zonecode" placeholder="우편번호" style="width:200px; height:50px;"> &nbsp;&nbsp;
+    <input type="text" id="sido" name="sido" placeholder="시/도" style="width:100px; height:50px;"> &nbsp;&nbsp;
     <input type="text" id="sigu" name="sigungu" placeholder="시/군/구" style="width:200px; height:50px;">
     <button class="w-btn w-btn-green" type="button" onclick="sample4_execDaumPostcode()">
         우편번호 찾기
@@ -97,8 +98,8 @@ function setThumbnail(event){
             	document.getElementById('postcode').value = data.zonecode;
             	document.getElementById("addr").value = data.roadAddress;
             	document.getElementById("sigu").value = data.sigungu;
-            	document.getElementById("content").focus();
-            
+            	document.getElementById("sido").value = data.sido;
+            	document.getElementById("content").focus();       
         }
     }).open();
 }
@@ -113,16 +114,8 @@ function setThumbnail(event){
 	<div style=width:6 id="image_container"></div> <br>
 
     <label for="exampleFormControlInput1">서비스</label>
-    <table style='margin-top:0px; border:1px solid #000' cellspacing=0 cellpadding=10>
+    <table style='margin-top:0px; border:1px solid #000; height:60px;' cellspacing=0 cellpadding=10>
     <tr>
-    <td>
-    <select name="bed" style="width:100px; height:50px;">
-    <option value="" selected>침대 사이즈</option>
-    <option value="single bed">single bed</option>
-    <option value="double bed">double bed</option>
-    <option value="king bed">king bed</option>
-    </select>
-    </td>
     <td style="padding:0 20px 0 20px"> <input type="checkbox" name="service" value=Breakfast>Breakfast</td>
     <td style="padding:0 20px 0 20px"> <input type="checkbox" name="service" value=Pool>Pool</td>
     <td style="padding:0 20px 0 20px"> <input type="checkbox" name="service" value=Parking>Parking</td>

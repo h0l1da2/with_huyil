@@ -10,18 +10,22 @@
 		<result property="infoid" column="hotel_info_id"/>
 		<result property="usersid" column="user_id"/>
 		<result property="service" column="service"/>
-		<result property="bed" column="bed"/>
-		<result property="address" column="address"/>
 		<result property="zonecode" column="zonecode"/>
+		<result property="sido" column="sido"/>
 		<result property="sigungu" column="sigungu"/>
+		<result property="address" column="address"/>
 		<result property="detail" column="detail"/>
 		<result property="localDateTime" column="remove_date"/>
 	</resultMap>
 	
 	<insert id="insertHotel" parameterType="HotelVo">
 		insert into hotel
-		(ID, NAME, HOTEL_INFO_ID, USER_ID, SERVICE, BED, ADDRESS, ZONECODE, SIGUNGU, DETAIL, REMOVE_DATE)
+		(ID, NAME, HOTEL_INFO_ID, USER_ID, SERVICE, ZONECODE, SIDO, SIGUNGU, ADDRESS, DETAIL, REMOVE_DATE)
 		values
-		(seq_hotel.nextval, #{name}, #{infoid}, 90, #{service}, #{bed}, #{address}, #{zonecode}, #{sigungu}, #{detail}, null)
+		(seq_hotel.nextval, #{name}, #{infoid}, 150, #{service}, #{zonecode}, #{sido}, #{sigungu}, #{address}, #{detail}, null)
 	</insert>
+	
+	<select id="findByHotelId" parameterType="long" resultType="hotelvo">
+		select * from hotel where user_id = #{id}
+	</select>
 </mapper>
