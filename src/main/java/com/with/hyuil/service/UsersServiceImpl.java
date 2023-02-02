@@ -6,6 +6,7 @@ import com.with.hyuil.model.BusinessVo;
 import com.with.hyuil.model.RolesVo;
 import com.with.hyuil.model.UsersVo;
 import com.with.hyuil.model.enumaration.Role;
+import com.with.hyuil.model.enumaration.Type;
 import com.with.hyuil.service.interfaces.UsersService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,6 +34,7 @@ public class UsersServiceImpl implements UsersService {
     public int saveUser(UsersVo usersVo) {
         String encodePwd = passwordEncoding(usersVo.getPassword());
         usersVo.passwordEncode(encodePwd);
+        usersVo.userType(Type.USER);
         usersMapper.insertUser(usersVo);
         map.put("userId", usersVo.getUserId());
         UsersVo findUsers = usersMapper.findByUserId(map);
@@ -42,6 +44,7 @@ public class UsersServiceImpl implements UsersService {
     public int saveAdmin(UsersVo usersVo, String adminJoinCode) {
         if(adminJoinCode.equals(adminSecretCode)) {
             usersVo.passwordEncode(passwordEncoder.encode(usersVo.getPassword()));
+            usersVo.userType(Type.ADMIN);
             usersMapper.insertAdmin(usersVo);
             map.put("userId", usersVo.getUserId());
             UsersVo findUsers = usersMapper.findByUserId(map);
@@ -66,6 +69,7 @@ public class UsersServiceImpl implements UsersService {
         usersVo.passwordEncode(encodePwd);
         usersMapper.insertBusiness(usersVo.getBusinessVo());
         BusinessVo businessByAccount = usersMapper.findBusinessByAccount(usersVo.getBusinessVo().getAccount());
+        usersVo.userType(Type.HOST);
         usersVo.myBusiness(businessByAccount);
         usersMapper.insertHost(usersVo);
         map.put("userId", usersVo.getUserId());

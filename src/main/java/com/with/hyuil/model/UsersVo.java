@@ -3,11 +3,10 @@ package com.with.hyuil.model;
 import com.with.hyuil.dto.users.AdminJoinDto;
 import com.with.hyuil.dto.users.UsersDto;
 import com.with.hyuil.dto.users.UsersLoginDto;
-import com.with.hyuil.model.enumaration.Role;
+import com.with.hyuil.model.enumaration.Type;
 import com.with.hyuil.model.enumaration.Wheres;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Email;
@@ -24,6 +23,7 @@ public class UsersVo {
     private String email;
     private String tel;
     private String name;
+    private Type type;
     private Wheres wheres;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime joinDate;
@@ -66,6 +66,10 @@ public class UsersVo {
 
     }
 
+    public void userType(Type type) {
+        this.type = type;
+    }
+
     public UsersVo(Long id) {
         this.id = id;
     }
@@ -90,13 +94,14 @@ public class UsersVo {
         this.businessVo = businessVo;
     }
 
-    public UsersVo(Long id, String userId, String password, String email, String tel, String name, Wheres wheres, LocalDateTime joinDate, LocalDateTime lastLogin, LocalDateTime out, BusinessVo businessVo, RolesVo rolesVo) {
+    public UsersVo(Long id, String userId, String password, String email, String tel, String name, Type type, Wheres wheres, LocalDateTime joinDate, LocalDateTime lastLogin, LocalDateTime out, BusinessVo businessVo, RolesVo rolesVo) {
         this.id = id;
         this.userId = userId;
         this.password = password;
         this.email = email;
         this.tel = tel;
         this.name = name;
+        this.type = type;
         this.wheres = wheres;
         this.joinDate = joinDate;
         this.lastLogin = lastLogin;
