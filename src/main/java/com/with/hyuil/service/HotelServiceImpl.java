@@ -34,5 +34,4 @@ public class HotelServiceImpl implements HotelService {
 	public Integer searchHotelsCnt(HotelSearchDto hotelSearchDto) {
 		return mapper.selectCntForHotelList(hotelSearchDto);
 	}
-
 }
