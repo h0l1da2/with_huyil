@@ -13,6 +13,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="<c:url value='/resources/static/host/css/styles.css'/>" rel="stylesheet" />
+<<<<<<< HEAD
     <style>
         .afterLogin {
             margin-bottom: 20px;
@@ -23,6 +24,8 @@
             margin-right: 10px;
         }
     </style>
+=======
+>>>>>>> 78df10a (호텔 폼 / 호텔 검색 / 리스트 (#20))
 </head>
 <body style="height: 600px;">
 <!-- Navigation-->
@@ -34,12 +37,16 @@
         </button>
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
+<<<<<<< HEAD
                 <c:choose>
                     <c:when test="${userId eq null}"><li class="nav-item"><a href="<c:url value='/host/loginForm'/>" class="nav-link title">로그인</a></li></c:when>
                     <c:when test="${userId ne null && role eq '[ROLE_HOST]'}"><li class="nav-item"><a href="<c:url value='/hosts/info'/>" class="nav-link title">${userId}</a></li></c:when>
                     <c:when test="${userId ne null && role eq '[ROLE_USER]'}"><li class="nav-item"><a href="<c:url value='/user/info'/>" class="nav-link title">${userId}</a></li></c:when>
                 </c:choose>
                 <c:if test="${userId ne null}"><li class="nav-item"><a href="<c:url value='/logout'/>" class="nav-link title">로그아웃</a></li></c:if>
+=======
+                <li class="nav-item"><a href="<c:url value='/host/loginForm'/>" class="nav-link">로그인</a></li>
+>>>>>>> 78df10a (호텔 폼 / 호텔 검색 / 리스트 (#20))
             </ul>
         </div>
     </div>

@@ -34,10 +34,14 @@
 		<div class="row justify-content-center">
 			<div class="col-md-6 text-center mb-5">
 <<<<<<< HEAD
+<<<<<<< HEAD
 				<h2 class="heading-section"><a href="<c:url value='/'/>">위드휴일</a></h2>
 =======
 				<h2 class="heading-section">위드휴일</h2>
 >>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))
+=======
+				<h2 class="heading-section"><a href="<c:url value='/host'/>">위드휴일</a></h2>
+>>>>>>> 78df10a (호텔 폼 / 호텔 검색 / 리스트 (#20))
 			</div>
 		</div>
 		<div class="row justify-content-center">

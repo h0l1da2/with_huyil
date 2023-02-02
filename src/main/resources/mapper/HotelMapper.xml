@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
@@ -82,4 +83,65 @@
 		insert into hotel values(seq_hotel.nextval, #{name}, #{infoid}, 70, #{service}, #{bed}, #{address}, #{zonecode}, #{sigungu}, #{detail}, sysdate)
 	</insert>
 >>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.with.hyuil.dao.HotelMapper">
+	<resultMap type="HotelVo" id="hotelvo">
+		<result property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="infoid" column="hotel_info_id"/>
+		<result property="usersid" column="user_id"/>
+		<result property="service" column="service"/>
+		<result property="bed" column="bed"/>
+		<result property="address" column="address"/>
+		<result property="zonecode" column="zonecode"/>
+		<result property="sigungu" column="sigungu"/>
+		<result property="detail" column="detail"/>
+		<result property="localDateTime" column="remove_date"/>
+	</resultMap>
+	
+	<insert id="insertHotel" parameterType="HotelVo">
+		insert into hotel values(seq_hotel.nextval, #{name}, #{infoid}, 70, #{service}, #{bed}, #{address}, #{zonecode}, #{sigungu}, #{detail}, sysdate)
+	</insert>
+	<select id="selectForHotelList" parameterType="HotelSearchDto" resultType="HotelListDto">
+		SELECT *
+		FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER () AS TOTCNT
+		FROM (
+		SELECT H.ID, H.NAME, H.STAR, R.NORMAL_PRICE AS PRICE, H.SIGUNGU, F.PATH
+		FROM HOTEL H, ROOM R, BOOK B, FILES F, HOTEL_INFO I
+		WHERE H.ID = R.HOTEL_ID
+			AND R.ID = B.HOTEL_ROOM_ID
+			AND I.ID = F.HOTEL_INFO_ID
+			AND I.ID = H.HOTEL_INFO_ID
+			AND H.SIDO = #{sido}
+			AND R.MAX >= #{max}
+			AND ((B.CHECK_IN NOT BETWEEN TO_DATE(#{checkIn}, 'YYYY-MM-DD') AND TO_DATE(#{checkOut}, 'YYYY-MM-DD'))
+			AND (B.CHECK_OUT NOT BETWEEN TO_DATE(#{checkIn}, 'YYYY-MM-DD') AND TO_DATE(#{checkOut}, 'YYYY-MM-DD'))
+			AND B.STATUS = 'COMPLETE')
+		   OR B.ID = NULL
+		GROUP BY H.ID, H.NAME, H.STAR, R.NORMAL_PRICE, H.SIGUNGU, F.PATH, H.SIGUNGU
+		ORDER BY H.ID) A)
+		WHERE RNUM > #{offset}
+		  AND RNUM &lt;= #{limit}
+	</select>
+	<select id="selectCntForHotelList" parameterType="HotelSearchDto" resultType="Integer">
+		SELECT COUNT(*)
+		FROM HOTEL H, ROOM R, BOOK B, FILES F, HOTEL_INFO I
+		WHERE H.ID = R.HOTEL_ID
+			AND R.ID = B.HOTEL_ROOM_ID
+			AND I.ID = F.HOTEL_INFO_ID
+			AND I.ID = H.HOTEL_INFO_ID
+			AND H.SIDO = #{sido}
+			AND R.MAX >= #{max}
+			AND ((B.CHECK_IN NOT BETWEEN TO_DATE(#{checkIn}, 'YYYY-MM-DD') AND TO_DATE(#{checkOut}, 'YYYY-MM-DD'))
+				AND (B.CHECK_OUT NOT BETWEEN TO_DATE(#{checkIn}, 'YYYY-MM-DD') AND TO_DATE(#{checkOut}, 'YYYY-MM-DD'))
+				AND B.STATUS = 'COMPLETE')
+		   OR B.ID = NULL
+		GROUP BY H.ID, H.NAME, H.STAR, R.NORMAL_PRICE, H.SIGUNGU, F.PATH, H.SIGUNGU
+	</select>
+>>>>>>> 78df10a (호텔 폼 / 호텔 검색 / 리스트 (#20))
 </mapper>

@@ -21,6 +21,7 @@
 			display: none;
 		}
 	</style>
+<<<<<<< HEAD
 </head>
 <body class="img js-fullheight" style="background-image: url(<c:url value='/resources/static/loginForm/images/bg.jpg'/>);">
 <section class="ftco-section">
@@ -28,6 +29,16 @@
 		<div class="row justify-content-center">
 			<div class="col-md-6 text-center mb-5">
 				<h2 class="heading-section"><a href="<c:url value='/'/>">위드휴일</a></h2>
+=======
+	</head>
+	<body class="img js-fullheight" style="background-image: url(<c:url value='/static/loginForm/images/bg.jpg'/>);">
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section"><a href="<c:url value='/'/>">위드휴일</a></h2>
+				</div>
+>>>>>>> 78df10a (호텔 폼 / 호텔 검색 / 리스트 (#20))
 			</div>
 		</div>
 		<div class="row justify-content-center">

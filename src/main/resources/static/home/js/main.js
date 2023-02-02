@@ -340,9 +340,15 @@ AOS.init({
 	});
 
 
+<<<<<<< HEAD
 	$('.checkin_date, .checkout_date').datepicker({
 		'format': 'yyyy-mm-dd',
 		'autoclose': true
+=======
+  $('.checkin_date, .checkout_date').datepicker({
+	  'format': 'yyyy-mm-dd',
+	  'autoclose': true
+>>>>>>> 78df10a (호텔 폼 / 호텔 검색 / 리스트 (#20))
 	});
 
 

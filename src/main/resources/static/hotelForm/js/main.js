@@ -157,6 +157,7 @@
     $('#m_date').datepicker({
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       'format': 'yyyy-mm-dd',
 =======
       'format': 'm/d/yyyy',
@@ -164,6 +165,9 @@
 =======
       'format': 'm/d/yyyy',
 >>>>>>> 749a2ce (휴일/남수/창현 뷰 커밋  (#14))
+=======
+      'format': 'yyyy-mm-dd',
+>>>>>>> 78df10a (호텔 폼 / 호텔 검색 / 리스트 (#20))
       'autoclose': true
     });
     $('#checkin_date, #checkout_date').datepicker({
