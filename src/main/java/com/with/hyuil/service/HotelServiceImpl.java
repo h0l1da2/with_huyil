@@ -1,5 +1,6 @@
 package com.with.hyuil.service;
 
+
 import com.with.hyuil.dto.hotel.HotelListDto;
 import com.with.hyuil.dto.hotel.HotelSearchDto;
 import com.with.hyuil.service.interfaces.HotelService;
@@ -9,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.with.hyuil.dao.HotelMapper;
 import com.with.hyuil.model.HotelVo;
-
 import java.util.List;
 
 @Slf4j
@@ -34,6 +34,5 @@ public class HotelServiceImpl implements HotelService {
 	public Integer searchHotelsCnt(HotelSearchDto hotelSearchDto) {
 		return mapper.selectCntForHotelList(hotelSearchDto);
 	}
-
 
 }
