@@ -30,10 +30,5 @@ public class HotelServiceImpl implements HotelService {
 		return mapper.selectForHotelList(hotelSearchDto);
 	}
 
-	@Override
-	public Integer searchHotelsCnt(HotelSearchDto hotelSearchDto) {
-		return mapper.selectCntForHotelList(hotelSearchDto);
-	}
-
 
 }
