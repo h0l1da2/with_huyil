@@ -1,5 +1,6 @@
 package com.with.hyuil.dao;
 
+import com.with.hyuil.dto.info.EmailDto;
 import com.with.hyuil.model.BusinessVo;
 import com.with.hyuil.model.RolesVo;
 import com.with.hyuil.model.UsersVo;
@@ -21,5 +22,7 @@ public interface UsersMapper {
     BusinessVo findBusinessByAccount(String account);
     RolesVo findRoles(Long id);
     void updateLastLogin(String userId);
+    UsersVo findByUserIdEmail(EmailDto emailDto);
+    int updateEmail(EmailDto emailDto);
 
 }

@@ -24,7 +24,7 @@
         </button>
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a href="<c:url value='/host/loginForm'/>" class="nav-link">로그인</a></li>
+                <li class="nav-item"><a href="<c:url value='/host/loginForm'/>" class="nav-link title">로그인</a></li>
             </ul>
         </div>
     </div>

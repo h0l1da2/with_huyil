@@ -47,8 +47,8 @@
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item"><a href="/host" class="nav-link">호스트등록</a></li>
-	          <li class="nav-item"><a href="/loginForm" class="nav-link">000님</a></li>
+	          <li class="nav-item"><a href="/host" class="nav-link title">호스트등록</a></li>
+	          <li class="nav-item"><a href="/loginForm" class="nav-link title">000님</a></li>
 	        </ul>
 	      </div>
 	    </div>

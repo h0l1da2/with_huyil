@@ -63,4 +63,14 @@
         SET LAST_LOGIN = SYSDATE
         WHERE USER_ID = #{userId}
     </update>
+    <select id="findByUserIdEmail" parameterType="EmailDto" resultType="UsersVo">
+        SELECT *
+        FROM USERS
+        WHERE USER_ID = #{userId} AND EMAIL = #{email}
+    </select>
+    <update id="updateEmail" parameterType="EmailDto">
+        UPDATE USERS
+        SET EMAIL = #{newEmail}
+        WHERE USER_ID = #{userId}
+    </update>
 </mapper>

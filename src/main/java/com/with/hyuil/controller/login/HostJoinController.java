@@ -3,7 +3,6 @@ package com.with.hyuil.controller.login;
 import com.with.hyuil.dto.users.UserCodeDto;
 import com.with.hyuil.dto.users.UserIdDto;
 import com.with.hyuil.dto.users.UsersDto;
-import com.with.hyuil.dto.users.UsersLoginDto;
 import com.with.hyuil.model.UsersVo;
 import com.with.hyuil.service.interfaces.EmailService;
 import com.with.hyuil.service.interfaces.UsersService;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.Map;
 
 @Slf4j
 @Controller
@@ -52,7 +50,7 @@ public class HostJoinController {
 
     @PostMapping("/join/email")
     public String joinEmail(@ModelAttribute UsersDto usersDto, HttpSession session) {
-        String randomCode = emailService.joinMailSend(usersDto.getEmail());
+        String randomCode = emailService.codeMailSend("WITH HYUIL 가입 인증", usersDto.getEmail());
         session.setAttribute("usersDto", usersDto);
         session.setAttribute("randomCode", randomCode);
         return "host/hostJoinEmailSend";

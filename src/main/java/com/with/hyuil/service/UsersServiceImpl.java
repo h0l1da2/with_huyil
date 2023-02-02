@@ -1,6 +1,7 @@
 package com.with.hyuil.service;
 
 import com.with.hyuil.dao.UsersMapper;
+import com.with.hyuil.dto.info.EmailDto;
 import com.with.hyuil.dto.users.UserIdDto;
 import com.with.hyuil.model.BusinessVo;
 import com.with.hyuil.model.RolesVo;
@@ -105,6 +106,20 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public void updateLoginDate(String userId) {
         usersMapper.updateLastLogin(userId);
+    }
+
+    @Override
+    public UsersVo emailValid(EmailDto emailDto) {
+        log.info("유저 찾기?");
+        UsersVo user = usersMapper.findByUserIdEmail(emailDto);
+        log.info("유저 들어옴!");
+        return user;
+    }
+
+    @Override
+    public int modifyEmail(EmailDto emailDto) {
+        log.info("이메일 들어왔다 ㅋㅋ");
+        return usersMapper.updateEmail(emailDto);
     }
 
     private String passwordEncoding(String password) {
