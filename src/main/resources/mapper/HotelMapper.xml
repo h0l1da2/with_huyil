@@ -21,4 +21,41 @@
 	<insert id="insertHotel" parameterType="HotelVo">
 		insert into hotel values(seq_hotel.nextval, #{name}, #{infoid}, 70, #{service}, #{bed}, #{address}, #{zonecode}, #{sigungu}, #{detail}, sysdate)
 	</insert>
+
+	<select id="selectForHotelList" parameterType="HotelSearchDto" resultType="HotelListDto">
+		SELECT *
+		FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER () AS TOTCNT
+		FROM (
+		SELECT H.ID, H.NAME, H.STAR, R.NORMAL_PRICE AS PRICE, H.SIGUNGU, F.PATH
+		FROM HOTEL H, ROOM R, BOOK B, FILES F, HOTEL_INFO I
+		WHERE H.ID = R.HOTEL_ID
+			AND R.ID = B.HOTEL_ROOM_ID
+			AND I.ID = F.HOTEL_INFO_ID
+			AND I.ID = H.HOTEL_INFO_ID
+			AND H.SIDO = #{sido}
+			AND R.MAX >= #{max}
+			AND ((B.CHECK_IN NOT BETWEEN TO_DATE(#{checkIn}, 'YYYY-MM-DD') AND TO_DATE(#{checkOut}, 'YYYY-MM-DD'))
+			AND (B.CHECK_OUT NOT BETWEEN TO_DATE(#{checkIn}, 'YYYY-MM-DD') AND TO_DATE(#{checkOut}, 'YYYY-MM-DD'))
+			AND B.STATUS = 'COMPLETE')
+		   OR B.ID = NULL
+		GROUP BY H.ID, H.NAME, H.STAR, R.NORMAL_PRICE, H.SIGUNGU, F.PATH, H.SIGUNGU
+		ORDER BY H.ID) A)
+		WHERE RNUM > #{offset}
+		  AND RNUM &lt;= #{limit}
+	</select>
+	<select id="selectCntForHotelList" parameterType="HotelSearchDto" resultType="Integer">
+		SELECT COUNT(*)
+		FROM HOTEL H, ROOM R, BOOK B, FILES F, HOTEL_INFO I
+		WHERE H.ID = R.HOTEL_ID
+			AND R.ID = B.HOTEL_ROOM_ID
+			AND I.ID = F.HOTEL_INFO_ID
+			AND I.ID = H.HOTEL_INFO_ID
+			AND H.SIDO = #{sido}
+			AND R.MAX >= #{max}
+			AND ((B.CHECK_IN NOT BETWEEN TO_DATE(#{checkIn}, 'YYYY-MM-DD') AND TO_DATE(#{checkOut}, 'YYYY-MM-DD'))
+				AND (B.CHECK_OUT NOT BETWEEN TO_DATE(#{checkIn}, 'YYYY-MM-DD') AND TO_DATE(#{checkOut}, 'YYYY-MM-DD'))
+				AND B.STATUS = 'COMPLETE')
+		   OR B.ID = NULL
+		GROUP BY H.ID, H.NAME, H.STAR, R.NORMAL_PRICE, H.SIGUNGU, F.PATH, H.SIGUNGU
+	</select>
 </mapper>
