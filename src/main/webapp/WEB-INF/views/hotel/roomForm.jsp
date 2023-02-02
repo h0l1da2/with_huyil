@@ -4,15 +4,13 @@
 <html>
 <script>
 function setThumbnail(event){
-	var reader = new FileReader();
-		
+	var reader = new FileReader();	
 	reader.onload = function(event){
 		var img = document.createElement("img");
 		img.setAttribute("src", event.target.result);
 		img.setAttribute("class", "col-lg-6");
-		document.querySelector("div#image_container").appendChild(img);
+		document.querySelector("div#image_thumnail").appendChild(img);
 	};
-		
 	reader.readAsDataURL(event.target.files[0]);
 }
 </script>
@@ -67,8 +65,8 @@ function setThumbnail(event){
 <div class="step-box">
    <div class="step-state step3">
     <ul>
-      <li><p>마이페이지</p></li>
-      <li><p>호텔등록</p></li>
+      <li onclick="location.href='/host/hostForm'" style="cursor:pointer;"><p>마이페이지</p></li>
+      <li onclick="location.href='/host/hotelForm'" style="cursor:pointer;"><p>호텔등록</p></li>
       <li><p>객실등록</p></li>
     </ul>
   </div>
@@ -85,8 +83,11 @@ function setThumbnail(event){
     <label for="exampleFormControlInput1">객실소개 이미지(1장)</label>
 	<input class="form-control form-control-user" type="file" 
 	name="product_image" id="product_image" onchange="setThumbnail(event);" style="width:300px; height:50px;"> <br>
-	<div style=width:6 id="image_container"></div> <br>
-	
+	<div class="product_title">
+		<div class="product-img-div">
+			<div class="image_thumnail" id="image_thumnail"></div>
+		</div>
+	</div>
 	<label for="exampleFormControlInput1">객실소개글</label> <br>
     <textArea style=resize:none; name="content" rows="7" cols="100"></textArea> <br> <br>
     

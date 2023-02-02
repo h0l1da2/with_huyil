@@ -67,9 +67,9 @@ function setThumbnail(event){
 <div class="step-box">
    <div class="step-state step2">
     <ul>
-      <li><p>마이페이지</p></li>
+      <li onclick="location.href='/host/hostForm'" style="cursor:pointer;"><p>마이페이지</p></li>
       <li><p>호텔등록</p></li>
-      <li><p>객실등록</p></li>
+      <li onclick="location.href='/host/roomForm'" style="cursor:pointer;"><p>객실등록</p></li>
     </ul>
   </div>
 </div>	
@@ -109,7 +109,7 @@ function setThumbnail(event){
     <div class="form-group">
     <label for="exampleFormControlInput1">호탤소개 이미지(1장)</label> 
 	<input class="form-control form-control-user" type="file" 
-	name="file" id="product_image" onchange="setThumbnail(event);" style="width:300px; height:50px;">
+	name="uploadFile" id="product_image" onchange="setThumbnail(event);" style="width:300px; height:50px;">
 
 	<div style=width:6 id="image_container"></div> <br>
 

@@ -1,14 +1,8 @@
 package com.with.hyuil.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.Data;
 
-@Getter
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
 public class FileVo {
 
     private long id;
@@ -18,4 +12,6 @@ public class FileVo {
     private String path;
     private long size;
     private String removed;
+    private long hotel_info_id;
+    private long room_id;
 }
