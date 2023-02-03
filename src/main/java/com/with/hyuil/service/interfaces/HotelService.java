@@ -12,4 +12,5 @@ public interface HotelService {
     List<HotelListDto> searchHotels(HotelSearchDto hotelSearchDto);
 	HotelVo findByHotelId(long id);
     
+
 }
