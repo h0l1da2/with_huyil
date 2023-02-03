@@ -128,7 +128,11 @@
     <div class="row block-9 info-menu" style="text-align: center;">
       <form action="#" class="bg-white p-5 contact-form">
         <div>
+<<<<<<< HEAD
           <h2><a href="<c:url value="/hosts/info/book" />" class="infoBtn">예약 내역</a></h2>
+=======
+          <h2><a href="" class="infoBtn">예약 내역</a></h2>
+>>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
         </div>
         </ul>
       </form>
@@ -196,7 +200,11 @@
   <div class="row block-9 info-menu" style="text-align: center;">
     <form action="#" class="bg-white p-5 contact-form">
       <div>
+<<<<<<< HEAD
         <h2><a href="<c:url value="/user/info"/> " class="infoBtn">회원 탈퇴</a></h2>
+=======
+        <h2><a href="" class="infoBtn">회원 탈퇴</a></h2>
+>>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
       </div>
       </ul>
     </form>
@@ -290,6 +298,7 @@
 <script src="<c:url value='/resources/static/home/js/google-map.js'/>"></script>
 <script src="<c:url value='/resources/static/home/js/main.js'/>"></script>
 <script>
+<<<<<<< HEAD
   function CheckEmail(str){
     let reg_email = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
     if(!reg_email.test(str)) {
@@ -298,6 +307,9 @@
       return true;
     }
   }
+=======
+
+>>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
   $(document).ready(function(){
 
     $('#newPasswordCheck').on("propertychange change keyup paste input", function (frm) {
@@ -319,7 +331,13 @@
       let password = document.getElementById("password").value;
       let newPassword = document.getElementById("newPassword").value;
       let newPasswordCheck = document.getElementById("newPasswordCheck").value;
+<<<<<<< HEAD
       let regNum = /^.{6,20}$/;
+=======
+      console.log(password);
+      console.log(newPassword);
+      console.log('${userId}');
+>>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
 
       if(password=="" || newPassword == "" || newPasswordCheck == "") {
         alert("빈칸 없이 입력하세요");
@@ -329,11 +347,14 @@
         alert("변경 패스워드가 서로 다릅니다");
         return false;
       }
+<<<<<<< HEAD
       if(!regNum.test(newPassword)) {
         alert("비밀번호는 6~20자리여야 합니다");
         document.getElementById("password").focus();
         return false;
       }
+=======
+>>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
       $.ajax({
         type: 'POST',
         url: '/hosts/info/modify/password',
@@ -341,12 +362,21 @@
         data: JSON.stringify({password:password, newPassword:newPassword, userId:'${userId}'}),
         dataType: 'text',
         success: function (result) {
+<<<<<<< HEAD
           if(result=='아이디가 다릅니다' || result=='기존 비밀번호가 다릅니다' || result=='변경 오류') {
             alert(result);
           } else {
             alert("변경이 완료되었습니다")
             $('#newPasswordFail').css('display', 'none');
             $('#passwordFail').css('display', 'none');
+=======
+          if(result=='변경 완료') {
+            alert("변경이 완료되었습니다")
+            $('#newPasswordFail').css('display', 'none');
+            $('#passwordFail').css('display', 'none');
+          } else {
+            alert(result);
+>>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
           }
         },
         error: function(result) {
@@ -372,11 +402,14 @@
         document.getElementById("newEmail").focus();
         return false;
       }
+<<<<<<< HEAD
       if(!CheckEmail(newEmail))	{
         alert("이메일 형식이 잘못되었습니다");
         document.getElementById("newEmail").focus();
         return false;
       }
+=======
+>>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
       $.ajax({
         type: 'POST',
         url: '/hosts/info/modify/emailValid',

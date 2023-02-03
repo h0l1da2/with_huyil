@@ -1,9 +1,13 @@
 package com.with.hyuil.service;
 
 import com.with.hyuil.dao.UsersMapper;
+<<<<<<< HEAD
 import com.with.hyuil.dto.info.DeleteDto;
 import com.with.hyuil.dto.info.EmailDto;
 import com.with.hyuil.dto.info.FindIdDto;
+=======
+import com.with.hyuil.dto.info.EmailDto;
+>>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
 import com.with.hyuil.dto.info.PasswordDto;
 import com.with.hyuil.dto.users.BusinessDto;
 import com.with.hyuil.dto.users.UserIdDto;
@@ -39,13 +43,13 @@ import java.util.Map;
 public class UsersServiceImpl implements UsersService {
     private final UsersMapper usersMapper;
     private final BCryptPasswordEncoder passwordEncoder;
-    private final Map map = new HashMap();
     @Value("${admin.secret.code}")
     private String adminSecretCode;
     @Override
     public int saveUser(UsersVo usersVo) {
         String encodePwd = passwordEncoding(usersVo.getPassword());
         usersVo.passwordEncode(encodePwd);
+<<<<<<< HEAD
 
         usersVo.userType(Type.USER);
         usersMapper.insertUser(usersVo);
@@ -56,6 +60,11 @@ public class UsersServiceImpl implements UsersService {
 =======
         map.put("userId", usersVo.getUserId());
         UsersVo findUsers = usersMapper.findByUserId(map);
+=======
+        usersVo.userType(Type.USER);
+        usersMapper.insertUser(usersVo);
+        UsersVo findUsers = usersMapper.findByUserId(usersVo.getUserId());
+>>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
         return usersMapper.insertRoles(new RolesVo(Role.ROLE_USER, findUsers));
 >>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))
     }
@@ -64,15 +73,18 @@ public class UsersServiceImpl implements UsersService {
         if(adminJoinCode.equals(adminSecretCode)) {
             usersVo.passwordEncode(passwordEncoder.encode(usersVo.getPassword()));
 <<<<<<< HEAD
+<<<<<<< HEAD
             usersVo.userType(Type.ADMIN);
             usersMapper.insertAdmin(usersVo);
             UsersVo findUsers = usersMapper.findByUserId(usersVo.getUserId());
             return usersMapper.insertRoles(new RolesVo(Role.ROLE_ADMIN, findUsers));
 
 =======
+=======
+            usersVo.userType(Type.ADMIN);
+>>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
             usersMapper.insertAdmin(usersVo);
-            map.put("userId", usersVo.getUserId());
-            UsersVo findUsers = usersMapper.findByUserId(map);
+            UsersVo findUsers = usersMapper.findByUserId(usersVo.getUserId());
             return usersMapper.insertRoles(new RolesVo(Role.ROLE_ADMIN, findUsers));
 >>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))
         }
@@ -81,8 +93,7 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public boolean idCheck(UserIdDto userIdDto) {
-        map.put("userId", userIdDto.getUserId());
-        UsersVo findUser = usersMapper.findByUserId(map);
+        UsersVo findUser = usersMapper.findByUserId(userIdDto.getUserId());
         if (findUser == null) {
             return true;
         }
@@ -95,6 +106,7 @@ public class UsersServiceImpl implements UsersService {
         usersVo.passwordEncode(encodePwd);
         usersMapper.insertBusiness(usersVo.getBusinessVo());
         BusinessVo businessByAccount = usersMapper.findBusinessByAccount(usersVo.getBusinessVo().getAccount());
+<<<<<<< HEAD
 
         usersVo.userType(Type.HOST);
         usersVo.myBusiness(businessByAccount);
@@ -105,19 +117,23 @@ public class UsersServiceImpl implements UsersService {
         map.put("userId", usersVo.getUserId());
         UsersVo findUsers = usersMapper.findByUserId(map);
 >>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))
+=======
+        usersVo.userType(Type.HOST);
+        usersVo.myBusiness(businessByAccount);
+        usersMapper.insertHost(usersVo);
+        UsersVo findUsers = usersMapper.findByUserId(usersVo.getUserId());
+>>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
         return usersMapper.insertRoles(new RolesVo(Role.ROLE_HOST, findUsers));
     }
 
     @Override
     public UsersVo loginForFind(String userId) {
-        map.put("userId", userId);
-        return usersMapper.findByUserId(map);
+        return usersMapper.findByUserId(userId);
     }
 
     @Override
     public UsersVo login(UsersVo usersVo) {
-        map.put("userId", usersVo.getUserId());
-        UsersVo user = usersMapper.findByUserId(map);
+        UsersVo user = usersMapper.findByUserId(usersVo.getUserId());
         if (user == null) {
 <<<<<<< HEAD
             throw new NoSuchElementException("유저가없음 아이디");
@@ -279,6 +295,45 @@ public class UsersServiceImpl implements UsersService {
     public void updateLoginDate(String userId) {
         usersMapper.updateLastLogin(userId);
     }
+
+    @Override
+    public UsersVo emailValid(EmailDto emailDto) {
+        log.info("유저 찾기?");
+        UsersVo user = usersMapper.findByUserIdEmail(emailDto);
+        log.info("유저 들어옴!");
+        return user;
+    }
+
+    @Override
+    public int modifyEmail(EmailDto emailDto) {
+        log.info("이메일 들어왔다 ㅋㅋ");
+        return usersMapper.updateEmail(emailDto);
+    }
+
+    @Override
+    public String modifyPassword(PasswordDto passwordDto) {
+        UsersVo byUserId = usersMapper.findByUserId(passwordDto.getUserId());
+        if (byUserId == null) {
+            return "회원 아이디를 확인해주세요";
+        }
+        boolean matches = passwordEncoder.matches(passwordDto.getPassword(), byUserId.getPassword());
+        if (!matches) {
+            return "기존 비밀번호가 다릅니다";
+        }
+        String newPassword = passwordEncoder.encode(passwordDto.getNewPassword());
+        passwordDto.setNewPassword(newPassword);
+        int i = usersMapper.updatePassword(passwordDto);
+        if (i == 0) {
+            return "변경 오류";
+        }
+        return "변경 완료";
+    }
+    @Override
+    public BusinessDto findBusinessDto(Long id) {
+        BusinessVo businessVo = usersMapper.findByBusinessId(id);
+        return new BusinessDto(businessVo);
+    }
+
 
     private String passwordEncoding(String password) {
         return passwordEncoder.encode(password);

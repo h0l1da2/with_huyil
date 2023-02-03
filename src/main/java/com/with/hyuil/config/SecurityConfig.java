@@ -37,11 +37,14 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 =======
 import org.springframework.security.config.http.SessionCreationPolicy;
+=======
+>>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 <<<<<<< HEAD
@@ -178,6 +181,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
                 .mvcMatchers("/users/**")
                 .hasRole("USER")
@@ -187,8 +191,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 >>>>>>> c49688c (LoginService 추가해서 Controller 수정)
 =======
 >>>>>>> 6ab50a3 (LoginService 추가해서 Controller 수정)
+=======
+                .mvcMatchers("/users/**")
+                .hasRole("USER")
+>>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
                 .mvcMatchers("/hosts/**")
                 .hasAnyRole("HOST", "ADMIN")
+=======
+                //.mvcMatchers("/hosts/**")
+                //.hasAnyRole("HOST", "ADMIN")
+>>>>>>> 18848e8bb8530db919ac3407e47cbd94ea23a65d
                 .mvcMatchers("/admin/**")
                 .hasRole("ADMIN")
 <<<<<<< HEAD

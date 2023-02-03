@@ -9,7 +9,7 @@
             var img = document.createElement("img");
             img.setAttribute("src", event.target.result);
             img.setAttribute("class", "col-lg-6");
-            document.querySelector("div#image_thumnail").appendChild(img);
+            document.querySelector("div#image_thumbnail").appendChild(img);
         };
         reader.readAsDataURL(event.target.files[0]);
     }
@@ -41,8 +41,8 @@
 
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a href="/host" class="nav-link title">호스트등록</a></li>
-                <li class="nav-item"><a href="/user/login" class="nav-link title">로그인</a></li>
+                <li class="nav-item"><a href="/host" class="nav-link">호스트등록</a></li>
+                <li class="nav-item"><a href="/user/loginForm" class="nav-link">로그인</a></li>
             </ul>
         </div>
     </div>
@@ -55,7 +55,7 @@
             <div class="col-md-10 text-center" data-aos="fade">
                 <h1 class="heading mb-3">Rooms</h1>
                 <ul class="custom-breadcrumbs mb-4">
-                    <li><a href="/host">Home</a></li>
+                    <li><a href="/">Home</a></li>
                 </ul>
             </div>
         </div>
@@ -82,12 +82,8 @@
 
             <label for="exampleFormControlInput1">객실소개 이미지(1장)</label>
             <input class="form-control form-control-user" type="file"
-                   name="product_image" id="product_image" onchange="setThumbnail(event);" style="width:300px; height:50px;"> <br>
-            <div class="product_title">
-                <div class="product-img-div">
-                    <div class="image_thumnail" id="image_thumnail"></div>
-                </div>
-            </div>
+                   name="uploadFile" id="product_image" onchange="setThumbnail(event);" style="width:300px; height:50px;"> <br>
+            <div id="image_thumbnail"></div> <br>
             <label for="exampleFormControlInput1">객실소개글</label> <br>
             <textArea style=resize:none; name="content" rows="7" cols="100"></textArea> <br> <br>
 
@@ -120,11 +116,11 @@
 
             <h4>객실요금</h4> <br>
             <label for="exampleFormControlInput1">일반요금</label>
-            <input type="text" name="n_price" style="width:200px; height:50px; padding-right: 10px; text-align: right" placeholder="예)50000">원
+            <input type="text" name="nPrice" style="width:200px; height:50px; padding-right: 10px; text-align: right" placeholder="예)50000">원
             &nbsp;&nbsp;&nbsp;&nbsp;/ &nbsp;&nbsp;&nbsp;&nbsp;
 
             <label for="exampleFormControlInput1">주말요금</label>
-            <input type="text" name="h_price" style="width:200px; height:50px; padding-right: 10px; text-align: right" placeholder="예)80000">원
+            <input type="text" name="hPrice" style="width:200px; height:50px; padding-right: 10px; text-align: right" placeholder="예)80000">원
             <br> <br> <br>
 
             <button class="w-btn-neon2" type="submit">

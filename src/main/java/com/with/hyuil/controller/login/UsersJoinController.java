@@ -129,8 +129,12 @@ public class UsersJoinController {
 >>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))
     @PostMapping("/join/email")
     public String joinEmail(@ModelAttribute UsersDto usersDto, HttpSession session) {
+<<<<<<< HEAD
         String randomCode = emailService.joinMailSend(usersDto.getEmail());
 >>>>>>> 62589e9 (jwt 토큰 로컬스토리지 저장)
+=======
+        String randomCode = emailService.codeMailSend("WITH HYUIL 가입 인증", usersDto.getEmail());
+>>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
         session.setAttribute("userDto", usersDto);
         session.setAttribute("randomCode", randomCode);
         return "user/joinEmailSend";

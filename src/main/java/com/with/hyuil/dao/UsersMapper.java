@@ -1,12 +1,17 @@
 package com.with.hyuil.dao;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import com.with.hyuil.dto.info.DeleteDto;
 import com.with.hyuil.dto.info.EmailDto;
 import com.with.hyuil.dto.info.FindIdDto;
 import com.with.hyuil.dto.info.PasswordDto;
 =======
 >>>>>>> 8cc50b4 (view, 어드민 빼고..)
+=======
+import com.with.hyuil.dto.info.EmailDto;
+import com.with.hyuil.dto.info.PasswordDto;
+>>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
 import com.with.hyuil.model.BusinessVo;
 import com.with.hyuil.model.RolesVo;
 import com.with.hyuil.model.UsersVo;
@@ -34,6 +39,7 @@ public interface UsersMapper {
     int insertRoles(RolesVo rolesVo);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     int insertWhyDelete(DeleteDto deleteDto); //
     UsersVo findByUserId(String userId);
     UsersVo findByNameEmail(FindIdDto findIdDto);
@@ -58,9 +64,16 @@ public interface UsersMapper {
 >>>>>>> 317a2e1 (User 로그인 JWT 토큰 반환 완성)
 =======
     UsersVo findByUserId(Map value);
+=======
+    UsersVo findByUserId(String userId);
+>>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
     BusinessVo findBusinessByAccount(String account);
     RolesVo findRoles(Long id);
     void updateLastLogin(String userId);
+    UsersVo findByUserIdEmail(EmailDto emailDto);
+    int updateEmail(EmailDto emailDto);
+    int updatePassword(PasswordDto passwordDto);
+    BusinessVo findByBusinessId(Long id);
 
 >>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))
 }

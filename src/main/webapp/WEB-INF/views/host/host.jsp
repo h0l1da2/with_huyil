@@ -38,6 +38,7 @@
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <c:choose>
                     <c:when test="${userId eq null}"><li class="nav-item"><a href="<c:url value='/host/loginForm'/>" class="nav-link title">로그인</a></li></c:when>
                     <c:when test="${userId ne null && role eq '[ROLE_HOST]'}"><li class="nav-item"><a href="<c:url value='/hosts/info'/>" class="nav-link title">${userId}</a></li></c:when>
@@ -47,6 +48,14 @@
 =======
                 <li class="nav-item"><a href="<c:url value='/host/loginForm'/>" class="nav-link">로그인</a></li>
 >>>>>>> 78df10a (호텔 폼 / 호텔 검색 / 리스트 (#20))
+=======
+
+                <c:choose>
+                    <c:when test="${userId eq null}"><li class="nav-item"><a href="/host/loginForm" class="nav-link title">로그인</a></li></c:when>
+                    <c:when test="${userId ne null}"><li class="nav-item"><a href="<c:url value='/users/info'/>" class="nav-link title">${userId}</a></li></c:when>
+                </c:choose>
+
+>>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
             </ul>
         </div>
     </div>

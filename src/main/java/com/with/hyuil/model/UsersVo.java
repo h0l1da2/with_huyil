@@ -6,16 +6,18 @@ import com.with.hyuil.dto.users.UsersDto;
 <<<<<<< HEAD
 import com.with.hyuil.dto.users.UsersLoginDto;
 import com.with.hyuil.model.enumaration.Type;
+<<<<<<< HEAD
 =======
 =======
 import com.with.hyuil.dto.users.UsersLoginDto;
 >>>>>>> 317a2e1 (User 로그인 JWT 토큰 반환 완성)
 import com.with.hyuil.model.enumaration.Role;
 >>>>>>> 8cc50b4 (view, 어드민 빼고..)
+=======
+>>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
 import com.with.hyuil.model.enumaration.Wheres;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Email;
@@ -33,6 +35,9 @@ public class UsersVo {
     private String tel;
     private String name;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
     private Type type;
     private Wheres wheres;
     private String out;
@@ -51,7 +56,11 @@ public class UsersVo {
 =======
     private LocalDateTime out;
     private BusinessVo businessVo;
+<<<<<<< HEAD
 >>>>>>> 8cc50b4 (view, 어드민 빼고..)
+=======
+    private Long businessId;
+>>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
     private RolesVo rolesVo;
 
     protected UsersVo() {}
@@ -97,12 +106,18 @@ public class UsersVo {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
     public void userType(Type type) {
         this.type = type;
     }
 
+<<<<<<< HEAD
 =======
 >>>>>>> 317a2e1 (User 로그인 JWT 토큰 반환 완성)
+=======
+>>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
     public UsersVo(Long id) {
         this.id = id;
     }
@@ -136,16 +151,21 @@ public class UsersVo {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     public UsersVo(Long id, String userId, String password, String email, String tel, String name, Type type, Wheres wheres, String out, LocalDateTime joinDate, LocalDateTime lastLogin, LocalDateTime removeDate, BusinessVo businessVo, Long businessId, RolesVo rolesVo) {
 =======
     public UsersVo(Long id, String userId, String password, String email, String tel, String name, Wheres wheres, LocalDateTime joinDate, LocalDateTime lastLogin, LocalDateTime out, BusinessVo businessVo, RolesVo rolesVo) {
 >>>>>>> 8cc50b4 (view, 어드민 빼고..)
+=======
+    public UsersVo(Long id, String userId, String password, String email, String tel, String name, Type type, Wheres wheres, LocalDateTime joinDate, LocalDateTime lastLogin, LocalDateTime out, BusinessVo businessVo, Long businessId, RolesVo rolesVo) {
+>>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
         this.id = id;
         this.userId = userId;
         this.password = password;
         this.email = email;
         this.tel = tel;
         this.name = name;
+<<<<<<< HEAD
 <<<<<<< HEAD
         this.type = type;
         this.wheres = wheres;
@@ -156,12 +176,19 @@ public class UsersVo {
         this.businessVo = businessVo;
         this.businessId = businessId;
 =======
+=======
+        this.type = type;
+>>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
         this.wheres = wheres;
         this.joinDate = joinDate;
         this.lastLogin = lastLogin;
         this.out = out;
         this.businessVo = businessVo;
+<<<<<<< HEAD
 >>>>>>> 8cc50b4 (view, 어드민 빼고..)
+=======
+        this.businessId = businessId;
+>>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
         this.rolesVo = rolesVo;
     }
 }

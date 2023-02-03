@@ -1,8 +1,12 @@
 package com.with.hyuil.service.interfaces;
 
+<<<<<<< HEAD
 import com.with.hyuil.dto.info.DeleteDto;
 import com.with.hyuil.dto.info.EmailDto;
 import com.with.hyuil.dto.info.FindIdDto;
+=======
+import com.with.hyuil.dto.info.EmailDto;
+>>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
 import com.with.hyuil.dto.info.PasswordDto;
 import com.with.hyuil.dto.users.BusinessDto;
 import com.with.hyuil.dto.users.UserIdDto;
@@ -24,6 +28,7 @@ public interface UsersService {
     UsersVo emailValid(EmailDto emailDto);
     int modifyEmail(EmailDto emailDto);
     String modifyPassword(PasswordDto passwordDto);
+<<<<<<< HEAD
     String findPassword(PasswordDto passwordDto);
     BusinessDto findBusinessDto(Long id);
     String deleteUser(DeleteDto deleteDto);
@@ -32,6 +37,9 @@ public interface UsersService {
 =======
     void updateLoginDate(String userId);
 >>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))
+=======
+    BusinessDto findBusinessDto(Long id);
+>>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
 }
 =======
 }

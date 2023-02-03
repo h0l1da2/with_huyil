@@ -9,6 +9,7 @@ public class PasswordDto {
     private String password;
     private String newPassword;
 
+<<<<<<< HEAD
     public PasswordDto() {
     }
 
@@ -17,4 +18,6 @@ public class PasswordDto {
         this.password = password;
         this.newPassword = newPassword;
     }
+=======
+>>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
 }

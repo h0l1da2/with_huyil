@@ -18,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -29,8 +30,16 @@ import com.with.hyuil.service.interfaces.HotelService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 =======
+=======
+
+import org.springframework.web.bind.annotation.PathVariable;
+>>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 >>>>>>> 78df10a (호텔 폼 / 호텔 검색 / 리스트 (#20))
 
@@ -45,6 +54,9 @@ public class HotelSearchController {
     public String hotelList(@ModelAttribute HotelSearchDto hotelSearchDto, Model model) {
         log.info("호텔 제대로 들어왔음? = {}", hotelSearchDto);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
         return searchHotels(model, hotelSearchDto);
     }
 
@@ -58,6 +70,7 @@ public class HotelSearchController {
     }
 
     private String searchHotels(Model model, HotelSearchDto hotelSearchDto) {
+<<<<<<< HEAD
 
         List<HotelListDto> hotelList = hotelService.searchHotels(hotelSearchDto);
         log.info("hotelListDto = {}", hotelList);
@@ -66,6 +79,8 @@ public class HotelSearchController {
             log.info("핸들러 = {}", globalPageHandler);
             model.addAttribute("ph", globalPageHandler);
 =======
+=======
+>>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
         List<HotelListDto> hotelList = hotelService.searchHotels(hotelSearchDto);
         log.info("hotelListDto = {}", hotelList);
         try {

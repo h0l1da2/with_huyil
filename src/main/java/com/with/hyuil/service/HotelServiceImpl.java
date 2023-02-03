@@ -1,3 +1,5 @@
+
+
 package com.with.hyuil.service;
 
 import com.with.hyuil.dto.hotel.HotelListDto;
@@ -35,6 +37,8 @@ public class HotelServiceImpl implements HotelService {
 
 	@Override
 	public List<HotelListDto> searchHotels(HotelSearchDto hotelSearchDto) {
+		log.info("CheckIn = {}", hotelSearchDto.getCheckIn());
+		log.info("CheckIn = {}", hotelSearchDto.getCheckOut());
 		return mapper.selectForHotelList(hotelSearchDto);
 	}
 
