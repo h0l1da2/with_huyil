@@ -1,5 +1,3 @@
-
-
 package com.with.hyuil.service;
 
 import com.with.hyuil.dto.hotel.HotelListDto;
@@ -38,4 +36,3 @@ public class HotelServiceImpl implements HotelService {
 	}
 
 }
-
