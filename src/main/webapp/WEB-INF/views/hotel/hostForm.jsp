@@ -54,8 +54,8 @@
    <div class="step-state step">
     <ul>
       <li><p>마이페이지</p></li>
-      <li><p>호텔등록</p></li>
-      <li><p>객실등록</p></li>
+      <li onclick="location.href='/host/hotelForm'" style="cursor:pointer;"><p>호텔등록</p></li>
+      <li onclick="location.href='/host/roomForm'" style="cursor:pointer;"><p>객실등록</p></li>
     </ul>
   </div>
 </div>	
@@ -65,35 +65,24 @@
   <div style="margin:0 0 30px 100px;" class="form-group">
   <br>
     <label for="exampleFormControlInput1">이 름</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input type="text" id="name" style="width:250px; height:50px;">
+    <input type="text" name="name" value="${users.getName() }" readonly style="width:250px; height:50px;">
     <br> <br>
 
     <label for="exampleFormControlInput1">전화번호</label>  &nbsp;&nbsp;&nbsp;
-    <input type="text" id="tel" placeholder="숫자만입력해주세요" style="width:300px; height:50px;">
+    <input type="text" name="tel" value="${users.getTel() }" placeholder="숫자만입력해주세요" style="width:300px; height:50px;">
     <div class="form-group">
     <br>
     
-    <label for="exampleFormControlInput1">거래은행</label> &nbsp;&nbsp;&nbsp;
-    <select name="bank" style="width:100px; height:50px;">
-    <option value="" selected>---은행선택---</option>
-    <option value="1">KEB하나은행</option>
-    <option value="2">SC제일은행</option>
-    <option value="3">KB국민은행</option>
-    <option value="4">IBK기업은행</option>
-    <option value="5">NH농협은행</option>
-    <option value="6">SH수협은행</option>
-    </select> <br> <br>
-    
-    <label for="exampleFormControlInput1">예금주</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input type="text" id="bkname" style="width:250px; height:50px">
-    <br> <br>
-    
+    <label for="exampleFormControlInput1">거래은행</label>  &nbsp;&nbsp;&nbsp;
+    <input type="text" name="bank" value="${business.getBank() }" placeholder="예)국민은행" style="width:300px; height:50px;">
+    <div class="form-group"> <br> <br>
+        
     <label for="exampleFormControlInput1">계좌번호</label> &nbsp;&nbsp;&nbsp;
-    <input type="text" id="bkname" placeholder="숫자만 입력해주세요" style="width:300px; height:50px">
+    <input type="text" name="account" placeholder="숫자만 입력해주세요" value="${business.getAccount }" style="width:300px; height:50px">
     <br> <br>
     
     <label for="exampleFormControlInput1">사업자번호</label>
-    <input type="text" id="bkname" placeholder="숫자만 입력해주세요" style="width:300px; height:50px">
+    <input type="text" name="bNumber" placeholder="숫자만 입력해주세요" value="${business.getBNumber() }" style="width:300px; height:50px">
     <br> <br>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     
