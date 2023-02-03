@@ -148,16 +148,18 @@
         <h2><label class="h3 menuBtn">비밀번호 변경</label></h2>
         <ul class="hide">
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="기존 패스워드">
+            <input type="password" id="password" class="form-control" placeholder="기존 패스워드">
+            <span class="title text-type" id="passwordFail" name="passwordFail">기존 패스워드를 확인해주세요</span>
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="변경 패스워드">
+            <input type="password" id="newPassword" class="form-control" placeholder="변경 패스워드">
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="패스워드 확인">
+            <input type="password" id="newPasswordCheck" class="form-control" placeholder="패스워드 확인">
+            <span class="title text-type" id="newPasswordFail" name="newPasswordFail">패스워드가 서로 다릅니다</span>
           </div>
           <div class="form-group">
-            <input type="submit" value="비밀번호 변경" class="btn btn-primary py-3 px-5">
+            <input type="button" id="passwordUpdate" value="비밀번호 변경" class="btn btn-primary py-3 px-5">
           </div>
         </ul>
       </div>
@@ -286,6 +288,58 @@
 <script>
 
   $(document).ready(function(){
+
+    $('#newPasswordCheck').on("propertychange change keyup paste input", function (frm) {
+      $('#newPasswordFail').css('display', 'block');
+      if(document.getElementById('newPassword').value == document.getElementById('newPasswordCheck').value) {
+        $('#newPasswordFail').css('display', 'none');
+        return false;
+      }
+    });
+    $('#newPassword').on("propertychange change keyup paste input", function (frm) {
+      $('#newPasswordFail').css('display', 'block');
+      if(document.getElementById('newPassword').value == document.getElementById('newPasswordCheck').value) {
+        $('#newPasswordFail').css('display', 'none');
+        return false;
+      }
+    });
+
+    $('#passwordUpdate').click(function () {
+      let password = document.getElementById("password").value;
+      let newPassword = document.getElementById("newPassword").value;
+      let newPasswordCheck = document.getElementById("newPasswordCheck").value;
+      console.log(password);
+      console.log(newPassword);
+      console.log('${userId}');
+
+      if(password=="" || newPassword == "" || newPasswordCheck == "") {
+        alert("빈칸 없이 입력하세요");
+        return false;
+      }
+      if($('#newPasswordFail').css('display') == 'block') {
+        alert("변경 패스워드가 서로 다릅니다");
+        return false;
+      }
+      $.ajax({
+        type: 'POST',
+        url: '/users/info/modify/password',
+        contentType: "application/json",
+        data: JSON.stringify({password:password, newPassword:newPassword, userId:'${userId}'}),
+        dataType: 'text',
+        success: function (result) {
+          if(result=='변경 완료') {
+            alert("변경이 완료되었습니다")
+            $('#newPasswordFail').css('display', 'none');
+            $('#passwordFail').css('display', 'none');
+          } else {
+            alert(result);
+          }
+        },
+        error: function(result) {
+          alert("확인실패");
+        }})
+    })
+
     let newEmail;
     $('#emailSend').click(function () {
       let email = document.getElementById("email").value;

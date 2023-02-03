@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page session="false"%>
 <html lang="ko">
 <head>
     <title>위드휴일</title>
@@ -48,7 +49,10 @@
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a href="/host" class="nav-link title">호스트등록</a></li>
-                <li class="nav-item"><a href="/user/loginForm" class="nav-link title">로그인</a></li>
+                <c:choose>
+                    <c:when test="${userId eq null}"><li class="nav-item"><a href="/user/loginForm" class="nav-link title">로그인</a></li></c:when>
+                    <c:when test="${userId ne null}"><li class="nav-item"><a href="<c:url value='/users/info'/>" class="nav-link title">${userId}</a></li></c:when>
+                </c:choose>
             </ul>
         </div>
     </div>

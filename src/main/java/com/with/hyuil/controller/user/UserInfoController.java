@@ -1,19 +1,15 @@
 package com.with.hyuil.controller.user;
 
-import com.with.hyuil.config.auth.CustomUserDetails;
 import com.with.hyuil.dto.info.EmailDto;
+import com.with.hyuil.dto.info.PasswordDto;
 import com.with.hyuil.model.UsersVo;
 import com.with.hyuil.service.interfaces.EmailService;
 import com.with.hyuil.service.interfaces.UsersService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -25,21 +21,24 @@ public class UserInfoController {
     private final EmailService emailService;
     private String code;
 
-//    @GetMapping
-//    public String userInfo() {
-//        return "user/userInfo";
-//    }
+    //테스트용
     @GetMapping
-    public String userInfo(@AuthenticationPrincipal CustomUserDetails userDetails, Model model) {
-        String username = userDetails.getUsername();
-        model.addAttribute("userId", username);
-        UsersVo usersVo = usersService.loginForFind(username);
-        if (usersVo == null) {
-            return "user/loginForm";
-        }
-        model.addAttribute("username", usersVo.getName());
+    public String userInfo(Model model) {
+        model.addAttribute("userId", "user");
+        model.addAttribute("username", "휴일");
         return "user/userInfo";
     }
+//    @GetMapping
+//    public String userInfo(@AuthenticationPrincipal CustomUserDetails userDetails, Model model) {
+//        String username = userDetails.getUsername();
+//        model.addAttribute("userId", username);
+//        UsersVo usersVo = usersService.loginForFind(username);
+//        if (usersVo == null) {
+//            return "user/loginForm";
+//        }
+//        model.addAttribute("username", usersVo.getName());
+//        return "user/userInfo";
+//    }
 
     @ResponseBody
     @PostMapping("/modify/emailValid")
@@ -70,4 +69,12 @@ public class UserInfoController {
         }
         return "false";
     }
+
+    @ResponseBody
+    @PostMapping("/modify/password")
+    public String passwordModify(@RequestBody PasswordDto passwordDto) {
+        log.info("passwordDto = {}", passwordDto);
+        return usersService.modifyPassword(passwordDto);
+    }
+
 }

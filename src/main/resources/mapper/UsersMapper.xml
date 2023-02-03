@@ -43,7 +43,7 @@
         FROM BUSINESS
         WHERE ACCOUNT = #{account}
     </select>
-    <select id="findByUserId" parameterType="Map" resultType="UsersVo">
+    <select id="findByUserId" parameterType="String" resultType="UsersVo">
         SELECT *
         FROM USERS
         WHERE USER_ID = #{userId}
@@ -71,6 +71,11 @@
     <update id="updateEmail" parameterType="EmailDto">
         UPDATE USERS
         SET EMAIL = #{newEmail}
+        WHERE USER_ID = #{userId}
+    </update>
+    <update id="updatePassword" parameterType="PasswordDto">
+        UPDATE USERS
+        SET PASSWORD = #{newPassword}
         WHERE USER_ID = #{userId}
     </update>
 </mapper>
