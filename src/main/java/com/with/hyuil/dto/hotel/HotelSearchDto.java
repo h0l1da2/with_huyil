@@ -12,6 +12,7 @@ public class HotelSearchDto {
     private int offset = 0;
     private final int limit = 6;
 
+
     public HotelSearchDto(String sido, Integer max, String checkIn, String checkOut) {
         this.sido = sido;
         this.max = max;
@@ -21,5 +22,6 @@ public class HotelSearchDto {
 
     public HotelSearchDto() {
     }
+
 
 }

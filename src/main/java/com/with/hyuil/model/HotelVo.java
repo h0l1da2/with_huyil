@@ -10,15 +10,16 @@ import lombok.Data;
 @Data
 public class HotelVo {
 
-	private Long id;
+
+	private long id;
 	private String name;
-	private Long infoid;
-	private Long usersid;
+	private long infoid;
+	private long usersid;
 	private String service;
-	private String bed;
-	private String address;
 	private String zonecode;
+	private String sido;
 	private String sigungu;
+	private String address;
 	private String detail;
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private LocalDateTime localDateTime;

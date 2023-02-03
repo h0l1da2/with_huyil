@@ -58,15 +58,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic().disable()
 
                 .authorizeRequests()
-<<<<<<< HEAD
+
                 .mvcMatchers("/users/**")
                 .hasRole("USER")
-                .mvcMatchers("/hosts/**")
-                .hasAnyRole("HOST", "ADMIN")
-=======
                 //.mvcMatchers("/hosts/**")
                 //.hasAnyRole("HOST", "ADMIN")
->>>>>>> 18848e8bb8530db919ac3407e47cbd94ea23a65d
                 .mvcMatchers("/admin/**")
                 .hasRole("ADMIN")
                 .anyRequest()

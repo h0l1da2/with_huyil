@@ -30,6 +30,7 @@
                     <c:when test="${userId ne null}"><li class="nav-item"><a href="<c:url value='/users/info'/>" class="nav-link title">${userId}</a></li></c:when>
                 </c:choose>
 
+
             </ul>
         </div>
     </div>

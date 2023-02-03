@@ -1,4 +1,5 @@
 
+
 package com.with.hyuil.dao;
 
 import com.with.hyuil.dto.hotel.HotelListDto;
@@ -18,3 +19,4 @@ public interface HotelMapper {
 	int selectCntForHotelList(HotelSearchDto hotelSearchDto);
 
 }
+
