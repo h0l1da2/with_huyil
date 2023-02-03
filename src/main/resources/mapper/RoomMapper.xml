@@ -21,4 +21,6 @@
 		values
 		(seq_room.nextval, #{hotel_id}, #{name}, #{content}, #{max}, #{bed}, #{n_price}, #{h_price})
 	</insert>
+
+
 </mapper>
