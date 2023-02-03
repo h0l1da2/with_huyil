@@ -21,9 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.with.hyuil.model.FileVo;
 import com.with.hyuil.model.HotelInfoVo;
 import com.with.hyuil.model.HotelVo;
-import com.with.hyuil.model.RoomVo;
-import com.with.hyuil.service.FileServiceImpl;
-import com.with.hyuil.service.HotelServiceImpl;
+
 import com.with.hyuil.service.HotelinfoServiceImpl;
 import com.with.hyuil.service.RoomServiceImpl;
 

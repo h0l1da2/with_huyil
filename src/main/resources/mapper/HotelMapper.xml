@@ -1,3 +1,5 @@
+
+
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
@@ -25,10 +27,12 @@
 		 (seq_hotel.nextval, #{name}, #{infoid}, 170, #{service}, #{zonecode}, #{sido}, #{sigungu}, #{address}, #{detail}, null)
 	</insert>
 
+
 	
 	<select id="findByHotelId" parameterType="long" resultType="HotelVo">
 		select * from hotel where user_id=${id}
 	</select>
+
 
 
 	<select id="selectForHotelList" parameterType="HotelSearchDto" resultType="HotelListDto">
@@ -45,27 +49,13 @@
 			AND R.MAX >= #{max}
 			AND ((B.CHECK_IN NOT BETWEEN TO_DATE(#{checkIn}, 'YYYY-MM-DD') AND TO_DATE(#{checkOut}, 'YYYY-MM-DD'))
 			AND (B.CHECK_OUT NOT BETWEEN TO_DATE(#{checkIn}, 'YYYY-MM-DD') AND TO_DATE(#{checkOut}, 'YYYY-MM-DD'))
-			AND B.STATUS = 'COMPLETE')
+
+			AND (B.STATUS != 'READY'))
+
 		   OR B.ID = NULL
 		GROUP BY H.ID, H.NAME, H.STAR, R.NORMAL_PRICE, H.SIGUNGU, F.PATH, H.SIGUNGU
 		ORDER BY H.ID) A)
 		WHERE RNUM > #{offset}
 		  AND RNUM &lt;= #{limit}
 	</select>
-	<select id="selectCntForHotelList" parameterType="HotelSearchDto" resultType="Integer">
-		SELECT COUNT(*)
-		FROM HOTEL H, ROOM R, BOOK B, FILES F, HOTEL_INFO I
-		WHERE H.ID = R.HOTEL_ID
-			AND R.ID = B.HOTEL_ROOM_ID
-			AND I.ID = F.HOTEL_INFO_ID
-			AND I.ID = H.HOTEL_INFO_ID
-			AND H.SIDO = #{sido}
-			AND R.MAX >= #{max}
-			AND ((B.CHECK_IN NOT BETWEEN TO_DATE(#{checkIn}, 'YYYY-MM-DD') AND TO_DATE(#{checkOut}, 'YYYY-MM-DD'))
-				AND (B.CHECK_OUT NOT BETWEEN TO_DATE(#{checkIn}, 'YYYY-MM-DD') AND TO_DATE(#{checkOut}, 'YYYY-MM-DD'))
-				AND B.STATUS = 'COMPLETE')
-		   OR B.ID = NULL
-		GROUP BY H.ID, H.NAME, H.STAR, R.NORMAL_PRICE, H.SIGUNGU, F.PATH, H.SIGUNGU
-	</select>
-
 </mapper>

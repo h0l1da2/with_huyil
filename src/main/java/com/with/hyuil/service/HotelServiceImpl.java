@@ -1,5 +1,6 @@
-package com.with.hyuil.service;
 
+
+package com.with.hyuil.service;
 
 import com.with.hyuil.dto.hotel.HotelListDto;
 import com.with.hyuil.dto.hotel.HotelSearchDto;
@@ -23,12 +24,6 @@ public class HotelServiceImpl implements HotelService {
 	public void addHotel(HotelVo hotelvo) {
 		mapper.insertHotel(hotelvo);
 	}
-	
-	public HotelVo findByHotelId(Long id) {
-		return mapper.findByHotelId(id);
-	}
-
-
 	@Override
 	public List<HotelListDto> searchHotels(HotelSearchDto hotelSearchDto) {
 		log.info("CheckIn = {}", hotelSearchDto.getCheckIn());
@@ -36,9 +31,5 @@ public class HotelServiceImpl implements HotelService {
 		return mapper.selectForHotelList(hotelSearchDto);
 	}
 
-	@Override
-	public Integer searchHotelsCnt(HotelSearchDto hotelSearchDto) {
-		return mapper.selectCntForHotelList(hotelSearchDto);
-	}
-
 }
+

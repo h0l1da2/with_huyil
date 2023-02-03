@@ -18,8 +18,6 @@ public class EmailServiceImpl implements EmailService {
     private final JavaMailSender javaMailSender;
     private MimeMessage message;
     private String randomCode;
-    private String title;
-    private String content;
     @Value("${spring.mail.username}")
     private String fromEmail;
 
@@ -29,17 +27,16 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public MimeMessage joinMailForm(String toEmail) {
+    public MimeMessage joinMailForm(String title, String toEmail) {
         createCode();
-        title = "WITH HYUIL 가입 인증";
         try {
             message = javaMailSender.createMimeMessage();
             message.addRecipients(Message.RecipientType.TO, toEmail);
             message.setSubject(title);
             message.setFrom(fromEmail);
-            message.setText(contextJoin(randomCode), "UTF-8", "html");
+            message.setText(contextJoin(title, randomCode), "UTF-8", "html");
         } catch (MessagingException e) {
-            log.error("가입 이메일 전송 오류 = {}", e);
+            log.error("이메일 전송 오류 = {}", e);
         }
         return message;
     }
@@ -60,8 +57,8 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public String joinMailSend(String toEmail) {
-        message = joinMailForm(toEmail);
+    public String codeMailSend(String title, String toEmail) {
+        message = joinMailForm(title, toEmail);
         javaMailSender.send(message);
         return randomCode;
     }
@@ -72,14 +69,14 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public String contextJoin(String code) {
+    public String contextJoin(String title, String code) {
         return  "<!DOCTYPE html>\n" +
                 "<html lang=\"en\">\n" +
                 "<head>\n" +
                 "    <meta charset=\"UTF-8\">\n" +
                 "</head>\n" +
                 "<body>\n" +
-                "  <h3>WITH HYUIL 가입 인증</h3>\n" +
+                "  <h3>"+title+"</h3>\n" +
                 "  <p>아래 코드를 복사하세요</p>\n" +
                 "  <h1>"+code+"</h1>\n" +
                 "</body>\n" +

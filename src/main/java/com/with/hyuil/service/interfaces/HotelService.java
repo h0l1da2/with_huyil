@@ -10,5 +10,5 @@ public interface HotelService {
 
     void addHotel(HotelVo hotelvo);
     List<HotelListDto> searchHotels(HotelSearchDto hotelSearchDto);
-    Integer searchHotelsCnt(HotelSearchDto hotelSearchDto);
+
 }

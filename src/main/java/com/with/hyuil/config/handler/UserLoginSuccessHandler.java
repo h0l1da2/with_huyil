@@ -10,10 +10,12 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
+import org.springframework.ui.Model;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,13 +29,11 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-
         usersService.updateLoginDate(authentication.getName());
-
         List<String> roleNames = getRoleNames(authentication);
-
         SavedRequest savedRequest = requestCache.getRequest(request, response);
-
+        HttpSession session = request.getSession();
+        session.setAttribute("userId", authentication.getName());
         if (savedRequest == null) {
             if (roleNames.contains("ROLE_USER")) {
                 redirectStrategy.sendRedirect(request, response, "/");
