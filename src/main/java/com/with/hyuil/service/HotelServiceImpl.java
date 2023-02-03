@@ -23,6 +23,12 @@ public class HotelServiceImpl implements HotelService {
 	public void addHotel(HotelVo hotelvo) {
 		mapper.insertHotel(hotelvo);
 	}
+	
+	public HotelVo findByHotelId(Long id) {
+		return mapper.findByHotelId(id);
+	}
+
+
 	@Override
 	public List<HotelListDto> searchHotels(HotelSearchDto hotelSearchDto) {
 		log.info("CheckIn = {}", hotelSearchDto.getCheckIn());
@@ -34,4 +40,5 @@ public class HotelServiceImpl implements HotelService {
 	public Integer searchHotelsCnt(HotelSearchDto hotelSearchDto) {
 		return mapper.selectCntForHotelList(hotelSearchDto);
 	}
+
 }

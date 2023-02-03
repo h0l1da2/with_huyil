@@ -68,15 +68,15 @@ function setThumbnail(event){
 <div class="step-box">
    <div class="step-state step2">
     <ul>
-      <li><p>마이페이지</p></li>
+      <li onclick="location.href='/host/hostForm'" style="cursor:pointer;"><p>마이페이지</p></li>
       <li><p>호텔등록</p></li>
-      <li><p>객실등록</p></li>
+      <li onclick="location.href='/host/roomForm'" style="cursor:pointer;"><p>객실등록</p></li>
     </ul>
   </div>
 </div>	
 
 <section id="hotelForm">
-<form action="/hotelForm" method="post" enctype="multipart/form-data">
+<form action="/host/hotelForm" method="post" enctype="multipart/form-data">
   <div style="margin:0 0 30px 100px;" class="form-group">
   <br>
     <label for="exampleFormControlInput1">호텔명</label>
@@ -85,6 +85,7 @@ function setThumbnail(event){
 
     <label for="exampleFormControlInput1">주소 &nbsp;&nbsp;</label> 
     <input type="text" id="postcode" name="zonecode" placeholder="우편번호" style="width:200px; height:50px;"> &nbsp;&nbsp;
+    <input type="text" id="sido" name="sido" placeholder="시/도" style="width:100px; height:50px;"> &nbsp;&nbsp;
     <input type="text" id="sigu" name="sigungu" placeholder="시/군/구" style="width:200px; height:50px;">
     <button class="w-btn w-btn-green" type="button" onclick="sample4_execDaumPostcode()">
         우편번호 찾기
@@ -98,8 +99,8 @@ function setThumbnail(event){
             	document.getElementById('postcode').value = data.zonecode;
             	document.getElementById("addr").value = data.roadAddress;
             	document.getElementById("sigu").value = data.sigungu;
-            	document.getElementById("content").focus();
-            
+            	document.getElementById("sido").value = data.sido;
+            	document.getElementById("content").focus();       
         }
     }).open();
 }
@@ -109,21 +110,13 @@ function setThumbnail(event){
     <div class="form-group">
     <label for="exampleFormControlInput1">호탤소개 이미지(1장)</label> 
 	<input class="form-control form-control-user" type="file" 
-	name="file" id="product_image" onchange="setThumbnail(event);" style="width:300px; height:50px;">
+	name="uploadFile" id="product_image" onchange="setThumbnail(event);" style="width:300px; height:50px;">
 
 	<div style=width:6 id="image_container"></div> <br>
 
     <label for="exampleFormControlInput1">서비스</label>
-    <table style='margin-top:0px; border:1px solid #000' cellspacing=0 cellpadding=10>
+    <table style='margin-top:0px; border:1px solid #000; height:60px;' cellspacing=0 cellpadding=10>
     <tr>
-    <td>
-    <select name="bed" style="width:100px; height:50px;">
-    <option value="" selected>침대 사이즈</option>
-    <option value="single bed">single bed</option>
-    <option value="double bed">double bed</option>
-    <option value="king bed">king bed</option>
-    </select>
-    </td>
     <td style="padding:0 20px 0 20px"> <input type="checkbox" name="service" value=Breakfast>Breakfast</td>
     <td style="padding:0 20px 0 20px"> <input type="checkbox" name="service" value=Pool>Pool</td>
     <td style="padding:0 20px 0 20px"> <input type="checkbox" name="service" value=Parking>Parking</td>

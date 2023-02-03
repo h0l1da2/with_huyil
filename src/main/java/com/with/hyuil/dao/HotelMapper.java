@@ -11,6 +11,7 @@ import java.util.Map;
 @Mapper
 public interface HotelMapper {
 	void insertHotel(HotelVo hotelvo);
+	HotelVo findByHotelId(long id);
 	List<HotelListDto> selectForHotelList(HotelSearchDto hotelSearchDto);
 	int selectCntForHotelList(HotelSearchDto hotelSearchDto);
 
