@@ -1,5 +1,5 @@
-package com.with.hyuil.service;
 
+package com.with.hyuil.service;
 
 import com.with.hyuil.dto.hotel.HotelListDto;
 import com.with.hyuil.dto.hotel.HotelSearchDto;
@@ -30,8 +30,4 @@ public class HotelServiceImpl implements HotelService {
 		return mapper.selectForHotelList(hotelSearchDto);
 	}
 
-	@Override
-	public Integer searchHotelsCnt(HotelSearchDto hotelSearchDto) {
-		return mapper.selectCntForHotelList(hotelSearchDto);
-	}
 }

@@ -9,12 +9,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class ViewTestController {
 
-    @GetMapping("/")
-    public String test() {
-
-        return "index";
-    }
-
     @ResponseBody
     @GetMapping("/hosts/aaa")
     public String test1() {

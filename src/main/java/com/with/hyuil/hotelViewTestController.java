@@ -10,7 +10,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.with.hyuil.model.HotelInfoVo;
 import com.with.hyuil.model.HotelVo;
-import com.with.hyuil.service.HotelServiceImpl;
 import com.with.hyuil.service.HotelinfoServiceImpl;
 
 @Controller

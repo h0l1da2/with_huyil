@@ -1,21 +1,43 @@
 package com.with.hyuil.controller.login;
 
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.with.hyuil.dto.users.UserCodeDto;
 import com.with.hyuil.dto.users.UserIdDto;
 import com.with.hyuil.dto.users.UsersDto;
+<<<<<<< HEAD
+=======
 import com.with.hyuil.dto.users.UsersLoginDto;
+import com.with.hyuil.model.BusinessVo;
+>>>>>>> 18848e8bb8530db919ac3407e47cbd94ea23a65d
 import com.with.hyuil.model.UsersVo;
 import com.with.hyuil.service.interfaces.EmailService;
 import com.with.hyuil.service.interfaces.UsersService;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+<<<<<<< HEAD
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.Map;
+=======
+>>>>>>> 18848e8bb8530db919ac3407e47cbd94ea23a65d
 
 @Slf4j
 @Controller
@@ -52,7 +74,7 @@ public class HostJoinController {
 
     @PostMapping("/join/email")
     public String joinEmail(@ModelAttribute UsersDto usersDto, HttpSession session) {
-        String randomCode = emailService.joinMailSend(usersDto.getEmail());
+        String randomCode = emailService.codeMailSend("WITH HYUIL 가입 인증", usersDto.getEmail());
         session.setAttribute("usersDto", usersDto);
         session.setAttribute("randomCode", randomCode);
         return "host/hostJoinEmailSend";
@@ -79,4 +101,21 @@ public class HostJoinController {
         session.removeAttribute("randomCode");
         session.removeAttribute("userDto");
     }
+    
+    @GetMapping("/hostForm")
+	public String balondor(Model model) {
+		String id = "messi";
+		UsersVo usersvo = usersService.loginForFind(id);
+		System.out.println(usersvo.getBusinessVo());
+		model.addAttribute("users", usersvo);
+		return "/hotel/hostForm";
+	}
+    
+    @PostMapping("/hostForm")
+	public String benzema(BusinessVo businessvo) {
+    	String id = "messi";
+		UsersVo usersvo = usersService.loginForFind(id);
+		return "redirect:/host/hotelForm";
+	}
+    
 }

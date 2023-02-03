@@ -15,7 +15,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -59,8 +58,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic().disable()
 
                 .authorizeRequests()
+<<<<<<< HEAD
+                .mvcMatchers("/users/**")
+                .hasRole("USER")
                 .mvcMatchers("/hosts/**")
                 .hasAnyRole("HOST", "ADMIN")
+=======
+                //.mvcMatchers("/hosts/**")
+                //.hasAnyRole("HOST", "ADMIN")
+>>>>>>> 18848e8bb8530db919ac3407e47cbd94ea23a65d
                 .mvcMatchers("/admin/**")
                 .hasRole("ADMIN")
                 .anyRequest()

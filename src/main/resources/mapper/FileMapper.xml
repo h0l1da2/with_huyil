@@ -11,5 +11,11 @@
 		<result property="path" column="path"/>
 		<result property="size" column="size"/>
 		<result property="removed" column="removed"/>
+		<result property="hotel_info_id" column="hotel_info_id"/>
+		<result property="room_id" column="room_id"/>
 	</resultMap>
+	
+	<insert id="uploadFile" parameterType="FileVo">
+	insert into files values (seq_files.nextval, #{type}, #{name}, #{uuid}, #{path}, #{size}, null, #{hotel_info_id}, null)
+	</insert>
 </mapper>
