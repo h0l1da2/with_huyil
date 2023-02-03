@@ -24,14 +24,12 @@
         </button>
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-<<<<<<< HEAD
+
                 <c:choose>
                     <c:when test="${userId eq null}"><li class="nav-item"><a href="/host/loginForm" class="nav-link title">로그인</a></li></c:when>
                     <c:when test="${userId ne null}"><li class="nav-item"><a href="<c:url value='/users/info'/>" class="nav-link title">${userId}</a></li></c:when>
                 </c:choose>
-=======
-                <li class="nav-item"><a href="<c:url value='/host/loginForm'/>" class="nav-link">로그인</a></li>
->>>>>>> 18848e8bb8530db919ac3407e47cbd94ea23a65d
+
             </ul>
         </div>
     </div>

@@ -10,16 +10,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-<<<<<<< HEAD
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-=======
-import org.springframework.web.bind.annotation.RequestMapping;
 
->>>>>>> 18848e8bb8530db919ac3407e47cbd94ea23a65d
+import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
@@ -32,7 +30,6 @@ public class HotelSearchController {
     @GetMapping("/list")
     public String hotelList(@ModelAttribute HotelSearchDto hotelSearchDto, Model model) {
         log.info("호텔 제대로 들어왔음? = {}", hotelSearchDto);
-<<<<<<< HEAD
         return searchHotels(model, hotelSearchDto);
     }
 
@@ -46,8 +43,6 @@ public class HotelSearchController {
     }
 
     private String searchHotels(Model model, HotelSearchDto hotelSearchDto) {
-=======
->>>>>>> 18848e8bb8530db919ac3407e47cbd94ea23a65d
         List<HotelListDto> hotelList = hotelService.searchHotels(hotelSearchDto);
         log.info("hotelListDto = {}", hotelList);
         try {
