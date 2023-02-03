@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class HotelInfoVo {
 
-    private long id;
+    private Long id;
     private String traffic;
     private String intro;
     private String spot;

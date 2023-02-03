@@ -31,7 +31,7 @@
 
         <div class="collapse navbar-collapse" id="ftco-nav">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a href="#" class="nav-link">내 예약내역</a></li>
+            <li class="nav-item"><a href="#" class="nav-link title">내 예약내역</a></li>
             <li style=" margin: auto 0; cursor: pointer;" class="user-profile">
               <img src="/static/user/images/카리나.jpg" alt="카리나" style="width: 35px; height: 35px;">
             </li>

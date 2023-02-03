@@ -1,17 +1,21 @@
 package com.with.hyuil.model;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-@Data
+@Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class FileVo {
 
-    private long id;
+    private Long id;
     private String type;
     private String name;
     private String uuid;
     private String path;
-    private long size;
+    private Long size;
     private String removed;
-    private long hotel_info_id;
-    private long room_id;
 }

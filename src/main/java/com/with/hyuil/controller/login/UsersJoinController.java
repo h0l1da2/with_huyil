@@ -33,7 +33,7 @@ public class UsersJoinController {
 
     @PostMapping("/join/email")
     public String joinEmail(@ModelAttribute UsersDto usersDto, HttpSession session) {
-        String randomCode = emailService.joinMailSend(usersDto.getEmail());
+        String randomCode = emailService.codeMailSend("WITH HYUIL 가입 인증", usersDto.getEmail());
         session.setAttribute("userDto", usersDto);
         session.setAttribute("randomCode", randomCode);
         return "user/joinEmailSend";

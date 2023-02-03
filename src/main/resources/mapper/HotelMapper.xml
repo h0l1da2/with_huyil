@@ -25,12 +25,15 @@
 		 (seq_hotel.nextval, #{name}, #{infoid}, 170, #{service}, #{zonecode}, #{sido}, #{sigungu}, #{address}, #{detail}, null)
 	</insert>
 
+<<<<<<< HEAD
+=======
 	
 	<select id="findByHotelId" parameterType="long" resultType="HotelVo">
 		select * from hotel where user_id=${id}
 	</select>
 
 
+>>>>>>> 18848e8bb8530db919ac3407e47cbd94ea23a65d
 	<select id="selectForHotelList" parameterType="HotelSearchDto" resultType="HotelListDto">
 		SELECT *
 		FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER () AS TOTCNT
@@ -45,13 +48,19 @@
 			AND R.MAX >= #{max}
 			AND ((B.CHECK_IN NOT BETWEEN TO_DATE(#{checkIn}, 'YYYY-MM-DD') AND TO_DATE(#{checkOut}, 'YYYY-MM-DD'))
 			AND (B.CHECK_OUT NOT BETWEEN TO_DATE(#{checkIn}, 'YYYY-MM-DD') AND TO_DATE(#{checkOut}, 'YYYY-MM-DD'))
+<<<<<<< HEAD
+			AND (B.STATUS != 'READY'))
+=======
 			AND B.STATUS = 'COMPLETE')
+>>>>>>> 18848e8bb8530db919ac3407e47cbd94ea23a65d
 		   OR B.ID = NULL
 		GROUP BY H.ID, H.NAME, H.STAR, R.NORMAL_PRICE, H.SIGUNGU, F.PATH, H.SIGUNGU
 		ORDER BY H.ID) A)
 		WHERE RNUM > #{offset}
 		  AND RNUM &lt;= #{limit}
 	</select>
+<<<<<<< HEAD
+=======
 	<select id="selectCntForHotelList" parameterType="HotelSearchDto" resultType="Integer">
 		SELECT COUNT(*)
 		FROM HOTEL H, ROOM R, BOOK B, FILES F, HOTEL_INFO I
@@ -68,4 +77,5 @@
 		GROUP BY H.ID, H.NAME, H.STAR, R.NORMAL_PRICE, H.SIGUNGU, F.PATH, H.SIGUNGU
 	</select>
 
+>>>>>>> 18848e8bb8530db919ac3407e47cbd94ea23a65d
 </mapper>

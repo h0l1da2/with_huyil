@@ -1276,19 +1276,4 @@ textarea.form-control {
         color: #fff;
         border-radius: 50%; }
 
-.product_title {
-	text-align:center;
-	display:table;
-	border:1px solid #cecece;
-	width:280px;
-	height:250px;
-}
-.product-img-div {
-	display:table-cell;
-	vertical-align:middle;
-}
-.image_thumnail {
-	max-width:1000px;
-	max-height:1000px;
-}
         

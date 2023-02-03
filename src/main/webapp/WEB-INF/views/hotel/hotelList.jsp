@@ -48,6 +48,17 @@
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
 
+<<<<<<< HEAD
+			<div class="collapse navbar-collapse" id="ftco-nav">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item"><a href="/host" class="nav-link title">호스트등록</a></li>
+					<c:choose>
+						<c:when test="${userId eq null}"><li class="nav-item"><a href="/user/loginForm" class="nav-link title">로그인</a></li></c:when>
+						<c:when test="${userId ne null}"><li class="nav-item"><a href="<c:url value='/users/info'/>" class="nav-link title">${userId}</a></li></c:when>
+					</c:choose>
+				</ul>
+			</div>
+=======
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
 	          <li class="nav-item"><a href="<c:url value='/host'/>" class="nav-link">호스트등록</a></li>
@@ -55,6 +66,7 @@
 	        </ul>
 	      </div>
 	    </div>
+>>>>>>> 18848e8bb8530db919ac3407e47cbd94ea23a65d
 	  </nav>
     <!-- END nav -->
 
