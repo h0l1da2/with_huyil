@@ -10,8 +10,6 @@
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i" rel="stylesheet">
 
     <link rel="stylesheet" href="<c:url value='/resources/static/home/css/open-iconic-bootstrap.min.css'/>">
-    <link rel="stylesheet" href="<c:url value='/resources/static/home/css/open-iconic-bootstrap.min.css'/>">
-    <link rel="stylesheet" href="<c:url value='/resources/static/home/css/open-iconic-bootstrap.min.css'/>">
 
     <link rel="stylesheet" href="<c:url value='/resources/static/home/css/animate.css'/>">
 
@@ -77,7 +75,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <form action="#" class="booking-form">
+                <form action="/hotel/list" method="GET" class="booking-form">
                     <div class="row">
                         <div class="col-md d-flex">
                             <div class="form-group p-4 align-self-stretch d-flex align-items-end">
@@ -86,13 +84,13 @@
                                     <div class="form-field">
                                         <div class="select-wrap">
                                             <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                            <select name="" id="" class="form-control">
-                                                <option value="">서울</option>
-                                                <option value="">Family Room</option>
-                                                <option value="">Deluxe Room</option>
-                                                <option value="">Classic Room</option>
-                                                <option value="">Superior Room</option>
-                                                <option value="">Luxury Room</option>
+                                            <select name="sido" id="sido" class="form-control">
+                                                <option value="서울">서울</option>
+                                                <option value="부산">부산</option>
+                                                <option value="제주">제주</option>
+                                                <option value="경기">경기</option>
+                                                <option value="인천">인천</option>
+                                                <option value="강원">강원</option>
                                             </select>
                                         </div>
                                     </div>
@@ -103,7 +101,7 @@
                             <div class="form-group p-4 align-self-stretch d-flex align-items-end">
                                 <div class="wrap">
                                     <label for="#">Check-in</label>
-                                    <input type="text" class="form-control checkin_date" placeholder="체크인">
+                                    <input type="date" id="checkIn" name="checkIn" class="form-control checkin_date" placeholder="체크인">
                                 </div>
                             </div>
                         </div>
@@ -111,7 +109,7 @@
                             <div class="form-group p-4 align-self-stretch d-flex align-items-end">
                                 <div class="wrap">
                                     <label for="#">Check-out</label>
-                                    <input type="text" class="form-control checkout_date" placeholder="체크아웃">
+                                    <input type="date" id="checkOut" name="checkOut" class="form-control checkout_date" placeholder="체크아웃">
                                 </div>
                             </div>
                         </div>
@@ -123,13 +121,13 @@
                                     <div class="form-field">
                                         <div class="select-wrap">
                                             <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                            <select name="" id="" class="form-control">
-                                                <option value="">1 인</option>
-                                                <option value="">2 인</option>
-                                                <option value="">3 인</option>
-                                                <option value="">4 인</option>
-                                                <option value="">5 인</option>
-                                                <option value="">6 인이상</option>
+                                            <select name="max" id="max" class="form-control">
+                                                <option value="1">1 인</option>
+                                                <option value="2">2 인</option>
+                                                <option value="3">3 인</option>
+                                                <option value="4">4 인</option>
+                                                <option value="5">5 인</option>
+                                                <option value="6">6 인이상</option>
                                             </select>
                                         </div>
                                     </div>
@@ -328,6 +326,25 @@
 <script src="<c:url value='/resources/static/home/js/google-map.js'/>"></script>
 <script src="<c:url value='/resources/static/home/js/main.js'/>"></script>
 <script>
+
+    let token = localStorage.getItem('jwt');
+
+    // $( document ).ready( function() {
+    //     $('#hostGo').click(function () {
+    //         $.ajax({
+    //             type: 'GET',
+    //             url: '/hosts/aaa',
+    //             headers: { "Authorization" : token },
+    //             success: function (result) {
+    //                 window.location.href = "/hosts/aaa";
+    //             },
+    //             error: function() {
+    //                 alert("아이디나 비밀번호를 확인하세요");
+    //             }})
+    //     })
+    // })
+
+
     var count=0;
     function increase(){
         count=count+1;

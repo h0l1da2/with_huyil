@@ -22,7 +22,6 @@ import com.with.hyuil.dto.users.UsersLoginDto;
 import com.with.hyuil.model.BusinessVo;
 import com.with.hyuil.model.UsersVo;
 import com.with.hyuil.service.interfaces.EmailService;
-import com.with.hyuil.service.interfaces.LoginService;
 import com.with.hyuil.service.interfaces.UsersService;
 
 import lombok.RequiredArgsConstructor;
@@ -36,7 +35,6 @@ public class HostJoinController {
 
     private final UsersService usersService;
     private final EmailService emailService;
-    private final LoginService loginService;
 
     @GetMapping
     public String hostMain() {
@@ -45,15 +43,9 @@ public class HostJoinController {
 
     @GetMapping("/loginForm")
     public String loginHost(HttpServletRequest request, HttpServletResponse response) {
-        loginService.haveRedirectURI(request, response);
+        StringBuffer requestURL = request.getRequestURL();
+        request.setAttribute("requestURL", requestURL);
         return "host/hostLoginForm";
-    }
-
-    @ResponseBody
-    @PostMapping("/login")
-    public Map<String, String> loginHost(@RequestBody UsersLoginDto loginDto, HttpServletResponse response, HttpServletRequest request) {
-        Map<String, String> map = loginService.login(usersService, loginDto, request, response);
-        return map;
     }
 
     @GetMapping("/join")

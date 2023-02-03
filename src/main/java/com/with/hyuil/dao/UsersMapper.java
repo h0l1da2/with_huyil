@@ -6,6 +6,8 @@ import com.with.hyuil.model.UsersVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.Map;
+
 @Mapper
 @Repository
 public interface UsersMapper {
@@ -15,8 +17,9 @@ public interface UsersMapper {
     int insertHost(UsersVo usersVo);
     int insertAdmin(UsersVo usersVo);
     int insertRoles(RolesVo rolesVo);
-    UsersVo findByUserId(String userId);
+    UsersVo findByUserId(Map value);
     BusinessVo findBusinessByAccount(String account);
     RolesVo findRoles(Long id);
-    UsersVo findByUserIdAndPassword(UsersVo usersVo);
+    void updateLastLogin(String userId);
+
 }

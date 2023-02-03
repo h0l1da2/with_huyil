@@ -5,7 +5,6 @@ import com.with.hyuil.dto.users.UserIdDto;
 import com.with.hyuil.dto.users.UsersDto;
 import com.with.hyuil.dto.users.UsersLoginDto;
 import com.with.hyuil.model.UsersVo;
-import com.with.hyuil.service.LoginServiceImpl;
 import com.with.hyuil.service.interfaces.EmailService;
 import com.with.hyuil.service.interfaces.UsersService;
 import lombok.RequiredArgsConstructor;
@@ -15,9 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.Map;
 
 
 @Slf4j
@@ -28,18 +25,10 @@ import java.util.Map;
 public class UsersJoinController {
     private final UsersService usersService;
     private final EmailService emailService;
-    private final LoginServiceImpl loginService;
 
     @GetMapping("/join")
     public String joinUser() {
         return "user/joinForm";
-    }
-
-    @ResponseBody
-    @PostMapping("/login")
-    public Map<String, String> loginUsers(@RequestBody UsersLoginDto loginDto, HttpServletResponse response, HttpServletRequest request) {
-        Map<String, String> map = loginService.login(usersService, loginDto, request, response);
-        return map;
     }
 
     @PostMapping("/join/email")
@@ -75,9 +64,15 @@ public class UsersJoinController {
     }
 
     @GetMapping("/loginForm")
-    public String loginUser(HttpServletRequest request, HttpServletResponse response) {
-        loginService.haveRedirectURI(request, response);
+    public String loginUser(HttpServletRequest request) {
+
         return "user/loginForm";
+    }
+
+    @PostMapping("/login")
+    public String login(@ModelAttribute UsersLoginDto usersLoginDto) {
+
+        return "login";
     }
 
     private void sessionRemoveCodeAndDto(HttpSession session) {

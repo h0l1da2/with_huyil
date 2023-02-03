@@ -13,4 +13,5 @@ public interface UsersService {
     UsersVo loginForFind(String userId);
     UsersVo login(UsersVo usersVo);
     RolesVo roleForLogin(Long id);
+    void updateLoginDate(String userId);
 }

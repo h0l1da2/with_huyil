@@ -15,6 +15,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Slf4j
 @Service
 @Transactional
@@ -23,6 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class UsersServiceImpl implements UsersService {
     private final UsersMapper usersMapper;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final Map map = new HashMap();
     @Value("${admin.secret.code}")
     private String adminSecretCode;
     @Override
@@ -30,22 +34,26 @@ public class UsersServiceImpl implements UsersService {
         String encodePwd = passwordEncoding(usersVo.getPassword());
         usersVo.passwordEncode(encodePwd);
         usersMapper.insertUser(usersVo);
-        UsersVo findUsers = usersMapper.findByUserId(usersVo.getUserId());
-        return usersMapper.insertRoles(new RolesVo(Role.USER, findUsers));
+        map.put("userId", usersVo.getUserId());
+        UsersVo findUsers = usersMapper.findByUserId(map);
+        return usersMapper.insertRoles(new RolesVo(Role.ROLE_USER, findUsers));
     }
     @Override
     public int saveAdmin(UsersVo usersVo, String adminJoinCode) {
         if(adminJoinCode.equals(adminSecretCode)) {
+            usersVo.passwordEncode(passwordEncoder.encode(usersVo.getPassword()));
             usersMapper.insertAdmin(usersVo);
-            UsersVo findUsers = usersMapper.findByUserId(usersVo.getUserId());
-            return usersMapper.insertRoles(new RolesVo(Role.ADMIN, findUsers));
+            map.put("userId", usersVo.getUserId());
+            UsersVo findUsers = usersMapper.findByUserId(map);
+            return usersMapper.insertRoles(new RolesVo(Role.ROLE_ADMIN, findUsers));
         }
         return 0;
     }
 
     @Override
     public boolean idCheck(UserIdDto userIdDto) {
-        UsersVo findUser = usersMapper.findByUserId(userIdDto.getUserId());
+        map.put("userId", userIdDto.getUserId());
+        UsersVo findUser = usersMapper.findByUserId(map);
         if (findUser == null) {
             return true;
         }
@@ -60,18 +68,21 @@ public class UsersServiceImpl implements UsersService {
         BusinessVo businessByAccount = usersMapper.findBusinessByAccount(usersVo.getBusinessVo().getAccount());
         usersVo.myBusiness(businessByAccount);
         usersMapper.insertHost(usersVo);
-        UsersVo findUsers = usersMapper.findByUserId(usersVo.getUserId());
-        return usersMapper.insertRoles(new RolesVo(Role.HOST, findUsers));
+        map.put("userId", usersVo.getUserId());
+        UsersVo findUsers = usersMapper.findByUserId(map);
+        return usersMapper.insertRoles(new RolesVo(Role.ROLE_HOST, findUsers));
     }
 
     @Override
     public UsersVo loginForFind(String userId) {
-        return usersMapper.findByUserId(userId);
+        map.put("userId", userId);
+        return usersMapper.findByUserId(map);
     }
 
     @Override
     public UsersVo login(UsersVo usersVo) {
-        UsersVo user = usersMapper.findByUserId(usersVo.getUserId());
+        map.put("userId", usersVo.getUserId());
+        UsersVo user = usersMapper.findByUserId(map);
         if (user == null) {
             throw new RuntimeException("유저가없음 아이디");
         }
@@ -85,6 +96,11 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public RolesVo roleForLogin(Long id) {
         return usersMapper.findRoles(id);
+    }
+
+    @Override
+    public void updateLoginDate(String userId) {
+        usersMapper.updateLastLogin(userId);
     }
 
     private String passwordEncoding(String password) {

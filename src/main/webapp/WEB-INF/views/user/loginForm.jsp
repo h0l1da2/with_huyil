@@ -24,14 +24,14 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-5">
-					<h2 class="heading-section">위드휴일</h2>
+					<h2 class="heading-section"><a href="<c:url value='/'/>">위드휴일</a></h2>
 				</div>
 			</div>
 			<div class="row justify-content-center">
 				<div class="col-md-6 col-lg-4">
 					<div class="login-wrap p-0">
 		      	<h3 class="mb-4 text-center">당신의 휴일을 디자인하세요</h3>
-		      	<form action="<c:url value="/user/login"/>" class="signin-form" method="POST">
+		      	<form action="<c:url value="/login"/>" class="signin-form" method="POST">
 		      		<div class="form-group">
 		      			<input type="text" id="userId" name="userId" class="form-control" placeholder="Username" required>
 		      		</div>
@@ -40,8 +40,8 @@
 	              <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
 	            </div>
 	            <div class="form-group">
-<%--	            	<button type="submit" class="form-control btn btn-primary submit px-3">로그인</button>--%>
-	            	<button type="button" id="loginBtn" name="loginBtn" class="form-control btn btn-primary submit px-3">로그인</button>
+	            	<button type="submit" class="form-control btn btn-primary submit px-3">로그인</button>
+<%--	            	<button type="button" id="loginBtn" name="loginBtn" class="form-control btn btn-primary submit px-3">로그인</button>--%>
 	            </div>
 	            <div class="form-group d-md-flex">
 	            	<div class="w-50">
@@ -91,21 +91,6 @@
 					document.getElementById("password-field").focus();
 					return false;
 				}
-				$.ajax({
-					type: 'POST',
-					url: '/user/login',
-					contentType: "application/json",
-					data: JSON.stringify({userId:userId, password:password}),
-					dataType: 'text',
-					success: function (result) {
-						var response = JSON.parse(result);
-						console.log(response);
-						localStorage.setItem("jwt", response.jwtToken);
-						window.location = response.redirectUri;
-						},
-					error: function() {
-						alert("아이디나 비밀번호를 확인하세요");
-					}})
 			})
 		})
 	</script>
