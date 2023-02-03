@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.with.hyuil.dao.HotelinfoMapper">
 	<resultMap type="HotelInfoVo" id="hotelinfovo">
@@ -11,16 +11,16 @@
 		<result property="spot" column="spot"/>
 		<result property="policy" column="policy"/>
 		<result property="checkIn" column="checkIn"/>
-		<result property="checkOut" column="checkOut"/> 
+		<result property="checkOut" column="checkOut"/>
 	</resultMap>
-	
+
 	<insert id="insertInfo" parameterType="HotelInfoVo">
 		<selectKey keyProperty="id" resultType="long" order="BEFORE">
 			select seq_hotelinfo.nextval from dual
 		</selectKey>
 		insert into hotel_info values(#{id}, #{traffic}, #{intro}, #{spot}, #{policy}, #{checkIn}, #{checkOut})
 	</insert>
-	
+
 	<select id="findByInfoId" parameterType="long" resultType="HotelInfoVo">
 		select * from hotel_info where id = #{hotelId}
 	</select>

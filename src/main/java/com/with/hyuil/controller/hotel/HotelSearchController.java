@@ -16,7 +16,6 @@ import com.with.hyuil.dto.hotel.HotelPageHandler;
 import com.with.hyuil.dto.hotel.HotelSearchDto;
 import com.with.hyuil.service.interfaces.HotelService;
 
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,7 +29,6 @@ public class HotelSearchController {
     @GetMapping("/list")
     public String hotelList(@ModelAttribute HotelSearchDto hotelSearchDto, Model model) {
         log.info("호텔 제대로 들어왔음? = {}", hotelSearchDto);
-
         return searchHotels(model, hotelSearchDto);
     }
 
