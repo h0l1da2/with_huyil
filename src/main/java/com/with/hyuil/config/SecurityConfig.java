@@ -182,6 +182,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
                 .mvcMatchers("/users/**")
                 .hasRole("USER")
@@ -198,9 +199,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .mvcMatchers("/hosts/**")
                 .hasAnyRole("HOST", "ADMIN")
 =======
+=======
+
+                .mvcMatchers("/users/**")
+                .hasRole("USER")
+>>>>>>> b1c1dc2 (깃 충돌 수정중 (#24))
                 //.mvcMatchers("/hosts/**")
                 //.hasAnyRole("HOST", "ADMIN")
->>>>>>> 18848e8bb8530db919ac3407e47cbd94ea23a65d
                 .mvcMatchers("/admin/**")
                 .hasRole("ADMIN")
 <<<<<<< HEAD

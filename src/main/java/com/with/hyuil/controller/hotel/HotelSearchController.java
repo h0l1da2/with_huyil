@@ -32,14 +32,14 @@ import lombok.extern.slf4j.Slf4j;
 =======
 =======
 
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.PathVariable;
 >>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
+=======
+>>>>>>> b1c1dc2 (깃 충돌 수정중 (#24))
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
-import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 >>>>>>> 78df10a (호텔 폼 / 호텔 검색 / 리스트 (#20))
 
@@ -71,6 +71,7 @@ public class HotelSearchController {
 
     private String searchHotels(Model model, HotelSearchDto hotelSearchDto) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         List<HotelListDto> hotelList = hotelService.searchHotels(hotelSearchDto);
         log.info("hotelListDto = {}", hotelList);
@@ -81,6 +82,9 @@ public class HotelSearchController {
 =======
 =======
 >>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
+=======
+
+>>>>>>> b1c1dc2 (깃 충돌 수정중 (#24))
         List<HotelListDto> hotelList = hotelService.searchHotels(hotelSearchDto);
         log.info("hotelListDto = {}", hotelList);
         try {

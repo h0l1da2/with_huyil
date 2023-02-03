@@ -55,7 +55,11 @@
                     <c:when test="${userId ne null}"><li class="nav-item"><a href="<c:url value='/users/info'/>" class="nav-link title">${userId}</a></li></c:when>
                 </c:choose>
 
+<<<<<<< HEAD
 >>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
+=======
+
+>>>>>>> b1c1dc2 (깃 충돌 수정중 (#24))
             </ul>
         </div>
     </div>
