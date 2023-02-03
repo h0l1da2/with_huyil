@@ -26,5 +26,6 @@ public interface UsersMapper {
     UsersVo findByUserIdEmail(EmailDto emailDto);
     int updateEmail(EmailDto emailDto);
     int updatePassword(PasswordDto passwordDto);
+    BusinessVo findByBusinessId(Long id);
 
 }

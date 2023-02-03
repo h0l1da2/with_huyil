@@ -3,6 +3,7 @@ package com.with.hyuil.service;
 import com.with.hyuil.dao.UsersMapper;
 import com.with.hyuil.dto.info.EmailDto;
 import com.with.hyuil.dto.info.PasswordDto;
+import com.with.hyuil.dto.users.BusinessDto;
 import com.with.hyuil.dto.users.UserIdDto;
 import com.with.hyuil.model.BusinessVo;
 import com.with.hyuil.model.RolesVo;
@@ -133,6 +134,11 @@ public class UsersServiceImpl implements UsersService {
             return "변경 오류";
         }
         return "변경 완료";
+    }
+    @Override
+    public BusinessDto findBusinessDto(Long id) {
+        BusinessVo businessVo = usersMapper.findByBusinessId(id);
+        return new BusinessDto(businessVo);
     }
 
 

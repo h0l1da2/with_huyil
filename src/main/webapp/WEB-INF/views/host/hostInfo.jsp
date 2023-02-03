@@ -63,6 +63,10 @@
     .codeSend {
       display: none;
     }
+    .content {
+      color: rgba(53, 110, 215, 0.75);
+      font-size: 25px;
+    }
 
   </style>
 </head>
@@ -77,7 +81,7 @@
     <div class="collapse navbar-collapse" id="ftco-nav">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item"><a href="<c:url value='/logout'/>" class="nav-link title">로그아웃</a></li>
-        <li class="nav-item"><a href="<c:url value='/users/info'/>" class="nav-link title">${userId}</a></li>
+        <li class="nav-item"><a href="<c:url value='/hosts/info'/>" class="nav-link title">${userId}</a></li>
       </ul>
     </div>
   </div>
@@ -102,10 +106,25 @@
   <div class="container">
     <div class="row d-flex mb-5 contact-info">
       <div class="col-md-12 mb-4" style="text-align: center;">
-        <label><a href="<c:url value="/users/info" />" class="h3 info-title infoBtn">${username} 회원님</a></label>
+        <label><a href="<c:url value="/hosts/info" />" class="h3 info-title infoBtn">${username} 호스트님</a></label>
       </div>
     </div>
 
+    <div class="row block-9 info-menu" style="text-align: center;">
+      <form action="#" class="bg-white p-5 contact-form">
+        <div class="menu">
+          <h2><label class="h3 menuBtn">사업자 정보</label></h2>
+          <ul class="hide">
+            <div class="form-group">
+              <span class="title content">사업자 번호 ${business.account}</span>
+            </div>
+            <div class="form-group">
+              <span class="title content">${business.bank} ${business.bankNumber}</span>
+            </div>
+          </ul>
+        </div>
+      </form>
+    </div>
     <div class="row block-9 info-menu" style="text-align: center;">
       <form action="#" class="bg-white p-5 contact-form">
         <div>
@@ -114,7 +133,14 @@
         </ul>
       </form>
     </div>
-
+    <div class="row block-9 info-menu" style="text-align: center;">
+      <form action="#" class="bg-white p-5 contact-form">
+        <div>
+          <h2><a href="" class="infoBtn">매출 내역</a></h2>
+        </div>
+        </ul>
+      </form>
+    </div>
     <div class="row block-9 info-menu" style="text-align: center;">
       <form action="#" class="bg-white p-5 contact-form">
         <div class="menu">
@@ -140,9 +166,10 @@
               </div>
             </div>
           </ul>
+        </div>
       </form>
-    </div>
-
+  </div>
+    <div class="row block-9 info-menu" style="text-align: center;">
     <form action="#" class="bg-white p-5 contact-form">
       <div class="menu">
         <h2><label class="h3 menuBtn">비밀번호 변경</label></h2>
@@ -160,29 +187,6 @@
           </div>
           <div class="form-group">
             <input type="button" id="passwordUpdate" value="비밀번호 변경" class="btn btn-primary py-3 px-5">
-          </div>
-        </ul>
-      </div>
-    </form>
-
-  </div>
-
-  <div class="row block-9 info-menu" style="text-align: center;">
-    <form action="#" class="bg-white p-5 contact-form">
-      <div class="menu">
-        <h2><label class="h3 menuBtn">SNS 연결 정보</label></h2>
-        <ul class="hide">
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="카카오톡">
-          </div>
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="페이스북">
-          </div>
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="구글">
-          </div>
-          <div class="form-group">
-            <input type="submit" value="연결 끊기" class="btn btn-primary py-3 px-5">
           </div>
         </ul>
       </div>
@@ -322,7 +326,7 @@
       }
       $.ajax({
         type: 'POST',
-        url: '/users/info/modify/password',
+        url: '/hosts/info/modify/password',
         contentType: "application/json",
         data: JSON.stringify({password:password, newPassword:newPassword, userId:'${userId}'}),
         dataType: 'text',
@@ -360,7 +364,7 @@
       }
       $.ajax({
         type: 'POST',
-        url: '/users/info/modify/emailValid',
+        url: '/hosts/info/modify/emailValid',
         contentType: "application/json",
         data: JSON.stringify({email:email, newEmail:newEmail, userId:'${userId}'}),
         dataType: 'text',
@@ -387,7 +391,7 @@
       }
       $.ajax({
         type: 'POST',
-        url: '/users/info/modify/email',
+        url: '/hosts/info/modify/email',
         contentType: "application/json",
         data: JSON.stringify({newEmail:newEmail, code:code, userId:'${userId}'}),
         dataType: 'text',

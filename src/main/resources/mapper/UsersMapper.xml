@@ -24,9 +24,9 @@
         </insert>
     <insert id="insertBusiness" parameterType="BusinessVo">
         INSERT INTO BUSINESS
-            ( ID, ACCOUNT, B_NUMBER, BANK )
+            ( ID, ACCOUNT, BANK_NUMBER, BANK )
         VALUES
-            ( BUSINESS_SEQ.NEXTVAL, #{account}, #{bNumber}, #{bank} )
+            ( BUSINESS_SEQ.NEXTVAL, #{account}, #{bankNumber}, #{bank} )
     </insert>
     <insert id="insertRoles" parameterType="RolesVo">
         INSERT INTO ROLES
@@ -42,6 +42,11 @@
         SELECT *
         FROM BUSINESS
         WHERE ACCOUNT = #{account}
+    </select>
+    <select id="findByBusinessId" parameterType="Long" resultType="BusinessVo">
+        SELECT *
+        FROM BUSINESS
+        WHERE ID = #{id, jdbcType=VARCHAR}
     </select>
     <select id="findByUserId" parameterType="String" resultType="UsersVo">
         SELECT *

@@ -32,6 +32,7 @@ public class UsersVo {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime out;
     private BusinessVo businessVo;
+    private Long businessId;
     private RolesVo rolesVo;
 
     protected UsersVo() {}
@@ -94,7 +95,7 @@ public class UsersVo {
         this.businessVo = businessVo;
     }
 
-    public UsersVo(Long id, String userId, String password, String email, String tel, String name, Type type, Wheres wheres, LocalDateTime joinDate, LocalDateTime lastLogin, LocalDateTime out, BusinessVo businessVo, RolesVo rolesVo) {
+    public UsersVo(Long id, String userId, String password, String email, String tel, String name, Type type, Wheres wheres, LocalDateTime joinDate, LocalDateTime lastLogin, LocalDateTime out, BusinessVo businessVo, Long businessId, RolesVo rolesVo) {
         this.id = id;
         this.userId = userId;
         this.password = password;
@@ -107,6 +108,7 @@ public class UsersVo {
         this.lastLogin = lastLogin;
         this.out = out;
         this.businessVo = businessVo;
+        this.businessId = businessId;
         this.rolesVo = rolesVo;
     }
 }
