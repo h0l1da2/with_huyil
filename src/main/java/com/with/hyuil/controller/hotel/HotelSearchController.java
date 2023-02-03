@@ -10,8 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-
 import org.springframework.web.bind.annotation.RequestMapping;
+
 
 
 import java.util.List;
@@ -26,6 +26,7 @@ public class HotelSearchController {
     @GetMapping("/list")
     public String hotelList(@ModelAttribute HotelSearchDto hotelSearchDto, Model model) {
         log.info("호텔 제대로 들어왔음? = {}", hotelSearchDto);
+
         return searchHotels(model, hotelSearchDto);
     }
 

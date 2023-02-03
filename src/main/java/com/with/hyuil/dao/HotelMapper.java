@@ -19,4 +19,3 @@ public interface HotelMapper {
 	int selectCntForHotelList(HotelSearchDto hotelSearchDto);
 
 }
-

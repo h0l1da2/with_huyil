@@ -49,7 +49,6 @@
 	      </button>
 
 
-
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item"><a href="/host" class="nav-link title">호스트등록</a></li>
@@ -59,7 +58,6 @@
 					</c:choose>
 				</ul>
 			</div>
-
 	  </nav>
     <!-- END nav -->
 
