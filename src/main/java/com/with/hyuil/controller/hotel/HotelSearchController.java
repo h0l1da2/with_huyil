@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -37,7 +38,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 >>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
 =======
 >>>>>>> b1c1dc2 (깃 충돌 수정중 (#24))
+=======
+>>>>>>> 1db7628 (충돌 파일 수정 (#29))
 import org.springframework.web.bind.annotation.RequestMapping;
+
 
 
 import java.util.List;
@@ -55,8 +59,12 @@ public class HotelSearchController {
         log.info("호텔 제대로 들어왔음? = {}", hotelSearchDto);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
+=======
+
+>>>>>>> 1db7628 (충돌 파일 수정 (#29))
         return searchHotels(model, hotelSearchDto);
     }
 

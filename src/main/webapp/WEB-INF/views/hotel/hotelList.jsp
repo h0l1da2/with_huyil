@@ -50,7 +50,6 @@
 
 
 
-<<<<<<< HEAD
 		<div class="collapse navbar-collapse" id="ftco-nav">
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item"><a href="/host" class="nav-link title">호스트등록</a></li>
@@ -76,58 +75,6 @@
 		</div>
 	</div>
 </div>
-=======
-
-			<div class="collapse navbar-collapse" id="ftco-nav">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a href="/host" class="nav-link title">호스트등록</a></li>
-					<c:choose>
-						<c:when test="${userId eq null}"><li class="nav-item"><a href="/user/loginForm" class="nav-link title">로그인</a></li></c:when>
-<<<<<<< HEAD
-						<c:when test="${userId ne null}"><li class="nav-item"><a href="<c:url value='/user/info'/>" class="nav-link title">${userId}</a></li></c:when>
-					</c:choose>
-				</ul>
-			</div>
-
-=======
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item"><a href="<c:url value='/host'/>" class="nav-link">호스트등록</a></li>
-	          <li class="nav-item"><a href="<c:url value='/user/loginForm'/>" class="nav-link">로그인</a></li>
-	        </ul>
-	      </div>
-	    </div>
->>>>>>> 78df10a (호텔 폼 / 호텔 검색 / 리스트 (#20))
-=======
-						<c:when test="${userId ne null}"><li class="nav-item"><a href="<c:url value='/users/info'/>" class="nav-link title">${userId}</a></li></c:when>
-					</c:choose>
-				</ul>
-			</div>
-<<<<<<< HEAD
->>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
-=======
-
->>>>>>> b1c1dc2 (깃 충돌 수정중 (#24))
-	  </nav>
-    <!-- END nav -->
-
-    <div class="hero-wrap" style="background-image: url(<c:url value='/resources/static/home/images/bg_1.jpg'/>);">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row no-gutters slider-text d-flex align-itemd-end justify-content-center">
-          <div class="col-md-9 ftco-animate text-center d-flex align-items-end justify-content-center">
-          	<div class="text">
-<<<<<<< HEAD
-	            <h1 class="mb-4 bread">지역</h1>
-=======
-	            <h1 class="mb-4 bread">서울</h1>
->>>>>>> 78df10a (호텔 폼 / 호텔 검색 / 리스트 (#20))
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
->>>>>>> 4311133 (깃 충돌 수정중 (#24))
 
 
 <section class="ftco-section bg-light">

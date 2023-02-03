@@ -41,7 +41,10 @@ import javax.servlet.http.HttpSession;
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 9b7545b (충돌 파일 수정 (#29))
 =======
 =======
 >>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
@@ -69,7 +72,13 @@ import javax.servlet.http.HttpSession;
 
 
 >>>>>>> 62589e9 (jwt 토큰 로컬스토리지 저장)
+<<<<<<< HEAD
 >>>>>>> 4311133 (깃 충돌 수정중 (#24))
+=======
+=======
+
+>>>>>>> 1db7628 (충돌 파일 수정 (#29))
+>>>>>>> 9b7545b (충돌 파일 수정 (#29))
 @Slf4j
 @Controller
 @RequiredArgsConstructor
