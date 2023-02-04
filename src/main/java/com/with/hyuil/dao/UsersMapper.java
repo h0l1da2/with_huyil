@@ -1,5 +1,6 @@
 package com.with.hyuil.dao;
 
+import com.with.hyuil.dto.info.DeleteDto;
 import com.with.hyuil.dto.info.EmailDto;
 import com.with.hyuil.dto.info.PasswordDto;
 import com.with.hyuil.model.BusinessVo;
@@ -19,6 +20,7 @@ public interface UsersMapper {
     int insertHost(UsersVo usersVo);
     int insertAdmin(UsersVo usersVo);
     int insertRoles(RolesVo rolesVo);
+    int insertWhyDelete(DeleteDto deleteDto); //
     UsersVo findByUserId(String userId);
     BusinessVo findBusinessByAccount(String account);
     RolesVo findRoles(Long id);
@@ -26,6 +28,7 @@ public interface UsersMapper {
     UsersVo findByUserIdEmail(EmailDto emailDto);
     int updateEmail(EmailDto emailDto);
     int updatePassword(PasswordDto passwordDto);
+    int updateForDelete(Map map); //
     BusinessVo findByBusinessId(Long id);
 
 }

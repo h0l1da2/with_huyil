@@ -1,6 +1,7 @@
 package com.with.hyuil.service;
 
 import com.with.hyuil.dao.UsersMapper;
+import com.with.hyuil.dto.info.DeleteDto;
 import com.with.hyuil.dto.info.EmailDto;
 import com.with.hyuil.dto.info.PasswordDto;
 import com.with.hyuil.dto.users.BusinessDto;
@@ -8,6 +9,7 @@ import com.with.hyuil.dto.users.UserIdDto;
 import com.with.hyuil.model.BusinessVo;
 import com.with.hyuil.model.RolesVo;
 import com.with.hyuil.model.UsersVo;
+import com.with.hyuil.model.enumaration.Out;
 import com.with.hyuil.model.enumaration.Role;
 import com.with.hyuil.model.enumaration.Type;
 import com.with.hyuil.service.interfaces.UsersService;
@@ -19,8 +21,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -141,6 +146,70 @@ public class UsersServiceImpl implements UsersService {
         return new BusinessDto(businessVo);
     }
 
+    @Override
+    public String deleteUser(DeleteDto deleteDto) {
+        UsersVo user = usersMapper.findByUserId(deleteDto.getUserId());
+        boolean matches = passwordEncoder.matches(deleteDto.getPassword(), user.getPassword());
+        if(!matches) {
+            return "비밀번호가 틀립니다";
+        }
+        Map map = new HashMap();
+        map.put("userId", user.getUserId());
+        map.put("out", Out.SECESSION);
+        int i = usersMapper.updateForDelete(map);
+        if (i == 0) {
+            return "유저 탈퇴 정보 업데이트 실패";
+        }
+        if(deleteDto.getWhyDelete() == null || deleteDto.getEtc() == null) {
+            throw new RuntimeException("이유가 없음");
+        }
+
+        dtoNoArgSet(deleteDto);
+        int x = usersMapper.insertWhyDelete(deleteDto);
+        if (x == 0) {
+            return "WhyDelete 추가 실패";
+        }
+        return "탈퇴 성공";
+    }
+
+    private void dtoNoArgSet(DeleteDto deleteDto) {
+
+        List<String> list = Arrays.stream(deleteDto.getWhyDelete()).collect(Collectors.toList());
+
+        for (String value : list) {
+            if (value.equals("privacy")) {
+                deleteDto.setPrivacy(value);
+            }
+            if (value.equals("otherSite")) {
+                deleteDto.setOtherSite(value);
+            }
+            if (value.equals("hate")) {
+                deleteDto.setHate(value);
+            }
+            if (value.equals("joinAgain")) {
+                deleteDto.setJoinAgain(value);
+            }
+        }
+
+        String none = "none";
+
+        if (deleteDto.getPrivacy() == null) {
+            deleteDto.setPrivacy(none);
+        }
+        if (deleteDto.getHate() == null) {
+            deleteDto.setHate(none);
+        }
+        if (deleteDto.getOtherSite() == null) {
+            deleteDto.setOtherSite(none);
+        }
+        if (deleteDto.getJoinAgain() == null) {
+            deleteDto.setJoinAgain(none);
+        }
+        if (deleteDto.getEtc() == null) {
+            deleteDto.setEtc(none);
+        }
+
+    }
 
     private String passwordEncoding(String password) {
         return passwordEncoder.encode(password);

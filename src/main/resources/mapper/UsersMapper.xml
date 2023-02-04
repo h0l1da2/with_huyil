@@ -34,6 +34,12 @@
         VALUES
             ( ROLES_SEQ.NEXTVAL, #{roleName}, #{usersVo.id, jdbcType=VARCHAR} )
     </insert>
+    <insert id="insertWhyDelete" parameterType="DeleteDto">
+        INSERT INTO WHY_DELETE
+            ( ID, PRIVACY, OTHER_SITE, HATE, JOIN_AGAIN, ETC )
+        VALUES
+            ( SEQ_WHY_DELETE.NEXTVAL, #{privacy}, #{otherSite}, #{hate}, #{joinAgain}, #{etc} )
+    </insert>
     <select id="count" resultType="Integer">
         SELECT COUNT(*)
         FROM USERS
@@ -66,6 +72,11 @@
     <update id="updateLastLogin" parameterType="String">
         UPDATE USERS
         SET LAST_LOGIN = SYSDATE
+        WHERE USER_ID = #{userId}
+    </update>
+    <update id="updateForDelete" parameterType="Map">
+        UPDATE USERS
+        SET REMOVE_DATE = SYSDATE, OUT = #{out}
         WHERE USER_ID = #{userId}
     </update>
     <select id="findByUserIdEmail" parameterType="EmailDto" resultType="UsersVo">

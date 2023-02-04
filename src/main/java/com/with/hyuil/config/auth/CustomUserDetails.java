@@ -1,6 +1,7 @@
 package com.with.hyuil.config.auth;
 
 import com.with.hyuil.model.UsersVo;
+import com.with.hyuil.model.enumaration.Out;
 import com.with.hyuil.model.enumaration.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -43,6 +44,9 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
+        if (usersVo.getOut().startsWith(Out.STOP.toString())) {
+            return false;
+        }
         return true;
     }
 
