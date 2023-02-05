@@ -4,10 +4,12 @@ import com.with.hyuil.model.RolesVo;
 import com.with.hyuil.model.UsersVo;
 import com.with.hyuil.service.interfaces.UsersService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+@Slf4j
 @RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
     private final UsersService usersService;
@@ -22,4 +24,5 @@ public class CustomUserDetailsService implements UserDetailsService {
         user.myRole(rolesVo);
         return new CustomUserDetails(user);
     }
+
 }

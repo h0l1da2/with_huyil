@@ -41,7 +41,6 @@
 	            </div>
 	            <div class="form-group">
 	            	<button type="submit" class="form-control btn btn-primary submit px-3">로그인</button>
-<%--	            	<button type="button" id="loginBtn" name="loginBtn" class="form-control btn btn-primary submit px-3">로그인</button>--%>
 	            </div>
 	            <div class="form-group d-md-flex">
 	            	<div class="w-50">
@@ -60,11 +59,10 @@
 			</div>
 	          <p class="w-100 text-center">&mdash; With SNS &mdash;</p>
 			  <div class="social d-flex text-center">
-	          	<a href="#" class="px-2 py-2 mr-md-1 rounded"><span class="ion-logo-facebook mr-2"></span> Kakao</a>
-				<a href="#" class="px-2 py-2 mr-md-1 rounded" style="margin-left: 4px;"><span class="ion-logo-facebook mr-2"></span> Google</a>
-	          	<a href="#" class="px-2 py-2 ml-md-1 rounded"><span class="ion-logo-twitter mr-2"></span> Naver</a>
+	          	<a href="<c:url value="/oauth2/authorization/kakao"/>" class="px-2 py-2 mr-md-1 rounded"><span class="ion-logo-facebook mr-2"></span> Kakao</a>
+				<a href="<c:url value="/oauth2/authorization/google"/>" class="px-2 py-2 mr-md-1 rounded" style="margin-left: 4px;"><span class="ion-logo-facebook mr-2"></span> Google</a>
+	          	<a href="<c:url value="/oauth2/authorization/naver"/>" class="px-2 py-2 ml-md-1 rounded"><span class="ion-logo-twitter mr-2"></span> Naver</a>
 	          </div>
-
 		      </div>
 				</div>
 			</div>
