@@ -2,27 +2,44 @@ package com.with.hyuil.config.auth;
 
 import com.with.hyuil.model.UsersVo;
 import com.with.hyuil.model.enumaration.Out;
-import com.with.hyuil.model.enumaration.Role;
-import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+import java.util.Map;
 
-@RequiredArgsConstructor
-public class CustomUserDetails implements UserDetails {
+@Slf4j
+public class CustomUserDetails implements UserDetails, OAuth2User {
 
     private final UsersVo usersVo;
+    private Map<String, Object> attributes;
+
+    public CustomUserDetails(UsersVo usersVo) {
+        this.usersVo = usersVo;
+    }
+
+    public CustomUserDetails(UsersVo usersVo, Map<String, Object> attributes) {
+        this.usersVo = usersVo;
+        this.attributes = attributes;
+    }
+
+    // OAuth2 유저 정보
+    @Override
+    public Map<String, Object> getAttributes() {
+        return attributes;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-
+        log.info("sadsad");
         Collection<GrantedAuthority> authorities = new ArrayList<>();
+        log.info("222");
         authorities.add(new SimpleGrantedAuthority(usersVo.getRolesVo().getRoleName().toString()));
+        log.info("333");
 
         return authorities;
     }
@@ -61,5 +78,10 @@ public class CustomUserDetails implements UserDetails {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public String getName() {
+        return usersVo.getId().toString();
     }
 }

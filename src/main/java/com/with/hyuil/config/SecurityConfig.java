@@ -1,5 +1,6 @@
 package com.with.hyuil.config;
 
+import com.with.hyuil.config.auth.CustomOAuth2UserService;
 import com.with.hyuil.config.auth.CustomUserDetailsService;
 import com.with.hyuil.config.handler.AuthenticationExceptionHandler;
 import com.with.hyuil.config.handler.UserLoginSuccessHandler;
@@ -17,6 +18,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 
 @EnableWebSecurity
 @Configuration
@@ -25,6 +27,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UsersMapper usersMapper;
     private final AuthenticationExceptionHandler authenticationExceptionHandler;
+    @Bean
+    public DefaultOAuth2UserService defaultOAuth2UserService() {
+        return new CustomOAuth2UserService(usersService());
+    }
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
@@ -88,6 +94,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling()
                 .authenticationEntryPoint(authenticationExceptionHandler)
 
+                .and()
+                .oauth2Login()
+                .loginPage("/user/loginForm")
+                .successHandler(new UserLoginSuccessHandler(usersService()))
+                .userInfoEndpoint()
+                .userService(defaultOAuth2UserService())
         ;
 
     }
