@@ -8,23 +8,30 @@
     <meta name="author" content="" />
     <title>Shop Item - Start Bootstrap Template</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="<c:url value='/static/host/assets/favicon.ico'/>" />
+    <link rel="icon" type="image/x-icon" href="<c:url value='/resources/static/host/assets/favicon.ico'/>" />
     <!-- Bootstrap icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="<c:url value='/static/host/css/styles.css'/>" rel="stylesheet" />
+    <link href="<c:url value='/resources/static/host/css/styles.css'/>" rel="stylesheet" />
 </head>
 <body style="height: 600px;">
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container title">
-        <a class="navbar-brand title" href="/">위드휴일</a>
+        <a class="navbar-brand title" href="<c:url value='/'/>">위드휴일</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
         </button>
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a href="/loginForm" class="nav-link">로그인</a></li>
+
+                <c:choose>
+                    <c:when test="${userId eq null}"><li class="nav-item"><a href="/host/loginForm" class="nav-link title">로그인</a></li></c:when>
+                    <c:when test="${userId ne null}"><li class="nav-item"><a href="<c:url value='/users/info'/>" class="nav-link title">${userId}</a></li></c:when>
+                </c:choose>
+
+
+
             </ul>
         </div>
     </div>
@@ -58,10 +65,11 @@
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
-<script src="<c:url value='/static/host/js/scripts.js'/>"></script>
+<script src="<c:url value='/resources/static/host/js/scripts.js'/>"></script>
 <!-- 카카오맵 -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9093f985faa6566619ee93146e47c723"></script>
 <script>
+
     var container = document.getElementById('map');
     var options = {
         center: new kakao.maps.LatLng(37.47228753186775, 126.8860873478374),

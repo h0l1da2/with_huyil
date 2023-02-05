@@ -6,27 +6,27 @@
 <mapper namespace="com.with.hyuil.dao.UsersMapper">
     <insert id="insertUser" parameterType="UsersVo">
         INSERT INTO USERS
-            ( ID, USER_ID, PASSWORD, EMAIL, TEL, NAME, WHERES, JOIN_DATE, LAST_LOGIN )
+            ( ID, USER_ID, PASSWORD, EMAIL, TEL, NAME, WHERES, JOIN_DATE, LAST_LOGIN, TYPE )
         VALUES
-            ( USERS_SEQ.NEXTVAL, #{userId}, #{password}, #{email}, #{tel}, #{name}, #{wheres}, SYSDATE, SYSDATE )
+            ( USERS_SEQ.NEXTVAL, #{userId}, #{password}, #{email}, #{tel}, #{name}, #{wheres}, SYSDATE, SYSDATE, #{type} )
     </insert>
     <insert id="insertAdmin" parameterType="UsersVo">
         INSERT INTO USERS
-            ( ID, USER_ID, PASSWORD, NAME, JOIN_DATE, LAST_LOGIN )
+            ( ID, USER_ID, PASSWORD, NAME, JOIN_DATE, LAST_LOGIN, TYPE )
         VALUES
-            ( ADMIN_SEQ.NEXTVAL, #{userId}, #{password}, #{name}, SYSDATE, SYSDATE )
+            ( ADMIN_SEQ.NEXTVAL, #{userId}, #{password}, #{name}, SYSDATE, SYSDATE, #{type} )
     </insert>
     <insert id="insertHost" parameterType="UsersVo">
         INSERT INTO USERS
-            ( ID, USER_ID, PASSWORD, EMAIL, TEL, NAME, WHERES, JOIN_DATE, LAST_LOGIN, BUSINESS_ID )
+            ( ID, USER_ID, PASSWORD, EMAIL, TEL, NAME, WHERES, JOIN_DATE, LAST_LOGIN, BUSINESS_ID, TYPE )
         VALUES
-            ( USERS_SEQ.NEXTVAL, #{userId}, #{password}, #{email}, #{tel}, #{name}, #{wheres}, SYSDATE, SYSDATE, #{businessVo.id, jdbcType=VARCHAR} )
+            ( USERS_SEQ.NEXTVAL, #{userId}, #{password}, #{email}, #{tel}, #{name}, #{wheres}, SYSDATE, SYSDATE, #{businessVo.id, jdbcType=VARCHAR}, #{type} )
         </insert>
     <insert id="insertBusiness" parameterType="BusinessVo">
         INSERT INTO BUSINESS
-            ( ID, ACCOUNT, B_NUMBER, BANK )
+            ( ID, ACCOUNT, BANK_NUMBER, BANK )
         VALUES
-            ( BUSINESS_SEQ.NEXTVAL, #{account}, #{bNumber}, #{bank} )
+            ( BUSINESS_SEQ.NEXTVAL, #{account}, #{bankNumber}, #{bank} )
     </insert>
     <insert id="insertRoles" parameterType="RolesVo">
         INSERT INTO ROLES
@@ -43,14 +43,44 @@
         FROM BUSINESS
         WHERE ACCOUNT = #{account}
     </select>
+    <select id="findByBusinessId" parameterType="Long" resultType="BusinessVo">
+        SELECT *
+        FROM BUSINESS
+        WHERE ID = #{id, jdbcType=VARCHAR}
+    </select>
     <select id="findByUserId" parameterType="String" resultType="UsersVo">
         SELECT *
         FROM USERS
         WHERE USER_ID = #{userId}
     </select>
-    <select id="findRoles" parameterType="String" resultType="RolesVo">
+    <select id="findByUserIdAndPassword" parameterType="String" resultType="UsersVo">
+        SELECT *
+        FROM USERS
+        WHERE USER_ID = #{userId} AND PASSWORD = #{password}
+    </select>
+    <select id="findRoles" parameterType="Long" resultType="RolesVo">
         SELECT *
         FROM ROLES
-        WHERE USER_ID = #{userId}
+        WHERE USER_ID = #{userId, jdbcType=VARCHAR}
     </select>
+    <update id="updateLastLogin" parameterType="String">
+        UPDATE USERS
+        SET LAST_LOGIN = SYSDATE
+        WHERE USER_ID = #{userId}
+    </update>
+    <select id="findByUserIdEmail" parameterType="EmailDto" resultType="UsersVo">
+        SELECT *
+        FROM USERS
+        WHERE USER_ID = #{userId} AND EMAIL = #{email}
+    </select>
+    <update id="updateEmail" parameterType="EmailDto">
+        UPDATE USERS
+        SET EMAIL = #{newEmail}
+        WHERE USER_ID = #{userId}
+    </update>
+    <update id="updatePassword" parameterType="PasswordDto">
+        UPDATE USERS
+        SET PASSWORD = #{newPassword}
+        WHERE USER_ID = #{userId}
+    </update>
 </mapper>

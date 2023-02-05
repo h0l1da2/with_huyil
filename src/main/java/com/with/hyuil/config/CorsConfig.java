@@ -22,7 +22,7 @@ public class CorsConfig extends CorsFilter {
         config.addAllowedOriginPattern("*"); // 모든 ip에 응답을 허용할게
         config.addAllowedHeader("*"); // 모든 헤더에 응답을 허용할게
         config.addAllowedMethod("*"); // 모든 post, get, put, delete ...등에서의 요청을 허용할게
-        source.registerCorsConfiguration("/api/**", config);
+        source.registerCorsConfiguration("/**", config); // 모든 패턴에서 적용할게
 
 
         return new CorsFilter(source);

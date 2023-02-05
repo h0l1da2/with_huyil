@@ -1,5 +1,8 @@
 package com.with.hyuil.service.interfaces;
 
+import com.with.hyuil.dto.info.EmailDto;
+import com.with.hyuil.dto.info.PasswordDto;
+import com.with.hyuil.dto.users.BusinessDto;
 import com.with.hyuil.dto.users.UserIdDto;
 import com.with.hyuil.model.RolesVo;
 import com.with.hyuil.model.UsersVo;
@@ -11,5 +14,11 @@ public interface UsersService {
     boolean idCheck(UserIdDto userIdDto);
     int saveHost(UsersVo usersVo);
     UsersVo loginForFind(String userId);
-    RolesVo roleForLogin(String userId);
+    UsersVo login(UsersVo usersVo);
+    RolesVo roleForLogin(Long id);
+    void updateLoginDate(String userId);
+    UsersVo emailValid(EmailDto emailDto);
+    int modifyEmail(EmailDto emailDto);
+    String modifyPassword(PasswordDto passwordDto);
+    BusinessDto findBusinessDto(Long id);
 }

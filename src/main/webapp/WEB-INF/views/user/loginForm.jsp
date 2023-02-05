@@ -24,14 +24,14 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-5">
-					<h2 class="heading-section">위드휴일</h2>
+					<h2 class="heading-section"><a href="<c:url value='/'/>">위드휴일</a></h2>
 				</div>
 			</div>
 			<div class="row justify-content-center">
 				<div class="col-md-6 col-lg-4">
 					<div class="login-wrap p-0">
 		      	<h3 class="mb-4 text-center">당신의 휴일을 디자인하세요</h3>
-		      	<form action="<c:url value="/user/login"/>" class="signin-form" method="POST">
+		      	<form action="<c:url value="/login"/>" class="signin-form" method="POST">
 		      		<div class="form-group">
 		      			<input type="text" id="userId" name="userId" class="form-control" placeholder="Username" required>
 		      		</div>
@@ -41,6 +41,7 @@
 	            </div>
 	            <div class="form-group">
 	            	<button type="submit" class="form-control btn btn-primary submit px-3">로그인</button>
+<%--	            	<button type="button" id="loginBtn" name="loginBtn" class="form-control btn btn-primary submit px-3">로그인</button>--%>
 	            </div>
 	            <div class="form-group d-md-flex">
 	            	<div class="w-50">
@@ -71,10 +72,28 @@
 	</section>
 
 	<script src="/resources/static/loginForm/js/jquery.min.js"></script>
-  <script src="/resources/static/loginForm/js/popper.js"></script>
-  <script src="/resources/static/loginForm/js/bootstrap.min.js"></script>
-  <script src="/resources/static/loginForm/js/main.js"></script>
+	<script src="/resources/static/loginForm/js/popper.js"></script>
+	<script src="/resources/static/loginForm/js/bootstrap.min.js"></script>
+	<script src="/resources/static/loginForm/js/main.js"></script>
+	<script>
+		$( document ).ready( function() {
+			$('#loginBtn').click(function () {
+				let userId = document.getElementById("userId").value;
+				let password = document.getElementById("password-field").value;
 
+				if(userId=="") {
+					alert("아이디를 입력하세요");
+					document.getElementById("userId").focus();
+					return false;
+				}
+				if(password=="") {
+					alert("패스워드를 입력하세요");
+					document.getElementById("password-field").focus();
+					return false;
+				}
+			})
+		})
+	</script>
 	</body>
 </html>
 

@@ -10,7 +10,7 @@
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	
-	<link rel="stylesheet" href="<c:url value='/static/loginForm/css/style.css'/>">
+	<link rel="stylesheet" href="<c:url value='/resources/static/loginForm/css/style.css'/>">
 
 	<style>
 		.join {
@@ -31,7 +31,7 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-5">
-					<h2 class="heading-section">위드휴일</h2>
+					<h2 class="heading-section"><a href="<c:url value='/host'/>">위드휴일</a></h2>
 				</div>
 			</div>
 			<div class="row justify-content-center">
@@ -82,10 +82,10 @@
 		</div>
 	</section>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<script src="<c:url value='/static/loginForm/js/jquery.min.js'/>"></script>
-  <script src="<c:url value='/static/loginForm/js/popper.js'/>"></script>
-  <script src="<c:url value='/static/loginForm/js/bootstrap.min.js'/>"></script>
-  <script src="<c:url value='/static/loginForm/js/main.js'/>"></script>
+	<script src="<c:url value='/resources/static/loginForm/js/jquery.min.js'/>"></script>
+  <script src="<c:url value='/resources/static/loginForm/js/popper.js'/>"></script>
+  <script src="<c:url value='/resources/static/loginForm/js/bootstrap.min.js'/>"></script>
+  <script src="<c:url value='/resources/static/loginForm/js/main.js'/>"></script>
 	<script>
 		function formCheck(form) {
 			if(check == 0) {

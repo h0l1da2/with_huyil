@@ -1,22 +1,26 @@
 package com.with.hyuil.model;
 
-import lombok.Getter;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import java.time.LocalDateTime;
 
-@Getter
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.stereotype.Repository;
+
+import lombok.Data;
+
+@Data
 public class HotelVo {
 
-    private Long id;
-    private String name;
-    private HotelInfoVo hotelInfoVo;
-    private UsersVo usersVo;
-    private ServiceVo serviceVo;
-    private String address;
-    private String zonecode;
-    private String sigungu;
-    private String detail;
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime localDateTime;
+
+	private long id;
+	private String name;
+	private long infoid;
+	private long usersid;
+	private String service;
+	private String zonecode;
+	private String sido;
+	private String sigungu;
+	private String address;
+	private String detail;
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private LocalDateTime localDateTime;
 }
