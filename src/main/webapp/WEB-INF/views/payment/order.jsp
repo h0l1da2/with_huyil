@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -78,11 +80,6 @@ function chkReserve(){
                 <input type="text" class="form-control form-control-lg mt-3" value="${member.tel}" readonly>
             </div>
 
-            <div class="mt-5" onclick="chkReserve()">
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something" required>
-                    <label class="form-check-label" for="check1">숙소이용규칙 및 취소/환불규정 동의</label>
-                </div>
                 <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="check2" name="option2" value="something" required>
                     <label class="form-check-label" for="check2">개인정보 수집 및 이용 동의</label>
@@ -100,10 +97,6 @@ function chkReserve(){
                 <p class="reserve_info">
                     <strong class="reserve_name">숙소이름</strong> <br>
                     ${booking.bu_title}
-                </p>
-                <p class="reserve_info">
-                    <strong class="reserve_name">객실타입</strong> <br>
-                    ${booking.ro_name }
                 </p>
                 <p class="reserve_info">
                     <strong class="reserve_name">체크인</strong> <br>
