@@ -46,7 +46,7 @@
             <ul class="navbar-nav ml-auto">
                 <c:choose>
                     <c:when test="${userId eq null}"><li class="nav-item"><a href="/user/loginForm" class="nav-link title">로그인</a></li></c:when>
-                    <c:when test="${userId ne null}"><li class="nav-item"><a href="<c:url value='/users/info'/>" class="nav-link title">${userId}</a></li></c:when>
+                    <c:when test="${userId ne null}"><li class="nav-item"><a href="<c:url value='/user/info'/>" class="nav-link title">${userId}</a></li></c:when>
                 </c:choose>
             </ul>
         </div>

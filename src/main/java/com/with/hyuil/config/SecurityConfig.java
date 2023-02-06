@@ -67,6 +67,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 //                .mvcMatchers("/users/**")
 //                .hasRole("USER")
+                .mvcMatchers("/user/info/**")
+                .hasAnyRole("USER", "HOST")
                 //.mvcMatchers("/hosts/**")
                 //.hasAnyRole("HOST", "ADMIN")
                 .mvcMatchers("/admin/**")
@@ -83,6 +85,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordParameter("password")
                 .loginProcessingUrl("/login")
                 .successHandler(new UserLoginSuccessHandler(usersService()))
+//                .failureHandler()
                 .permitAll()
 
                 .and()

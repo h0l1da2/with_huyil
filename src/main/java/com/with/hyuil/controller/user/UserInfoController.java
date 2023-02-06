@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @Slf4j
 @Controller
-@RequestMapping("/users/info")
+@RequestMapping("/user/info")
 public class UserInfoController {
 
     private final UsersService usersService;

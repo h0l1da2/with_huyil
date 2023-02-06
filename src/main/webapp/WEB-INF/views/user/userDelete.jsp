@@ -95,7 +95,7 @@
     <div class="collapse navbar-collapse" id="ftco-nav">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item"><a href="<c:url value='/logout'/>" class="nav-link title">로그아웃</a></li>
-        <li class="nav-item"><a href="<c:url value='/users/info'/>" class="nav-link title">${userId}</a></li>
+        <li class="nav-item"><a href="<c:url value='/user/info'/>" class="nav-link title">${userId}</a></li>
       </ul>
     </div>
   </div>
@@ -282,12 +282,13 @@
 
       $.ajax({
         type: 'POST',
-        url: '/users/info/delete',
+        url: '/user/info/delete',
         contentType: "application/json",
         data: deleteDto,
         dataType: 'text',
         success: function (result) {
           if(result=='탈퇴 성공') {
+            alert("탈퇴가 완료되었습니다");
             location.href = "/";
           } else {
             alert(result);
