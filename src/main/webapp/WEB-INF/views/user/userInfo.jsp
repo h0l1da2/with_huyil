@@ -77,7 +77,7 @@
     <div class="collapse navbar-collapse" id="ftco-nav">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item"><a href="<c:url value='/logout'/>" class="nav-link title">로그아웃</a></li>
-        <li class="nav-item"><a href="<c:url value='/users/info'/>" class="nav-link title">${userId}</a></li>
+        <li class="nav-item"><a href="<c:url value='/user/info'/>" class="nav-link title">${userId}</a></li>
       </ul>
     </div>
   </div>
@@ -102,7 +102,7 @@
   <div class="container">
     <div class="row d-flex mb-5 contact-info">
       <div class="col-md-12 mb-4" style="text-align: center;">
-        <label><a href="<c:url value="/users/info" />" class="h3 info-title infoBtn">${username} 회원님</a></label>
+        <label><a href="<c:url value="/user/info" />" class="h3 info-title infoBtn">${username} 회원님</a></label>
       </div>
     </div>
 
@@ -322,7 +322,7 @@
       }
       $.ajax({
         type: 'POST',
-        url: '/users/info/modify/password',
+        url: '/user/info/modify/password',
         contentType: "application/json",
         data: JSON.stringify({password:password, newPassword:newPassword, userId:'${userId}'}),
         dataType: 'text',
@@ -360,7 +360,7 @@
       }
       $.ajax({
         type: 'POST',
-        url: '/users/info/modify/emailValid',
+        url: '/user/info/modify/emailValid',
         contentType: "application/json",
         data: JSON.stringify({email:email, newEmail:newEmail, userId:'${userId}'}),
         dataType: 'text',
@@ -387,7 +387,7 @@
       }
       $.ajax({
         type: 'POST',
-        url: '/users/info/modify/email',
+        url: '/user/info/modify/email',
         contentType: "application/json",
         data: JSON.stringify({newEmail:newEmail, code:code, userId:'${userId}'}),
         dataType: 'text',

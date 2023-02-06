@@ -196,7 +196,7 @@
   <div class="row block-9 info-menu" style="text-align: center;">
     <form action="#" class="bg-white p-5 contact-form">
       <div>
-        <h2><a href="" class="infoBtn">회원 탈퇴</a></h2>
+        <h2><a href="<c:url value="/user/info"/> " class="infoBtn">회원 탈퇴</a></h2>
       </div>
       </ul>
     </form>
