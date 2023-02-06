@@ -24,7 +24,7 @@ function requestPay() {
     pg: "kcp",
     pay_method: "card",
     merchant_uid : 'merchant_'+new Date().getTime(),
-    name : 'Going 결제',
+    name : '위드휴일결제',
     /* amount : ${booking.price}, */
     amount : 100,
     buyer_email : '${email}',
@@ -112,8 +112,8 @@ function chkReserve(){
                 <strong class="reserve_name" style="color: black;">총 결제 금액</strong> <br>
                 <strong class="reserve_name" style="color: #ffc107; font-size: 30px;"><fmt:formatNumber value="${booking.price}" pattern="#,###" /></strong><strong class="reserve_name" style="color: black; font-size: 30px;"> 원</strong> <br>
             </div>
-            <button class="btn" type="button" onclick="requestPay()" id="btn" disabled
-                    style="width: 100%; height: 56px; background: #ffc107; color: white; border: none;">결제하기</button>
+            <button onclick="requestPay()">결제하기</button> <!-- 결제하기 버튼 생성 -->
+
         </div>
 
     </div>
