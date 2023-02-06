@@ -1,0 +1,285 @@
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus,
+select:focus {   
+  border-color: #ffc107;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0) inset, 0 0 8px rgba(0,0,0,0);
+  outline: 0 none;
+}
+
+.pagination > .page-item > a {
+	color:#9d9982;
+}
+
+.pagination > .active > a {
+	background-color: #ffc107 !important;
+	border-color : #ffc107 !important;
+	color:white !important;
+}
+
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover
+{
+    background-color: #ffc107;
+	border-color : #ffc107;
+	color:white;
+	opacity: 0.7;
+}
+
+.row a:hover {
+	color : #ffc107 !important;
+	opacity: 0.7;
+}
+
+#blur {
+  box-shadow: 10px 10px 30px black;
+}
+
+.over-table {
+	overflow-x : hidden;
+	min-width: 600px;
+}
+.over-td
+{
+ max-width: 0;
+ overflow: hidden;
+ text-overflow: ellipsis;
+ white-space: nowrap;
+}
+.default_width {
+	width: 1024px !important;
+	margin: 0 auto !important;
+}
+
+.default_padding {
+	padding: 24px 24px 24px 24px;
+}
+
+.right_text {
+	text-align: right;
+}
+
+.large_text {
+	font-size: 28px;
+	color: black;
+}
+
+.medium_text {
+	font-size: 20px;
+	color: black;
+}
+
+.small_text {
+	font-size: 16px;
+	color: black;
+}
+
+.gray_subtext {
+	font-size: 14px;
+	color: #c8c8c8;
+	font-weight: normal;
+}
+
+.gray_text {
+	color: rgba(19, 19, 19, 0.56);
+}
+
+.gray_line {
+	background-color: rgba(19, 19, 19, 0.56);
+}
+
+.grey_line {
+	margin: 0 12px 0 12px;
+	color: rgba(0, 0, 0, 0.08);
+}
+
+.default_btn {
+	background-color: #ffc107;
+	border: none;
+	font-size:18px;
+	color: white;
+	font-weight: bold;
+	height: 56px;
+	width: 100%;
+}
+
+.default_btn:hover {
+	opacity: 0.7;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+	color: #495057;
+	background-color: #fff;
+	border-color: rgba(0, 0, 0, 0.08) rgba(0, 0, 0, 0.08) #fff !important;
+}
+
+.default_btn:disabled {
+	background-color: gray;
+}
+
+
+.navbar {
+	content: none !important;
+}
+
+.footer-box {
+	width : 1024px;
+	padding : 30px 30px 30px 30px;
+	margin : 0 auto;
+	bottom : 0;
+}
+
+.footer-logo { 
+	width : 120px;
+}
+
+.container-fluid:before, .container-fluid:after, .container-fluid {
+	content: none !important;
+}
+
+
+.non_deco {
+	text-decoration: none !important;
+}
+
+.reserve_detail {
+	width: 1024px;
+	margin: 30px auto 0 auto;
+}
+
+.reserve_top-img {
+	width: 490px;
+}
+
+.address, .user_profile, .comment, .reserve_name {
+	color: rgba(19, 19, 19, 0.56);
+}
+
+.event-bg {
+	background: linear-gradient(to right, #d84f00c4 0%, #ff004ccb 100%);
+}
+
+.reserve_room {
+	width: 1024px;
+	height: 275px;
+	overflow: hidden;
+	position: relative;
+	margin: 12px 0 12px 0;
+	padding: 23px 24px 24px 424px;
+	border: 1px solid rgba(0, 0, 0, 0.08);
+	border-radius: 4px;
+}
+
+.nav-tabs .active {
+	color: #ffc107 !important;
+	font-weight: bold;
+}
+
+.reserve_pic_view {
+	display: inline-block;
+	position: absolute;
+	top: 23px;
+	left: 23px;
+	width: 376px;
+	height: 226px;
+}
+
+.reserve_room_title {
+	display: block;
+	height: 64px;
+	padding: 0;
+	font-size: 30px;
+	font-weight: bold;
+	line-height: 1;
+}
+
+.reserve_room_btn {
+	width: 100%;
+	height: 48px;
+	margin-top: 20px;
+}
+
+.reserve_room_price {
+	border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+	padding-bottom: 10px;
+}
+
+.form-check-input:checked {
+	background-color: #ffc107;
+}
+
+.reserve {
+	background: rgba(235, 235, 235, 0.507);
+	margin-top: 39px;
+	font-size: 16px;
+	color: rgba(0, 0, 0, 0.87);
+}
+
+.reserve_body {
+	margin: 39px 24px 0 24px;
+	padding: 0 0 31px 0;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.reserve_left {
+	width: 564px !important;
+	margin: 40px 88px 0 0;
+}
+
+.reserve_name {
+	font-size: 20px;
+}
+
+.reserve_info {
+	font-size: 18px;
+	padding-bottom: 10px;
+}
+
+.form-check-input:checked {
+	background-color: #ffc107 !important;
+	border-color: #ffc107 !important;
+}
+
+.detail_checkin_1 {
+	border: 0;
+	background-color: #ffffff;
+	margin-top: 6px;
+	padding-left: 12px;
+	padding-right: 12px;
+	height: 48px;
+	width: 100%;
+	font-size: 20px;
+	text-align: center;
+	color: black;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	flex-wrap: wrap;
+}
+
+.like_icon{
+	font-size : 50px !important;
+	top:0;
+	color : red;
+	float : right;
+	cursor: pointer;
+	opacity: 0.7;
+}
+.like_icon:hover{
+	opacity: 0.4;
+}
