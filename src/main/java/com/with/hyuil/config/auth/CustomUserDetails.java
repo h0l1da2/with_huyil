@@ -35,11 +35,8 @@ public class CustomUserDetails implements UserDetails, OAuth2User {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        log.info("sadsad");
         Collection<GrantedAuthority> authorities = new ArrayList<>();
-        log.info("222");
         authorities.add(new SimpleGrantedAuthority(usersVo.getRolesVo().getRoleName().toString()));
-        log.info("333");
 
         return authorities;
     }
@@ -61,7 +58,7 @@ public class CustomUserDetails implements UserDetails, OAuth2User {
 
     @Override
     public boolean isAccountNonLocked() {
-        if (usersVo.getOut().startsWith(Out.STOP.toString())) {
+        if (usersVo.getOut() != null && usersVo.getOut().startsWith(Out.STOP.toString())) {
             return false;
         }
         return true;
