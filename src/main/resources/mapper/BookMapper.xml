@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.with.hyuil.dao.BookMapper">
+    <select id="findById" resultType="BookVo" parameterType="Long">
+        SELECT *
+        FROM BOOK
+        WHERE ID = #{id, jdbcType=VARCHAR}
+    </select>
+    <select id="findAllByUserId" resultType="BookListDto" parameterType="BookSearchDto">
+        SELECT *
+        FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER () AS TOTCNT
+        FROM (
+        SELECT B.ID, H.NAME AS HOTEL, B.COUNT, TO_CHAR(B.CHECK_IN, 'YYMMDD') AS CHECK_IN,
+               TO_CHAR(B.CHECK_OUT, 'YYMMDD') AS CHECK_OUT, R.NAME ROOM, B.PLEASE
+        FROM HOTEL H, BOOK B, ROOM R, ORDERS O
+        WHERE H.ID = R.HOTEL_ID
+        AND R.ID = B.ROOM_ID
+        AND B.USER_ID = #{userId, jdbcType=VARCHAR}
+        AND B.STATUS = #{status}
+        AND B.ORDER_ID = O.ID
+        AND O.PAY_COMPLETE_ID IS NOT NULL
+        ORDER BY B.CHECK_IN) A)
+        WHERE RNUM >= #{viewPage}
+        AND RNUM &lt;= #{limit}
+        ORDER BY ID
+    </select>
+    <select id="countForBookList" resultType="Integer" parameterType="BookSearchDto">
+        SELECT COUNT(*)
+        FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER () AS TOTCNT
+        FROM (
+        SELECT B.ID, H.NAME AS HOTEL, B.COUNT, TO_CHAR(B.CHECK_IN, 'YYMMDD') AS CHECK_IN,
+               TO_CHAR(B.CHECK_OUT, 'YYMMDD') AS CHECK_OUT, R.NAME ROOM, B.PLEASE
+        FROM HOTEL H, BOOK B, ROOM R, ORDERS O
+        WHERE H.ID = R.HOTEL_ID
+        AND R.ID = B.ROOM_ID
+        AND B.USER_ID = #{userId, jdbcType=VARCHAR}
+        AND B.STATUS = #{status}
+        AND B.ORDER_ID = O.ID
+        AND O.PAY_COMPLETE_ID IS NOT NULL
+        ORDER BY B.CHECK_IN) A)
+        WHERE RNUM >= #{viewPage}
+        AND RNUM &lt;= #{limit}
+        ORDER BY ID
+    </select>
+</mapper>

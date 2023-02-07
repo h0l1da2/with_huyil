@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.with.hyuil.dto.hotel.HotelListDto;
-import com.with.hyuil.dto.hotel.HotelPageHandler;
+import com.with.hyuil.dto.hotel.GlobalPageHandler;
 import com.with.hyuil.dto.hotel.HotelSearchDto;
 import com.with.hyuil.service.interfaces.HotelService;
 
@@ -46,9 +46,9 @@ public class HotelSearchController {
         List<HotelListDto> hotelList = hotelService.searchHotels(hotelSearchDto);
         log.info("hotelListDto = {}", hotelList);
         try {
-            HotelPageHandler hotelPageHandler = new HotelPageHandler(hotelList.get(0).getTotcnt(), 1);
-            log.info("핸들러 = {}", hotelPageHandler);
-            model.addAttribute("ph", hotelPageHandler);
+            GlobalPageHandler globalPageHandler = new GlobalPageHandler(hotelList.get(0).getTotcnt(), 1);
+            log.info("핸들러 = {}", globalPageHandler);
+            model.addAttribute("ph", globalPageHandler);
             model.addAttribute(hotelList);
         } catch (IndexOutOfBoundsException e) {
             log.info("검색 결과가 없습니다");
