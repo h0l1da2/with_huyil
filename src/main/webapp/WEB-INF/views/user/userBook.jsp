@@ -35,33 +35,39 @@
       font-style: normal;
     }
     .info-menu {
+      padding-left: 130px;
       display : flex;
       justify-content: center;
-      align-items : center;
-    }
-    .hide {
-      display: none;
-    }
-    .infoBtn {
-      font-size: 28px;
-      color: black;
-    }
-    .menuBtn {
-      cursor: pointer;
-      margin: 0px 0px 8px;
+      width: 1000px;
     }
     .info-title {
-      font-size: 50px;
+      font-size: 40px;
     }
-    .text-type {
-      color: #dc3545;
-      display: none;
+    .for-label {
+      color: #000000;
+      font-size: 20px;
     }
-    .forSpan {
-      margin-bottom: 15px;
+    .delete-form {
+      padding-top: 25px;
+      padding-left: 25px;
     }
-    .codeSend {
-      display: none;
+    .contact-form {
+      margin-bottom: 50px;
+    }
+    .book-menu {
+      word-spacing: 100px;
+      margin-bottom: 30px;
+    }
+    .hotel-title {
+      text-align: center;
+      font-size: 33px;
+    }
+    .hotel-img {
+      width: 550px;
+      height: 250px;
+    }
+    .hotel-money {
+      font-size: 25px;
     }
 
   </style>
@@ -77,7 +83,7 @@
     <div class="collapse navbar-collapse" id="ftco-nav">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item"><a href="<c:url value='/logout'/>" class="nav-link title">로그아웃</a></li>
-        <li class="nav-item"><a href="<c:url value='/users/info'/>" class="nav-link title">${userId}</a></li>
+        <li class="nav-item"><a href="<c:url value='/user/info'/>" class="nav-link title">${userId}</a></li>
       </ul>
     </div>
   </div>
@@ -90,7 +96,7 @@
     <div class="row no-gutters slider-text d-flex align-itemd-end justify-content-center">
       <div class="col-md-9 ftco-animate text-center d-flex align-items-end justify-content-center">
         <div class="text">
-          <h1 class="mb-4 bread">회원 관리</h1>
+          <h1 class="mb-4 bread">예약 내역</h1>
         </div>
       </div>
     </div>
@@ -100,106 +106,47 @@
 
 <section class="ftco-section contact-section bg-light">
   <div class="container">
-    <div class="row d-flex mb-5 contact-info">
-      <div class="col-md-12 mb-4" style="text-align: center;">
-        <label><a href="<c:url value="/user/info" />" class="h3 info-title infoBtn">${username} 회원님</a></label>
-      </div>
-    </div>
-
-    <div class="row block-9 info-menu" style="text-align: center;">
+    <div class="col-md-12 mb-4" style="text-align: center;"><label class="h3 book-menu"><a href="<c:url value="/user/info/book"/>">현재예약</a> <a href="<c:url value="/user/info/book/complete"/>">지난예약</a> <a href="<c:url value="/user/info/book/cancel"/>">취소예약</a></label></div>
+    <c:forEach var="bookList" items="${bookListDtoList}">
+    <div class="row block-9 info-menu">
+      <!-- <div class="col-md-6 order-md-last d-flex"> -->
       <form action="#" class="bg-white p-5 contact-form">
-        <div>
-          <h2><a href="<c:url value="/user/info/book"/>" class="infoBtn">예약 내역</a></h2>
+        <div class="delete-form">
+          <div class="form-group">
+            <label class="title for-label hotel-title">
+              <a href="blog-single.html" class="block-20 hotel-img" style="background-image: url('dog.jpeg');"></a>
+              ${bookList.hotel}</label>
+          </div>
+          <div class="form-group">
+            <label class="title for-label">인원 ${bookList.count} 명</label>
+          </div>
+          <div class="form-group">
+            <label class="title for-label">일정 ${bookList.checkIn} - ${bookList.checkOut}</label>
+          </div>
+          <div class="form-group">
+            <label class="title for-label">${bookList.room}</label>
+          </div>
+          <div class="form-group">
+            <label class="title for-label">${bookList.please}</label>
+          </div>
         </div>
-        </ul>
       </form>
     </div>
-
-    <div class="row block-9 info-menu" style="text-align: center;">
-      <form action="#" class="bg-white p-5 contact-form">
-        <div class="menu">
-          <h2><label class="h3 menuBtn">이메일 변경</label></h2>
-          <ul class="hide">
-            <div class="form-group">
-              <input type="text" id="email" class="form-control forSpan" placeholder="기존 이메일">
-              <span class="title text-type" id="emailFail" name="emailFail">기존 이메일이 다릅니다</span>
-            </div>
-            <div class="form-group">
-              <input type="text" id="newEmail" class="form-control" placeholder="변경 이메일">
-            </div>
-            <div class="form-group">
-              <input type="button" id="emailSend" value="이메일 전송" class="btn btn-primary py-3 px-5">
-            </div>
-            <div class="hide sendBtn">
-              <div class="form-group">
-                <input type="text" id="emailCode" class="form-control forSpan" placeholder="이메일 코드 입력">
-                <span class="title text-type codeSend">코드를 전송했습니다 입력해주세요</span>
-              </div>
-              <div class="form-group">
-                <input type="button" id="codeSend" value="코드 확인" class="btn btn-primary py-3 px-5">
-              </div>
-            </div>
+    </c:forEach>
+    <div class="row mt-5">
+      <div class="col text-center">
+        <div class="block-27">
+          <ul>
+              <c:if test="${ph.showPrev}"><li><a href="<c:url value="/user/info/book${ph.getPageInfo(ph.beginPage-1)}"/>">&lt;</a></li></c:if>
+            <c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
+            <li<c:if test="${ph.viewPage eq i}"> class="active"</c:if>>
+                <a href="<c:url value="/user/info/book${ph.getPageInfo(i)}"/>">${i}</a></li>
+            </c:forEach>
+            <c:if test="${ph.showNext}"><li><a href="<c:url value="/user/info/book${ph.getPageInfo(ph.endPage+1)}"/>">&gt;</a></li></c:if>
           </ul>
-      </form>
+        </div>
+      </div>
     </div>
-
-    <form action="#" class="bg-white p-5 contact-form">
-      <div class="menu">
-        <h2><label class="h3 menuBtn">비밀번호 변경</label></h2>
-        <ul class="hide">
-          <div class="form-group">
-            <input type="password" id="password" class="form-control" placeholder="기존 패스워드">
-            <span class="title text-type" id="passwordFail" name="passwordFail">기존 패스워드를 확인해주세요</span>
-          </div>
-          <div class="form-group">
-            <input type="password" id="newPassword" class="form-control" placeholder="변경 패스워드">
-          </div>
-          <div class="form-group">
-            <input type="password" id="newPasswordCheck" class="form-control" placeholder="패스워드 확인">
-            <span class="title text-type" id="newPasswordFail" name="newPasswordFail">패스워드가 서로 다릅니다</span>
-          </div>
-          <div class="form-group">
-            <input type="button" id="passwordUpdate" value="비밀번호 변경" class="btn btn-primary py-3 px-5">
-          </div>
-        </ul>
-      </div>
-    </form>
-
-  </div>
-
-  <div class="row block-9 info-menu" style="text-align: center;">
-    <form action="#" class="bg-white p-5 contact-form">
-      <div class="menu">
-        <h2><label class="h3 menuBtn">SNS 연결 정보</label></h2>
-        <ul class="hide">
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="카카오톡">
-          </div>
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="페이스북">
-          </div>
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="구글">
-          </div>
-          <div class="form-group">
-            <input type="submit" value="연결 끊기" class="btn btn-primary py-3 px-5">
-          </div>
-        </ul>
-      </div>
-    </form>
-  </div>
-
-  <div class="row block-9 info-menu" style="text-align: center;">
-    <form action="#" class="bg-white p-5 contact-form">
-      <div>
-        <h2><a href="" class="infoBtn">회원 탈퇴</a></h2>
-      </div>
-      </ul>
-    </form>
-  </div>
-  </div>
-  </div>
-  </div>
   </div>
 </section>
 
