@@ -21,4 +21,5 @@ public interface UsersService {
     int modifyEmail(EmailDto emailDto);
     String modifyPassword(PasswordDto passwordDto);
     BusinessDto findBusinessDto(Long id);
+    UsersVo findByUserid(String userId);
 }

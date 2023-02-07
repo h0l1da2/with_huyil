@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
@@ -22,5 +21,10 @@
 		values
 		(seq_room.nextval, #{hotel_id}, #{name}, #{content}, #{max}, #{bed}, #{n_price}, #{h_price})
 	</insert>
+	
+	<select id="roomCount" parameterType="long" resultType="Integer">
+		select count(*) as count from room where hotel_id = #{hotel_id}
+	</select>
+
 
 </mapper>

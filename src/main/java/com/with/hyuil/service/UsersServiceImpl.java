@@ -145,4 +145,9 @@ public class UsersServiceImpl implements UsersService {
     private String passwordEncoding(String password) {
         return passwordEncoder.encode(password);
     }
+    
+    @Override
+    public UsersVo findByUserid(String userId) {
+    	return usersMapper.findByUserId(userId);
+    }
 }

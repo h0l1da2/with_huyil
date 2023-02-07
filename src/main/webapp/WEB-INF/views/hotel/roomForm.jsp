@@ -41,8 +41,8 @@ function setThumbnail(event){
 
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a href="/host" class="nav-link title">호스트등록</a></li>
-                <li class="nav-item"><a href="/user/login" class="nav-link title">로그인</a></li>
+                <li class="nav-item"><a href="/host" class="nav-link">호스트등록</a></li>
+                <li class="nav-item"><a href="/user/login" class="nav-link">로그인</a></li>
             </ul>
         </div>
     </div>
@@ -82,7 +82,7 @@ function setThumbnail(event){
     
     <label for="exampleFormControlInput1">객실소개 이미지(1장)</label>
 	<input class="form-control form-control-user" type="file" 
-	name="product_image" id="product_image" onchange="setThumbnail(event);" style="width:300px; height:50px;"> <br>
+	name="uploadFile" id="product_image" onchange="setThumbnail(event);" style="width:300px; height:50px;"> <br>
 	<div class="product_title">
 		<div class="product-img-div">
 			<div class="image_thumnail" id="image_thumnail"></div>

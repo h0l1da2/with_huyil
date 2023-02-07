@@ -44,10 +44,8 @@
 
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-                <c:choose>
-                    <c:when test="${userId eq null}"><li class="nav-item"><a href="/user/loginForm" class="nav-link title">로그인</a></li></c:when>
-                    <c:when test="${userId ne null}"><li class="nav-item"><a href="<c:url value='/users/info'/>" class="nav-link title">${userId}</a></li></c:when>
-                </c:choose>
+                <li class="nav-item"><a href="/host" class="nav-link">호스트등록</a></li>
+                <li class="nav-item"><a href="/user/login" class="nav-link">로그인</a></li>
             </ul>
         </div>
     </div>
@@ -80,9 +78,9 @@
           			</div>
           		</div>
           		<div class="col-md-12 room-single mt-4 mb-5 ftco-animate">
-          			<h2 class="mb-4">호텔명 <span>- (사용가능한 방 갯수)</span></h2>
-          					<p>별점</p>
-    						<p>호텔소개글</p>
+          			<h2 class="mb-4">${hotelvo.Name }<span>${count }개</span></h2>
+          					<p>${hotelvo.Star }</p>
+    						<p>${infovo.Intro}</p>
 						</div>
 						<table>
 						<tr> <td style="padding: 0 20px 0 20px;">객실선택</td> <td style="padding: 0 20px 0 20px;">위치/교통</td> 

@@ -20,4 +20,8 @@
 		</selectKey>
 		insert into hotel_info values(#{id}, #{traffic}, #{intro}, #{spot}, #{policy}, #{checkIn}, #{checkOut})
 	</insert>
+	
+	<select id="findByInfoId" parameterType="long" resultType="HotelInfoVo">
+		select * from hotel_info where id = #{hotel_id}
+	</select>
 </mapper>
