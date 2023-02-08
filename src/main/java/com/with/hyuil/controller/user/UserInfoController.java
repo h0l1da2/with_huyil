@@ -2,7 +2,6 @@ package com.with.hyuil.controller.user;
 
 import com.with.hyuil.config.auth.CustomUserDetails;
 import com.with.hyuil.dto.hotel.GlobalPageHandler;
-import com.with.hyuil.dto.hotel.HotelListDto;
 import com.with.hyuil.dto.info.*;
 import com.with.hyuil.model.UsersVo;
 import com.with.hyuil.model.enumaration.Status;
@@ -155,10 +154,7 @@ public class UserInfoController {
     }
 
     private static void getPage(BookSearchDto bookSearchDto, Model model, List<BookListDto> bookList) {
-        log.info("ㅌ토탈카운트 = {}", bookList.get(0).getTotcnt());
-        log.info("뷰페이지 = {}", bookSearchDto.getViewPage());
         GlobalPageHandler globalPageHandler = new GlobalPageHandler(bookList.get(0).getTotcnt(), bookSearchDto.getNowPage());
-        log.info("핸들러 = {}", globalPageHandler);
         model.addAttribute("ph", globalPageHandler);
         model.addAttribute(bookList);
     }
@@ -166,7 +162,7 @@ public class UserInfoController {
     private List<BookListDto> getBookList(BookSearchDto bookSearchDto, UsersVo usersVo, Status complete) {
         bookSearchDto.setUserId(usersVo.getId());
         bookSearchDto.setStatus(complete);
-        List<BookListDto> bookList = bookService.bookList(bookSearchDto);
+        List<BookListDto> bookList = bookService.userBookList(bookSearchDto);
         return bookList;
     }
 

@@ -26,7 +26,7 @@ public class GlobalPageHandler {
         limitPost = viewPage* postCount < totalPost ? viewPage* postCount : totalPost;
         offsetPost = viewPage* postCount -5;
         beginPage = (viewPage/ postCount *(postCount -1))+1;
-        endPage = totalPost*0.1 >= 0.6 ? totalPage : beginPage+listSize -1;
+        endPage = totalPost/listSize > postCount ? beginPage+listSize-1 : totalPage;
 
         showNext = totalPage != endPage;
         showPrev = beginPage != 1;
