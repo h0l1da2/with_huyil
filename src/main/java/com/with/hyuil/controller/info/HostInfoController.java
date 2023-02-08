@@ -1,4 +1,4 @@
-package com.with.hyuil.controller.user;
+package com.with.hyuil.controller.info;
 
 import com.with.hyuil.config.auth.CustomUserDetails;
 import com.with.hyuil.dto.hotel.GlobalPageHandler;
@@ -96,9 +96,9 @@ public class HostInfoController {
             getPage(bookSearchDto, model, bookList);
         } catch (IndexOutOfBoundsException e) {
             log.info("검색 결과 없음");
-            return "host/hostBook";
+            return "book/hostBook";
         }
-        return "host/hostBook";
+        return "book/hostBook";
     }
 
     @ResponseBody
@@ -115,9 +115,9 @@ public class HostInfoController {
             getPage(bookSearchDto, model, bookList);
         } catch (IndexOutOfBoundsException e) {
             log.info("검색 결과 없음");
-            return "host/hostBookComplete";
+            return "book/hostBookComplete";
         }
-        return "host/hostBookComplete";
+        return "book/hostBookComplete";
     }
 
     private List<HostBookListDto> getBookList(BookSearchDto bookSearchDto, Status complete, UsersVo usersVo) {

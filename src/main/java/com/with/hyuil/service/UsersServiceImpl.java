@@ -21,10 +21,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -89,7 +86,7 @@ public class UsersServiceImpl implements UsersService {
     public UsersVo login(UsersVo usersVo) {
         UsersVo user = usersMapper.findByUserId(usersVo.getUserId());
         if (user == null) {
-            throw new RuntimeException("유저가없음 아이디");
+            throw new NoSuchElementException("유저가없음 아이디");
         }
         boolean passMatches = passwordEncoder.matches(usersVo.getPassword(), user.getPassword());
         if (!passMatches) {
@@ -124,22 +121,38 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public String modifyPassword(PasswordDto passwordDto) {
-        UsersVo byUserId = usersMapper.findByUserId(passwordDto.getUserId());
-        if (byUserId == null) {
-            return "회원 아이디를 확인해주세요";
+        UsersVo byUserId = null;
+        try {
+            log.info("1 passwordDto = {}",passwordDto);
+            byUserId = usersMapper.findByUserId(passwordDto.getUserId());
+            log.info("2 byUserId", byUserId);
+            boolean matches = passwordEncoder.matches(passwordDto.getPassword(), byUserId.getPassword());
+            if (!matches) {
+                return "기존 비밀번호가 다릅니다";
+            }
+            String newPassword = passwordEncoder.encode(passwordDto.getNewPassword());
+            passwordDto.setNewPassword(newPassword);
+            int i = usersMapper.updatePassword(passwordDto);
+            if (i == 0) {
+                return "변경 오류";
+            }
+            return "변경 완료";
+        } catch (NullPointerException e) {
+            return "아이디가 다릅니다";
         }
-        boolean matches = passwordEncoder.matches(passwordDto.getPassword(), byUserId.getPassword());
-        if (!matches) {
-            return "기존 비밀번호가 다릅니다";
-        }
+    }
+
+    @Override
+    public String findPassword(PasswordDto passwordDto) {
         String newPassword = passwordEncoder.encode(passwordDto.getNewPassword());
         passwordDto.setNewPassword(newPassword);
         int i = usersMapper.updatePassword(passwordDto);
         if (i == 0) {
             return "변경 오류";
         }
-        return "변경 완료";
+        return passwordDto.getPassword();
     }
+
     @Override
     public BusinessDto findBusinessDto(Long id) {
         BusinessVo businessVo = usersMapper.findByBusinessId(id);

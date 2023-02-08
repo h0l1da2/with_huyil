@@ -21,6 +21,7 @@ public interface UsersService {
     UsersVo emailValid(EmailDto emailDto);
     int modifyEmail(EmailDto emailDto);
     String modifyPassword(PasswordDto passwordDto);
+    String findPassword(PasswordDto passwordDto);
     BusinessDto findBusinessDto(Long id);
     String deleteUser(DeleteDto deleteDto);
 }
