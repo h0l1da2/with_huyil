@@ -1,5 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	request.setCharacterEncoding("UTF-8");
+	String error = request.getParameter("error");
+%>
 <html lang="ko">
   <head>
   	<title>위드휴일 - 로그인</title>
@@ -17,6 +21,11 @@
 			margin: 10px;
 			margin-left: 4px;
 		}
+		.text-type {
+			color: #ffffff;
+			font-weight: bold;
+			vertical-align: middle;
+		}
 	</style>
 	</head>
 	<body class="img js-fullheight" style="background-image: url(<c:url value='/resources/static/loginForm/images/bg.jpg'/>);">
@@ -31,7 +40,8 @@
 				<div class="col-md-6 col-lg-4">
 					<div class="login-wrap p-0">
 		      	<h3 class="mb-4 text-center">당신의 휴일을 디자인하세요</h3>
-		      	<form action="<c:url value="/login"/>" class="signin-form" method="POST">
+						<span class="title text-type" <c:if test="<%= error == null %>"> hidden </c:if>>아이디 또는 비밀번호가 틀립니다</span>
+						<form action="<c:url value="/login"/>" class="signin-form" method="POST">
 		      		<div class="form-group">
 		      			<input type="text" id="userId" name="userId" class="form-control" placeholder="Username" required>
 		      		</div>
