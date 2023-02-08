@@ -60,9 +60,6 @@
 									<span class="checkmark"></span>
 								</label>
 							</div>
-							<div class="w-50 text-md-right">
-								<a href="#" style="color: #fff">비밀번호찾기</a>
-							</div>
 						</div>
 					</form>
 					<div class="social d-flex text-center">
