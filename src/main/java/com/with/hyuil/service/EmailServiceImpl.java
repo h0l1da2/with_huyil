@@ -56,8 +56,17 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public MimeMessage idMainForm(String toEmail, String userId) {
-        return null;
+    public MimeMessage idMailForm(String title, String userId, String toEmail) {
+        try {
+            message = javaMailSender.createMimeMessage();
+            message.addRecipients(Message.RecipientType.TO, toEmail);
+            message.setSubject(title);
+            message.setFrom(fromEmail);
+            message.setText(contextId(title, userId), "UTF-8", "html");
+        } catch (MessagingException e) {
+            log.error("이메일 전송 오류 = {}", e);
+        }
+        return message;
     }
 
     @Override
@@ -75,14 +84,16 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public String idMailSend(String toEmail, String id) {
-        return null;
+    public String idMailSend(String title, String userId, String toEmail) {
+        message = idMailForm(title, userId, toEmail);
+        javaMailSender.send(message);
+        return "전송완료";
     }
 
     @Override
     public String contextJoin(String title, String code) {
         return  "<!DOCTYPE html>\n" +
-                "<html lang=\"en\">\n" +
+                "<html lang=\"ko\">\n" +
                 "<head>\n" +
                 "    <meta charset=\"UTF-8\">\n" +
                 "</head>\n" +
@@ -97,7 +108,7 @@ public class EmailServiceImpl implements EmailService {
     @Override
     public String contextPwd(String password) {
         return  "<!DOCTYPE html>\n" +
-                "<html lang=\"en\">\n" +
+                "<html lang=\"ko\">\n" +
                 "<head>\n" +
                 "    <meta charset=\"UTF-8\">\n" +
                 "</head>\n" +
@@ -111,8 +122,18 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public String contextId(String id) {
-        return null;
+    public String contextId(String title, String userId) {
+        return  "<!DOCTYPE html>\n" +
+                "<html lang=\"ko\">\n" +
+                "<head>\n" +
+                "    <meta charset=\"UTF-8\">\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "  <h3>"+title+"</h3>\n" +
+                "  <p>아이디는 \n" +
+                "  <h1>"+userId+"</h1> 입니다</p>\n" +
+                "</body>\n" +
+                "</html>";
     }
 
     @Override
@@ -126,8 +147,4 @@ public class EmailServiceImpl implements EmailService {
         randomCode = buffer.append(code).toString();
     }
 
-    @Override
-    public void createPassword() {
-
-    }
 }

@@ -6,14 +6,13 @@ public interface EmailService {
 
     MimeMessage joinMailForm(String title, String toEmail);
     MimeMessage passwordMainForm(String title, String newPwd, String toEmail);
-    MimeMessage idMainForm(String toEmail, String userId);
+    MimeMessage idMailForm(String title, String userId, String toEmail);
     String passwordMailSend(String title, String newPwd, String toEmail);
     String codeMailSend(String title, String toEmail);
-    String idMailSend(String toEmail, String id);
+    String idMailSend(String title, String userId, String toEmail);
     String contextJoin(String title, String code);
     String contextPwd(String code);
-    String contextId(String id);
+    String contextId(String title, String id);
     void createCode();
-    void createPassword();
 
 }
