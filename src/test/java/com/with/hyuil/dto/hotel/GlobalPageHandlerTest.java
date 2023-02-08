@@ -19,8 +19,8 @@ class GlobalPageHandlerTest {
     private boolean showPrev = false;
     @Test
     void page() {
-        int totalPost = 14;
-        int viewPage = 3;
+        int totalPost = 3;
+        int viewPage = 1;
         BookSearchDto bookSearchDto = new BookSearchDto();
         bookSearchDto.setViewPage(viewPage);
         bookSearchDto.setLimit(totalPost);
@@ -39,15 +39,7 @@ class GlobalPageHandlerTest {
         log.info("getEndPage = {}", globalPageHandler.getEndPage());
         log.info("isShowNext = {}", globalPageHandler.isShowNext());
         log.info("isShowPrev = {}", globalPageHandler.isShowPrev());
-        boolean i = true;
-        int a = globalPageHandler.getBeginPage();
-        while (i) {
-            log.info("헤헤헤헤헤");
-            a++;
-            if ( a == globalPageHandler.getEndPage()) {
-                i=false;
-            }
-        }
+
     }
 
     @Test
