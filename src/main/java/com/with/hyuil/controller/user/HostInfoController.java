@@ -103,7 +103,7 @@ public class HostInfoController {
 
     @ResponseBody
     @PostMapping("/book/cancel")
-    public String cancelBook(@AuthenticationPrincipal CustomUserDetails userDetails, @RequestBody HostBookListDto hostBookListDto) {
+    public String cancelBook(@RequestBody HostBookListDto hostBookListDto) {
         return bookService.hostBookCancel(hostBookListDto.getId());
     }
 
