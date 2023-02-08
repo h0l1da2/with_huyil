@@ -1,4 +1,4 @@
-package com.with.hyuil.controller.user;
+package com.with.hyuil.controller.info;
 
 import com.with.hyuil.config.auth.CustomUserDetails;
 import com.with.hyuil.dto.hotel.GlobalPageHandler;

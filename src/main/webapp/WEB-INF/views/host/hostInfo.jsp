@@ -331,12 +331,12 @@
         data: JSON.stringify({password:password, newPassword:newPassword, userId:'${userId}'}),
         dataType: 'text',
         success: function (result) {
-          if(result=='변경 완료') {
+          if(result=='아이디가 다릅니다' || result=='기존 비밀번호가 다릅니다' || result=='변경 오류') {
+            alert(result);
+          } else {
             alert("변경이 완료되었습니다")
             $('#newPasswordFail').css('display', 'none');
             $('#passwordFail').css('display', 'none');
-          } else {
-            alert(result);
           }
         },
         error: function(result) {

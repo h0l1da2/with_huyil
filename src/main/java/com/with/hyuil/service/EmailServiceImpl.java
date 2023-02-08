@@ -42,8 +42,17 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public MimeMessage passwordMainForm(String toEmail) {
-        return null;
+    public MimeMessage passwordMainForm(String title, String newPwd, String toEmail) {
+        try {
+            message = javaMailSender.createMimeMessage();
+            message.addRecipients(Message.RecipientType.TO, toEmail);
+            message.setSubject(title);
+            message.setFrom(fromEmail);
+            message.setText(contextPwd(newPwd), "UTF-8", "html");
+        } catch (MessagingException e) {
+            log.error("이메일 전송 오류 = {}", e);
+        }
+        return message;
     }
 
     @Override
@@ -52,8 +61,10 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public String passwordMailSend(String toEmail) {
-        return null;
+    public String passwordMailSend(String title, String newPwd, String toEmail) {
+        message = passwordMainForm(title, newPwd, toEmail);
+        javaMailSender.send(message);
+        return "전송완료";
     }
 
     @Override
@@ -84,8 +95,19 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public String contextPwd(String code) {
-        return null;
+    public String contextPwd(String password) {
+        return  "<!DOCTYPE html>\n" +
+                "<html lang=\"en\">\n" +
+                "<head>\n" +
+                "    <meta charset=\"UTF-8\">\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "  <h3>"+"임시 비밀번호"+"</h3>\n" +
+                "  <p>새로 로그인 하신 후</br>" +
+                "  반드시 비밀번호를 변경해주세요</p>\n" +
+                "  <h1>"+password+"</h1>\n" +
+                "</body>\n" +
+                "</html>";
     }
 
     @Override
