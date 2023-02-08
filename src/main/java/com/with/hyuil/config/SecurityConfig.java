@@ -3,6 +3,7 @@ package com.with.hyuil.config;
 import com.with.hyuil.config.auth.CustomOAuth2UserService;
 import com.with.hyuil.config.auth.CustomUserDetailsService;
 import com.with.hyuil.config.handler.AuthenticationExceptionHandler;
+import com.with.hyuil.config.handler.UserLoginFailureHandler;
 import com.with.hyuil.config.handler.UserLoginSuccessHandler;
 import com.with.hyuil.dao.UsersMapper;
 import com.with.hyuil.service.UsersServiceImpl;
@@ -85,7 +86,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordParameter("password")
                 .loginProcessingUrl("/login")
                 .successHandler(new UserLoginSuccessHandler(usersService()))
-//                .failureHandler()
+                .failureHandler(new UserLoginFailureHandler())
                 .permitAll()
 
                 .and()
@@ -101,6 +102,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .oauth2Login()
                 .loginPage("/user/loginForm")
                 .successHandler(new UserLoginSuccessHandler(usersService()))
+                .failureHandler(new UserLoginFailureHandler())
                 .userInfoEndpoint()
                 .userService(defaultOAuth2UserService())
         ;
