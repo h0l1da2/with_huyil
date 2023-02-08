@@ -2,6 +2,7 @@ package com.with.hyuil.dao;
 
 import com.with.hyuil.dto.info.DeleteDto;
 import com.with.hyuil.dto.info.EmailDto;
+import com.with.hyuil.dto.info.FindIdDto;
 import com.with.hyuil.dto.info.PasswordDto;
 import com.with.hyuil.model.BusinessVo;
 import com.with.hyuil.model.RolesVo;
@@ -22,6 +23,7 @@ public interface UsersMapper {
     int insertRoles(RolesVo rolesVo);
     int insertWhyDelete(DeleteDto deleteDto); //
     UsersVo findByUserId(String userId);
+    UsersVo findByNameEmail(FindIdDto findIdDto);
     BusinessVo findBusinessByAccount(String account);
     RolesVo findRoles(Long id);
     void updateLastLogin(String userId);

@@ -3,6 +3,7 @@ package com.with.hyuil.service;
 import com.with.hyuil.dao.UsersMapper;
 import com.with.hyuil.dto.info.DeleteDto;
 import com.with.hyuil.dto.info.EmailDto;
+import com.with.hyuil.dto.info.FindIdDto;
 import com.with.hyuil.dto.info.PasswordDto;
 import com.with.hyuil.dto.users.BusinessDto;
 import com.with.hyuil.dto.users.UserIdDto;
@@ -183,6 +184,11 @@ public class UsersServiceImpl implements UsersService {
             return "WhyDelete 추가 실패";
         }
         return "탈퇴 성공";
+    }
+
+    @Override
+    public UsersVo findId(FindIdDto findIdDto) {
+        return usersMapper.findByNameEmail(findIdDto);
     }
 
     private void dtoNoArgSet(DeleteDto deleteDto) {
