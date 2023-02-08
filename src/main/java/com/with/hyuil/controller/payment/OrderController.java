@@ -1,6 +1,13 @@
 package com.with.hyuil.controller.payment;
 
-public class OrderController {
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+
+public class OrderController<OrderInfo> {
 
     // 카드 결제 성공 후
     @PostMapping("/order/payment/complete")

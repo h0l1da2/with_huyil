@@ -1,7 +1,9 @@
 package com.with.hyuil.service;
 
-@Service
-public class PaymentServiceImpl implements PaymentService {
+import com.with.hyuil.service.interfaces.PaymentService;
+import lombok.Value;
+
+public class PaymentServiceImpl  implements PaymentService {
 
     @Value("${imp_key}")
     private String impKey;
@@ -61,4 +63,3 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
 }
-
