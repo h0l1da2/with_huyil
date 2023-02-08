@@ -1,9 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-	request.setCharacterEncoding("UTF-8");
-	String error = request.getParameter("error");
-%>
 <html lang="ko">
   <head>
   	<title>위드휴일 - 로그인</title>
