@@ -55,7 +55,7 @@
 						<input type="text" id="tel" name="tel" class="form-control" placeholder="전화번호(하이픈'-' 제외)" required>
 					</div>
 					<div class="form-group">
-						<button type="button" id="phoneCheck" class="form-control btn btn-primary submit px-3">폰번호 중복확인</button>
+						<button type="button" id="phoneCheck" class="form-control btn btn-primary submit px-3">전화번호 중복확인</button>
 					</div>
 					<div class="form-group">
 						<input type="text" id="email" name="email" class="form-control" placeholder="이메일" required>

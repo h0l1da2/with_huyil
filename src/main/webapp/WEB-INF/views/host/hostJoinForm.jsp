@@ -56,17 +56,20 @@
 					<input type="text" id="name" name="name" class="form-control" placeholder="이름" required>
 				</div>
 					<div class="form-group">
-					<input type="text" id="account" name="account" class="form-control" placeholder="사업자번호" required>
-				</div>
+						<input type="text" id="account" name="account" class="form-control" placeholder="사업자번호(10자리)" required>
+					</div>
 					<div class="form-group">
-					<input type="text" id="bank" name="bank" class="form-control" placeholder="은행" required>
-				</div>
+						<input type="text" id="bank" name="bank" class="form-control" placeholder="은행" required>
+					</div>
 					<div class="form-group">
-					<input type="text" id="bNumber" name="bNumber" class="form-control" placeholder="계좌번호" required>
-				</div>
+						<input type="text" id="bNumber" name="bNumber" class="form-control" placeholder="계좌번호" required>
+					</div>
 				<div class="form-group">
-					<input type="text" id="tel" name="tel" class="form-control" placeholder="전화번호" required>
+					<input type="text" id="tel" name="tel" class="form-control" placeholder="전화번호(하이픈'-' 제외)" required>
 				</div>
+					<div class="form-group">
+						<button type="button" id="phoneCheck" class="form-control btn btn-primary submit px-3">전화번호 중복확인</button>
+					</div>
 				<div class="form-group">
 					<input type="text" id="email" name="email" class="form-control" placeholder="이메일" required>
 				</div>
@@ -87,9 +90,24 @@
   <script src="<c:url value='/resources/static/loginForm/js/bootstrap.min.js'/>"></script>
   <script src="<c:url value='/resources/static/loginForm/js/main.js'/>"></script>
 	<script>
+		function CheckEmail(str){
+			let reg_email = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+			if(!reg_email.test(str)) {
+				return false;
+			}else {
+				return true;
+			}
+		}
 		function formCheck(form) {
+			let email = document.getElementById("email").value;
+			let account = document.getElementById("account").value;
+			let regExp = /^[0-9]{10}$/;
 			if(check == 0) {
 				alert("아이디 중복 확인을 해주세요");
+				return false;
+			}
+			if(phoneCheck == 0) {
+				alert("휴대폰 중복 확인을 해주세요");
 				return false;
 			}
 			if($('#passwordCheckP').css('display') == 'block') {
@@ -97,11 +115,26 @@
 				document.getElementById("passwordCheck").focus();
 				return false;
 			}
+			if(!CheckEmail(email))	{
+				alert("이메일 형식이 잘못되었습니다");
+				document.getElementById("email").focus();
+				return false;
+			}
+			if(regExp.test(account) == false) {
+				alert("사업자 번호를 확인해주세요");
+				document.getElementById("account").focus();
+				return false;
+			}
+
 		}
 		//아이디 중복 확인을 위한 변수
 		let check = 0;
+		//핸드폰 중복 확인을 위한 변수
+		let phoneCheck = 0;
 		//id값 변경 감지하는 변수
 		let oldVal = 0;
+		let phoneVal = 0;
+
 		$( document ).ready( function() {
 			$('#passwordCheck').on("propertychange change keyup paste input", function (frm) {
 				$('#passwordCheckP').css('display', 'block');
@@ -109,6 +142,13 @@
 						$('#passwordCheckP').css('display', 'none');
 						return false;
 					}
+			});
+			$('#password').on("propertychange change keyup paste input", function (frm) {
+				$('#passwordCheckP').css('display', 'block');
+				if(document.getElementById('password').value == document.getElementById('passwordCheck').value) {
+					$('#passwordCheckP').css('display', 'none');
+					return false;
+				}
 			});
 			$("#userId").on("propertychange change keyup paste input", function() {
 				var currentVal = $(this).val();
@@ -118,7 +158,15 @@
 				oldVal = currentVal;
 				check = 0;
 			});
-		});
+			$("#tel").on("propertychange change keyup paste input", function() {
+				let currentVal = $(this).val();
+				if(currentVal == phoneVal) {
+					return;
+				}
+				phoneVal = currentVal;
+				phoneCheck = 0;
+			});
+
 
 		$('#idCheck').click(function () {
 			let userId = document.getElementById("userId").value;
@@ -145,6 +193,39 @@
 			error: function(result) {
 				alert("확인실패");
 			}})
+		});
+			$('#phoneCheck').click(function () {
+				let tel = document.getElementById("tel").value;
+				let regExp = /^(01[016789]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
+				if(tel=="") {
+					alert("휴대폰 번호를 입력하세요");
+					document.getElementById("tel").focus();
+					return false;
+				}
+				if (regExp.test(tel) == false) {
+					alert("형식을 제대로 입력해주세요");
+					document.getElementById("tel").focus();
+					return false;
+				}
+				$.ajax({
+					type: 'POST',
+					url: '/user/join/telValid',
+					contentType: "application/json",
+					data: JSON.stringify({tel:tel}),
+					dataType: 'text',
+					success: function (result) {
+						if(result=="중복아님") {
+							alert('중복이 아닙니다');
+							phoneCheck=1;
+						} else {
+							alert('중복입니다');
+							document.getElementById('email').focus();
+						}
+					},
+					error: function(result) {
+						alert("확인실패");
+					}})
+			});
 		});
 	</script>
 	</body>
