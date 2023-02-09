@@ -85,8 +85,17 @@
 				return true;
 			}
 		}
+		function CheckUserId(str){
+			let regUserId = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+			let reg = /[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/ ]/gim;
+			let regNum = /^.{5,20}$/
+			if(regUserId.test(str) || reg.test(str) || !regNum.test(str)) {
+				return false;
+			}else {
+				return true;
+			}
+		}
 		function formCheck(form) {
-			let tel = document.getElementById("tel").value;
 			let email = document.getElementById("email").value;
 			if(check == 0) {
 				alert("아이디 중복 확인을 해주세요");
@@ -152,6 +161,11 @@
 				let userId = document.getElementById("userId").value;
 				if(userId=="") {
 					alert("아이디를 입력하세요");
+					document.getElementById("userId").focus();
+					return false;
+				}
+				if(!CheckUserId(userId)) {
+					alert("아이디 형식을 확인해주세요");
 					document.getElementById("userId").focus();
 					return false;
 				}
