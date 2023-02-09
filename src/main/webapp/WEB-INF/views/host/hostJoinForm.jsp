@@ -40,7 +40,7 @@
 		      	<h3 class="mb-4 text-center">호스트로 휴일을 함께하세요</h3>
 		      	<form id="form" action="<c:url value='/host/join/email'/>" class="signin-form" method="POST" onsubmit="return formCheck(this)">
 		      		<div class="form-group">
-		      			<input type="text" id="userId" name="userId" class="form-control" placeholder="아이디" required>
+		      			<input type="text" id="userId" name="userId" class="form-control" placeholder="아이디 (영문 대소문자 또는 숫자)" required>
 		      		</div>
 					<div class="form-group">
 						<button type="button" id="idCheck" name="idCheck" class="form-control btn btn-primary submit px-3">중복확인</button>
@@ -98,9 +98,20 @@
 				return true;
 			}
 		}
+		function CheckUserId(str){
+			let regUserId = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+			let reg = /[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/ ]/gim;
+			let regNum = /^.{5,20}$/
+			if(regUserId.test(str) || reg.test(str) || !regNum.test(str)) {
+				return false;
+			}else {
+				return true;
+			}
+		}
 		function formCheck(form) {
 			let email = document.getElementById("email").value;
 			let account = document.getElementById("account").value;
+			let userId = document.getElementById("userId").value;
 			let regExp = /^[0-9]{10}$/;
 			if(check == 0) {
 				alert("아이디 중복 확인을 해주세요");
@@ -172,6 +183,10 @@
 			let userId = document.getElementById("userId").value;
 			if(userId=="") {
 				alert("아이디를 입력하세요");
+				return false;
+			}
+			if(!CheckUserId(userId)) {
+				alert("아이디 형식을 확인해주세요");
 				document.getElementById("userId").focus();
 				return false;
 			}
