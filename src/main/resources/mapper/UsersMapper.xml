@@ -54,6 +54,11 @@
         FROM USERS
         WHERE EMAIL = #{email} AND NAME = #{name}
     </select>
+    <select id="findByTel" parameterType="FindIdDto" resultType="UsersVo">
+        SELECT *
+        FROM USERS
+        WHERE TEL = #{tel}
+    </select>
     <select id="findByBusinessId" parameterType="Long" resultType="BusinessVo">
         SELECT *
         FROM BUSINESS

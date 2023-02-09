@@ -32,5 +32,5 @@ public interface UsersMapper {
     int updatePassword(PasswordDto passwordDto);
     int updateForDelete(Map map); //
     BusinessVo findByBusinessId(Long id);
-
+    UsersVo findByTel(FindIdDto findIdDto);
 }
