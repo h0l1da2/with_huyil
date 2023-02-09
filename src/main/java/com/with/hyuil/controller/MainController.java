@@ -19,7 +19,6 @@ public class MainController {
         try {
             model.addAttribute("userId", userDetails.getUsername());
             model.addAttribute("role", userDetails.getAuthorities().toString());
-            log.info("role = {}", userDetails.getAuthorities().toString());
         } catch (NullPointerException e) {
             return "index";
         }
