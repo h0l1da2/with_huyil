@@ -131,7 +131,7 @@
 				document.getElementById("email").focus();
 				return false;
 			}
-			if(regExp.test(account) == false) {
+			if(!regExp.test(account)) {
 				alert("사업자 번호를 확인해주세요");
 				document.getElementById("account").focus();
 				return false;
