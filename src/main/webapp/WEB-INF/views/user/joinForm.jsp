@@ -52,7 +52,7 @@
 					<input type="text" id="name" name="name" class="form-control" placeholder="이름" required>
 				</div>
 					<div class="form-group">
-						<input type="text" id="tel" name="tel" class="form-control" placeholder="전화번호" required>
+						<input type="text" id="tel" name="tel" class="form-control" placeholder="전화번호(하이픈'-' 제외)" required>
 					</div>
 					<div class="form-group">
 						<button type="button" id="phoneCheck" class="form-control btn btn-primary submit px-3">폰번호 중복확인</button>
@@ -77,7 +77,17 @@
   <script src="<c:url value='/resources/static/loginForm/js/bootstrap.min.js'/>"></script>
   <script src="<c:url value='/resources/static/loginForm/js/main.js'/>"></script>
 	<script>
+		function CheckEmail(str){
+			let reg_email = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+			if(!reg_email.test(str)) {
+				return false;
+			}else {
+				return true;
+			}
+		}
 		function formCheck(form) {
+			let tel = document.getElementById("tel").value;
+			let email = document.getElementById("email").value;
 			if(check == 0) {
 				alert("아이디 중복 확인을 해주세요");
 				return false;
@@ -91,6 +101,11 @@
 				document.getElementById("passwordCheck").focus();
 				return false;
 			}
+			if(!CheckEmail(email))	{
+				alert("이메일 형식이 잘못되었습니다");
+				document.getElementById("email").focus();
+				return false;
+			}
 		}
 		//아이디 중복 확인을 위한 변수
 		let check = 0;
@@ -101,6 +116,13 @@
 		let phoneVal = 0;
 		$( document ).ready( function() {
 			$('#passwordCheck').on("propertychange change keyup paste input", function (frm) {
+				$('#passwordCheckP').css('display', 'block');
+					if(document.getElementById('password').value == document.getElementById('passwordCheck').value) {
+						$('#passwordCheckP').css('display', 'none');
+						return false;
+					}
+			});
+			$('#password').on("propertychange change keyup paste input", function (frm) {
 				$('#passwordCheckP').css('display', 'block');
 					if(document.getElementById('password').value == document.getElementById('passwordCheck').value) {
 						$('#passwordCheckP').css('display', 'none');
@@ -154,8 +176,14 @@
 			});
 			$('#phoneCheck').click(function () {
 				let tel = document.getElementById("tel").value;
+				let regExp = /^(01[016789]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
 				if(tel=="") {
 					alert("휴대폰 번호를 입력하세요");
+					document.getElementById("tel").focus();
+					return false;
+				}
+				if (regExp.test(tel) == false) {
+					alert("형식을 제대로 입력해주세요");
 					document.getElementById("tel").focus();
 					return false;
 				}
