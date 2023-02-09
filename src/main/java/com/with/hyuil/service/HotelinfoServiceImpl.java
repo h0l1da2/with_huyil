@@ -16,8 +16,8 @@ public class HotelinfoServiceImpl {
 		mapper.insertInfo(infovo);
 	}
 	
-	public HotelInfoVo findByInfoId(long hotel_id) {
-		return mapper.findByInfoId(hotel_id);
+	public HotelInfoVo findByInfoId(long hotelId) {
+		return mapper.findByInfoId(hotelId);
 	}
 	
 }

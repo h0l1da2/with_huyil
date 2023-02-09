@@ -11,14 +11,14 @@
 		<result property="path" column="path"/>
 		<result property="size" column="volume"/>
 		<result property="removed" column="removed"/>
-		<result property="hotel_info_id" column="hotel_info_id"/>
-		<result property="room_id" column="room_id"/>
+		<result property="hotelInfoId" column="hotel_info_id"/>
+		<result property="roomId" column="room_id"/>
 	</resultMap>
 	
 	<insert id="uploadFile" parameterType="FileVo">
 	insert into files
-	(ID, TYPE, NAME, UUID, PATH, VOLUME, REMOVED, HOTEL_INFO_ID <if test="room_id != 0">, ROOM_ID </if>)
+	(ID, TYPE, NAME, UUID, PATH, VOLUME, REMOVED, HOTEL_INFO_ID <if test="roomId != 0">, ROOM_ID </if>)
 	values
-	(seq_files.nextval, #{type}, #{name}, #{uuid}, #{path}, #{size}, null, #{hotel_info_id} <if test="room_id != 0">, #{room_id} </if>)
+	(seq_files.nextval, #{type}, #{name}, #{uuid}, #{path}, #{size}, null, #{hotelInfoId} <if test="roomId != 0">, #{roomId} </if>)
 	</insert>
 </mapper>

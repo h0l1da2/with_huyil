@@ -1,6 +1,7 @@
-
-
 package com.with.hyuil.dao;
+
+import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -10,7 +11,7 @@ import com.with.hyuil.model.RoomVo;
 public interface RoomMapper {
 
 	void insertRoom(RoomVo roomvo);
-	int roomCount(long hotel_id);
+	long roomCount(long hotelId);
+	List<Map<String, Object>> getroomList(long hotelId);
 	
 }
-

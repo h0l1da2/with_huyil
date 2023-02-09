@@ -12,6 +12,6 @@ public class FileVo {
     private String path;
     private long size;
     private String removed;
-    private long hotel_info_id;
-    private long room_id;
+    private long hotelInfoId;
+    private long roomId;
 }
