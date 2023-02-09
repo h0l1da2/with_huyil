@@ -40,13 +40,13 @@
 		      	<h3 class="mb-4 text-center">호스트로 휴일을 함께하세요</h3>
 		      	<form id="form" action="<c:url value='/host/join/email'/>" class="signin-form" method="POST" onsubmit="return formCheck(this)">
 		      		<div class="form-group">
-		      			<input type="text" id="userId" name="userId" class="form-control" placeholder="아이디 (영문 대소문자 또는 숫자)" required>
+		      			<input type="text" id="userId" name="userId" class="form-control" placeholder="아이디 5~20글자(영문 대소문자 또는 숫자)" required>
 		      		</div>
 					<div class="form-group">
 						<button type="button" id="idCheck" name="idCheck" class="form-control btn btn-primary submit px-3">중복확인</button>
 		      		</div>
 	            <div class="form-group">
-	              <input id="password" name="password" type="password" class="form-control" placeholder="비밀번호" required>
+	              <input id="password" name="password" type="password" class="form-control" placeholder="비밀번호 6~20글자" required>
 	            </div>
 				<div class="form-group">
 					<input id="passwordCheck" name="passwordCheck" type="password" class="form-control" placeholder="비밀번호 확인" required>
@@ -111,8 +111,8 @@
 		function formCheck(form) {
 			let email = document.getElementById("email").value;
 			let account = document.getElementById("account").value;
-			let userId = document.getElementById("userId").value;
 			let regExp = /^[0-9]{10}$/;
+			let regNum = /^.{6,20}$/;
 			if(check == 0) {
 				alert("아이디 중복 확인을 해주세요");
 				return false;
@@ -134,6 +134,11 @@
 			if(regExp.test(account) == false) {
 				alert("사업자 번호를 확인해주세요");
 				document.getElementById("account").focus();
+				return false;
+			}
+			if(!regNum.test(password)) {
+				alert("비밀번호 글자수를 확인해주세요");
+				document.getElementById("password").focus();
 				return false;
 			}
 
@@ -162,7 +167,7 @@
 				}
 			});
 			$("#userId").on("propertychange change keyup paste input", function() {
-				var currentVal = $(this).val();
+				let currentVal = $(this).val();
 				if(currentVal == oldVal) {
 					return;
 				}
