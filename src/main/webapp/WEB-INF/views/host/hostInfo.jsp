@@ -290,7 +290,14 @@
 <script src="<c:url value='/resources/static/home/js/google-map.js'/>"></script>
 <script src="<c:url value='/resources/static/home/js/main.js'/>"></script>
 <script>
-
+  function CheckEmail(str){
+    let reg_email = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+    if(!reg_email.test(str)) {
+      return false;
+    }else {
+      return true;
+    }
+  }
   $(document).ready(function(){
 
     $('#newPasswordCheck').on("propertychange change keyup paste input", function (frm) {
@@ -312,9 +319,7 @@
       let password = document.getElementById("password").value;
       let newPassword = document.getElementById("newPassword").value;
       let newPasswordCheck = document.getElementById("newPasswordCheck").value;
-      console.log(password);
-      console.log(newPassword);
-      console.log('${userId}');
+      let regNum = /^.{6,20}$/;
 
       if(password=="" || newPassword == "" || newPasswordCheck == "") {
         alert("빈칸 없이 입력하세요");
@@ -322,6 +327,11 @@
       }
       if($('#newPasswordFail').css('display') == 'block') {
         alert("변경 패스워드가 서로 다릅니다");
+        return false;
+      }
+      if(!regNum.test(newPassword)) {
+        alert("비밀번호는 6~20자리여야 합니다");
+        document.getElementById("password").focus();
         return false;
       }
       $.ajax({
@@ -359,6 +369,11 @@
       }
       if(newEmail=="") {
         alert("새로운 이메일 입력");
+        document.getElementById("newEmail").focus();
+        return false;
+      }
+      if(!CheckEmail(newEmail))	{
+        alert("이메일 형식이 잘못되었습니다");
         document.getElementById("newEmail").focus();
         return false;
       }

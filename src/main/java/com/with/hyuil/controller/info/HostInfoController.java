@@ -26,16 +26,7 @@ public class HostInfoController {
 
     private final UsersService usersService;
     private final EmailService emailService;
-    private final BookService bookService;
     private String code;
-
-
-//    @GetMapping
-//    public String userInfo(Model model) {
-//        model.addAttribute("userId", "host");
-//        model.addAttribute("username", "휴일");
-//        return "host/hostInfo";
-//    }
 
     @GetMapping
     public String hostInfo(@AuthenticationPrincipal CustomUserDetails userDetails, Model model) {
@@ -88,51 +79,6 @@ public class HostInfoController {
         return usersService.modifyPassword(passwordDto);
     }
 
-    @GetMapping("/book")
-    public String bookList(@AuthenticationPrincipal CustomUserDetails userDetails, @ModelAttribute BookSearchDto bookSearchDto, Model model) {
-        UsersVo usersVo = getUsersVo(userDetails.getUsername());
-        List<HostBookListDto> bookList = getBookList(bookSearchDto, Status.READY, usersVo);
-        try {
-            getPage(bookSearchDto, model, bookList);
-        } catch (IndexOutOfBoundsException e) {
-            log.info("검색 결과 없음");
-            return "book/hostBook";
-        }
-        return "book/hostBook";
-    }
-
-    @ResponseBody
-    @PostMapping("/book/cancel")
-    public String cancelBook(@RequestBody HostBookListDto hostBookListDto) {
-        return bookService.hostBookCancel(hostBookListDto.getId());
-    }
-
-    @GetMapping("/book/complete")
-    public String completeBookList(@AuthenticationPrincipal CustomUserDetails userDetails, @ModelAttribute BookSearchDto bookSearchDto, Model model) {
-        UsersVo usersVo = getUsersVo(userDetails.getUsername());
-        List<HostBookListDto> bookList = getBookList(bookSearchDto, Status.COMPLETE, usersVo);
-        try {
-            getPage(bookSearchDto, model, bookList);
-        } catch (IndexOutOfBoundsException e) {
-            log.info("검색 결과 없음");
-            return "book/hostBookComplete";
-        }
-        return "book/hostBookComplete";
-    }
-
-    private List<HostBookListDto> getBookList(BookSearchDto bookSearchDto, Status complete, UsersVo usersVo) {
-        bookSearchDto.setStatus(complete);
-        bookSearchDto.setUserId(usersVo.getId());
-        List<HostBookListDto> bookList = bookService.hostBookList(bookSearchDto);
-        return bookList;
-    }
-
-    private static void getPage(BookSearchDto bookSearchDto, Model model, List<HostBookListDto> bookList) {
-        GlobalPageHandler globalPageHandler = new GlobalPageHandler(bookList.get(0).getTotcnt(), bookSearchDto.getNowPage());
-        log.info("phHandler = {}", globalPageHandler);
-        model.addAttribute(bookList);
-        model.addAttribute("ph", globalPageHandler);
-    }
 
     private UsersVo getUsersVo(String userDetails) {
         return usersService.loginForFind(userDetails);

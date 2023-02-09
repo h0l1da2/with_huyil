@@ -25,7 +25,6 @@ public class UserInfoController {
 
     private final UsersService usersService;
     private final EmailService emailService;
-    private final BookService bookService;
     private String code;
 
     //테스트용
@@ -93,78 +92,7 @@ public class UserInfoController {
         return usersService.deleteUser(deleteDto);
     }
 
-//    @GetMapping("/book")
-//    public String bookList(@ModelAttribute BookSearchDto bookSearchDto, Model model) {
-//        // 유저아이디로 해당 유저 예약 목록 가져옴
-//        UsersVo usersVo = usersService.loginForFind("KAKAO_2616028737");
-//        bookSearchDto.setUserId(usersVo.getId());
-//        List<BookListDto> bookList = bookService.bookList(bookSearchDto);
-//        model.addAttribute("bookList", bookList);
-//        return "user/userBook";
-//    }
-    @GetMapping("/book")
-    public String bookList(@AuthenticationPrincipal CustomUserDetails userDetails, @ModelAttribute BookSearchDto bookSearchDto, Model model) {
-        // 유저아이디로 해당 유저 예약 목록 가져옴
-        log.info("bookSearchDto = {}", bookSearchDto);
-        UsersVo usersVo = findUser(userDetails.getUsername());
-        List<BookListDto> bookList = getBookList(bookSearchDto, usersVo, Status.READY);
-        log.info("bookList = {}", bookList);
-        // 토탈카운트 먹어야됨 먼저
-        try {
-            getPage(bookSearchDto, model, bookList);
-        } catch (IndexOutOfBoundsException e) {
-            log.info("검색 결과가 없습니다");
-            return "user/userBook";
-        }
-        return "user/userBook";
-    }
 
-    @GetMapping("/book/complete")
-    public String endBookList(@AuthenticationPrincipal CustomUserDetails userDetails, @ModelAttribute BookSearchDto bookSearchDto, Model model) {
-        // 유저아이디로 해당 유저 예약 목록 가져옴
-        log.info("bookSearchDto = {}", bookSearchDto);
-        UsersVo usersVo = findUser(userDetails.getUsername());
-        List<BookListDto> bookList = getBookList(bookSearchDto, usersVo, Status.COMPLETE);
-        log.info("bookList = {}", bookList);
-        // 토탈카운트 먹어야됨 먼저
-        try {
-            getPage(bookSearchDto, model, bookList);
-        } catch (IndexOutOfBoundsException e) {
-            log.info("검색 결과가 없습니다");
-            return "user/userBookComplete";
-        }
-        return "user/userBookComplete";
-    }
-
-    @GetMapping("/book/cancel")
-    public String cancelBookList(@AuthenticationPrincipal CustomUserDetails userDetails, @ModelAttribute BookSearchDto bookSearchDto, Model model) {
-        // 유저아이디로 해당 유저 예약 목록 가져옴
-        log.info("bookSearchDto = {}", bookSearchDto);
-        UsersVo usersVo = findUser(userDetails.getUsername());
-        List<BookListDto> bookList = getBookList(bookSearchDto, usersVo, Status.CANCEL);
-        log.info("bookList = {}", bookList);
-        // 토탈카운트 먹어야됨 먼저
-        try {
-            getPage(bookSearchDto, model, bookList);
-        } catch (IndexOutOfBoundsException e) {
-            log.info("검색 결과가 없습니다");
-            return "user/userBookCancel";
-        }
-        return "user/userBookCancel";
-    }
-
-    private static void getPage(BookSearchDto bookSearchDto, Model model, List<BookListDto> bookList) {
-        GlobalPageHandler globalPageHandler = new GlobalPageHandler(bookList.get(0).getTotcnt(), bookSearchDto.getNowPage());
-        model.addAttribute("ph", globalPageHandler);
-        model.addAttribute(bookList);
-    }
-
-    private List<BookListDto> getBookList(BookSearchDto bookSearchDto, UsersVo usersVo, Status complete) {
-        bookSearchDto.setUserId(usersVo.getId());
-        bookSearchDto.setStatus(complete);
-        List<BookListDto> bookList = bookService.userBookList(bookSearchDto);
-        return bookList;
-    }
 
     private UsersVo findUser(String userDetails) {
         UsersVo usersVo = usersService.loginForFind(userDetails);
