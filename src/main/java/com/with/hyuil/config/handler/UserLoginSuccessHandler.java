@@ -32,8 +32,6 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
         usersService.updateLoginDate(authentication.getName());
         List<String> roleNames = getRoleNames(authentication);
         SavedRequest savedRequest = requestCache.getRequest(request, response);
-        HttpSession session = request.getSession();
-        session.setAttribute("userId", authentication.getName());
         if (savedRequest == null) {
             if (roleNames.contains("ROLE_USER")) {
                 redirectStrategy.sendRedirect(request, response, "/");
