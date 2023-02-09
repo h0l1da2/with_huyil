@@ -108,9 +108,7 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public UsersVo emailValid(EmailDto emailDto) {
-        log.info("유저 찾기?");
         UsersVo user = usersMapper.findByUserIdEmail(emailDto);
-        log.info("유저 들어옴!");
         return user;
     }
 
@@ -189,6 +187,11 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public UsersVo findId(FindIdDto findIdDto) {
         return usersMapper.findByNameEmail(findIdDto);
+    }
+
+    @Override
+    public UsersVo findTel(FindIdDto findIdDto) {
+        return usersMapper.findByTel(findIdDto);
     }
 
     private void dtoNoArgSet(DeleteDto deleteDto) {

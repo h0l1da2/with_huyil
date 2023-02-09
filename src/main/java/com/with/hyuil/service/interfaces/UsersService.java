@@ -26,4 +26,5 @@ public interface UsersService {
     BusinessDto findBusinessDto(Long id);
     String deleteUser(DeleteDto deleteDto);
     UsersVo findId(FindIdDto findIdDto);
+    UsersVo findTel(FindIdDto findIdDto);
 }

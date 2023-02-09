@@ -10,13 +10,9 @@
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	
-	<link rel="stylesheet" href="<c:url value='/static/loginForm/css/style.css'/>">
+	<link rel="stylesheet" href="<c:url value='/resources/static/loginForm/css/style.css'/>">
 
 	<style>
-		.join {
-			margin: 10px;
-			margin-left: 4px;
-		}
 		.ftco-section {
 			padding-top: 70px;
 		}
@@ -26,7 +22,7 @@
 		}
 	</style>
 	</head>
-	<body class="img js-fullheight" style="background-image: url(<c:url value='/static/loginForm/images/bg.jpg'/>);">
+	<body class="img js-fullheight" style="background-image: url(<c:url value='/resources/static/loginForm/images/bg.jpg'/>);">
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">
@@ -55,14 +51,17 @@
 				<div class="form-group">
 					<input type="text" id="name" name="name" class="form-control" placeholder="이름" required>
 				</div>
-				<div class="form-group">
-					<input type="text" id="tel" name="tel" class="form-control" placeholder="전화번호" required>
-				</div>
-				<div class="form-group">
-					<input type="text" id="email" name="email" class="form-control" placeholder="이메일" required>
-				</div>
+					<div class="form-group">
+						<input type="text" id="tel" name="tel" class="form-control" placeholder="전화번호" required>
+					</div>
+					<div class="form-group">
+						<button type="button" id="phoneCheck" class="form-control btn btn-primary submit px-3">폰번호 중복확인</button>
+					</div>
+					<div class="form-group">
+						<input type="text" id="email" name="email" class="form-control" placeholder="이메일" required>
+					</div>
 	            <div class="form-group">
-	            	<button type="submit" class="form-control btn btn-primary submit px-3">인증번호 발송</button>
+					<button type="submit" id="emailSend" class="form-control btn btn-primary submit px-3">이메일 인증번호 발송</button>
 	            </div>
 	            <div class="form-group d-md-flex">
 	            </div>
@@ -73,14 +72,18 @@
 		</div>
 	</section>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<script src="<c:url value='/static/loginForm/js/jquery.min.js'/>"></script>
-  <script src="<c:url value='/static/loginForm/js/popper.js'/>"></script>
-  <script src="<c:url value='/static/loginForm/js/bootstrap.min.js'/>"></script>
-  <script src="<c:url value='/static/loginForm/js/main.js'/>"></script>
+	<script src="<c:url value='/resources/static/loginForm/js/jquery.min.js'/>"></script>
+  <script src="<c:url value='/resources/static/loginForm/js/popper.js'/>"></script>
+  <script src="<c:url value='/resources/static/loginForm/js/bootstrap.min.js'/>"></script>
+  <script src="<c:url value='/resources/static/loginForm/js/main.js'/>"></script>
 	<script>
 		function formCheck(form) {
 			if(check == 0) {
 				alert("아이디 중복 확인을 해주세요");
+				return false;
+			}
+			if(phoneCheck == 0) {
+				alert("휴대폰 중복 확인을 해주세요");
 				return false;
 			}
 			if($('#passwordCheckP').css('display') == 'block') {
@@ -91,8 +94,11 @@
 		}
 		//아이디 중복 확인을 위한 변수
 		let check = 0;
+		//핸드폰 중복 확인을 위한 변수
+		let phoneCheck = 0;
 		//id값 변경 감지하는 변수
 		let oldVal = 0;
+		let phoneVal = 0;
 		$( document ).ready( function() {
 			$('#passwordCheck').on("propertychange change keyup paste input", function (frm) {
 				$('#passwordCheckP').css('display', 'block');
@@ -101,42 +107,80 @@
 						return false;
 					}
 			});
+
+			$("#tel").on("propertychange change keyup paste input", function() {
+				let currentVal = $(this).val();
+				if(currentVal == phoneVal) {
+					return;
+				}
+				phoneVal = currentVal;
+				phoneCheck = 0;
+			});
+
 			$("#userId").on("propertychange change keyup paste input", function() {
-				var currentVal = $(this).val();
+				let currentVal = $(this).val();
 				if(currentVal == oldVal) {
 					return;
 				}
 				oldVal = currentVal;
 				check = 0;
 			});
+
+			$('#idCheck').click(function () {
+				let userId = document.getElementById("userId").value;
+				if(userId=="") {
+					alert("아이디를 입력하세요");
+					document.getElementById("userId").focus();
+					return false;
+				}
+				$.ajax({
+					type: 'POST',
+					url: '/user/join/id',
+					contentType: "application/json",
+					data: JSON.stringify({userId:userId}),
+					dataType: 'text',
+					success: function (result) {
+						if(result=="true") {
+							alert("중복이 아닙니다");
+							check=1;
+						} else {
+							alert("중복입니다");
+							document.getElementById('userId').focus();
+						}
+					},
+					error: function(result) {
+						alert("확인실패");
+					}})
+			});
+			$('#phoneCheck').click(function () {
+				let tel = document.getElementById("tel").value;
+				if(tel=="") {
+					alert("휴대폰 번호를 입력하세요");
+					document.getElementById("tel").focus();
+					return false;
+				}
+				$.ajax({
+					type: 'POST',
+					url: '/user/join/telValid',
+					contentType: "application/json",
+					data: JSON.stringify({tel:tel}),
+					dataType: 'text',
+					success: function (result) {
+						if(result=="중복아님") {
+							alert('중복이 아닙니다');
+							phoneCheck=1;
+						} else {
+							alert('중복입니다');
+							document.getElementById('email').focus();
+						}
+					},
+					error: function(result) {
+						alert("확인실패");
+					}})
+			});
 		});
 
-		$('#idCheck').click(function () {
-			let userId = document.getElementById("userId").value;
-			if(userId=="") {
-				alert("아이디를 입력하세요");
-				document.getElementById("userId").focus();
-				return false;
-			}
-			$.ajax({
-				type: 'POST',
-				url: '/user/join/id',
-				contentType: "application/json",
-				data: JSON.stringify({userId:userId}),
-				dataType: 'text',
-				success: function (result) {
-					if(result=="true") {
-						alert("중복이 아닙니다");
-						check=1;
-					} else {
-						alert("중복입니다");
-						document.getElementById('userId').focus();
-					}
-				},
-			error: function(result) {
-				alert("확인실패");
-			}})
-		});
+
 	</script>
 	</body>
 </html>
