@@ -61,7 +61,7 @@
 </div>	
 
 <section id="hotelForm">
-<form>
+<form action="/host/hostForm" method="post">
   <div style="margin:0 0 30px 100px;" class="form-group">
   <br>
     <label for="exampleFormControlInput1">이 름</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -74,15 +74,15 @@
     <br>
     
     <label for="exampleFormControlInput1">거래은행</label>  &nbsp;&nbsp;&nbsp;
-    <input type="text" name="bank" value="${business.getBank() }" placeholder="예)국민은행" style="width:300px; height:50px;">
+    <input type="text" name="bank" value="${business.bank }" placeholder="예)국민은행" style="width:300px; height:50px;">
     <div class="form-group"> <br> <br>
         
     <label for="exampleFormControlInput1">계좌번호</label> &nbsp;&nbsp;&nbsp;
-    <input type="text" name="account" placeholder="숫자만 입력해주세요" value="${business.getAccount }" style="width:300px; height:50px">
+    <input type="text" name="account" placeholder="숫자만 입력해주세요" value="${business.account }" style="width:300px; height:50px">
     <br> <br>
     
     <label for="exampleFormControlInput1">사업자번호</label>
-    <input type="text" name="bNumber" placeholder="숫자만 입력해주세요" value="${business.getBNumber() }" style="width:300px; height:50px">
+    <input type="text" name="bankNumber" placeholder="숫자만 입력해주세요" value="${business.bankNumber }" style="width:300px; height:50px">
     <br> <br>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     
@@ -94,6 +94,7 @@
     <br>
     
     </div>
+  </div>
   </div>
 </form>
 </section>

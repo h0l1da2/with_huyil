@@ -20,10 +20,6 @@ public class RoomServiceImpl {
 		mapper.insertRoom(roomvo);
 	}
 	
-	public long roomcnt(long hotelId) {
-		return mapper.roomCount(hotelId);
-	}
-	
 	public List<Map<String, Object>> getroomList(long hotelId){
 		List<Map<String, Object>> roomList = new ArrayList<Map<String, Object>>();
 		try {

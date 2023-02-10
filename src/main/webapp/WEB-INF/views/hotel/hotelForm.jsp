@@ -5,14 +5,12 @@
 <script>
 function setThumbnail(event){
 	var reader = new FileReader();
-		
 	reader.onload = function(event){
 		var img = document.createElement("img");
 		img.setAttribute("src", event.target.result);
 		img.setAttribute("class", "col-lg-6");
 		document.querySelector("div#image_container").appendChild(img);
-	};
-		
+	};	
 	reader.readAsDataURL(event.target.files[0]);
 }
 </script>
@@ -111,7 +109,9 @@ function setThumbnail(event){
 	<input class="form-control form-control-user" type="file" 
 	name="uploadFile" id="product_image" onchange="setThumbnail(event);" style="width:300px; height:50px;">
 
-	<div style=width:6 id="image_container"></div> <br>
+	<div id="image_container">
+	</div>
+	<br>
 
     <label for="exampleFormControlInput1">서비스</label>
     <table style='margin-top:0px; border:1px solid #000; height:60px;' cellspacing=0 cellpadding=10>

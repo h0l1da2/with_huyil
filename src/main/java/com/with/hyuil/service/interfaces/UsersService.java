@@ -4,6 +4,7 @@ import com.with.hyuil.dto.info.EmailDto;
 import com.with.hyuil.dto.info.PasswordDto;
 import com.with.hyuil.dto.users.BusinessDto;
 import com.with.hyuil.dto.users.UserIdDto;
+import com.with.hyuil.model.BusinessVo;
 import com.with.hyuil.model.RolesVo;
 import com.with.hyuil.model.UsersVo;
 
@@ -21,4 +22,8 @@ public interface UsersService {
     int modifyEmail(EmailDto emailDto);
     String modifyPassword(PasswordDto passwordDto);
     BusinessDto findBusinessDto(Long id);
+    
+    void updatehost(UsersVo usersvo);
+    void updatebusiness(BusinessDto businessdto);
+    
 }

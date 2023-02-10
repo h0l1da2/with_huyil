@@ -9,7 +9,7 @@ function setThumbnail(event){
 		var img = document.createElement("img");
 		img.setAttribute("src", event.target.result);
 		img.setAttribute("class", "col-lg-6");
-		document.querySelector("div#image_thumnail").appendChild(img);
+		document.querySelector("div#image_thumbnail").appendChild(img);
 	};
 	reader.readAsDataURL(event.target.files[0]);
 }
@@ -83,11 +83,7 @@ function setThumbnail(event){
     <label for="exampleFormControlInput1">객실소개 이미지(1장)</label>
 	<input class="form-control form-control-user" type="file" 
 	name="uploadFile" id="product_image" onchange="setThumbnail(event);" style="width:300px; height:50px;"> <br>
-	<div class="product_title">
-		<div class="product-img-div">
-			<div class="image_thumnail" id="image_thumnail"></div>
-		</div>
-	</div>
+	<div id="image_thumbnail"></div> <br>
 	<label for="exampleFormControlInput1">객실소개글</label> <br>
     <textArea style=resize:none; name="content" rows="7" cols="100"></textArea> <br> <br>
     

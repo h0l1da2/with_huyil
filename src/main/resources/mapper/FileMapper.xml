@@ -21,4 +21,9 @@
 	values
 	(seq_files.nextval, #{type}, #{name}, #{uuid}, #{path}, #{size}, null, #{hotelInfoId} <if test="roomId != 0">, #{roomId} </if>)
 	</insert>
+	
+	<select id="selecthotelImg" parameterType="long" resultType="FileVo">
+	select * from files where hotel_info_id = #{hotelInfoId} AND room_id IS NULL
+	</select>
+	
 </mapper>

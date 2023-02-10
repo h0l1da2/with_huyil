@@ -16,7 +16,7 @@
 	</select>
 
 	<select id="findByHotelId" parameterType="long" resultType="HotelVo">
-		select * from hotel where id=#{id}
+		select * from hotel where id = #{id}
 	</select>
 
 	<select id="selectForHotelList" parameterType="HotelSearchDto" resultType="HotelListDto">

@@ -1,14 +1,15 @@
 package com.with.hyuil.dao;
 
-import com.with.hyuil.dto.info.EmailDto;
-import com.with.hyuil.dto.info.PasswordDto;
-import com.with.hyuil.model.BusinessVo;
-import com.with.hyuil.model.RolesVo;
-import com.with.hyuil.model.UsersVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-import java.util.Map;
+import com.with.hyuil.dto.info.EmailDto;
+import com.with.hyuil.dto.info.PasswordDto;
+import com.with.hyuil.dto.users.BusinessDto;
+import com.with.hyuil.dto.users.UsersDto;
+import com.with.hyuil.model.BusinessVo;
+import com.with.hyuil.model.RolesVo;
+import com.with.hyuil.model.UsersVo;
 
 @Mapper
 @Repository
@@ -27,5 +28,8 @@ public interface UsersMapper {
     int updateEmail(EmailDto emailDto);
     int updatePassword(PasswordDto passwordDto);
     BusinessVo findByBusinessId(Long id);
+    
+    void updatehost(UsersVo usersvo);
+    void updatebusiness(BusinessDto businessdto);
 
 }
