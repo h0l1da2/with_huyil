@@ -1,6 +1,10 @@
 
-
 package com.with.hyuil.service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +20,20 @@ public class RoomServiceImpl {
 	
 	public void addRoom(RoomVo roomvo) {
 		mapper.insertRoom(roomvo);
+	}
+
+	public long roomcnt(long hotelId) {
+		return mapper.roomCount(hotelId);
+	}
+	
+	public List<Map<String, Object>> getroomList(long hotelId){
+		List<Map<String, Object>> roomList = new ArrayList<Map<String, Object>>();
+		try {
+			roomList = mapper.getroomList(hotelId);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return roomList;
 	}
 	
 }

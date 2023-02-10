@@ -10,9 +10,7 @@ public interface HotelService {
 
     void addHotel(HotelVo hotelvo);
     List<HotelListDto> searchHotels(HotelSearchDto hotelSearchDto);
-	HotelVo findByHotelId(long id);
-    
-
+	HotelVo findByHotelUserId(Long userId);
 	HotelVo findByHotelId(long id);
     
 

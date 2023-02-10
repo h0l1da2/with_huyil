@@ -6,13 +6,13 @@ import lombok.Data;
 public class RoomVo {
 	
 	private long id;
-	private long hotel_id;
+	private long hotelId;
 	private String name;
 	private String content;
 	private int max;
 	private String bed;
-	private int n_price;
-	private int h_price;
-	private long admin_id;
+	private int nPrice;
+	private int hPrice;
+	private long adminId;
 
 }

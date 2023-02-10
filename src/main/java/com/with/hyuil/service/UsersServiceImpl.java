@@ -145,4 +145,5 @@ public class UsersServiceImpl implements UsersService {
     private String passwordEncoding(String password) {
         return passwordEncoder.encode(password);
     }
+    
 }
