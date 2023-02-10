@@ -37,7 +37,7 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
                 redirectStrategy.sendRedirect(request, response, "/");
             }
             if (roleNames.contains("ROLE_HOST")) {
-                redirectStrategy.sendRedirect(request, response, "/");
+                redirectStrategy.sendRedirect(request, response, "/host");
             }
             if (roleNames.contains("ROLE_ADMIN")) {
                 redirectStrategy.sendRedirect(request, response, "/");

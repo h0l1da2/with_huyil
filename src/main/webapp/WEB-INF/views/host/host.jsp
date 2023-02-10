@@ -13,6 +13,16 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="<c:url value='/resources/static/host/css/styles.css'/>" rel="stylesheet" />
+    <style>
+        .afterLogin {
+            margin-bottom: 20px;
+            align-content: space-between;
+        }
+        .infoBtn {
+            width: 233px;
+            margin-right: 10px;
+        }
+    </style>
 </head>
 <body style="height: 600px;">
 <!-- Navigation-->
@@ -24,39 +34,68 @@
         </button>
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-
                 <c:choose>
                     <c:when test="${userId eq null}"><li class="nav-item"><a href="<c:url value='/host/loginForm'/>" class="nav-link title">로그인</a></li></c:when>
-                    <c:when test="${userId ne null}"><li class="nav-item"><a href="<c:url value='/hosts/info'/>" class="nav-link title">${userId}</a></li></c:when>
+                    <c:when test="${userId ne null && role eq '[ROLE_HOST]'}"><li class="nav-item"><a href="<c:url value='/hosts/info'/>" class="nav-link title">${userId}</a></li></c:when>
+                    <c:when test="${userId ne null && role eq '[ROLE_USER]'}"><li class="nav-item"><a href="<c:url value='/user/info'/>" class="nav-link title">${userId}</a></li></c:when>
                 </c:choose>
-
-
-
+                <c:if test="${userId ne null}"><li class="nav-item"><a href="<c:url value='/logout'/>" class="nav-link title">로그아웃</a></li></c:if>
             </ul>
         </div>
     </div>
 </nav>
 <!-- Product section-->
 <section class="py-5">
-    <div class="container px-4 px-lg-5 my-5">
-        <div class="row gx-4 gx-lg-5 align-items-center">
-            <div class="col-md-6">
-                <div class="small mb-1">SKU: BST-498</div>
-                <h1 class="display-5 fw-bolder">위드휴일의 호스트ㄱㄱ?</h1>
-                <div class="fs-5 mb-5">
-                    <p class="lead">
-                        탐욕스러우시다고요? 돈이존나필요하시다구요?
-                        당장여기로와서돈을쓸어담으세요존나열려잇습니
-                        다당신을환영해요다당신을환영해요다당신을환영해요다당신을환영해요다당신을환영해요다당신을환영해요다당신을환영해요다당신을환영해요다당신을환영해요
-                    </p>
-                </div>
-                <div class="d-flex">
-                    <button onclick="location.href='<c:url value='/host/loginForm'/>'" type="button" class="form-control btn btn-primary submit px-3">당장 함께하기</button>
+    <c:choose>
+        <c:when test="${userId eq null || role ne '[ROLE_HOST]'}">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="row gx-4 gx-lg-5 align-items-center">
+                    <div class="col-md-6">
+                        <h1 class="display-5 fw-bolder">위드휴일의 호스트ㄱㄱ?</h1>
+                        <div class="fs-5 mb-5">
+                            <p class="lead">
+                                탐욕스러우시다고요? 돈이존나필요하시다구요?
+                                당장여기로와서돈을쓸어담으세요존나열려잇습니
+                                다당신을환영해요다당신을환영해요다당신을환영해요다당신을환영해요다당신을환영해요다당신을환영해요다당신을환영해요다당신을환영해요다당신을환영해요
+                            </p>
+                        </div>
+                        <div class="d-flex">
+                            <button onclick="location.href='<c:url value='/host/loginForm'/>'" type="button" class="form-control btn btn-primary submit px-3">당장 함께하기</button>
+                        </div>
+                    </div>
+                    <div id="map" style="width:600px; height:500px;"></div>
                 </div>
             </div>
-            <div id="map" style="width:600px; height:500px;"></div>
-        </div>
-    </div>
+        </c:when>
+        <c:when test="${userId ne null || role eq '[ROLE_HOST]'}">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="row gx-4 gx-lg-5 align-items-center">
+                    <div class="col-md-6">
+                        <h1 class="display-5 fw-bolder">${userId}님 환영합니다!</h1>
+                        <div class="fs-5 mb-5">
+                            <p class="lead">
+                                위드 휴일에서 숙소를 등록하고 돈방석에 앉아보세요!<br>
+                                위드 휴일과 함께라면!!!<br>
+                                강남 재벌도 망상은 아닙니다<br>
+                                숙소 등록 먼저 하시죠?
+                            </p>
+                        </div>
+                        <div class="fs-5 mb-5">
+                            <div class="d-flex afterLogin">
+                                <button type="button" class="form-control btn btn-primary submit px-3 infoBtn">숙소 등록</button>
+                                <button type="button" class="form-control btn btn-primary submit px-3 infoBtn">내 숙소 보기</button>
+                            </div>
+                            <div class="d-flex afterLogin">
+                                <button type="button" class="form-control btn btn-primary submit px-3 infoBtn">매출 확인</button>
+                                <button onclick="location.href='<c:url value='/hosts/info'/>'" type="button" class="form-control btn btn-primary submit px-3 infoBtn">마이페이지</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="map" style="width:600px; height:500px;"></div>
+                </div>
+            </div>
+        </c:when>
+    </c:choose>
 </section>
 <!-- Footer-->
 <footer class="py-5 bg-dark foot" style="height: 255px;">
