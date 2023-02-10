@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.with.hyuil.config.auth.CustomUserDetails;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,7 +50,13 @@ public class HostJoinController {
     private final EmailService emailService;
 
     @GetMapping
-    public String hostMain() {
+    public String hostMain(@AuthenticationPrincipal CustomUserDetails userDetails, Model model) {
+        try {
+            model.addAttribute("userId", userDetails.getUsername());
+            model.addAttribute("role", userDetails.getAuthorities().toString());
+        } catch (NullPointerException e) {
+            return "host/host";
+        }
         return "host/host";
     }
 
