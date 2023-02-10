@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -253,7 +252,7 @@
         <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800">회원관리</h1>
         <p class="mb-4">사업자회원리스트 관리입니다. <a target="_blank"
-                                          href="https://datatables.net"></a></p>
+                                           href="https://datatables.net"></a></p>
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
@@ -289,17 +288,17 @@
                 </tfoot>
                 <tbody>
                 <tr>
-                <c:forEach var="users" items="${users}">
-                <c:if test="${users.authLevel !=7}">
+                  <c:foreEach var="users" items="${users}">
+                    <c:if test="${users.authLevel !=7}">
                 <tr>
-                    <td>${users.id}</td>
-                    <td>${users.email}</td>
-                    <td>${users.name}</td>
-                    <td>${users.?}</td>
-                    <td>${users.tel}</td>
-                    <td>${users.account}</td>
-                    <td>${users.out></td>
-                    <td>${users.removeDate></td>
+                  <td>${users.id}</td>
+                  <td>${users.email}</td>
+                  <td>${users.name}</td>
+                  <td>${users.?}</td>
+                  <td>${users.tel}</td>
+                  <td>${users.account}</td>
+                  <td>${users.out></td>
+                  <td>${users.removeDate></td>
                 </tr>
                 </c:if>
                 </c:foreEach>
@@ -359,22 +358,22 @@
   </div>
 </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="/src/main/resources/static/management/js/jquery.min.js"></script>
-    <script src="/src/main/resources/static/management/js/bootstrap/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap core JavaScript-->
+<script src="/src/main/resources/static/management/js/jquery.min.js"></script>
+<script src="/src/main/resources/static/management/js/bootstrap/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="/src/main/resources/static/management/js/jquery.easing.min.js"></script>
+<!-- Core plugin JavaScript-->
+<script src="/src/main/resources/static/management/js/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-   <script src="/src/main/resources/static/management/js/sb-admin-2.min.js"></script>
+<!-- Custom scripts for all pages-->
+<script src="/src/main/resources/static/management/js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="/src/main/resources/static/management/js/jquery.dataTables.min.js"></script>
-    <script src="/src/main/resources/static/managment/js/dataTables.bootstrap4.min.js"></script>
+<!-- Page level plugins -->
+<script src="/src/main/resources/static/management/js/jquery.dataTables.min.js"></script>
+<script src="/src/main/resources/static/managment/js/dataTables.bootstrap4.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="/src/main/resources/static/management/js/demo/datatables-demo.js"></script>
+<!-- Page level custom scripts -->
+<script src="/src/main/resources/static/management/js/demo/datatables-demo.js"></script>
 
 </body>
 
