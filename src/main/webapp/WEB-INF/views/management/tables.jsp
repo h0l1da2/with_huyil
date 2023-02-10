@@ -296,7 +296,7 @@
                                             <td>${users.out></td>
                                             <td>${users.removeDate></td>
                                         </tr>
-                                        </c:foreEach>
+                                        </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
