@@ -20,7 +20,7 @@ public class UsersController {
         List<UsersVo> list= memberService.memberList();
         model.addAttribute("list", list);
 
-        return "management/tables";
+        return "management/userlist";
     }
 
 
