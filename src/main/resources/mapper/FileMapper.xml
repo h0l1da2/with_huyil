@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
 		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
@@ -61,4 +62,29 @@
 	insert into files values (seq_files.nextval, #{type}, #{name}, #{uuid}, #{path}, #{size}, null, #{hotel_info_id}, null)
 	</insert>
 >>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.with.hyuil.dao.FileMapper">
+	<resultMap type="FileVo" id="filevo">
+		<result property="id" column="id"/>
+		<result property="type" column="type"/>
+		<result property="name" column="name"/>
+		<result property="uuid" column="uuid"/>
+		<result property="path" column="path"/>
+		<result property="size" column="volume"/>
+		<result property="removed" column="removed"/>
+		<result property="hotelInfoId" column="hotel_info_id"/>
+		<result property="roomId" column="room_id"/>
+	</resultMap>
+	
+	<insert id="uploadFile" parameterType="FileVo">
+	insert into files
+	(ID, TYPE, NAME, UUID, PATH, VOLUME, REMOVED, HOTEL_INFO_ID <if test="roomId != 0">, ROOM_ID </if>)
+	values
+	(seq_files.nextval, #{type}, #{name}, #{uuid}, #{path}, #{size}, null, #{hotelInfoId} <if test="roomId != 0">, #{roomId} </if>)
+	</insert>
+>>>>>>> 5cb393a (Nam su (#34))
 </mapper>

@@ -4,9 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="EUC-KR">
-    <title>with hyuil room detail</title>
     <meta charset="utf-8">
+    <title>with hyuil room detail</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700&display=swap" rel="stylesheet">
@@ -32,10 +31,8 @@
 
     <!-- 네비바, 풋 css따오기 -->
     <link rel="stylesheet" href="/resources/static/home/css/style.css">
-
 </head>
 <body>
-
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
         <a class="navbar-brand title" href="/">위드휴일</a>
@@ -92,9 +89,8 @@
                 <table>
                     <tr> <td style="padding: 0 20px 0 20px;"><a href="#selectroom">객실선택</a></td> <td style="padding: 0 20px 0 20px;"><a href="#traffic">위치/교통</a></td>
                         <td style="padding: 0 20px 0 20px;"><a href="#service">시설/서비스</a></td> <td style="padding: 0 20px 0 20px;"><a href="#policy">숙소정책</a></td></tr>
-                </table> <br><br>
+                </table> <br>
             </div>
-
             <!-- Rooms Section Begin -->
             <section class="rooms-section spad" id="selectroom">
                 <div class="container">
@@ -122,7 +118,7 @@
                                             </tr>
                                             </tbody>
                                         </table>
-                                        <a href="/host/hotelReserve?id=${list.ID }" class="primary-btn" style="margin-left:5px;">예약하기</a>
+                                        <a href="/reserve?id=${list.ID }" class="primary-btn" style="margin-left:5px;">예약하기</a>
                                     </div>
                                 </div>
                             </div>

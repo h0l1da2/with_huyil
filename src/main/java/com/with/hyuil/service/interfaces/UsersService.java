@@ -1,15 +1,12 @@
 package com.with.hyuil.service.interfaces;
 
-<<<<<<< HEAD
 import com.with.hyuil.dto.info.DeleteDto;
 import com.with.hyuil.dto.info.EmailDto;
 import com.with.hyuil.dto.info.FindIdDto;
-=======
-import com.with.hyuil.dto.info.EmailDto;
->>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
 import com.with.hyuil.dto.info.PasswordDto;
 import com.with.hyuil.dto.users.BusinessDto;
 import com.with.hyuil.dto.users.UserIdDto;
+import com.with.hyuil.dto.users.UsersDto;
 import com.with.hyuil.model.RolesVo;
 import com.with.hyuil.model.UsersVo;
 
@@ -22,25 +19,17 @@ public interface UsersService {
     UsersVo loginForFind(String userId);
     UsersVo login(UsersVo usersVo);
     RolesVo roleForLogin(Long id);
-<<<<<<< HEAD
-<<<<<<< HEAD
     void updateLoginDate(String userId);
     UsersVo emailValid(EmailDto emailDto);
     int modifyEmail(EmailDto emailDto);
     String modifyPassword(PasswordDto passwordDto);
-<<<<<<< HEAD
     String findPassword(PasswordDto passwordDto);
     BusinessDto findBusinessDto(Long id);
     String deleteUser(DeleteDto deleteDto);
     UsersVo findId(FindIdDto findIdDto);
     UsersVo findTel(FindIdDto findIdDto);
-=======
-    void updateLoginDate(String userId);
->>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))
-=======
-    BusinessDto findBusinessDto(Long id);
->>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
+
+    void updatehost(UsersDto usersdto);
+    void updatebusiness(BusinessDto businessdto);
+    UsersDto getId(String userId);
 }
-=======
-}
->>>>>>> 317a2e1 (User 로그인 JWT 토큰 반환 완성)

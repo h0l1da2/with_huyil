@@ -15,7 +15,7 @@
     }
 </script>
 <head>
-    <meta charset="EUC-KR">
+    <meta charset="UTF-8">
     <title>with hyuil 호텔등록</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="" />

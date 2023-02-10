@@ -6173,7 +6173,7 @@ button.bg-dark:focus {
 
 .mb-4,
 .my-4 {
-  margin-bottom: 1.5rem !important; }
+  margin-bottom: 0rem !important; }
 
 .ml-4,
 .mx-4 {
@@ -9110,4 +9110,16 @@ textarea.form-control {
     stroke-dashoffset: -35px; }
   100% {
     stroke-dasharray: 89, 200;
+<<<<<<< HEAD
     stroke-dashoffset: -136px; } }
+=======
+    stroke-dashoffset: -136px; } }
+    
+.col-md-6:nth-child(even) {
+	left: 50px;
+}    
+
+.col-md-6:nth-child(odd) {
+	left: 0px;
+}
+>>>>>>> 5cb393a (Nam su (#34))

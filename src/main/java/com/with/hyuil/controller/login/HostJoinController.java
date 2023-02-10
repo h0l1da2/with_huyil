@@ -147,7 +147,16 @@ public class HostJoinController {
         session.removeAttribute("randomCode");
         session.removeAttribute("userDto");
     }
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
+    
+<<<<<<< HEAD
+>>>>>>> e585f1b (Nam su (#34))
     @GetMapping("/hostForm")
     public String balondor(Model model) {
         String id = "messi";
@@ -158,6 +167,7 @@ public class HostJoinController {
     }
 
     @PostMapping("/hostForm")
+<<<<<<< HEAD
     public String benzema(BusinessVo businessvo) {
         String id = "messi";
         UsersVo usersvo = usersService.loginForFind(id);
@@ -165,3 +175,19 @@ public class HostJoinController {
     }
 
 }
+=======
+	public String benzema(BusinessVo businessvo) {
+    	String id = "messi";
+		UsersVo usersvo = usersService.loginForFind(id);
+		return "redirect:/host/hotelForm";
+	}
+    
+<<<<<<< HEAD
+=======
+>>>>>>> 62589e9 (jwt 토큰 로컬스토리지 저장)
+=======
+>>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
+=======
+>>>>>>> 5cb393a (Nam su (#34))
+}
+>>>>>>> e585f1b (Nam su (#34))

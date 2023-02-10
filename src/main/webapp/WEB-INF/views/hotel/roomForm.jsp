@@ -116,11 +116,11 @@
 
             <h4>객실요금</h4> <br>
             <label for="exampleFormControlInput1">일반요금</label>
-            <input type="text" name="nPrice" style="width:200px; height:50px; padding-right: 10px; text-align: right" placeholder="예)50000">원
+            <input type="text" name="normalPrice" style="width:200px; height:50px; padding-right: 10px; text-align: right" placeholder="예)50000">원
             &nbsp;&nbsp;&nbsp;&nbsp;/ &nbsp;&nbsp;&nbsp;&nbsp;
 
             <label for="exampleFormControlInput1">주말요금</label>
-            <input type="text" name="hPrice" style="width:200px; height:50px; padding-right: 10px; text-align: right" placeholder="예)80000">원
+            <input type="text" name="holidayPrice" style="width:200px; height:50px; padding-right: 10px; text-align: right" placeholder="예)80000">원
             <br> <br> <br>
 
             <button class="w-btn-neon2" type="submit">
