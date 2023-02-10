@@ -111,4 +111,15 @@ public class UsersVo {
         this.businessId = businessId;
         this.rolesVo = rolesVo;
     }
+    public void userList(Long id, String userId, String email, String name, Wheres wheres, LocalDateTime joinDate, LocalDateTime lastLogin, LocalDateTime out ){
+        this.id = id;
+        this.userId = userId;
+        this.email = email;
+        this.name = name;
+        this.wheres = wheres;
+        this.joinDate = joinDate;
+        this.lastLogin = lastLogin;
+        this.out = out;
+    }
+
 }

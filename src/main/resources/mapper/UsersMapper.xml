@@ -63,6 +63,19 @@
         FROM ROLES
         WHERE USER_ID = #{userId, jdbcType=VARCHAR}
     </select>
+    <select id="userList" resultType="UsersVO">
+        SELECT
+        USER_ID AS userId,
+        NAME AS name,
+        EMAIL AS email,
+        WHERES AS wheres,
+        TEL AS tel,
+        LAST_LOGIN AS lastLogin,
+        OUT AS out,
+        REMOVE_DATE AS removeDate
+        FROM USERS
+        ORDER BY userId
+    </select>
     <update id="updateLastLogin" parameterType="String">
         UPDATE USERS
         SET LAST_LOGIN = SYSDATE

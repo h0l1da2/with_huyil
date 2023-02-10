@@ -285,8 +285,7 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                    <c:forEach var="users" items="${users}">
-                                        <c:if test="${users.authLevel !=7}">
+                                    <c:forEach var="users" items="${list}">
                                         <tr>
                                             <td>${users.id}</td>
                                             <td>${users.email}</td>
@@ -297,7 +296,6 @@
                                             <td>${users.out></td>
                                             <td>${users.removeDate></td>
                                         </tr>
-                                        </c:if>
                                         </c:foreEach>
                                     </tbody>
                                 </table>
