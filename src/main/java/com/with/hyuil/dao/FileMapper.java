@@ -8,5 +8,5 @@ import com.with.hyuil.model.FileVo;
 public interface FileMapper {
 
 	void uploadFile(FileVo filevo);
-	
+	FileVo selecthotelImg(long hotelInfoId);
 }

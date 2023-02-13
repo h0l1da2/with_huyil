@@ -1,26 +1,26 @@
 package com.with.hyuil.service;
 
-import com.with.hyuil.dao.UsersMapper;
-import com.with.hyuil.dto.info.EmailDto;
-import com.with.hyuil.dto.info.PasswordDto;
-import com.with.hyuil.dto.users.BusinessDto;
-import com.with.hyuil.dto.users.UserIdDto;
-import com.with.hyuil.model.BusinessVo;
-import com.with.hyuil.model.RolesVo;
-import com.with.hyuil.model.UsersVo;
-import com.with.hyuil.model.enumaration.Role;
-import com.with.hyuil.model.enumaration.Type;
-import com.with.hyuil.service.interfaces.UsersService;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.with.hyuil.dao.UsersMapper;
+import com.with.hyuil.dto.info.EmailDto;
+import com.with.hyuil.dto.info.PasswordDto;
+import com.with.hyuil.dto.users.BusinessDto;
+import com.with.hyuil.dto.users.UserIdDto;
+import com.with.hyuil.dto.users.UsersDto;
+import com.with.hyuil.model.BusinessVo;
+import com.with.hyuil.model.RolesVo;
+import com.with.hyuil.model.UsersVo;
+import com.with.hyuil.model.enumaration.Role;
+import com.with.hyuil.model.enumaration.Type;
+import com.with.hyuil.service.interfaces.UsersService;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
@@ -144,6 +144,16 @@ public class UsersServiceImpl implements UsersService {
 
     private String passwordEncoding(String password) {
         return passwordEncoder.encode(password);
+    }
+    
+    @Override
+    public void updatehost(UsersVo usersvo) {
+    	usersMapper.updatehost(usersvo);
+    }
+    
+    @Override
+    public void updatebusiness(BusinessDto businessdto) {
+    	usersMapper.updatebusiness(businessdto);
     }
     
 }

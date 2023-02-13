@@ -1,4 +1,3 @@
-
 package com.with.hyuil.dao;
 
 import java.util.List;
@@ -13,7 +12,6 @@ import com.with.hyuil.model.RoomVo;
 public interface RoomMapper {
 
 	void insertRoom(RoomVo roomvo);
-	long roomCount(long hotelId);
 	List<Map<String, Object>> getroomList(long hotelId);
 	
 

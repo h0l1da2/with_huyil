@@ -16,4 +16,8 @@ public class FileServiceImpl {
 		mapper.uploadFile(filevo);
 	}
 	
+	public FileVo gethotelImg(long hotelInfoId) {
+		return mapper.selecthotelImg(hotelInfoId);
+	}
+	
 }

@@ -2,6 +2,9 @@ package com.with.hyuil;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,7 +15,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FilenameUtils;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +33,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.with.hyuil.dto.users.BusinessDto;
+import com.with.hyuil.dto.users.UsersDto;
 import com.with.hyuil.model.BusinessVo;
 import com.with.hyuil.model.FileVo;
 import com.with.hyuil.model.HotelInfoVo;
@@ -51,6 +62,24 @@ public class hotelViewTestController {
 	@Autowired
 	private FileServiceImpl fileService;
 	
+	@GetMapping("/img")
+	public ResponseEntity<Resource> display(@Param("filename")String filename){
+		String path = "C:/Imgs/";
+		Resource resource = new FileSystemResource(path + filename);
+		if(!resource.exists())
+			return new ResponseEntity<Resource>(HttpStatus.NOT_FOUND);
+		
+		HttpHeaders header = new HttpHeaders();
+		Path filePath = null;
+		try {
+			filePath = Paths.get(path + filename);
+			header.add("Content-Type", Files.probeContentType(filePath));
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+		return new ResponseEntity<Resource>(resource, header, HttpStatus.OK);
+	}
+	
 	@RequestMapping("/hotelDetail")
 	public String messi(@RequestParam long id, Model model) {
 		HotelVo hotelvo = hotelService.findByHotelId(id);
@@ -59,10 +88,12 @@ public class hotelViewTestController {
 		roomList = roomService.getroomList(id);
 		String[] service = hotelvo.getService().split(" ");		
 		System.out.println(Arrays.toString(service));
+		FileVo filevo = fileService.gethotelImg(infovo.getId());
 		model.addAttribute("hotelvo", hotelvo);
 		model.addAttribute("infovo", infovo);
 		model.addAttribute("roomList", roomList);
 		model.addAttribute("service", service);
+		model.addAttribute("filevo", filevo);
 		return "/hotel/hotelDetail";
 	}
 	
@@ -75,7 +106,8 @@ public class hotelViewTestController {
 	public String balondor(Model model, HttpSession session) {
 		String id = (String)session.getAttribute("userId");
 		UsersVo usersvo = usersService.loginForFind(id);
-		System.out.println(usersvo.getBusinessVo());
+		BusinessDto businessdto = usersService.findBusinessDto(usersvo.getBusinessId());
+		model.addAttribute("business", businessdto);
 		model.addAttribute("users", usersvo);
 		return "/hotel/hostForm";
 	}
@@ -86,10 +118,13 @@ public class hotelViewTestController {
 	}
 	
 	@PostMapping("/hostForm")
-	public String benzema(BusinessVo businessvo) {
-    	String id = "messi";
-		UsersVo usersvo = usersService.loginForFind(id);
-		return "redirect:/host/hotelForm";
+	public String benzema(HttpSession session, HttpServletRequest req) {
+    	String userId = (String)session.getAttribute("userId");
+    	UsersVo usersvo = usersService.loginForFind(userId);
+    	BusinessDto businessdto = usersService.findBusinessDto(usersvo.getBusinessId());
+    	usersService.updatehost(usersvo);
+    	usersService.updatebusiness(businessdto);    	
+    	return "redirect:/host/hotelForm";
 	}
 	
 	@PostMapping("/hotelForm")

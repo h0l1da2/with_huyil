@@ -72,28 +72,28 @@
         	<div class="col-md-12 ftco-animate">
           		<div class="single-slider owl-carousel">
           			<div class="item">
-          				<div class="room-img" style="background-image: url(/resources/static/hotelDetail/images/room-4.jpg);"></div>
-          				</div>
+          				<img class="room-img" src="/host/img?filename=${filevo.uuid }"></img>
           			</div>
           		</div>
-          		<div class="col-md-12">
-          			<h2 class="mb-4">${hotelvo.name}</h2>
-         	 		<div class="star-rating">
-          				<div class="rating" data-rate="${hotelvo.star}">
-          					<i class="fas fa-star"></i>
-          					<i class="fas fa-star"></i>
-          					<i class="fas fa-star"></i>
-          					<i class="fas fa-star"></i>
-          					<i class="fas fa-star"></i>
-          					<i><a href="/host/hostForm">리뷰 더 보기</a></i>
-          				</div>
-          			</div>
-    				<p>${infovo.intro}</p> <br>
-					<table>
-						<tr> <td style="padding: 0 20px 0 20px;"><a href="#selectroom">객실선택</a></td> <td style="padding: 0 20px 0 20px;"><a href="#traffic">위치/교통</a></td> 
-							 <td style="padding: 0 20px 0 20px;"><a href="#service">시설/서비스</a></td> <td style="padding: 0 20px 0 20px;"><a href="#policy">숙소정책</a></td></tr>
-					</table> <br><br>
-				</div>
+          	</div>
+          	<div class="col-md-12">
+          		<h2 class="mb-4">${hotelvo.name}</h2>
+         	 	<div class="star-rating">
+          			<div class="rating" data-rate="${hotelvo.star}">
+       					<i class="fas fa-star"></i>
+       					<i class="fas fa-star"></i>
+       					<i class="fas fa-star"></i>
+       					<i class="fas fa-star"></i>
+       					<i class="fas fa-star"></i>
+       					<i><a href="/host/hostForm">리뷰 더 보기</a></i>
+       				</div>
+       			</div>
+   				<p>${infovo.intro}</p> <br>
+				<table>
+					<tr> <td style="padding: 0 20px 0 20px;"><a href="#selectroom">객실선택</a></td> <td style="padding: 0 20px 0 20px;"><a href="#traffic">위치/교통</a></td> 
+						 <td style="padding: 0 20px 0 20px;"><a href="#service">시설/서비스</a></td> <td style="padding: 0 20px 0 20px;"><a href="#policy">숙소정책</a></td></tr>
+				</table> <br><br>
+			</div>
 						
 	<!-- Rooms Section Begin -->
     <section class="rooms-section spad" id="selectroom">
@@ -102,7 +102,7 @@
             	<c:forEach items="${roomList}" var="list">
                 <div class="col-md-6">
                     <div class="room-item" style="width: 400px;">
-                        <img src="/resources/static/hotelDetail/img/room/room-1.jpg" alt="">
+                        <img src="/host/img?filename=${list.UUID }" width="370" height="240">
                         <div class="ri-text">
                             <h3>${list.NAME }</h3>
                             <h4>${list.NORMAL_PRICE } /1박</h4>

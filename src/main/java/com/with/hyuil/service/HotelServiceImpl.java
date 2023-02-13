@@ -30,7 +30,7 @@ public class HotelServiceImpl implements HotelService {
 	
 	@Override
 	public HotelVo findByHotelId(long id) {
-		return mapper.findByHotelId(id);
+		return mapper.findByHoteluserId(id);
 	}
 	
 	@Override
