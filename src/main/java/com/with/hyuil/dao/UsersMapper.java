@@ -29,7 +29,7 @@ public interface UsersMapper {
     int updatePassword(PasswordDto passwordDto);
     BusinessVo findByBusinessId(Long id);
     
-    void updatehost(UsersVo usersvo);
+    void updatehost(UsersDto usersdto);
     void updatebusiness(BusinessDto businessdto);
-
+    UsersDto getId(String userId);
 }

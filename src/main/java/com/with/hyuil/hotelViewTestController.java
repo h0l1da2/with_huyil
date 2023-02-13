@@ -105,10 +105,10 @@ public class hotelViewTestController {
     @GetMapping("/hostForm")
 	public String balondor(Model model, HttpSession session) {
 		String id = (String)session.getAttribute("userId");
-		UsersVo usersvo = usersService.loginForFind(id);
-		BusinessDto businessdto = usersService.findBusinessDto(usersvo.getBusinessId());
+		UsersDto usersdto = usersService.getId(id);
+		BusinessDto businessdto = usersService.findBusinessDto(usersdto.getBusinessId());
 		model.addAttribute("business", businessdto);
-		model.addAttribute("users", usersvo);
+		model.addAttribute("users", usersdto);
 		return "/hotel/hostForm";
 	}
 	
@@ -120,9 +120,13 @@ public class hotelViewTestController {
 	@PostMapping("/hostForm")
 	public String benzema(HttpSession session, HttpServletRequest req) {
     	String userId = (String)session.getAttribute("userId");
-    	UsersVo usersvo = usersService.loginForFind(userId);
-    	BusinessDto businessdto = usersService.findBusinessDto(usersvo.getBusinessId());
-    	usersService.updatehost(usersvo);
+    	UsersDto usersdto = usersService.getId(userId);
+    	BusinessDto businessdto = usersService.findBusinessDto(usersdto.getBusinessId());
+    	usersdto.setTel(req.getParameter("tel"));
+    	businessdto.setBank(req.getParameter("bank"));
+    	businessdto.setAccount(req.getParameter("account"));
+    	businessdto.setBankNumber(req.getParameter("bankNumber"));
+    	usersService.updatehost(usersdto);
     	usersService.updatebusiness(businessdto);    	
     	return "redirect:/host/hotelForm";
 	}
@@ -143,32 +147,7 @@ public class hotelViewTestController {
 		hotelvo.setService(textservice);
 		hotelvo.setHotelInfoId(infovo.getId());
 		hotelService.addHotel(hotelvo);
-		//파일 업로드
-		String path = "C:/Imgs/";
-		File dir = new File(path);
-		if(!dir.isDirectory()) {
-			dir.mkdirs();
-		}
-		List<MultipartFile> mf = mhsq.getFiles("uploadFile");
-		if(mf.size() == 1 && mf.get(0).getOriginalFilename().equals("")) {
-		}else {
-			for (int i=0; i<mf.size(); i++) {
-				String genId = UUID.randomUUID().toString();
-				String originalfileName = mf.get(i).getOriginalFilename();
-				String saveFileName = genId + "." + FilenameUtils.getExtension(originalfileName);
-				String savePath = path + saveFileName;
-				long fileSize = mf.get(i).getSize();
-				mf.get(i).transferTo(new File(savePath));
-				FileVo filevo = new FileVo();
-				filevo.setType(FilenameUtils.getExtension(saveFileName));
-				filevo.setName(originalfileName);
-				filevo.setPath(path);
-				filevo.setUuid(saveFileName);
-				filevo.setHotelInfoId(infovo.getId());
-				filevo.setSize(fileSize);
-				fileService.fileUpload(filevo);				
-			}
-		}
+		fileService.UploadImg(mhsq, session, usersvo, hotelvo, null);
 		return new ModelAndView("redirect:/host/roomForm");
 	}
 	
@@ -180,32 +159,7 @@ public class hotelViewTestController {
 		HotelVo hotelvo = hotelService.findByHotelUserId(userId);
 		roomvo.setHotelId(hotelvo.getId());
 		roomService.addRoom(roomvo);
-		String path = "C:/Imgs/";
-		File dir = new File(path);
-		if(!dir.isDirectory()) {
-			dir.mkdirs();
-		}
-		List<MultipartFile> mf = mhsq.getFiles("uploadFile");
-		if(mf.size() == 1 && mf.get(0).getOriginalFilename().equals("")) {
-		}else {
-			for(int i=0; i<mf.size(); i++) {
-				String genId = UUID.randomUUID().toString();
-				String originalfileName = mf.get(i).getOriginalFilename();
-				String saveFileName = genId + "." + FilenameUtils.getExtension(originalfileName);
-				String savePath = path + saveFileName;
-				long fileSize = mf.get(i).getSize();
-				mf.get(i).transferTo(new File(savePath));
-				FileVo filevo = new FileVo();
-				filevo.setType(FilenameUtils.getExtension(originalfileName));
-				filevo.setName(originalfileName);
-				filevo.setPath(path);
-				filevo.setUuid(saveFileName);
-				filevo.setHotelInfoId(hotelvo.getHotelInfoId());
-				filevo.setSize(fileSize);
-				filevo.setRoomId(roomvo.getId());
-				fileService.fileUpload(filevo);
-			}
-		}
+		fileService.UploadImg(mhsq, session, usersvo, hotelvo, roomvo);
 		return new ModelAndView("redirect:/host");
 	}
 }

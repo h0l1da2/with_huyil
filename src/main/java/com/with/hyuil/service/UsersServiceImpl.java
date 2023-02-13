@@ -147,13 +147,18 @@ public class UsersServiceImpl implements UsersService {
     }
     
     @Override
-    public void updatehost(UsersVo usersvo) {
-    	usersMapper.updatehost(usersvo);
+    public void updatehost(UsersDto usersdto) {
+    	usersMapper.updatehost(usersdto);
     }
     
     @Override
     public void updatebusiness(BusinessDto businessdto) {
     	usersMapper.updatebusiness(businessdto);
+    }
+    
+    @Override
+    public UsersDto getId(String userId) {
+    	return usersMapper.getId(userId);
     }
     
 }

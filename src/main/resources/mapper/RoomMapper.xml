@@ -30,4 +30,8 @@
 		from room a left join files b on(a.id = b.room_id) where a.hotel_id = #{hotel_id}
 	</select>
 	
+	<select id="getRoom" parameterType="long" resultType="RoomVo">
+		select * from room where hotel_id = #{hotelId}
+	</select>
+	
 </mapper>

@@ -42,7 +42,7 @@ function setThumbnail(event){
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a href="/host" class="nav-link">호스트등록</a></li>
-                <li class="nav-item"><a href="/user/login" class="nav-link">로그인</a></li>
+                <li class="nav-item"><a href="/user/loginForm" class="nav-link">로그인</a></li>
             </ul>
         </div>
     </div>
@@ -55,7 +55,7 @@ function setThumbnail(event){
           <div class="col-md-10 text-center" data-aos="fade">
             <h1 class="heading mb-3">Rooms</h1>
             <ul class="custom-breadcrumbs mb-4">
-              <li><a href="/host">Home</a></li>
+              <li><a href="/">Home</a></li>
             </ul>
           </div>
         </div>

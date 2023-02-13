@@ -46,7 +46,7 @@
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a href="/host" class="nav-link">호스트등록</a></li>
-                <li class="nav-item"><a href="/user/login" class="nav-link">로그인</a></li>
+                <li class="nav-item"><a href="/user/loginForm" class="nav-link">로그인</a></li>
             </ul>
         </div>
     </div>
@@ -58,7 +58,7 @@
         <div class="row no-gutters slider-text d-flex align-itemd-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center d-flex align-items-end justify-content-center">
           	<div class="text">
-	            <p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.html">Home</a></span> <span class="mr-2"><a href="rooms.html">Hotel</a></span> <span>Detail</span></p>
+	            <p class="breadcrumbs mb-2"><span class="mr-2"><a href="/">Home</a></span>
 	            <h1 class="mb-4 bread">Room Details</h1>
             </div>
           </div>
@@ -122,18 +122,11 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <a href="#" class="primary-btn">More Details</a> 
+							<a href="/host/hotelReserve?id=${list.ID }" class="primary-btn" style="margin-left:5px;">예약하기</a> 
                         </div>
                     </div>
                 </div>
                 </c:forEach>
-                <div class="col-lg-12">
-                	<div class="room-pagination">
-                    	<a href="#">1</a>
-      	                <a href="#">2</a>
-        	            <a href="#">Next <i class="fa fa-long-arrow-right"></i></a>
-              	    </div>
-           	    </div>
             </div>
         </div>
 	</section>
