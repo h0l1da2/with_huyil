@@ -1,6 +1,8 @@
 package com.with.hyuil.service.interfaces;
 
+import com.with.hyuil.dto.info.DeleteDto;
 import com.with.hyuil.dto.info.EmailDto;
+import com.with.hyuil.dto.info.FindIdDto;
 import com.with.hyuil.dto.info.PasswordDto;
 import com.with.hyuil.dto.users.BusinessDto;
 import com.with.hyuil.dto.users.UserIdDto;
@@ -21,7 +23,11 @@ public interface UsersService {
     UsersVo emailValid(EmailDto emailDto);
     int modifyEmail(EmailDto emailDto);
     String modifyPassword(PasswordDto passwordDto);
+    String findPassword(PasswordDto passwordDto);
     BusinessDto findBusinessDto(Long id);
+    String deleteUser(DeleteDto deleteDto);
+    UsersVo findId(FindIdDto findIdDto);
+    UsersVo findTel(FindIdDto findIdDto);
 
     void updatehost(UsersDto usersdto);
     void updatebusiness(BusinessDto businessdto);

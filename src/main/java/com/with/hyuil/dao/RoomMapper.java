@@ -2,10 +2,6 @@ package com.with.hyuil.dao;
 
 import java.util.List;
 import java.util.Map;
-
-
-package com.with.hyuil.dao;
-
 import org.apache.ibatis.annotations.Mapper;
 
 import com.with.hyuil.model.RoomVo;
