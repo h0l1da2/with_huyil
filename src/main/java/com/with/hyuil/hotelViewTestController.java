@@ -55,19 +55,19 @@ public class hotelViewTestController {
 	@Autowired
 	private HotelServiceImpl hotelService;
 	@Autowired
-	private RoomServiceImpl roomService;	
+	private RoomServiceImpl roomService;
 	@Autowired
 	private FileServiceImpl fileService;
 	@Autowired
 	private OrdersServiceImpl ordersService;
-	
+
 	@GetMapping("/host/img") //로컬파일 C:Imgs에 있는 사진 보여주는 서버
 	public ResponseEntity<Resource> display(@Param("filename")String filename){
 		String path = "C:/Imgs/";
 		Resource resource = new FileSystemResource(path + filename);
 		if(!resource.exists())
 			return new ResponseEntity<Resource>(HttpStatus.NOT_FOUND);
-		
+
 		HttpHeaders header = new HttpHeaders();
 		Path filePath = null;
 		try {
@@ -78,14 +78,14 @@ public class hotelViewTestController {
 		}
 		return new ResponseEntity<Resource>(resource, header, HttpStatus.OK);
 	}
-	
+
 	@RequestMapping("/host/hotelDetail")
 	public String messi(@RequestParam long id, Model model) {
 		HotelVo hotelvo = hotelService.findByHotelId(id);
 		HotelInfoVo infovo = infoService.findByInfoId(id);
 		List<Map<String, Object>> roomList = new ArrayList<Map<String, Object>>();
 		roomList = roomService.getroomList(id);
-		String[] service = hotelvo.getService().split(" ");		
+		String[] service = hotelvo.getService().split(" ");
 		System.out.println(Arrays.toString(service));
 		FileVo filevo = fileService.gethotelImg(infovo.getId());
 		model.addAttribute("hotelvo", hotelvo);
@@ -95,13 +95,13 @@ public class hotelViewTestController {
 		model.addAttribute("filevo", filevo);
 		return "/hotel/hotelDetail";
 	}
-	
+
 	@GetMapping("/host/hotelForm")
 	public String lionel() {
 		return "/hotel/hotelForm";
 	}
-	
-    @GetMapping("/host/hostForm")
+
+	@GetMapping("/host/hostForm")
 	public String balondor(Model model, HttpSession session) {
 		String id = (String)session.getAttribute("userId");
 		UsersDto usersdto = usersService.getId(id);
@@ -110,12 +110,12 @@ public class hotelViewTestController {
 		model.addAttribute("users", usersdto);
 		return "/hotel/hostForm";
 	}
-	
+
 	@GetMapping("/host/roomForm")
 	public String winner() {
 		return "/hotel/roomForm";
 	}
-	
+
 	@GetMapping("/reserve")
 	public String reserve(Model model, HttpSession session, HttpServletRequest req, @RequestParam long id) {
 		String userId = (String)session.getAttribute("userId");
@@ -128,25 +128,25 @@ public class hotelViewTestController {
 		model.addAttribute("usersvo", usersvo);
 		return "/hotel/hotelReserve";
 	}
-	
+
 	@PostMapping("/host/hostForm")
 	public String benzema(HttpSession session, HttpServletRequest req) {
-    	String userId = (String)session.getAttribute("userId");
-    	UsersDto usersdto = usersService.getId(userId);
-    	BusinessDto businessdto = usersService.findBusinessDto(usersdto.getBusinessId());
-    	usersdto.setTel(req.getParameter("tel"));
-    	businessdto.setBank(req.getParameter("bank"));
-    	businessdto.setAccount(req.getParameter("account"));
-    	businessdto.setBankNumber(req.getParameter("bankNumber"));
-    	usersService.updatehost(usersdto);
-    	usersService.updatebusiness(businessdto);    	
-    	return "redirect:/host/hotelForm";
+		String userId = (String)session.getAttribute("userId");
+		UsersDto usersdto = usersService.getId(userId);
+		BusinessDto businessdto = usersService.findBusinessDto(usersdto.getBusinessId());
+		usersdto.setTel(req.getParameter("tel"));
+		businessdto.setBank(req.getParameter("bank"));
+		businessdto.setAccount(req.getParameter("account"));
+		businessdto.setBankNumber(req.getParameter("bankNumber"));
+		usersService.updatehost(usersdto);
+		usersService.updatebusiness(businessdto);
+		return "redirect:/host/hotelForm";
 	}
-	
+
 	@PostMapping("/host/hotelForm")
 	public ModelAndView lionelmessi(HttpServletRequest req, HttpSession session,
-			@ModelAttribute("article") FileVo article, MultipartHttpServletRequest mhsq,
-			HotelVo hotelvo, HotelInfoVo infovo, MultipartFile file)throws IllegalStateException, IOException {
+									@ModelAttribute("article") FileVo article, MultipartHttpServletRequest mhsq,
+									HotelVo hotelvo, HotelInfoVo infovo, MultipartFile file)throws IllegalStateException, IOException {
 		String userId = (String)session.getAttribute("userId");
 		UsersVo usersvo = usersService.loginForFind(userId);
 		infoService.addInfo(infovo);
@@ -162,7 +162,7 @@ public class hotelViewTestController {
 		fileService.UploadImg(mhsq, session, usersvo, hotelvo, null);
 		return new ModelAndView("redirect:/host/roomForm");
 	}
-	
+
 	@PostMapping("/host/roomForm")
 	public ModelAndView pique(MultipartHttpServletRequest mhsq, HttpSession session, RoomVo roomvo)throws IllegalStateException, IOException {
 		String id = (String)session.getAttribute("userId");
@@ -174,7 +174,7 @@ public class hotelViewTestController {
 		fileService.UploadImg(mhsq, session, usersvo, hotelvo, roomvo);
 		return new ModelAndView("redirect:/host");
 	}
-	
+
 	@PostMapping("/reserve")
 	public String rashford(HttpSession session, OrdersVo ordersvo, HttpServletRequest req) {
 		String userId = (String)session.getAttribute("userId");
@@ -184,5 +184,5 @@ public class hotelViewTestController {
 		ordersService.addOrders(ordersvo);
 		return "redirect:/";
 	}
-	
+
 }

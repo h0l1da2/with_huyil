@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @Getter
 @Builder
 public class UsersVo {
-//빈 등록?
+    //빈 등록?
     private Long id;
     private String userId;
     private String password;
@@ -25,12 +25,13 @@ public class UsersVo {
     private String name;
     private Type type;
     private Wheres wheres;
+    private String out;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime joinDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime lastLogin;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime out;
+    private LocalDateTime removeDate;
     private BusinessVo businessVo;
     private Long businessId;
     private RolesVo rolesVo;
@@ -95,7 +96,7 @@ public class UsersVo {
         this.businessVo = businessVo;
     }
 
-    public UsersVo(Long id, String userId, String password, String email, String tel, String name, Type type, Wheres wheres, LocalDateTime joinDate, LocalDateTime lastLogin, LocalDateTime out, BusinessVo businessVo, Long businessId, RolesVo rolesVo) {
+    public UsersVo(Long id, String userId, String password, String email, String tel, String name, Type type, Wheres wheres, String out, LocalDateTime joinDate, LocalDateTime lastLogin, LocalDateTime removeDate, BusinessVo businessVo, Long businessId, RolesVo rolesVo) {
         this.id = id;
         this.userId = userId;
         this.password = password;
@@ -104,9 +105,10 @@ public class UsersVo {
         this.name = name;
         this.type = type;
         this.wheres = wheres;
+        this.out = out;
         this.joinDate = joinDate;
         this.lastLogin = lastLogin;
-        this.out = out;
+        this.removeDate = removeDate;
         this.businessVo = businessVo;
         this.businessId = businessId;
         this.rolesVo = rolesVo;

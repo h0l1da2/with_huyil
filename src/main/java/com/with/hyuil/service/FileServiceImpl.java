@@ -23,7 +23,7 @@ import com.with.hyuil.service.interfaces.UsersService;
 
 @Service
 public class FileServiceImpl {
-	
+
 	@Autowired
 	private FileMapper mapper;
 	@Autowired
@@ -32,19 +32,19 @@ public class FileServiceImpl {
 	private HotelService hotelService;
 	@Autowired
 	private RoomServiceImpl roomService;
-	
+
 	public void fileUpload(FileVo filevo) {
 		mapper.uploadFile(filevo);
 	}
-	
+
 	public FileVo gethotelImg(long hotelInfoId) {
 		return mapper.selecthotelImg(hotelInfoId);
 	}
-	
+
 	public FileVo getRoomImg(long roomId) {
 		return mapper.selectRoomImg(roomId);
 	}
-	
+
 	public void UploadImg(MultipartHttpServletRequest mhsq, HttpSession session, UsersVo usersvo, HotelVo hotelvo, RoomVo roomvo)throws IllegalStateException, IOException  {
 		String path = "C:/Imgs/";
 		File dir = new File(path);
@@ -70,7 +70,7 @@ public class FileServiceImpl {
 				filevo.setSize(fileSize);
 				if(roomvo != null) {
 					filevo.setRoomId(roomvo.getId());
-				}			
+				}
 				fileUpload(filevo);
 			}
 		}

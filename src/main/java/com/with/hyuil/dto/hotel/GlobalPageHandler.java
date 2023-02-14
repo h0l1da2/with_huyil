@@ -1,9 +1,10 @@
 package com.with.hyuil.dto.hotel;
 
 import lombok.Data;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @Data
-public class HotelPageHandler {
+public class GlobalPageHandler {
     private final int postCount = 6; // 화면에 보여줄 게시글 갯수
     private final int listSize = 5; // 목록 갯수
     private int totalPost; //총 글 갯수
@@ -17,7 +18,7 @@ public class HotelPageHandler {
     private boolean showNext = false;
     private boolean showPrev = false;
 
-    public HotelPageHandler(int totalPost, int viewPage) {
+    public GlobalPageHandler(int totalPost, int viewPage) {
         this.totalPost = totalPost;
         this.viewPage = viewPage;
 
@@ -25,11 +26,17 @@ public class HotelPageHandler {
         limitPost = viewPage* postCount < totalPost ? viewPage* postCount : totalPost;
         offsetPost = viewPage* postCount -5;
         beginPage = (viewPage/ postCount *(postCount -1))+1;
-        endPage = totalPost*0.1 <= 0.6 ? totalPage : beginPage+listSize -1;
+        endPage = totalPost/listSize > postCount ? beginPage+listSize-1 : totalPage;
 
         showNext = totalPage != endPage;
         showPrev = beginPage != 1;
 
+    }
 
+    public String getPageInfo(Integer viewPage) {
+        return UriComponentsBuilder.newInstance()
+                .queryParam("viewPage", viewPage)
+                .queryParam("totalPost", totalPost)
+                .build().toString();
     }
 }

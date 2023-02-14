@@ -145,20 +145,20 @@ public class UsersServiceImpl implements UsersService {
     private String passwordEncoding(String password) {
         return passwordEncoder.encode(password);
     }
-    
+
     @Override
     public void updatehost(UsersDto usersdto) {
-    	usersMapper.updatehost(usersdto);
+        usersMapper.updatehost(usersdto);
     }
-    
+
     @Override
     public void updatebusiness(BusinessDto businessdto) {
-    	usersMapper.updatebusiness(businessdto);
+        usersMapper.updatebusiness(businessdto);
     }
-    
+
     @Override
     public UsersDto getId(String userId) {
-    	return usersMapper.getId(userId);
+        return usersMapper.getId(userId);
     }
-    
+
 }

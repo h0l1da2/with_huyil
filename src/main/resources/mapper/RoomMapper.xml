@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.with.hyuil.dao.RoomMapper">
 	<resultMap type="RoomVo" id="roomvo">
 		<result property="id" column="id"/>
@@ -14,7 +14,7 @@
 		<result property="holidayPrice" column="holiday_price"/>
 		<result property="adminId" column="admin_check_id"/>
 	</resultMap>
-	
+
 	<insert id="insertRoom" parameterType="RoomVo">
 		<selectKey keyProperty="id" resultType="long" order="BEFORE">
 			select seq_room.nextval from dual
@@ -24,18 +24,18 @@
 		values
 		(#{id}, #{hotelId}, #{name}, #{content}, #{max}, #{bed}, #{normalPrice}, #{holidayPrice})
 	</insert>
-	
+
 	<select id="getroomList" parameterType="long" resultType="Map">
 		select a.id, a.name, a.content, a.max, a.bed, a.normal_price, a.holiday_price, b.uuid
 		from room a left join files b on(a.id = b.room_id) where a.hotel_id = #{hotel_id}
 	</select>
-	
+
 	<select id="getRoom" parameterType="long" resultType="RoomVo">
 		select * from room where hotel_id = #{hotelId}
 	</select>
-	
+
 	<select id="findByRoomId" parameterType="long" resultType="RoomVo">
 		select * from room where id = #{id}
 	</select>
-	
+
 </mapper>

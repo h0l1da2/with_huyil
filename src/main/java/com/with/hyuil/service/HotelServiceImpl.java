@@ -22,7 +22,12 @@ public class HotelServiceImpl implements HotelService {
 	public void addHotel(HotelVo hotelvo) {
 		mapper.insertHotel(hotelvo);
 	}
-	
+
+	@Override
+	public HotelVo findByHotelUserId(Long userId) {
+		return mapper.findByHoteluserId(userId);
+	}
+
 	@Override
 	public HotelVo findByHotelUserId(Long userId) {
 		return mapper.findByHoteluserId(userId);
@@ -32,7 +37,7 @@ public class HotelServiceImpl implements HotelService {
 	public HotelVo findByHotelId(long id) {
 		return mapper.findByHotelId(id);
 	}
-	
+
 	@Override
 	public List<HotelListDto> searchHotels(HotelSearchDto hotelSearchDto) {
 		log.info("CheckIn = {}", hotelSearchDto.getCheckIn());

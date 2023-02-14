@@ -18,7 +18,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 @RequestMapping("/admins")
 public class AdminJoinController {
-//서비스에서 생긴 예외 컨트롤러에서 예외 처리?
+    //서비스에서 생긴 예외 컨트롤러에서 예외 처리?
     private final UsersService usersService;
 
     @GetMapping

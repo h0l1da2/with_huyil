@@ -23,4 +23,5 @@ public class HotelSearchDto {
     public HotelSearchDto() {
     }
 
+
 }

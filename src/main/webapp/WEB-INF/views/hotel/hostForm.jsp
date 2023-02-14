@@ -1,25 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>with hyuil mypage</title>
+    <meta charset="EUC-KR">
+    <title>with hyuil mypage</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <meta name="author" content="" />
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=|Roboto+Sans:400,700|Playfair+Display:400,700">
-	<link rel="stylesheet" type="text/css" href="/resources/static/hotelForm/css/state.css">	
+    <link rel="stylesheet" type="text/css" href="/resources/static/hotelForm/css/state.css">
 
     <!-- Theme Style -->
     <link rel="stylesheet" href="/resources/static/hotelForm/css/style.css">
-	
-	<!-- 네비바, 풋 css따오기 -->    
+
+    <!-- 네비바, 풋 css따오기 -->
     <link rel="stylesheet" href="/resources/static/home/css/style.css">
 </head>
 <body>
-    
+
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
         <a class="navbar-brand title" href="/">위드휴일</a>
@@ -37,69 +37,69 @@
 </nav>
 <!-- END nav -->
 
-    <section class="site-hero inner-page overlay" style="background-image: url(images/hero_4.jpg)" data-stellar-background-ratio="0.5">
-      <div class="container">
+<section class="site-hero inner-page overlay" style="background-image: url(images/hero_4.jpg)" data-stellar-background-ratio="0.5">
+    <div class="container">
         <div class="row site-hero-inner justify-content-center align-items-center">
-          <div class="col-md-10 text-center" data-aos="fade">
-            <h1 class="heading mb-3">myPage</h1>
-            <ul class="custom-breadcrumbs mb-4">
-              <li><a href="/">Home</a></li>
-            </ul>
-          </div>
+            <div class="col-md-10 text-center" data-aos="fade">
+                <h1 class="heading mb-3">myPage</h1>
+                <ul class="custom-breadcrumbs mb-4">
+                    <li><a href="/">Home</a></li>
+                </ul>
+            </div>
         </div>
-      </div>
-      </section>
-
-<div class="step-box">
-   <div class="step-state step">
-    <ul>
-      <li><p>마이페이지</p></li>
-      <li onclick="location.href='/host/hotelForm'" style="cursor:pointer;"><p>호텔등록</p></li>
-      <li onclick="location.href='/host/roomForm'" style="cursor:pointer;"><p>객실등록</p></li>
-    </ul>
-  </div>
-</div>	
-
-<section id="hotelForm">
-<form action="/host/hostForm" method="post">
-  <div style="margin:0 0 30px 100px;" class="form-group">
-  <br>
-    <label for="exampleFormControlInput1">이 름</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input type="text" name="name" value="${users.getName() }" readonly style="width:250px; height:50px;">
-    <br> <br>
-
-    <label for="exampleFormControlInput1">전화번호</label>  &nbsp;&nbsp;&nbsp;
-    <input type="text" name="tel" value="${users.getTel() }" placeholder="숫자만입력해주세요" style="width:300px; height:50px;">
-    <div class="form-group">
-    <br>
-    
-    <label for="exampleFormControlInput1">거래은행</label>  &nbsp;&nbsp;&nbsp;
-    <input type="text" name="bank" value="${business.bank }" placeholder="예)국민은행" style="width:300px; height:50px;">
-    <div class="form-group"> <br> <br>
-        
-    <label for="exampleFormControlInput1">계좌번호</label> &nbsp;&nbsp;&nbsp;
-    <input type="text" name="bankNumber" placeholder="숫자만 입력해주세요" value="${business.account }" style="width:300px; height:50px">
-    <br> <br>
-    
-    <label for="exampleFormControlInput1">사업자번호</label>
-    <input type="text" name="account" placeholder="숫자만 입력해주세요" value="${business.bankNumber }" style="width:300px; height:50px">
-    <br> <br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    
-    <button class="w-btn-neon2" type="submit">
-        다음단계
-    </button>
-    <br>
-    <br>
-    <br>
-    
     </div>
-  </div>
-  </div>
-</form>
 </section>
 
-    <footer class="ftco-footer ftco-bg-dark ftco-section">
+<div class="step-box">
+    <div class="step-state step">
+        <ul>
+            <li><p>마이페이지</p></li>
+            <li onclick="location.href='/host/hotelForm'" style="cursor:pointer;"><p>호텔등록</p></li>
+            <li onclick="location.href='/host/roomForm'" style="cursor:pointer;"><p>객실등록</p></li>
+        </ul>
+    </div>
+</div>
+
+<section id="hotelForm">
+    <form action="/host/hostForm" method="post">
+        <div style="margin:0 0 30px 100px;" class="form-group">
+            <br>
+            <label for="exampleFormControlInput1">이 름</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" name="name" value="${users.getName() }" readonly style="width:250px; height:50px;">
+            <br> <br>
+
+            <label for="exampleFormControlInput1">전화번호</label>  &nbsp;&nbsp;&nbsp;
+            <input type="text" name="tel" value="${users.getTel() }" placeholder="숫자만입력해주세요" style="width:300px; height:50px;">
+            <div class="form-group">
+                <br>
+
+                <label for="exampleFormControlInput1">거래은행</label>  &nbsp;&nbsp;&nbsp;
+                <input type="text" name="bank" value="${business.bank }" placeholder="예)국민은행" style="width:300px; height:50px;">
+                <div class="form-group"> <br> <br>
+
+                    <label for="exampleFormControlInput1">계좌번호</label> &nbsp;&nbsp;&nbsp;
+                    <input type="text" name="bankNumber" placeholder="숫자만 입력해주세요" value="${business.account }" style="width:300px; height:50px">
+                    <br> <br>
+
+                    <label for="exampleFormControlInput1">사업자번호</label>
+                    <input type="text" name="account" placeholder="숫자만 입력해주세요" value="${business.bankNumber }" style="width:300px; height:50px">
+                    <br> <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                    <button class="w-btn-neon2" type="submit">
+                        다음단계
+                    </button>
+                    <br>
+                    <br>
+                    <br>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+
+<footer class="ftco-footer ftco-bg-dark ftco-section">
     <div class="container">
         <div class="row mb-5">
             <div class="col-md">
@@ -155,16 +155,16 @@
         </div>
     </div>
 </footer>
-    
-    <script src="/resources/static/hotelForm/js/jquery-3.3.1.min.js"></script>
-    <script src="/resources/static/hotelForm/js/jquery-migrate-3.0.1.min.js"></script>
-    <script src="/resources/static/hotelForm/js/owl.carousel.min.js"></script>
-    <script src="/resources/static/hotelForm/js/jquery.stellar.min.js"></script>
-    <script src="/resources/static/hotelForm/js/jquery.fancybox.min.js"></script>
-    <script src="/resources/static/hotelForm/js/aos.js"></script>
-     
-    	<!-- 네비bar 고정 -->
-	<script src="/resources/static/home/js/scrollax.min.js"></script>
-	<script src="/resources/static/home/js/main.js"></script>
+
+<script src="/resources/static/hotelForm/js/jquery-3.3.1.min.js"></script>
+<script src="/resources/static/hotelForm/js/jquery-migrate-3.0.1.min.js"></script>
+<script src="/resources/static/hotelForm/js/owl.carousel.min.js"></script>
+<script src="/resources/static/hotelForm/js/jquery.stellar.min.js"></script>
+<script src="/resources/static/hotelForm/js/jquery.fancybox.min.js"></script>
+<script src="/resources/static/hotelForm/js/aos.js"></script>
+
+<!-- 네비bar 고정 -->
+<script src="/resources/static/home/js/scrollax.min.js"></script>
+<script src="/resources/static/home/js/main.js"></script>
 </body>
 </html>

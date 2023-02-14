@@ -22,7 +22,7 @@ public interface UsersService {
     int modifyEmail(EmailDto emailDto);
     String modifyPassword(PasswordDto passwordDto);
     BusinessDto findBusinessDto(Long id);
-    
+
     void updatehost(UsersDto usersdto);
     void updatebusiness(BusinessDto businessdto);
     UsersDto getId(String userId);

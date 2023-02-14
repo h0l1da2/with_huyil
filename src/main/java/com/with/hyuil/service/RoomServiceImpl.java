@@ -16,11 +16,11 @@ public class RoomServiceImpl {
 
 	@Autowired
 	private RoomMapper mapper;
-	
+
 	public void addRoom(RoomVo roomvo) {
 		mapper.insertRoom(roomvo);
 	}
-	
+
 	public List<Map<String, Object>> getroomList(long hotelId){
 		List<Map<String, Object>> roomList = new ArrayList<Map<String, Object>>();
 		try {
@@ -30,13 +30,13 @@ public class RoomServiceImpl {
 		}
 		return roomList;
 	}
-	
+
 	public RoomVo getRoom(long hotelId) {
 		return mapper.getRoom(hotelId);
 	}
-	
+
 	public RoomVo findByRoomId(long id) {
 		return mapper.findByRoomId(id);
 	}
-	
+
 }

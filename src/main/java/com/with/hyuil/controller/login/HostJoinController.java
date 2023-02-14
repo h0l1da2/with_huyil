@@ -101,5 +101,5 @@ public class HostJoinController {
         session.removeAttribute("randomCode");
         session.removeAttribute("userDto");
     }
-    
+
 }
