@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 
+package com.with.hyuil.dao;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.with.hyuil.model.RoomVo;
@@ -16,3 +18,4 @@ public interface RoomMapper {
 	RoomVo getRoom(long hotelId);
 	RoomVo findByRoomId(long id);
 }
+

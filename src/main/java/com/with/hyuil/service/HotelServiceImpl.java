@@ -28,16 +28,11 @@ public class HotelServiceImpl implements HotelService {
 		return mapper.findByHoteluserId(userId);
 	}
 
-	@Override
-	public HotelVo findByHotelUserId(Long userId) {
-		return mapper.findByHoteluserId(userId);
-	}
 	
 	@Override
 	public HotelVo findByHotelId(long id) {
 		return mapper.findByHotelId(id);
 	}
-
 	@Override
 	public List<HotelListDto> searchHotels(HotelSearchDto hotelSearchDto) {
 		log.info("CheckIn = {}", hotelSearchDto.getCheckIn());
@@ -46,4 +41,3 @@ public class HotelServiceImpl implements HotelService {
 	}
 
 }
-
