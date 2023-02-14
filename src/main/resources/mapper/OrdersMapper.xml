@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.with.hyuil.dao.OrdersMapper">
+	<resultMap type="OrdersVo" id="ordersvo">
+		<result property="id" column="ID"/>
+		<result property="userId" column="USER_ID"/>
+		<result property="totalPrice" column="TOTAL_PRICE"/>
+		<result property="orderDate" column="ORDER_DATE"/>
+		<result property="payCompleteId" column="PAY_COMPLETE_ID"/>
+		<result property="checkin" column="CHECKIN"/>
+		<result property="checkout" column="CHECKOUT"/>
+	</resultMap>
+	
+	<insert id="insertOrders" parameterType="OrdersVo">
+		INSERT INTO ORDERS
+		 (ID, USER_ID, TOTAL_PRICE, ORDER_DATE, PAY_COMPLETE_ID, CHECKIN, CHECKOUT)
+		  VALUES
+		   (seq_orders.nextval, #{userId}, #{totalPrice}, sysdate, null, #{checkin, jdbcType=TIMESTAMP}, #{checkout, jdbcType=TIMESTAMP}) 
+	</insert>
+	
+</mapper>

@@ -26,4 +26,8 @@
 	select * from files where hotel_info_id = #{hotelInfoId} AND room_id IS NULL
 	</select>
 	
+	<select id="selectRoomImg" parameterType="long" resultType="FileVo">
+	SELECT * FROM FILES WHERE ROOM_ID = #{roomId}
+	</select>
+	
 </mapper>

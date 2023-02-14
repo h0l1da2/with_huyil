@@ -9,4 +9,6 @@ public interface FileMapper {
 
 	void uploadFile(FileVo filevo);
 	FileVo selecthotelImg(long hotelInfoId);
+	FileVo selectRoomImg(long roomId);
+	
 }
