@@ -9,4 +9,12 @@ public class PasswordDto {
     private String password;
     private String newPassword;
 
+    public PasswordDto() {
+    }
+
+    public PasswordDto(String userId, String password, String newPassword) {
+        this.userId = userId;
+        this.password = password;
+        this.newPassword = newPassword;
+    }
 }

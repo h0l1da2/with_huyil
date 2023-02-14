@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Slf4j
 @Controller
 public class ViewTestController {
-
     @ResponseBody
     @GetMapping("/hosts/aaa")
     public String test1() {
