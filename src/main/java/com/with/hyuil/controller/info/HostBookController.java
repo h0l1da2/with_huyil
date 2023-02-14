@@ -2,7 +2,6 @@ package com.with.hyuil.controller.info;
 
 import com.with.hyuil.config.auth.CustomUserDetails;
 import com.with.hyuil.dto.hotel.GlobalPageHandler;
-import com.with.hyuil.dto.info.BookListDto;
 import com.with.hyuil.dto.info.BookSearchDto;
 import com.with.hyuil.dto.info.HostBookListDto;
 import com.with.hyuil.model.UsersVo;
@@ -32,8 +31,10 @@ public class HostBookController {
     public String bookList(@AuthenticationPrincipal CustomUserDetails userDetails, @ModelAttribute BookSearchDto bookSearchDto, Model model) {
         UsersVo usersVo = getUsersVo(userDetails.getUsername());
         List<HostBookListDto> bookList = getBookList(bookSearchDto, Status.READY, usersVo);
+
         try {
             getPage(bookSearchDto, model, bookList);
+            sendIdRole(userDetails, model);
         } catch (IndexOutOfBoundsException e) {
             log.info("검색 결과 없음");
             return "book/hostBook";
@@ -53,19 +54,20 @@ public class HostBookController {
         List<HostBookListDto> bookList = getBookList(bookSearchDto, Status.COMPLETE, usersVo);
         try {
             getPage(bookSearchDto, model, bookList);
+            sendIdRole(userDetails, model);
         } catch (IndexOutOfBoundsException e) {
             log.info("검색 결과 없음");
             return "book/hostBookComplete";
         }
         return "book/hostBookComplete";
     }
+
     private List<HostBookListDto> getBookList(BookSearchDto bookSearchDto, Status complete, UsersVo usersVo) {
         bookSearchDto.setStatus(complete);
         bookSearchDto.setUserId(usersVo.getId());
         List<HostBookListDto> bookList = bookService.hostBookList(bookSearchDto);
         return bookList;
     }
-
     private static void getPage(BookSearchDto bookSearchDto, Model model, List<HostBookListDto> bookList) {
         GlobalPageHandler globalPageHandler = new GlobalPageHandler(bookList.get(0).getTotcnt(), bookSearchDto.getNowPage());
         log.info("phHandler = {}", globalPageHandler);
@@ -75,5 +77,10 @@ public class HostBookController {
 
     private UsersVo getUsersVo(String userDetails) {
         return usersService.loginForFind(userDetails);
+    }
+
+    private void sendIdRole(CustomUserDetails userDetails, Model model) {
+        model.addAttribute("userId", userDetails.getUsername());
+        model.addAttribute("role", userDetails.getAuthorities().toString());
     }
 }
