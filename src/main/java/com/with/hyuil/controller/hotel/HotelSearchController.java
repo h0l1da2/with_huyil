@@ -1,41 +1,13 @@
 package com.with.hyuil.controller.hotel;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 5cb393a (Nam su (#34))
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-<<<<<<< HEAD
-=======
-=======
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-
->>>>>>> 5cb393a (Nam su (#34))
-import com.with.hyuil.dto.hotel.HotelListDto;
-import com.with.hyuil.dto.hotel.HotelPageHandler;
-import com.with.hyuil.dto.hotel.HotelSearchDto;
-import com.with.hyuil.service.interfaces.HotelService;
-
-
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-<<<<<<< HEAD
->>>>>>> 78df10a (호텔 폼 / 호텔 검색 / 리스트 (#20))
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -46,24 +18,6 @@ import com.with.hyuil.service.interfaces.HotelService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-=======
-=======
-
-<<<<<<< HEAD
-import org.springframework.web.bind.annotation.PathVariable;
->>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
-=======
->>>>>>> b1c1dc2 (깃 충돌 수정중 (#24))
-=======
->>>>>>> 1db7628 (충돌 파일 수정 (#29))
-import org.springframework.web.bind.annotation.RequestMapping;
-
-
-
-import java.util.List;
->>>>>>> 78df10a (호텔 폼 / 호텔 검색 / 리스트 (#20))
-=======
->>>>>>> 5cb393a (Nam su (#34))
 
 @Controller
 @Slf4j
@@ -75,14 +29,6 @@ public class HotelSearchController {
     @GetMapping("/list")
     public String hotelList(@ModelAttribute HotelSearchDto hotelSearchDto, Model model) {
         log.info("호텔 제대로 들어왔음? = {}", hotelSearchDto);
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
-=======
-
->>>>>>> 1db7628 (충돌 파일 수정 (#29))
         return searchHotels(model, hotelSearchDto);
     }
 
@@ -96,8 +42,6 @@ public class HotelSearchController {
     }
 
     private String searchHotels(Model model, HotelSearchDto hotelSearchDto) {
-<<<<<<< HEAD
-<<<<<<< HEAD
 
         List<HotelListDto> hotelList = hotelService.searchHotels(hotelSearchDto);
         log.info("hotelListDto = {}", hotelList);
@@ -105,19 +49,6 @@ public class HotelSearchController {
             GlobalPageHandler globalPageHandler = new GlobalPageHandler(hotelList.get(0).getTotcnt(), 1);
             log.info("핸들러 = {}", globalPageHandler);
             model.addAttribute("ph", globalPageHandler);
-=======
-=======
->>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
-=======
-
->>>>>>> b1c1dc2 (깃 충돌 수정중 (#24))
-        List<HotelListDto> hotelList = hotelService.searchHotels(hotelSearchDto);
-        log.info("hotelListDto = {}", hotelList);
-        try {
-            HotelPageHandler hotelPageHandler = new HotelPageHandler(hotelList.get(0).getTotcnt(), 1);
-            log.info("핸들러 = {}", hotelPageHandler);
-            model.addAttribute("ph", hotelPageHandler);
->>>>>>> 78df10a (호텔 폼 / 호텔 검색 / 리스트 (#20))
             model.addAttribute(hotelList);
         } catch (IndexOutOfBoundsException e) {
             log.info("검색 결과가 없습니다");

@@ -11,8 +11,8 @@ public class RoomVo {
 	private String content;
 	private int max;
 	private String bed;
-	private int nPrice;
-	private int hPrice;
-	private long adminId;
+	private int normalPrice;
+	private int holidayPrice;
+	private long admincheckId;
 
 }

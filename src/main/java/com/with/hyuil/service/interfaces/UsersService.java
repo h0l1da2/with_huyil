@@ -29,7 +29,9 @@ public interface UsersService {
     UsersVo findId(FindIdDto findIdDto);
     UsersVo findTel(FindIdDto findIdDto);
 
+
     void updatehost(UsersDto usersdto);
     void updatebusiness(BusinessDto businessdto);
     UsersDto getId(String userId);
+
 }

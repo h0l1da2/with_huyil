@@ -35,4 +35,8 @@ public class RoomServiceImpl {
 		return mapper.getRoom(hotelId);
 	}
 
+	public RoomVo findByRoomId(long id) {
+		return mapper.findByRoomId(id);
+	}
+
 }

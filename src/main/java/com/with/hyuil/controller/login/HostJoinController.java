@@ -1,38 +1,18 @@
 package com.with.hyuil.controller.login;
 
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import com.with.hyuil.config.auth.CustomUserDetails;
+import com.with.hyuil.dto.users.UserCodeDto;
+import com.with.hyuil.dto.users.UserIdDto;
+import com.with.hyuil.dto.users.UsersDto;
+import com.with.hyuil.model.BusinessVo;
+import com.with.hyuil.model.UsersVo;
+import com.with.hyuil.service.interfaces.EmailService;
+import com.with.hyuil.service.interfaces.UsersService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.with.hyuil.dto.users.UserCodeDto;
-import com.with.hyuil.dto.users.UserIdDto;
-import com.with.hyuil.dto.users.UsersDto;
-
-import com.with.hyuil.dto.users.UsersLoginDto;
-import com.with.hyuil.model.BusinessVo;
-
-
-import com.with.hyuil.model.UsersVo;
-import com.with.hyuil.service.interfaces.EmailService;
-import com.with.hyuil.service.interfaces.UsersService;
-
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -40,45 +20,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 9b7545b (충돌 파일 수정 (#29))
-=======
-=======
->>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
-import com.with.hyuil.dto.users.UserCodeDto;
-import com.with.hyuil.dto.users.UserIdDto;
-import com.with.hyuil.dto.users.UsersDto;
-
-import com.with.hyuil.dto.users.UsersLoginDto;
-import com.with.hyuil.model.BusinessVo;
-
-
-import com.with.hyuil.model.UsersVo;
-import com.with.hyuil.service.interfaces.EmailService;
-import com.with.hyuil.service.interfaces.UsersService;
-
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-
->>>>>>> 62589e9 (jwt 토큰 로컬스토리지 저장)
-<<<<<<< HEAD
->>>>>>> 4311133 (깃 충돌 수정중 (#24))
-=======
-=======
-
->>>>>>> 1db7628 (충돌 파일 수정 (#29))
->>>>>>> 9b7545b (충돌 파일 수정 (#29))
 @Slf4j
 @Controller
 @RequiredArgsConstructor
@@ -147,16 +88,7 @@ public class HostJoinController {
         session.removeAttribute("randomCode");
         session.removeAttribute("userDto");
     }
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
-    
-<<<<<<< HEAD
->>>>>>> e585f1b (Nam su (#34))
     @GetMapping("/hostForm")
     public String balondor(Model model) {
         String id = "messi";
@@ -167,7 +99,6 @@ public class HostJoinController {
     }
 
     @PostMapping("/hostForm")
-<<<<<<< HEAD
     public String benzema(BusinessVo businessvo) {
         String id = "messi";
         UsersVo usersvo = usersService.loginForFind(id);
@@ -175,19 +106,3 @@ public class HostJoinController {
     }
 
 }
-=======
-	public String benzema(BusinessVo businessvo) {
-    	String id = "messi";
-		UsersVo usersvo = usersService.loginForFind(id);
-		return "redirect:/host/hotelForm";
-	}
-    
-<<<<<<< HEAD
-=======
->>>>>>> 62589e9 (jwt 토큰 로컬스토리지 저장)
-=======
->>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
-=======
->>>>>>> 5cb393a (Nam su (#34))
-}
->>>>>>> e585f1b (Nam su (#34))

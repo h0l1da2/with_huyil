@@ -9,11 +9,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> 317a2e1 (User 로그인 JWT 토큰 반환 완성)
 	<link rel="stylesheet" href="<c:url value='/resources/static/loginForm/css/style.css'/>">
 
 	<style>
@@ -29,7 +25,6 @@
 			display: none;
 		}
 	</style>
-<<<<<<< HEAD
 </head>
 <body class="img js-fullheight" style="background-image: url(<c:url value='/static/loginForm/images/bg.jpg'/>); height: 1000px">
 <section class="ftco-section">
@@ -37,16 +32,6 @@
 		<div class="row justify-content-center">
 			<div class="col-md-6 text-center mb-5">
 				<h2 class="heading-section"><a href="<c:url value='/host'/>">위드휴일</a></h2>
-=======
-	</head>
-	<body class="img js-fullheight" style="background-image: url(<c:url value='/static/loginForm/images/bg.jpg'/>); height: 1000px">
-	<section class="ftco-section">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-md-6 text-center mb-5">
-					<h2 class="heading-section"><a href="<c:url value='/host'/>">위드휴일</a></h2>
-				</div>
->>>>>>> 78df10a (호텔 폼 / 호텔 검색 / 리스트 (#20))
 			</div>
 		</div>
 		<div class="row justify-content-center">
@@ -97,7 +82,6 @@
 				</div>
 			</div>
 		</div>
-<<<<<<< HEAD
 	</div>
 </section>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -112,25 +96,6 @@
 			return false;
 		}else {
 			return true;
-=======
-	</section>
-	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<script src="<c:url value='/resources/static/loginForm/js/jquery.min.js'/>"></script>
-  <script src="<c:url value='/resources/static/loginForm/js/popper.js'/>"></script>
-  <script src="<c:url value='/resources/static/loginForm/js/bootstrap.min.js'/>"></script>
-  <script src="<c:url value='/resources/static/loginForm/js/main.js'/>"></script>
-	<script>
-		function formCheck(form) {
-			if(check == 0) {
-				alert("아이디 중복 확인을 해주세요");
-				return false;
-			}
-			if($('#passwordCheckP').css('display') == 'block') {
-				alert("비밀번호가 같아야합니다");
-				document.getElementById("passwordCheck").focus();
-				return false;
-			}
->>>>>>> 317a2e1 (User 로그인 JWT 토큰 반환 완성)
 		}
 	}
 	function CheckUserId(str){

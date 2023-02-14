@@ -12,6 +12,6 @@ public class ExceptionController {
 
     @GetMapping("/authentication")
     public String authenticationError() {
-        return "authenticationPage";
+        return "exception/authenticationPage";
     }
 }

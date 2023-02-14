@@ -2,19 +2,8 @@ package com.with.hyuil.model;
 
 import com.with.hyuil.dto.users.AdminJoinDto;
 import com.with.hyuil.dto.users.UsersDto;
-<<<<<<< HEAD
-<<<<<<< HEAD
 import com.with.hyuil.dto.users.UsersLoginDto;
 import com.with.hyuil.model.enumaration.Type;
-<<<<<<< HEAD
-=======
-=======
-import com.with.hyuil.dto.users.UsersLoginDto;
->>>>>>> 317a2e1 (User 로그인 JWT 토큰 반환 완성)
-import com.with.hyuil.model.enumaration.Role;
->>>>>>> 8cc50b4 (view, 어드민 빼고..)
-=======
->>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
 import com.with.hyuil.model.enumaration.Wheres;
 import lombok.Builder;
 import lombok.Getter;
@@ -26,7 +15,7 @@ import java.time.LocalDateTime;
 @Getter
 @Builder
 public class UsersVo {
-//빈 등록?
+    //빈 등록?
     private Long id;
     private String userId;
     private String password;
@@ -34,51 +23,26 @@ public class UsersVo {
     private String email;
     private String tel;
     private String name;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
     private Type type;
     private Wheres wheres;
     private String out;
-=======
-    private Wheres wheres;
->>>>>>> 8cc50b4 (view, 어드민 빼고..)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime joinDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime lastLogin;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-<<<<<<< HEAD
     private LocalDateTime removeDate;
     private BusinessVo businessVo;
     private Long businessId;
-=======
-    private LocalDateTime out;
-    private BusinessVo businessVo;
-<<<<<<< HEAD
->>>>>>> 8cc50b4 (view, 어드민 빼고..)
-=======
-    private Long businessId;
->>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
     private RolesVo rolesVo;
 
     protected UsersVo() {}
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 317a2e1 (User 로그인 JWT 토큰 반환 완성)
     public UsersVo(UsersLoginDto usersLoginDto) {
         this.userId = usersLoginDto.getUserId();
         this.password = usersLoginDto.getPassword();
     }
 
-<<<<<<< HEAD
-=======
->>>>>>> 8cc50b4 (view, 어드민 빼고..)
-=======
->>>>>>> 317a2e1 (User 로그인 JWT 토큰 반환 완성)
     public UsersVo(String userId, String password, String email, String tel, String name, Wheres wheres) {
         this.userId = userId;
         this.password = password;
@@ -104,20 +68,10 @@ public class UsersVo {
 
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
     public void userType(Type type) {
         this.type = type;
     }
 
-<<<<<<< HEAD
-=======
->>>>>>> 317a2e1 (User 로그인 JWT 토큰 반환 완성)
-=======
->>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
     public UsersVo(Long id) {
         this.id = id;
     }
@@ -128,14 +82,6 @@ public class UsersVo {
     public void myRole(RolesVo rolesVo) {
         this.rolesVo = rolesVo;
     }
-<<<<<<< HEAD
-=======
-    public void userRoleWheres() {
-        this.wheres = Wheres.WITH_HYUIL;
-    }
->>>>>>> 8cc50b4 (view, 어드민 빼고..)
-=======
->>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))
 
     public void passwordEncode(String password) {
         this.password = password;
@@ -150,23 +96,13 @@ public class UsersVo {
         this.businessVo = businessVo;
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
     public UsersVo(Long id, String userId, String password, String email, String tel, String name, Type type, Wheres wheres, String out, LocalDateTime joinDate, LocalDateTime lastLogin, LocalDateTime removeDate, BusinessVo businessVo, Long businessId, RolesVo rolesVo) {
-=======
-    public UsersVo(Long id, String userId, String password, String email, String tel, String name, Wheres wheres, LocalDateTime joinDate, LocalDateTime lastLogin, LocalDateTime out, BusinessVo businessVo, RolesVo rolesVo) {
->>>>>>> 8cc50b4 (view, 어드민 빼고..)
-=======
-    public UsersVo(Long id, String userId, String password, String email, String tel, String name, Type type, Wheres wheres, LocalDateTime joinDate, LocalDateTime lastLogin, LocalDateTime out, BusinessVo businessVo, Long businessId, RolesVo rolesVo) {
->>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
         this.id = id;
         this.userId = userId;
         this.password = password;
         this.email = email;
         this.tel = tel;
         this.name = name;
-<<<<<<< HEAD
-<<<<<<< HEAD
         this.type = type;
         this.wheres = wheres;
         this.out = out;
@@ -175,20 +111,6 @@ public class UsersVo {
         this.removeDate = removeDate;
         this.businessVo = businessVo;
         this.businessId = businessId;
-=======
-=======
-        this.type = type;
->>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
-        this.wheres = wheres;
-        this.joinDate = joinDate;
-        this.lastLogin = lastLogin;
-        this.out = out;
-        this.businessVo = businessVo;
-<<<<<<< HEAD
->>>>>>> 8cc50b4 (view, 어드민 빼고..)
-=======
-        this.businessId = businessId;
->>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
         this.rolesVo = rolesVo;
     }
 }

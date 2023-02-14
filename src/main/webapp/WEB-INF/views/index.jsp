@@ -51,12 +51,8 @@
                 <li class="nav-item"><a href="/host" class="nav-link title">호스트등록</a></li>
                 <c:choose>
                     <c:when test="${userId eq null}"><li class="nav-item"><a href="/user/loginForm" class="nav-link title">로그인</a></li></c:when>
-<<<<<<< HEAD
                     <c:when test="${role eq '[ROLE_USER]'}"><li class="nav-item"><a href="<c:url value='/user/info'/>" class="nav-link title">${userId}</a></li></c:when>
                     <c:when test="${role eq '[ROLE_HOST]'}"><li class="nav-item"><a href="<c:url value='/hosts/info'/>" class="nav-link title">${userId}</a></li></c:when>
-=======
-                    <c:when test="${userId ne null}"><li class="nav-item"><a href="<c:url value='/users/info'/>" class="nav-link title">${userId}</a></li></c:when>
->>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
                 </c:choose>
             </ul>
         </div>
@@ -334,36 +330,5 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 <script src="<c:url value='/resources/static/home/js/google-map.js'/>"></script>
 <script src="<c:url value='/resources/static/home/js/main.js'/>"></script>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<script>
-
-    let token = localStorage.getItem('jwt');
-
-    // $( document ).ready( function() {
-    //     $('#hostGo').click(function () {
-    //         $.ajax({
-    //             type: 'GET',
-    //             url: '/hosts/aaa',
-    //             headers: { "Authorization" : token },
-    //             success: function (result) {
-    //                 window.location.href = "/hosts/aaa";
-    //             },
-    //             error: function() {
-    //                 alert("아이디나 비밀번호를 확인하세요");
-    //             }})
-    //     })
-    // })
-
-
-    var count=0;
-    function increase(){
-        count=count+1;
-        document.querySelector("#countBtn").innerText=count;
-    }</script>
->>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))
-=======
->>>>>>> 336955b (호텔폼 / 회원인포 기능 추가 (#23))
 </body>
 </html>
