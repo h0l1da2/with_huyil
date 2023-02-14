@@ -104,4 +104,17 @@
         SET PASSWORD = #{newPassword}
         WHERE USER_ID = #{userId}
     </update>
+    <!-- namsu수정 -->
+    <update id="updatehost" parameterType="UsersDto">
+    	update users set tel = #{tel} where user_id = #{userId}
+    </update>
+    
+    <update id="updatebusiness" parameterType="BusinessDto">
+    	update business set account = #{account}, bank_number = #{bankNumber}, bank = #{bank}
+    	where id = #{id}
+    </update>
+    
+    <select id="getId" parameterType="String" resultType="UsersDto">
+    	select * from users where user_id = #{userId}
+    </select>
 </mapper>

@@ -7,7 +7,7 @@
 		insert into hotel
 		(ID, NAME, HOTEL_INFO_ID, USER_ID, SERVICE, ZONECODE, SIDO, SIGUNGU, ADDRESS, DETAIL, STAR, REMOVE_DATE)
 		values
-			(seq_hotel.nextval, #{name}, #{hotelInfoId}, #{userId}, #{service}, #{zonecode}, #{sido}, #{sigungu}, #{address}, #{detail}, null, null)
+		(seq_hotel.nextval, #{name}, #{hotelInfoId}, #{userId}, #{service}, #{zonecode}, #{sido}, #{sigungu}, #{address}, #{detail}, null, null)
 	</insert>
 
 	<select id="findByHoteluserId" parameterType="Long" resultType="HotelVo">
@@ -21,23 +21,23 @@
 	<select id="selectForHotelList" parameterType="HotelSearchDto" resultType="HotelListDto">
 		SELECT *
 		FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER () AS TOTCNT
-			  FROM (
-					   SELECT H.ID, H.NAME, H.STAR, R.NORMAL_PRICE AS PRICE, H.SIGUNGU, F.PATH
-					   FROM HOTEL H, ROOM R, BOOK B, FILES F, HOTEL_INFO I
-					   WHERE H.ID = R.HOTEL_ID
-						   AND R.ID = B.HOTEL_ROOM_ID
-						   AND I.ID = F.HOTEL_INFO_ID
-						   AND I.ID = H.HOTEL_INFO_ID
-						   AND H.SIDO = #{sido}
-						   AND R.MAX >= #{max}
-						   AND ((B.CHECK_IN NOT BETWEEN TO_DATE(#{checkIn}, 'YYYY-MM-DD') AND TO_DATE(#{checkOut}, 'YYYY-MM-DD'))
-							   AND (B.CHECK_OUT NOT BETWEEN TO_DATE(#{checkIn}, 'YYYY-MM-DD') AND TO_DATE(#{checkOut}, 'YYYY-MM-DD'))
-							   AND (B.STATUS != 'READY'))
+		FROM (
+		SELECT H.ID, H.NAME, H.STAR, R.NORMAL_PRICE AS PRICE, H.SIGUNGU, F.PATH
+		FROM HOTEL H, ROOM R, BOOK B, FILES F, HOTEL_INFO I
+		WHERE H.ID = R.HOTEL_ID
+		AND R.ID = B.HOTEL_ROOM_ID
+		AND I.ID = F.HOTEL_INFO_ID
+		AND I.ID = H.HOTEL_INFO_ID
+		AND H.SIDO = #{sido}
+		AND R.MAX >= #{max}
+		AND ((B.CHECK_IN NOT BETWEEN TO_DATE(#{checkIn}, 'YYYY-MM-DD') AND TO_DATE(#{checkOut}, 'YYYY-MM-DD'))
+		AND (B.CHECK_OUT NOT BETWEEN TO_DATE(#{checkIn}, 'YYYY-MM-DD') AND TO_DATE(#{checkOut}, 'YYYY-MM-DD'))
+		AND (B.STATUS != 'READY'))
 
-						  OR B.ID = NULL
-					   GROUP BY H.ID, H.NAME, H.STAR, R.NORMAL_PRICE, H.SIGUNGU, F.PATH, H.SIGUNGU
-					   ORDER BY H.ID) A)
+		OR B.ID = NULL
+		GROUP BY H.ID, H.NAME, H.STAR, R.NORMAL_PRICE, H.SIGUNGU, F.PATH, H.SIGUNGU
+		ORDER BY H.ID) A)
 		WHERE RNUM > #{offset}
-		  AND RNUM &lt;= #{limit}
+		AND RNUM &lt;= #{limit}
 	</select>
 </mapper>
