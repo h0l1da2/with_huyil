@@ -76,6 +76,19 @@
         FROM USERS
         ORDER BY userId
     </select>
+    <select id="hostList" resultType="UsersVO">
+        SELECT
+        USER_ID AS userId,
+        NAME AS name,
+        EMAIL AS email,
+        TEL AS tel,
+        ACCOUNT AS account,
+        LAST_LOGIN AS lastLogin,
+        OUT AS out,
+        REMOVE_DATE AS removeDate
+        FROM USERS
+        ORDER BY userId
+    </select>
     <update id="updateLastLogin" parameterType="String">
         UPDATE USERS
         SET LAST_LOGIN = SYSDATE
