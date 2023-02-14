@@ -13,10 +13,6 @@
     <link rel="stylesheet" href="<c:url value='/static/loginForm/css/style.css'/>">
 
     <style>
-        .join {
-            margin: 10px;
-            margin-left: 4px;
-        }
         .ftco-section {
             padding-top: 70px;
         }

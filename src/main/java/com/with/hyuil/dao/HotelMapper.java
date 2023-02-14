@@ -1,5 +1,3 @@
-
-
 package com.with.hyuil.dao;
 
 import com.with.hyuil.dto.hotel.HotelListDto;
@@ -14,7 +12,7 @@ import java.util.Map;
 public interface HotelMapper {
 	void insertHotel(HotelVo hotelvo);
 	List<HotelListDto> selectForHotelList(HotelSearchDto hotelSearchDto);
-	HotelVo findByHotelId(long id);
+	HotelVo findByHoteluserId(Long userId);
 	int selectCntForHotelList(HotelSearchDto hotelSearchDto);
 
 }

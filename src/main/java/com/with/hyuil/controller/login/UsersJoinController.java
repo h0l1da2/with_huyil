@@ -1,5 +1,6 @@
 package com.with.hyuil.controller.login;
 
+import com.with.hyuil.dto.info.FindIdDto;
 import com.with.hyuil.dto.users.UserCodeDto;
 import com.with.hyuil.dto.users.UserIdDto;
 import com.with.hyuil.dto.users.UsersDto;
@@ -37,6 +38,16 @@ public class UsersJoinController {
         session.setAttribute("userDto", usersDto);
         session.setAttribute("randomCode", randomCode);
         return "user/joinEmailSend";
+    }
+
+    @ResponseBody
+    @PostMapping("/join/telValid")
+    public String emailValid(@RequestBody FindIdDto findIdDto, HttpSession session) {
+        UsersVo user = usersService.findTel(findIdDto);
+        if (user != null) {
+            return "중복";
+        }
+        return "중복아님";
     }
 
     @PostMapping("/join/emailCode")

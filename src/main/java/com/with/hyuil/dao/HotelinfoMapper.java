@@ -8,5 +8,5 @@ import com.with.hyuil.model.HotelInfoVo;
 public interface HotelinfoMapper {
 
 	void insertInfo(HotelInfoVo infovo);
-	
+	HotelInfoVo findByInfoId(long hotelId);
 }
