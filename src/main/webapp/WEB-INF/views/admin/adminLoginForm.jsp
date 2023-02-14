@@ -51,7 +51,7 @@
 						</div>
 						<div class="form-group">
 							<button type="submit" class="form-control btn btn-primary submit px-3">로그인</button>
-<%--							<button type="button" id="loginBtn" name="loginBtn" class="form-control btn btn-primary submit px-3">로그인</button>--%>
+							<%--							<button type="button" id="loginBtn" name="loginBtn" class="form-control btn btn-primary submit px-3">로그인</button>--%>
 						</div>
 						<div class="form-group d-md-flex">
 							<div class="w-50">
@@ -91,8 +91,7 @@
 				document.getElementById("password-field").focus();
 				return false;
 			}
-	})
+		})
 </script>
 </body>
 </html>
-

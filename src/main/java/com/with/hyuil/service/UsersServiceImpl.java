@@ -22,6 +22,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -39,10 +40,12 @@ public class UsersServiceImpl implements UsersService {
     public int saveUser(UsersVo usersVo) {
         String encodePwd = passwordEncoding(usersVo.getPassword());
         usersVo.passwordEncode(encodePwd);
+
         usersVo.userType(Type.USER);
         usersMapper.insertUser(usersVo);
         UsersVo findUsers = usersMapper.findByUserId(usersVo.getUserId());
         return usersMapper.insertRoles(new RolesVo(Role.ROLE_USER, findUsers));
+
     }
     @Override
     public int saveAdmin(UsersVo usersVo, String adminJoinCode) {
@@ -52,6 +55,7 @@ public class UsersServiceImpl implements UsersService {
             usersMapper.insertAdmin(usersVo);
             UsersVo findUsers = usersMapper.findByUserId(usersVo.getUserId());
             return usersMapper.insertRoles(new RolesVo(Role.ROLE_ADMIN, findUsers));
+
         }
         return 0;
     }
@@ -71,6 +75,7 @@ public class UsersServiceImpl implements UsersService {
         usersVo.passwordEncode(encodePwd);
         usersMapper.insertBusiness(usersVo.getBusinessVo());
         BusinessVo businessByAccount = usersMapper.findBusinessByAccount(usersVo.getBusinessVo().getAccount());
+
         usersVo.userType(Type.HOST);
         usersVo.myBusiness(businessByAccount);
         usersMapper.insertHost(usersVo);
@@ -231,6 +236,9 @@ public class UsersServiceImpl implements UsersService {
             deleteDto.setEtc(none);
         }
 
+    }
+    public RolesVo roleForLogin(String userId) {
+        return usersMapper.findRoles(userId);
     }
 
     private String passwordEncoding(String password) {

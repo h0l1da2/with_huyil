@@ -14,10 +14,13 @@ public class RolesVo {
         this.roleName = roleName;
         this.usersVo = usersVo;
     }
+<<<<<<< HEAD
 
     public RolesVo(Long id, Role roleName, Long userId) {
         this.id = id;
         this.roleName = roleName;
         this.usersVo = new UsersVo(userId);
     }
+=======
+>>>>>>> 8cc50b4 (view, 어드민 빼고..)
 }

@@ -2,8 +2,12 @@ package com.with.hyuil.model;
 
 import com.with.hyuil.dto.users.AdminJoinDto;
 import com.with.hyuil.dto.users.UsersDto;
+<<<<<<< HEAD
 import com.with.hyuil.dto.users.UsersLoginDto;
 import com.with.hyuil.model.enumaration.Type;
+=======
+import com.with.hyuil.model.enumaration.Role;
+>>>>>>> 8cc50b4 (view, 어드민 빼고..)
 import com.with.hyuil.model.enumaration.Wheres;
 import lombok.Builder;
 import lombok.Getter;
@@ -23,26 +27,38 @@ public class UsersVo {
     private String email;
     private String tel;
     private String name;
+<<<<<<< HEAD
     private Type type;
     private Wheres wheres;
     private String out;
+=======
+    private Wheres wheres;
+>>>>>>> 8cc50b4 (view, 어드민 빼고..)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime joinDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime lastLogin;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+<<<<<<< HEAD
     private LocalDateTime removeDate;
     private BusinessVo businessVo;
     private Long businessId;
+=======
+    private LocalDateTime out;
+    private BusinessVo businessVo;
+>>>>>>> 8cc50b4 (view, 어드민 빼고..)
     private RolesVo rolesVo;
 
     protected UsersVo() {}
 
+<<<<<<< HEAD
     public UsersVo(UsersLoginDto usersLoginDto) {
         this.userId = usersLoginDto.getUserId();
         this.password = usersLoginDto.getPassword();
     }
 
+=======
+>>>>>>> 8cc50b4 (view, 어드민 빼고..)
     public UsersVo(String userId, String password, String email, String tel, String name, Wheres wheres) {
         this.userId = userId;
         this.password = password;
@@ -68,6 +84,7 @@ public class UsersVo {
 
     }
 
+<<<<<<< HEAD
     public void userType(Type type) {
         this.type = type;
     }
@@ -82,6 +99,11 @@ public class UsersVo {
     public void myRole(RolesVo rolesVo) {
         this.rolesVo = rolesVo;
     }
+=======
+    public void userRoleWheres() {
+        this.wheres = Wheres.WITH_HYUIL;
+    }
+>>>>>>> 8cc50b4 (view, 어드민 빼고..)
 
     public void passwordEncode(String password) {
         this.password = password;
@@ -96,13 +118,18 @@ public class UsersVo {
         this.businessVo = businessVo;
     }
 
+<<<<<<< HEAD
     public UsersVo(Long id, String userId, String password, String email, String tel, String name, Type type, Wheres wheres, String out, LocalDateTime joinDate, LocalDateTime lastLogin, LocalDateTime removeDate, BusinessVo businessVo, Long businessId, RolesVo rolesVo) {
+=======
+    public UsersVo(Long id, String userId, String password, String email, String tel, String name, Wheres wheres, LocalDateTime joinDate, LocalDateTime lastLogin, LocalDateTime out, BusinessVo businessVo, RolesVo rolesVo) {
+>>>>>>> 8cc50b4 (view, 어드민 빼고..)
         this.id = id;
         this.userId = userId;
         this.password = password;
         this.email = email;
         this.tel = tel;
         this.name = name;
+<<<<<<< HEAD
         this.type = type;
         this.wheres = wheres;
         this.out = out;
@@ -111,6 +138,13 @@ public class UsersVo {
         this.removeDate = removeDate;
         this.businessVo = businessVo;
         this.businessId = businessId;
+=======
+        this.wheres = wheres;
+        this.joinDate = joinDate;
+        this.lastLogin = lastLogin;
+        this.out = out;
+        this.businessVo = businessVo;
+>>>>>>> 8cc50b4 (view, 어드민 빼고..)
         this.rolesVo = rolesVo;
     }
 }

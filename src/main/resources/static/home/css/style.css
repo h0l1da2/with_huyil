@@ -7288,10 +7288,17 @@ a {
   -webkit-transition: .3s all ease;
   -o-transition: .3s all ease;
   transition: .3s all ease;
+<<<<<<< HEAD
   color: #4a76d3; }
   a:hover {
     text-decoration: none;
     color: #4a76d3; }
+=======
+  color: #8d703b; }
+  a:hover {
+    text-decoration: none;
+    color: #8d703b; }
+>>>>>>> 8cc50b4 (view, 어드민 빼고..)
 
 h1, h2, h3, h4, h5,
 .h1, .h2, .h3, .h4, .h5 {
