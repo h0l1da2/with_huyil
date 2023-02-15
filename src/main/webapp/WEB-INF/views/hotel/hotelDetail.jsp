@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,8 +23,6 @@
 
     <link rel="stylesheet" href="/resources/static/hotelDetail/css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="/resources/static/hotelDetail/css/jquery.timepicker.css">
-
-
     <link rel="stylesheet" href="/resources/static/hotelDetail/css/flaticon.css">
     <link rel="stylesheet" href="/resources/static/hotelDetail/css/icomoon.css">
     <link rel="stylesheet" href="/resources/static/hotelDetail/css/style.css">
