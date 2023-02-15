@@ -15,4 +15,3 @@ public interface RoomMapper {
 	RoomVo getRoom(long hotelId);
 	RoomVo findByRoomId(long id);
 }
-

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.with.hyuil.dto.info.DeleteDto;
 import com.with.hyuil.dto.info.EmailDto;
 import com.with.hyuil.dto.info.FindIdDto;
+import com.with.hyuil.dto.info.EmailDto;
 import com.with.hyuil.dto.info.PasswordDto;
 import com.with.hyuil.dto.users.BusinessDto;
 import com.with.hyuil.dto.users.UsersDto;
@@ -40,5 +41,4 @@ public interface UsersMapper {
     void updatehost(UsersDto usersdto);
     void updatebusiness(BusinessDto businessdto);
     UsersDto getId(String userId);
-
 }
