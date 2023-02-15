@@ -1,0 +1,94 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.Date" %>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>결 제 확 인</title>
+  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i" rel="stylesheet">
+
+  <link rel="stylesheet" href="/static/home/css/open-iconic-bootstrap.min.css">
+  <link rel="stylesheet" href="/static/home/css/style.css">
+
+
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+          integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+  <script src="/static/order/js/order-book-check.js" defer></script>
+  <link rel="stylesheet" href="/static/order/css/order-book-check.css">
+
+
+</head>
+
+<body>
+<header class=" navbar navbar-expand-lg navbar-dark ftco-navbar bg-dark" id="ftco-navbar">
+  <div class="container">
+    <a class="navbar-brand title" href="/">위드휴일</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+            aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="oi oi-menu"></span> Menu
+    </button>
+  </div>
+</header>
+<section>
+  <div class="checked">
+    <div class="picture">
+      <img src="/static/order/images/hotel.jpg" alt="">
+    </div>
+    <div class="booked-info">
+      <div class="room-name">객실이름</div>
+      <div class="user-info">결제자 이름 + 인원수 + 가격</div>
+    </div>
+    <div class="booked-status">상태</div>
+  </div>
+</section>
+
+<!-- modal -->
+<div class="modal">
+  <div class="modal-body">
+    <!-- 호텔 정보 -->
+    <div class="left">
+      <div class=" left hotel-info">
+        <!-- 호텔 사진 -->
+        <div class="hotel-info picture"><img src="/static/order/images/hotel.jpg" alt=""></div>
+        <!-- 호텔 설명 -->
+        <div class="hotel-info description">
+          <div class="hotel-info hotel-name">신라호텔 디럭스 1130호</div>
+          <div class="hotel-info hotel-location">서울 중구 동호로 249</div>
+        </div>
+      </div>
+
+      <!-- 결제 정보 (체크인, 체크아웃, 인원수, 금액) -->
+      <div class="left book-info">
+        <div class="book-info date">
+          <div class="check-in">yyyy-mm-dd</div>
+          <div class="check-out">yyyy-mm-dd</div>
+        </div>
+        <div class="book-info people">15명</div>
+        <div class="book-info price">250.000</div>
+        <!-- 요청 사항-->
+        <div class="left require">
+        </div>
+      </div>
+
+    </div>
+    <div class="hotel-info rights">호텔설명
+    </div>
+    <!-- 결제, 취소 -->
+    <div class="left btn">
+      <div class="reserve_body">
+        <strong class="reserve_name" style="color: black;">총 결제 금액</strong> <br>
+        <strong class="reserve_name" style="color: #ffc107; font-size: 30px;">
+          <fmt:formatNumber value="${booking.price}" pattern="#,###" /></strong>
+        <strong class="reserve_name" style="color: black; font-size: 30px;"> 원</strong> <br>
+      </div>
+      <button onclick="requestPay()">결제하기</button> <!-- 결제하기 버튼 생성 -->
+  </div>
+</div>
+</div>
+</body>
+
+
+</html>

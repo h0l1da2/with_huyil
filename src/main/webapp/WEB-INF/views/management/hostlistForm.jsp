@@ -61,13 +61,13 @@
       회원관리
     </div>
     <li class="nav-item">
-      <a class="nav-link" href="#userlist">
+      <a class="nav-link" href="#userlistForm">
         <i class="fas fa-fw fa-table"></i>
         <span>일반회원관리</span></a>
     </li>
 
     <li class="nav-item">
-      <a class="nav-link" href="#bussinesslist">
+      <a class="nav-link" href="#hostlistForm">
         <i class="fas fa-fw fa-table"></i>
         <span>사업자회원관리</span></a>
     </li>

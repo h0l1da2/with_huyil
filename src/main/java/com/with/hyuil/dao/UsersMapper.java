@@ -28,8 +28,8 @@ public interface UsersMapper {
     int updateEmail(EmailDto emailDto);
     int updatePassword(PasswordDto passwordDto);
     BusinessVo findByBusinessId(Long id);
-
     void updatehost(UsersDto usersdto);
     void updatebusiness(BusinessDto businessdto);
     UsersDto getId(String userId);
+
 }
