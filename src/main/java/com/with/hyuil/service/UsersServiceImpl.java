@@ -1,13 +1,9 @@
 package com.with.hyuil.service;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.with.hyuil.dao.UsersMapper;
+import com.with.hyuil.dto.info.DeleteDto;
 import com.with.hyuil.dto.info.EmailDto;
+import com.with.hyuil.dto.info.FindIdDto;
 import com.with.hyuil.dto.info.PasswordDto;
 import com.with.hyuil.dto.users.BusinessDto;
 import com.with.hyuil.dto.users.UserIdDto;
@@ -15,12 +11,20 @@ import com.with.hyuil.dto.users.UsersDto;
 import com.with.hyuil.model.BusinessVo;
 import com.with.hyuil.model.RolesVo;
 import com.with.hyuil.model.UsersVo;
+import com.with.hyuil.model.enumaration.Out;
 import com.with.hyuil.model.enumaration.Role;
 import com.with.hyuil.model.enumaration.Type;
 import com.with.hyuil.service.interfaces.UsersService;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -84,7 +88,7 @@ public class UsersServiceImpl implements UsersService {
     public UsersVo login(UsersVo usersVo) {
         UsersVo user = usersMapper.findByUserId(usersVo.getUserId());
         if (user == null) {
-            throw new RuntimeException("유저가없음 아이디");
+            throw new NoSuchElementException("유저가없음 아이디");
         }
         boolean passMatches = passwordEncoder.matches(usersVo.getPassword(), user.getPassword());
         if (!passMatches) {
@@ -105,9 +109,7 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public UsersVo emailValid(EmailDto emailDto) {
-        log.info("유저 찾기?");
         UsersVo user = usersMapper.findByUserIdEmail(emailDto);
-        log.info("유저 들어옴!");
         return user;
     }
 
@@ -119,28 +121,118 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public String modifyPassword(PasswordDto passwordDto) {
-        UsersVo byUserId = usersMapper.findByUserId(passwordDto.getUserId());
-        if (byUserId == null) {
-            return "회원 아이디를 확인해주세요";
+        UsersVo byUserId = null;
+        try {
+            log.info("1 passwordDto = {}",passwordDto);
+            byUserId = usersMapper.findByUserId(passwordDto.getUserId());
+            log.info("2 byUserId", byUserId);
+            boolean matches = passwordEncoder.matches(passwordDto.getPassword(), byUserId.getPassword());
+            if (!matches) {
+                return "기존 비밀번호가 다릅니다";
+            }
+            String newPassword = passwordEncoder.encode(passwordDto.getNewPassword());
+            passwordDto.setNewPassword(newPassword);
+            int i = usersMapper.updatePassword(passwordDto);
+            if (i == 0) {
+                return "변경 오류";
+            }
+            return "변경 완료";
+        } catch (NullPointerException e) {
+            return "아이디가 다릅니다";
         }
-        boolean matches = passwordEncoder.matches(passwordDto.getPassword(), byUserId.getPassword());
-        if (!matches) {
-            return "기존 비밀번호가 다릅니다";
-        }
+    }
+
+    @Override
+    public String findPassword(PasswordDto passwordDto) {
         String newPassword = passwordEncoder.encode(passwordDto.getNewPassword());
         passwordDto.setNewPassword(newPassword);
         int i = usersMapper.updatePassword(passwordDto);
         if (i == 0) {
             return "변경 오류";
         }
-        return "변경 완료";
+        return passwordDto.getPassword();
     }
+
     @Override
     public BusinessDto findBusinessDto(Long id) {
         BusinessVo businessVo = usersMapper.findByBusinessId(id);
         return new BusinessDto(businessVo);
     }
 
+    @Override
+    public String deleteUser(DeleteDto deleteDto) {
+        UsersVo user = usersMapper.findByUserId(deleteDto.getUserId());
+        boolean matches = passwordEncoder.matches(deleteDto.getPassword(), user.getPassword());
+        if(!matches) {
+            return "비밀번호가 틀립니다";
+        }
+        Map map = new HashMap();
+        map.put("userId", user.getUserId());
+        map.put("out", Out.SECESSION);
+        int i = usersMapper.updateForDelete(map);
+        if (i == 0) {
+            return "유저 탈퇴 정보 업데이트 실패";
+        }
+        if(deleteDto.getWhyDelete() == null || deleteDto.getEtc() == null) {
+            throw new RuntimeException("이유가 없음");
+        }
+
+        dtoNoArgSet(deleteDto);
+        int x = usersMapper.insertWhyDelete(deleteDto);
+        if (x == 0) {
+            return "WhyDelete 추가 실패";
+        }
+        return "탈퇴 성공";
+    }
+
+    @Override
+    public UsersVo findId(FindIdDto findIdDto) {
+        return usersMapper.findByNameEmail(findIdDto);
+    }
+
+    @Override
+    public UsersVo findTel(FindIdDto findIdDto) {
+        return usersMapper.findByTel(findIdDto);
+    }
+
+    private void dtoNoArgSet(DeleteDto deleteDto) {
+
+        List<String> list = Arrays.stream(deleteDto.getWhyDelete()).collect(Collectors.toList());
+
+        for (String value : list) {
+            if (value.equals("privacy")) {
+                deleteDto.setPrivacy(value);
+            }
+            if (value.equals("otherSite")) {
+                deleteDto.setOtherSite(value);
+            }
+            if (value.equals("hate")) {
+                deleteDto.setHate(value);
+            }
+            if (value.equals("joinAgain")) {
+                deleteDto.setJoinAgain(value);
+            }
+        }
+
+        String none = "none";
+
+        if (deleteDto.getPrivacy() == null) {
+            deleteDto.setPrivacy(none);
+        }
+        if (deleteDto.getHate() == null) {
+            deleteDto.setHate(none);
+        }
+        if (deleteDto.getOtherSite() == null) {
+            deleteDto.setOtherSite(none);
+        }
+        if (deleteDto.getJoinAgain() == null) {
+            deleteDto.setJoinAgain(none);
+        }
+        if (deleteDto.getEtc() == null) {
+            deleteDto.setEtc(none);
+        }
+
+    }
 
     private String passwordEncoding(String password) {
         return passwordEncoder.encode(password);
@@ -160,5 +252,4 @@ public class UsersServiceImpl implements UsersService {
     public UsersDto getId(String userId) {
         return usersMapper.getId(userId);
     }
-
 }

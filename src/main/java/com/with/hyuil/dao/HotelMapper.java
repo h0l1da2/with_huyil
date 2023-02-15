@@ -13,7 +13,6 @@ public interface HotelMapper {
 	void insertHotel(HotelVo hotelvo);
 	List<HotelListDto> selectForHotelList(HotelSearchDto hotelSearchDto);
 	HotelVo findByHoteluserId(Long userId);
-  List<HotelListDto> selectForHotelList(HotelSearchDto hotelSearchDto);
 	int selectCntForHotelList(HotelSearchDto hotelSearchDto);
-
+	HotelVo findByHotelId(long id);
 }
