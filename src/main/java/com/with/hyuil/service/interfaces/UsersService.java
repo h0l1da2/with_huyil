@@ -34,7 +34,15 @@ public interface UsersService {
 
     String modifyPassword(PasswordDto passwordDto);
 
+    String findPassword(PasswordDto passwordDto);
+
     BusinessDto findBusinessDto(Long id);
+
+    String deleteUser(DeleteDto deleteDto);
+
+    UsersVo findId(FindIdDto findIdDto);
+
+    UsersVo findTel(FindIdDto findIdDto);
 
     void updatehost(UsersDto usersdto);
 

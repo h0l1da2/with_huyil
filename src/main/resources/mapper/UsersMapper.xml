@@ -8,37 +8,37 @@
         INSERT INTO USERS
         ( ID, USER_ID, PASSWORD, EMAIL, TEL, NAME, WHERES, JOIN_DATE, LAST_LOGIN, TYPE )
         VALUES
-            ( USERS_SEQ.NEXTVAL, #{userId}, #{password}, #{email}, #{tel}, #{name}, #{wheres}, SYSDATE, SYSDATE, #{type} )
+        ( USERS_SEQ.NEXTVAL, #{userId}, #{password}, #{email}, #{tel}, #{name}, #{wheres}, SYSDATE, SYSDATE, #{type} )
     </insert>
     <insert id="insertAdmin" parameterType="UsersVo">
         INSERT INTO USERS
-            ( ID, USER_ID, PASSWORD, NAME, JOIN_DATE, LAST_LOGIN, TYPE )
+        ( ID, USER_ID, PASSWORD, NAME, JOIN_DATE, LAST_LOGIN, TYPE )
         VALUES
-            ( ADMIN_SEQ.NEXTVAL, #{userId}, #{password}, #{name}, SYSDATE, SYSDATE, #{type} )
+        ( ADMIN_SEQ.NEXTVAL, #{userId}, #{password}, #{name}, SYSDATE, SYSDATE, #{type} )
     </insert>
     <insert id="insertHost" parameterType="UsersVo">
         INSERT INTO USERS
         ( ID, USER_ID, PASSWORD, EMAIL, TEL, NAME, WHERES, JOIN_DATE, LAST_LOGIN, BUSINESS_ID, TYPE )
         VALUES
-            ( USERS_SEQ.NEXTVAL, #{userId}, #{password}, #{email}, #{tel}, #{name}, #{wheres}, SYSDATE, SYSDATE, #{businessVo.id, jdbcType=VARCHAR}, #{type} )
+        ( USERS_SEQ.NEXTVAL, #{userId}, #{password}, #{email}, #{tel}, #{name}, #{wheres}, SYSDATE, SYSDATE, #{businessVo.id, jdbcType=VARCHAR}, #{type} )
     </insert>
     <insert id="insertBusiness" parameterType="BusinessVo">
         INSERT INTO BUSINESS
-            ( ID, ACCOUNT, BANK_NUMBER, BANK )
+        ( ID, ACCOUNT, BANK_NUMBER, BANK )
         VALUES
-            ( BUSINESS_SEQ.NEXTVAL, #{account}, #{bankNumber}, #{bank} )
+        ( BUSINESS_SEQ.NEXTVAL, #{account}, #{bankNumber}, #{bank} )
     </insert>
     <insert id="insertRoles" parameterType="RolesVo">
         INSERT INTO ROLES
-            ( ID, ROLE_NAME, USER_ID )
+        ( ID, ROLE_NAME, USER_ID )
         VALUES
-            ( ROLES_SEQ.NEXTVAL, #{roleName}, #{usersVo.id, jdbcType=VARCHAR} )
+        ( ROLES_SEQ.NEXTVAL, #{roleName}, #{usersVo.id, jdbcType=VARCHAR} )
     </insert>
     <insert id="insertWhyDelete" parameterType="DeleteDto">
         INSERT INTO WHY_DELETE
-            ( ID, PRIVACY, OTHER_SITE, HATE, JOIN_AGAIN, ETC )
+        ( ID, PRIVACY, OTHER_SITE, HATE, JOIN_AGAIN, ETC )
         VALUES
-            ( SEQ_WHY_DELETE.NEXTVAL, #{privacy}, #{otherSite}, #{hate}, #{joinAgain}, #{etc} )
+        ( SEQ_WHY_DELETE.NEXTVAL, #{privacy}, #{otherSite}, #{hate}, #{joinAgain}, #{etc} )
     </insert>
     <select id="count" resultType="Integer">
         SELECT COUNT(*)
@@ -106,15 +106,15 @@
     </update>
     <!-- namsu수정 -->
     <update id="updatehost" parameterType="UsersDto">
-    	update users set tel = #{tel} where user_id = #{userId}
+        update users set tel = #{tel} where user_id = #{userId}
     </update>
-    
+
     <update id="updatebusiness" parameterType="BusinessDto">
-    	update business set account = #{account}, bank_number = #{bankNumber}, bank = #{bank}
-    	where id = #{id}
+        update business set account = #{account}, bank_number = #{bankNumber}, bank = #{bank}
+        where id = #{id}
     </update>
-    
+
     <select id="getId" parameterType="String" resultType="UsersDto">
-    	select * from users where user_id = #{userId}
+        select * from users where user_id = #{userId}
     </select>
 </mapper>
