@@ -20,4 +20,9 @@ public class HotelSearchDto {
         this.checkOut = checkOut;
     }
 
+
+    public HotelSearchDto() {
+    }
+
 }
+

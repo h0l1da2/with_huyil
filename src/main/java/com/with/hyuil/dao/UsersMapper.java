@@ -25,18 +25,14 @@ public interface UsersMapper {
     int insertHost(UsersVo usersVo);
     int insertAdmin(UsersVo usersVo);
     int insertRoles(RolesVo rolesVo);
-    int insertWhyDelete(DeleteDto deleteDto); //
     UsersVo findByUserId(String userId);
-    UsersVo findByNameEmail(FindIdDto findIdDto);
     BusinessVo findBusinessByAccount(String account);
     RolesVo findRoles(Long id);
     void updateLastLogin(String userId);
     UsersVo findByUserIdEmail(EmailDto emailDto);
     int updateEmail(EmailDto emailDto);
     int updatePassword(PasswordDto passwordDto);
-    int updateForDelete(Map map); //
     BusinessVo findByBusinessId(Long id);
-    UsersVo findByTel(FindIdDto findIdDto);
 
     void updatehost(UsersDto usersdto);
     void updatebusiness(BusinessDto businessdto);

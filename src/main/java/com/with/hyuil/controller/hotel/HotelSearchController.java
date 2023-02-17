@@ -16,8 +16,10 @@ import com.with.hyuil.dto.hotel.HotelListDto;
 import com.with.hyuil.dto.hotel.HotelSearchDto;
 import com.with.hyuil.service.interfaces.HotelService;
 
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import java.util.List;
 
 @Controller
 @Slf4j
@@ -29,6 +31,7 @@ public class HotelSearchController {
     @GetMapping("/list")
     public String hotelList(@ModelAttribute HotelSearchDto hotelSearchDto, Model model) {
         log.info("호텔 제대로 들어왔음? = {}", hotelSearchDto);
+
         return searchHotels(model, hotelSearchDto);
     }
 
@@ -46,9 +49,9 @@ public class HotelSearchController {
         List<HotelListDto> hotelList = hotelService.searchHotels(hotelSearchDto);
         log.info("hotelListDto = {}", hotelList);
         try {
-            GlobalPageHandler globalPageHandler = new GlobalPageHandler(hotelList.get(0).getTotcnt(), 1);
-            log.info("핸들러 = {}", globalPageHandler);
-            model.addAttribute("ph", globalPageHandler);
+            HotelPageHandler hotelPageHandler = new HotelPageHandler(hotelList.get(0).getTotcnt(), 1);
+            log.info("핸들러 = {}", hotelPageHandler);
+            model.addAttribute("ph", hotelPageHandler);
             model.addAttribute(hotelList);
         } catch (IndexOutOfBoundsException e) {
             log.info("검색 결과가 없습니다");

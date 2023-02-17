@@ -13,3 +13,4 @@ public interface HotelService {
     HotelVo findByHotelUserId(Long userId);
     HotelVo findByHotelId(long id);
 }
+

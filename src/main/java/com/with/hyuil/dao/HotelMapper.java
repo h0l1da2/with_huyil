@@ -6,12 +6,14 @@ import com.with.hyuil.model.HotelVo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface HotelMapper {
 	void insertHotel(HotelVo hotelvo);
 	List<HotelListDto> selectForHotelList(HotelSearchDto hotelSearchDto);
 	HotelVo findByHoteluserId(Long userId);
+  List<HotelListDto> selectForHotelList(HotelSearchDto hotelSearchDto);
 	int selectCntForHotelList(HotelSearchDto hotelSearchDto);
 	HotelVo findByHotelId(long id);
 }
