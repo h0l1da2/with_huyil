@@ -45,7 +45,7 @@ public class FileServiceImpl {
 		return mapper.selectRoomImg(roomId);
 	}
 
-	public void UploadImg(MultipartHttpServletRequest mhsq, HttpSession session, UsersVo usersvo, HotelVo hotelvo, RoomVo roomvo)throws IllegalStateException, IOException  {
+	public void UploadImg(MultipartHttpServletRequest mhsq, UsersVo usersvo, HotelVo hotelvo, RoomVo roomvo)throws IllegalStateException, IOException  {
 		String path = "C:/Imgs/";
 		File dir = new File(path);
 		if(!dir.isDirectory()) {

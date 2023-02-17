@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
+<<<<<<< HEAD
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+=======
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
+>>>>>>> 56faafe70a379487f8eb151a98050c4d748bb164
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,8 +27,11 @@
 
     <link rel="stylesheet" href="/resources/static/hotelDetail/css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="/resources/static/hotelDetail/css/jquery.timepicker.css">
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 56faafe70a379487f8eb151a98050c4d748bb164
     <link rel="stylesheet" href="/resources/static/hotelDetail/css/flaticon.css">
     <link rel="stylesheet" href="/resources/static/hotelDetail/css/icomoon.css">
     <link rel="stylesheet" href="/resources/static/hotelDetail/css/style.css">

@@ -119,14 +119,7 @@
     		<artifactId>commons-io</artifactId>
     	<version>2.6</version>
 		</dependency>
-<<<<<<< HEAD
-=======
-		
->>>>>>> b1c1dc2 (깃 충돌 수정중 (#24))
-
 	</dependencies>
-
-
 	<build>
 		<plugins>
 			<plugin>

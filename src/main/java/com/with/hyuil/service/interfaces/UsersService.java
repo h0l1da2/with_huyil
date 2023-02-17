@@ -12,7 +12,7 @@ import com.with.hyuil.model.UsersVo;
 
 
 public interface UsersService {
-    int saveUser(UsersVo usersVo);
+	int saveUser(UsersVo usersVo);
     int saveAdmin(UsersVo usersVo,String adminPwd);
     boolean idCheck(UserIdDto userIdDto);
     int saveHost(UsersVo usersVo);

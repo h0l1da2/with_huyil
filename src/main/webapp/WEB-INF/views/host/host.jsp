@@ -87,7 +87,11 @@
                             </div>
                             <div class="d-flex afterLogin">
                                 <button type="button" class="form-control btn btn-primary submit px-3 infoBtn">매출 확인</button>
+<<<<<<< HEAD
                                 <button onclick="location.href='<c:url value="/hosts/info/book"/>'" type="button" class="form-control btn btn-primary submit px-3 infoBtn">예약 내역</button>
+=======
+                                <button onclick="location.href='<c:url value='/hosts/info'/>'" type="button" class="form-control btn btn-primary submit px-3 infoBtn">마이페이지</button>
+>>>>>>> 56faafe70a379487f8eb151a98050c4d748bb164
                             </div>
                         </div>
                     </div>
