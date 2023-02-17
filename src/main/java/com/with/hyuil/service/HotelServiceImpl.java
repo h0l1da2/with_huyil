@@ -27,7 +27,6 @@ public class HotelServiceImpl implements HotelService {
 	public HotelVo findByHotelUserId(Long userId) {
 		return mapper.findByHoteluserId(userId);
 	}
-
 	
 	@Override
 	public HotelVo findByHotelId(long id) {
@@ -41,3 +40,4 @@ public class HotelServiceImpl implements HotelService {
 	}
 
 }
+

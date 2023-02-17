@@ -10,7 +10,7 @@ import com.with.hyuil.model.UsersVo;
 
 
 public interface UsersService {
-    int saveUser(UsersVo usersVo);
+	int saveUser(UsersVo usersVo);
     int saveAdmin(UsersVo usersVo,String adminPwd);
     boolean idCheck(UserIdDto userIdDto);
     int saveHost(UsersVo usersVo);
@@ -22,6 +22,9 @@ public interface UsersService {
     int modifyEmail(EmailDto emailDto);
     String modifyPassword(PasswordDto passwordDto);
     BusinessDto findBusinessDto(Long id);
+    String deleteUser(DeleteDto deleteDto);
+    UsersVo findId(FindIdDto findIdDto);
+    UsersVo findTel(FindIdDto findIdDto);
 
     void updatehost(UsersDto usersdto);
     void updatebusiness(BusinessDto businessdto);
