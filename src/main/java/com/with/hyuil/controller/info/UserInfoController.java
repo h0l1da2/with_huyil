@@ -1,11 +1,10 @@
 package com.with.hyuil.controller.info;
 
 import com.with.hyuil.config.auth.CustomUserDetails;
-import com.with.hyuil.dto.hotel.GlobalPageHandler;
-import com.with.hyuil.dto.info.*;
+import com.with.hyuil.dto.info.DeleteDto;
+import com.with.hyuil.dto.info.EmailDto;
+import com.with.hyuil.dto.info.PasswordDto;
 import com.with.hyuil.model.UsersVo;
-import com.with.hyuil.model.enumaration.Status;
-import com.with.hyuil.service.interfaces.BookService;
 import com.with.hyuil.service.interfaces.EmailService;
 import com.with.hyuil.service.interfaces.UsersService;
 import lombok.RequiredArgsConstructor;
@@ -14,8 +13,6 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -91,8 +88,6 @@ public class UserInfoController {
     public String deletePage(@RequestBody DeleteDto deleteDto) {
         return usersService.deleteUser(deleteDto);
     }
-
-
 
     private UsersVo findUser(String userDetails) {
         UsersVo usersVo = usersService.loginForFind(userDetails);
