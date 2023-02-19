@@ -294,11 +294,11 @@
                     <td>${users.id}</td>
                     <td>${users.email}</td>
                     <td>${users.name}</td>
-                    <td>${users.?}</td>
+                    <td>${users}</td>
                     <td>${users.tel}</td>
                     <td>${users.account}</td>
-                    <td>${users.out></td>
-                    <td>${users.removeDate></td>
+                    <td>${users.out}</td>
+                    <td>${users.removeDate}</td>
                 </tr>
                 </c:if>
                 </c:forEach>

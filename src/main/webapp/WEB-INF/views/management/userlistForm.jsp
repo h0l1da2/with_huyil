@@ -302,8 +302,8 @@
                                             <td>${users.wheres}</td>
                                             <td>${users.tel}</td>
                                             <td>${users.lastLogin}</td>
-                                            <td>${users.out></td>
-                                            <td>${users.removeDate></td>
+                                            <td>${users.out}</td>
+                                            <td>${users.removeDate}</td>
                                         </tr>
                                         </c:forEach>
                                     </tbody>
