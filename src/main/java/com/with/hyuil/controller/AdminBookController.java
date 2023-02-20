@@ -24,8 +24,7 @@ public class AdminBookController {
 
     @GetMapping("/bookList")
     public String bookList(@AuthenticationPrincipal CustomUserDetails userDetails, @ModelAttribute BookPageDto bookPageDto, Model model) {
-//        model.addAttribute("userId", userDetails.getUsername());
-        model.addAttribute("userId", "어드민");
+        model.addAttribute("userId", userDetails.getUsername());
         List<AdminBookListDto> adminBookList = bookService.adminBookList(bookPageDto);
         AdminPageHandler adminPageHandler = new AdminPageHandler(adminBookList.get(0).getTotcnt(), bookPageDto.getNowPage());
         model.addAttribute(adminBookList);
