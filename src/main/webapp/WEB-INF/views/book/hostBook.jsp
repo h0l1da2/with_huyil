@@ -121,7 +121,7 @@
           </div>
           <div class="form-group book-form">
             <label class="title for-label">요구사항 ${bookList.please}
-              <input type="button" value="예약취소" id="bookCancel" class="btn btn-primary py-3 px-5 form-group book-form cancelBtn">
+              <input type="button" onclick="bookCancel(${bookList.id})" value="예약취소" class="btn btn-primary py-3 px-5 form-group book-form cancelBtn">
             </label>
           </div>
         </div>
@@ -228,31 +228,29 @@
 <script src="<c:url value='/resources/static/home/js/main.js'/>"></script>
 <script>
 
-  $(document).ready(function(){
-    $('#bookCancel').click(function () {
-      let id = document.getElementById("bookId").value;
-      if(!confirm("정말 취소하시겠습니까?")) {
-        return false;
-      }
-      $.ajax({
-        type: 'POST',
-        url: '/hosts/info/book/cancel',
-        contentType: "application/json",
-        data: JSON.stringify({id:id}),
-        dataType: 'text',
-        success: function (result) {
-          if(result=='예약 취소 완료') {
-            alert("취소가 완료되었습니다")
-            location.reload();
-          } else {
-            alert(result);
-          }
-        },
-        error: function(result) {
-          alert("확인실패");
-        }})
-    })
-  });
+  function bookCancel(result) {
+    if(!confirm("정말 취소하시겠습니까?")) {
+      return false;
+    }
+    $.ajax({
+      type: 'POST',
+      url: '/hosts/info/book/cancel',
+      contentType: "application/json",
+      data: JSON.stringify({id:result}),
+      dataType: 'text',
+      success: function (result) {
+        if(result=='예약 취소 완료') {
+          alert("취소가 완료되었습니다")
+          location.reload();
+        } else {
+          alert(result);
+        }
+      },
+      error: function(result) {
+        alert("확인실패");
+      }})
+    ;
+  }
 </script>
 </body>
 </html>
