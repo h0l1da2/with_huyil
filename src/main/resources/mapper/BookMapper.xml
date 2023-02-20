@@ -42,7 +42,6 @@
                        ORDER BY B.CHECK_IN) A)
         WHERE RNUM >= #{viewPage}
           AND RNUM &lt;= #{limit}
-        ORDER BY ID
     </select>
     <select id="findAllForHostInfo" resultType="HostBookListDto" parameterType="BookSearchDto">
         SELECT *
@@ -58,6 +57,34 @@
                          AND B.REMOVE_DATE IS NULL
                        GROUP BY B.ID, R.NAME, U.NAME, B.COUNT, B.CHECK_IN, B.CHECK_OUT, B.PLEASE
                        ORDER BY B.CHECK_IN)A)
+        WHERE RNUM >= #{viewPage}
+          AND RNUM &lt;= #{limit}
+    </select>
+    <select id="countForAdminBook" resultType="Integer" parameterType="BookPageDto">
+        SELECT COUNT(*)
+        FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER () AS TOTCNT
+              FROM (
+                       SELECT B.ID, U.USER_ID, H.NAME HOTEL, O.ORDER_DATE, P.COMPLETE_DATE PAYDATE, B.STATUS
+                       FROM BOOK B, HOTEL H, ORDERS O, PAY_COMPLETE P, USERS U, ROOM R
+                       WHERE H.ID = R.HOTEL_ID
+                         AND U.ID = O.USER_ID
+                         AND O.ID = P.ORDERS_ID
+                       GROUP BY U.USER_ID, H.NAME, O.ORDER_DATE, P.COMPLETE_DATE, B.ID, B.STATUS
+                       ORDER BY B.ID DESC)A)
+        WHERE RNUM >= #{viewPage}
+          AND RNUM &lt;= #{limit}
+    </select>
+    <select id="findAllForAdmin" resultType="AdminBookListDto" parameterType="BookPageDto">
+        SELECT *
+        FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER () AS TOTCNT
+              FROM (
+                       SELECT B.ID, U.USER_ID, H.NAME HOTEL, O.ORDER_DATE, P.COMPLETE_DATE PAYDATE, B.STATUS
+                       FROM BOOK B, HOTEL H, ORDERS O, PAY_COMPLETE P, USERS U, ROOM R
+                       WHERE H.ID = R.HOTEL_ID
+                         AND U.ID = O.USER_ID
+                         AND O.ID = P.ORDERS_ID
+                       GROUP BY U.USER_ID, H.NAME, O.ORDER_DATE, P.COMPLETE_DATE, B.STATUS, B.ID
+                       ORDER BY B.ID DESC)A)
         WHERE RNUM >= #{viewPage}
           AND RNUM &lt;= #{limit}
     </select>
@@ -80,7 +107,7 @@
     </select>
     <update id="updateRemoveDate" parameterType="Long">
         UPDATE BOOK
-        SET REMOVE_DATE = SYSDATE
+        SET REMOVE_DATE = SYSDATE, STATUS = 'CANCEL'
         WHERE ID = #{id, jdbcType=VARCHAR}
     </update>
 </mapper>

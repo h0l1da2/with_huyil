@@ -40,6 +40,7 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
                 redirectStrategy.sendRedirect(request, response, "/host");
             }
             if (roleNames.contains("ROLE_ADMIN")) {
+                // admin index페이지로 이동해야됨
                 redirectStrategy.sendRedirect(request, response, "/");
             }
         } else {

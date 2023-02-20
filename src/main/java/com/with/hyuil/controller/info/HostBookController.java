@@ -45,7 +45,7 @@ public class HostBookController {
     @ResponseBody
     @PostMapping("/book/cancel")
     public String cancelBook(@RequestBody HostBookListDto hostBookListDto) {
-        return bookService.hostBookCancel(hostBookListDto.getId());
+        return bookService.bookCancel(hostBookListDto.getId());
     }
 
     @GetMapping("/book/complete")

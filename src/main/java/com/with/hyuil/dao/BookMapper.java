@@ -1,6 +1,8 @@
 package com.with.hyuil.dao;
 
+import com.with.hyuil.dto.admin.AdminBookListDto;
 import com.with.hyuil.dto.info.BookListDto;
+import com.with.hyuil.dto.admin.BookPageDto;
 import com.with.hyuil.dto.info.BookSearchDto;
 import com.with.hyuil.dto.info.HostBookListDto;
 import com.with.hyuil.model.BookVo;
@@ -14,6 +16,8 @@ public interface BookMapper {
     List<BookListDto> findAllByUserId(BookSearchDto bookSearchDto);
     int countForBookList(BookSearchDto bookSearchDto);
     int countForHostInfo(BookSearchDto bookSearchDto);
+    int countForAdminBook(BookPageDto bookPageDto);
     List<HostBookListDto> findAllForHostInfo(BookSearchDto bookSearchDto);
+    List<AdminBookListDto> findAllForAdmin(BookPageDto bookPageDto);
     int updateRemoveDate(Long id);
 }

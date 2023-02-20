@@ -72,8 +72,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .hasAnyRole("USER", "HOST")
                 .mvcMatchers("/hosts/**")
                 .hasAnyRole("HOST", "ADMIN")
-                .mvcMatchers("/admin/**")
-                .hasRole("ADMIN")
+//                .mvcMatchers("/admin/**")
+//                .hasRole("ADMIN")
                 .anyRequest()
                 .permitAll()
 
