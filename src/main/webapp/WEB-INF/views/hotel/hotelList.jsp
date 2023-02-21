@@ -110,8 +110,13 @@
 							<ul>
 								<c:if test="${ph.showPrev}"><li><a href="#">&lt;</a></li></c:if>
 								<c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
-									<li<c:if test="${ph.viewPage eq i}"> class="active"</c:if>>
-										<a href="#">${i}</a></li>
+									<li<c:if test="${ph.viewPage eq i or null}"> class="active"</c:if>>
+										<c:if test="${hotelListDtoList ne null}">
+											<a href="#">
+													${i}
+											</a>
+										</c:if>
+									</li>
 								</c:forEach>
 								<c:if test="${ph.showNext}"><li><a href="#">&gt;</a></li></c:if>
 							</ul>

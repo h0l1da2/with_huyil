@@ -50,7 +50,7 @@ public class HotelSearchController {
         log.info("hotelListDto = {}", hotelList);
         log.info("starList = {}", starList);
 
-        try {
+        if (starList != null) {
             for(StarDto star : starList) {
                 star.calcForHotelList();
                 for(HotelListDto hotelListDto : hotelList) {
@@ -59,10 +59,8 @@ public class HotelSearchController {
                     }
                 }
             }
-            if(hotelList.get(0).getId() == 0L) {
-                hotelList.remove(0);
-                throw new IndexOutOfBoundsException("검색 결과 없음");
-            }
+        }
+        try {
             globalPageHandler = new GlobalPageHandler(hotelList.get(0).getTotcnt(), 1);
             log.info("핸들러 = {}", globalPageHandler);
             log.info("hotelSearchDto = {}", hotelSearchDto);
@@ -71,16 +69,14 @@ public class HotelSearchController {
             log.info("검색 결과가 없습니다");
             addModelForList(model, hotelSearchDto, hotelList, globalPageHandler);
             return "hotel/hotelList";
-        } catch (ArithmeticException e) {
-            log.info("리뷰가 없는 게 있어요");
-            addModelForList(model, hotelSearchDto, hotelList, globalPageHandler);
-
-            return "hotel/hotelList";
         }
         return "hotel/hotelList";
     }
 
     private void addModelForList(Model model, HotelSearchDto hotelSearchDto, List<HotelListDto> hotelList, GlobalPageHandler globalPageHandler) {
+        if (globalPageHandler == null) {
+            globalPageHandler =  new GlobalPageHandler(0, 1);
+        }
         model.addAttribute("ph", globalPageHandler);
         model.addAttribute(hotelList);
         model.addAttribute("where", hotelSearchDto.getSido());

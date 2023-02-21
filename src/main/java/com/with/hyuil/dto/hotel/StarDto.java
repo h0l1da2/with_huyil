@@ -14,6 +14,6 @@ public class StarDto {
     private float reviewStars = 0f;
 
     public void calcForHotelList() {
-        reviewStars = (clean+facilities+condition+organic)/totcnt/4;
+        reviewStars = totcnt == 0 ? 0 : (clean+facilities+condition+organic)/totcnt/4;
     }
 }

@@ -42,12 +42,14 @@ public class HotelServiceImpl implements HotelService {
 
 	@Override
 	public List<StarDto> searchHotelStar(List<HotelListDto> hotelListDtos) {
-		if (hotelListDtos.size() == 0) {
-			HotelListDto hotelListDto = new HotelListDto();
-			hotelListDto.setId(0L);
-			hotelListDtos.add(hotelListDto);
+		try {
+			List<StarDto> allStars = mapper.findAllStars(hotelListDtos);
+			return allStars;
+		} catch (ArithmeticException e) {
+			log.info("리뷰가 없는 게 있음");
+			return null;
 		}
-		return mapper.findAllStars(hotelListDtos);
+
 	}
 
 
