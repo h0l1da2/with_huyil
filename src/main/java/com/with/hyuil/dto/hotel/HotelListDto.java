@@ -7,10 +7,9 @@ public class HotelListDto {
 
     private Long id;
     private String name;
-    private Integer star;
+    private Float star = 0f;
     private Integer price;
     private String sigungu;
     private String path;
-    private Integer totcnt;
-
+    private int totcnt;
 }

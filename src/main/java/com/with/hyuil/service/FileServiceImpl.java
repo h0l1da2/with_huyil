@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
-import javax.servlet.http.HttpSession;
-
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,20 +16,12 @@ import com.with.hyuil.model.FileVo;
 import com.with.hyuil.model.HotelVo;
 import com.with.hyuil.model.RoomVo;
 import com.with.hyuil.model.UsersVo;
-import com.with.hyuil.service.interfaces.HotelService;
-import com.with.hyuil.service.interfaces.UsersService;
 
 @Service
 public class FileServiceImpl {
 
 	@Autowired
 	private FileMapper mapper;
-	@Autowired
-	private UsersService usersService;
-	@Autowired
-	private HotelService hotelService;
-	@Autowired
-	private RoomServiceImpl roomService;
 
 	public void fileUpload(FileVo filevo) {
 		mapper.uploadFile(filevo);
@@ -75,4 +65,9 @@ public class FileServiceImpl {
 			}
 		}
 	}
+	
+	public long deleteHotelImg(long hotelInfoId) {
+		return mapper.deleteHotelImg(hotelInfoId);
+	}
+	
 }

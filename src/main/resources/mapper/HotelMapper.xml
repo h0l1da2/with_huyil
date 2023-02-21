@@ -5,9 +5,9 @@
 <mapper namespace="com.with.hyuil.dao.HotelMapper">
 	<insert id="insertHotel" parameterType="HotelVo">
 		insert into hotel
-		(ID, NAME, HOTEL_INFO_ID, USER_ID, SERVICE, ZONECODE, SIDO, SIGUNGU, ADDRESS, DETAIL, STAR, REMOVE_DATE)
+		(ID, NAME, HOTEL_INFO_ID, USER_ID, SERVICE, ZONECODE, SIDO, SIGUNGU, ADDRESS, DETAIL, REMOVE_DATE)
 		values
-		(seq_hotel.nextval, #{name}, #{hotelInfoId}, #{userId}, #{service}, #{zonecode}, #{sido}, #{sigungu}, #{address}, #{detail}, null, null)
+		(seq_hotel.nextval, #{name}, #{hotelInfoId}, #{userId}, #{service, jdbcType=VARCHAR}, #{zonecode}, #{sido}, #{sigungu}, #{address}, #{detail}, null)
 	</insert>
 
 	<select id="findByHoteluserId" parameterType="Long" resultType="HotelVo">
@@ -22,7 +22,7 @@
 		SELECT *
 		FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER () AS TOTCNT
 		FROM (
-		SELECT H.ID, H.NAME, H.STAR, R.NORMAL_PRICE AS PRICE, H.SIGUNGU, F.PATH
+		SELECT H.ID, H.NAME, R.NORMAL_PRICE AS PRICE, H.SIGUNGU, F.PATH
 		FROM HOTEL H, ROOM R, BOOK B, FILES F, HOTEL_INFO I
 		WHERE H.ID = R.HOTEL_ID
 		AND R.ID = B.ROOM_ID
@@ -35,9 +35,31 @@
 		AND (B.STATUS != 'READY'))
 
 		OR B.ID = NULL
-		GROUP BY H.ID, H.NAME, H.STAR, R.NORMAL_PRICE, H.SIGUNGU, F.PATH, H.SIGUNGU
+		GROUP BY H.ID, H.NAME, R.NORMAL_PRICE, H.SIGUNGU, F.PATH, H.SIGUNGU
 		ORDER BY H.ID) A)
 		WHERE RNUM > #{offset}
 		AND RNUM &lt;= #{limit}
+	</select>
+	
+	<update id="updateHotel" parameterType="HotelVo">
+		update hotel set
+		name = #{name}, service = #{service}, zonecode = #{zonecode}, sido = #{sido}, sigungu = #{sigungu}, address = #{address}, detail = #{detail}
+		where id = #{id}
+	</update>
+
+	<select id="findAllStars" resultType="StarDto">
+		SELECT H.ID,
+		    SUM(S.CLEAN) CLEAN,
+			SUM(S.FACILITIES) FACILITIES,
+			SUM(S.CONDITION) CONDITION,
+			SUM(S.ORGANIC) ORGANIC, COUNT(S.CLEAN) TOTCNT
+		FROM HOTEL H, STAR S
+		WHERE H.ID IN
+		<foreach collection="hotelListDtos" item="hotel" open="(" close=")" separator=",">
+			#{hotel.id, jdbcType = VARCHAR}
+		</foreach>
+		AND H.ID = S.HOTEL_ID(+)
+		GROUP BY H.ID
+		ORDER BY H.ID
 	</select>
 </mapper>

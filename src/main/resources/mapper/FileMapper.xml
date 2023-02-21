@@ -29,5 +29,9 @@
 	<select id="selectRoomImg" parameterType="long" resultType="FileVo">
 		SELECT * FROM FILES WHERE ROOM_ID = #{roomId}
 	</select>
+	
+	<delete id="deleteHotelImg" parameterType="long">
+		delete from files where hotel_info_id = #{hotelInfoId} AND room_id IS NULL
+	</delete>
 
 </mapper>

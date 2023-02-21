@@ -100,8 +100,8 @@
 
 <section class="ftco-section contact-section bg-light">
   <div class="container">
-    <div class="col-md-12 mb-4" style="text-align: center;"><label class="h3 book-menu"><a href="<c:url value='/hosts/info/book'/>">진행중</a> <a href="<c:url value='/hosts/info/book/complete'/>">완료예약</a></label></div>
-<c:forEach var="bookList" items="${hostBookListDtoList}">
+    <div class="col-md-12 mb-4" style="text-align: center;"><label class="h3 book-menu"><a href="<c:url value='/hosts/info/book'/>">진행중</a> <a href="<c:url value='/hosts/info/book/complete'/>">완료예약</a> <a href="<c:url value='/hosts/info/book/cancel'/>">취소예약</a></label></div>
+    <c:forEach var="bookList" items="${hostBookListDtoList}">
 <div class="row block-9 info-menu">
       <!-- <div class="col-md-6 order-md-last d-flex"> -->
       <form action="#" class="bg-white p-5 contact-form contact-book-form">
