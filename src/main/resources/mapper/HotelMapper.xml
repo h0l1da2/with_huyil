@@ -47,11 +47,11 @@
 			SUM(S.CONDITION) CONDITION,
 			SUM(S.ORGANIC) ORGANIC, COUNT(S.CLEAN) TOTCNT
 		FROM HOTEL H, STAR S
-		WHERE
+		WHERE H.ID IN
 		<foreach collection="hotelListDtos" item="hotel" open="(" close=")" separator=",">
-			H.ID IN #{hotel.id, jdbcType = VARCHAR} AND
+			#{hotel.id, jdbcType = VARCHAR}
 		</foreach>
-			H.ID = S.HOTEL_ID(+)
+		AND H.ID = S.HOTEL_ID(+)
 		GROUP BY H.ID
 		ORDER BY H.ID
 	</select>
