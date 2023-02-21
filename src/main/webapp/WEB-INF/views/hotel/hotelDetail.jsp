@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<<<<<<< HEAD
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-=======
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
->>>>>>> 56faafe70a379487f8eb151a98050c4d748bb164
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,11 +23,6 @@
 
     <link rel="stylesheet" href="/resources/static/hotelDetail/css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="/resources/static/hotelDetail/css/jquery.timepicker.css">
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 56faafe70a379487f8eb151a98050c4d748bb164
     <link rel="stylesheet" href="/resources/static/hotelDetail/css/flaticon.css">
     <link rel="stylesheet" href="/resources/static/hotelDetail/css/icomoon.css">
     <link rel="stylesheet" href="/resources/static/hotelDetail/css/style.css">
@@ -83,7 +74,7 @@
             <div class="col-md-12">
                 <h2 class="mb-4">${hotelvo.name}</h2>
                 <div class="star-rating">
-                    <div class="rating" data-rate="${hotelvo.star}">
+                    <div class="rating" data-rate="<%--${hotelvo.star}--%>">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -101,7 +92,7 @@
             <!-- Rooms Section Begin -->
             <section class="rooms-section spad" id="selectroom">
                 <div class="container">
-                    <div class="row">
+                    <div class="row" style="width:800px;">
                         <c:forEach items="${roomList}" var="list">
                             <div class="col-md-6">
                                 <div class="room-item" style="width: 400px;">

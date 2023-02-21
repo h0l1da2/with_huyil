@@ -5,9 +5,10 @@ import org.springframework.stereotype.Service;
 
 import com.with.hyuil.dao.OrdersMapper;
 import com.with.hyuil.model.OrdersVo;
+import com.with.hyuil.service.interfaces.OrderService;
 
 @Service
-public class OrdersServiceImpl {
+public class OrdersServiceImpl implements OrderService {
 
 	@Autowired
 	private OrdersMapper mapper;
@@ -15,5 +16,5 @@ public class OrdersServiceImpl {
 	public void addOrders(OrdersVo ordersvo) {
 		mapper.insertOrders(ordersvo);
 	}
-	
+
 }

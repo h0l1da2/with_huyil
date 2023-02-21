@@ -3,6 +3,7 @@ package com.with.hyuil;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 78df10a (호텔 폼 / 호텔 검색 / 리스트 (#20))
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +26,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 >>>>>>> 56faafe70a379487f8eb151a98050c4d748bb164
+=======
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+>>>>>>> 5a7624a3089d65018961966d9a8894b30604caf4
 @SpringBootTest
 class HyuilApplicationTests {
 

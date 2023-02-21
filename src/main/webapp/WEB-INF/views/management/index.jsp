@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,13 +14,13 @@
     <title>위드휴일 - 관리자페이지</title>
 
     <!-- Custom fonts for this template-->
-    <link href="/src/main/resources/static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="/src/main/resources/static/management/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="/src/main/resources/static/table/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="/src/main/resources/static/management/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
@@ -31,7 +33,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#index">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -43,7 +45,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="#index">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>관리자페이지</span></a>
             </li>
@@ -56,13 +58,13 @@
                 회원관리
             </div>
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="#userlist">
                     <i class="fas fa-fw fa-table"></i>
                     <span>일반회원관리</span></a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="tables2.html">
+                <a class="nav-link" href="#bussinesslist">
                     <i class="fas fa-fw fa-table"></i>
                     <span>사업자회원관리</span></a>
             </li>
@@ -72,7 +74,7 @@
                 등록관리
             </div>
             <li class="nav-item">
-                <a class="nav-link" href="management.html">
+                <a class="nav-link" href="#management">
                     <i class="fas fa-fw fa-table"></i>
                     <span>등록관리목록</span></a>
             </li>
@@ -82,7 +84,7 @@
                 예약관리
             </div>
             <li class="nav-item">
-                <a class="nav-link" href="xxxx.html">
+                <a class="nav-link" href="/">
                     <i class="fas fa-fw fa-table"></i>
                     <span>예약승인/거절</span></a>
             </li>
@@ -92,7 +94,7 @@
                 매출관리
             </div>
             <li class="nav-item">
-                <a class="nav-link" href="xxxx.html">
+                <a class="nav-link" href="/">
                     <i class="fas fa-fw fa-table"></i>
                     <span>매출내역확인</span></a>
             </li>
@@ -210,7 +212,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                                 <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                    src="main/resources/static/management/images/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -441,21 +443,21 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="/src/main/resources/static/vendor/jquery/jquery.min.js"></script>
-    <script src="/src/main/resources/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/src/main/resources/static/management/js/jquery.min.js"></script>
+    <script src="/src/main/resources/static/management/js/bootstrap/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="/src/main/resources/static/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="/src/main/resources/static/management/js/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="/src/main/resources/static/table/js/sb-admin-2.min.js"></script>
+    <script src="/src/main/resources/static/management/js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="/src/main/resources/static/vendor/chart.js/Chart.min.js"></script>
+    <script src="/src/main/resources/static/management/js/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="/src/main/resources/static/table/js/demo/chart-area-demo.js"></script>
-    <script src="/src/main/resources/static/table/js/demo/chart-pie-demo.js"></script>
+    <script src="/src/main/resources/static/management/js/demo/chart-area-demo.js"></script>
+    <script src="/src/main/resources/static/management/js/demo/chart-pie-demo.js"></script>
 
 </body>
 

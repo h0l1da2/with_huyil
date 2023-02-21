@@ -5,9 +5,9 @@
 <mapper namespace="com.with.hyuil.dao.HotelMapper">
 	<insert id="insertHotel" parameterType="HotelVo">
 		insert into hotel
-		(ID, NAME, HOTEL_INFO_ID, USER_ID, SERVICE, ZONECODE, SIDO, SIGUNGU, ADDRESS, DETAIL, STAR, REMOVE_DATE)
+		(ID, NAME, HOTEL_INFO_ID, USER_ID, SERVICE, ZONECODE, SIDO, SIGUNGU, ADDRESS, DETAIL, REMOVE_DATE)
 		values
-		(seq_hotel.nextval, #{name}, #{hotelInfoId}, #{userId}, #{service}, #{zonecode}, #{sido}, #{sigungu}, #{address}, #{detail}, null, null)
+		(seq_hotel.nextval, #{name}, #{hotelInfoId}, #{userId}, #{service, jdbcType=VARCHAR}, #{zonecode}, #{sido}, #{sigungu}, #{address}, #{detail}, null)
 	</insert>
 
 	<select id="findByHoteluserId" parameterType="Long" resultType="HotelVo">
@@ -40,4 +40,11 @@
 		WHERE RNUM > #{offset}
 		AND RNUM &lt;= #{limit}
 	</select>
+	
+	<update id="updateHotel" parameterType="HotelVo">
+		update hotel set
+		name = #{name}, service = #{service}, zonecode = #{zonecode}, sido = #{sido}, sigungu = #{sigungu}, address = #{address}, detail = #{detail}
+		where id = #{id}
+	</update>
+	
 </mapper>

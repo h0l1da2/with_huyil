@@ -11,7 +11,6 @@
 		<result property="max" column="max"/>
 		<result property="bed" column="bed"/>
 		<result property="normalPrice" column="normal_price"/>
-		<result property="holidayPrice" column="holiday_price"/>
 		<result property="adminId" column="admin_check_id"/>
 	</resultMap>
 
@@ -20,13 +19,13 @@
 			select seq_room.nextval from dual
 		</selectKey>
 		insert into room
-		(id, hotel_id, name, content, max, bed, normal_price, holiday_price)
+		(id, hotel_id, name, content, max, bed, normal_price)
 		values
-		(#{id}, #{hotelId}, #{name}, #{content}, #{max}, #{bed}, #{normalPrice}, #{holidayPrice})
+		(#{id}, #{hotelId}, #{name}, #{content}, #{max}, #{bed}, #{normalPrice})
 	</insert>
 
 	<select id="getroomList" parameterType="long" resultType="Map">
-		select a.id, a.name, a.content, a.max, a.bed, a.normal_price, a.holiday_price, b.uuid
+		select a.id, a.name, a.content, a.max, a.bed, a.normal_price, b.uuid
 		from room a left join files b on(a.id = b.room_id) where a.hotel_id = #{hotel_id}
 	</select>
 
@@ -37,5 +36,9 @@
 	<select id="findByRoomId" parameterType="long" resultType="RoomVo">
 		select * from room where id = #{id}
 	</select>
+	
+	<update id="updateRoom" parameterType="RoomVo">
+		
+	</update>
 
 </mapper>
