@@ -69,7 +69,7 @@
 		<div class="row no-gutters slider-text d-flex align-itemd-end justify-content-center">
 			<div class="col-md-9 ftco-animate text-center d-flex align-items-end justify-content-center">
 				<div class="text">
-					<h1 class="mb-4 bread">지역</h1>
+					<h1 class="mb-4 bread">${where}</h1>
 				</div>
 			</div>
 		</div>
@@ -94,7 +94,7 @@
 									<h3 class="mb-3"><a href="rooms-single.html">${hotelList.name}</a></h3>
 									<p><span class="price mr-2">${hotelList.price}</span> <span class="per">1 박</span></p>
 									<ul class="list">
-										<li><span>리뷰</span> ${hotelList.star}</li>
+										<li><span>리뷰</span>${hotelList.star}</li>
 										<li>${hotelList.sigungu}</li>
 									</ul>
 									<hr>

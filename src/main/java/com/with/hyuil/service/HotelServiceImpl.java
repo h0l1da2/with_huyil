@@ -2,6 +2,7 @@ package com.with.hyuil.service;
 
 import com.with.hyuil.dto.hotel.HotelListDto;
 import com.with.hyuil.dto.hotel.HotelSearchDto;
+import com.with.hyuil.dto.hotel.StarDto;
 import com.with.hyuil.service.interfaces.HotelService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,17 @@ public class HotelServiceImpl implements HotelService {
 		log.info("CheckIn = {}", hotelSearchDto.getCheckOut());
 		return mapper.selectForHotelList(hotelSearchDto);
 	}
+
+	@Override
+	public List<StarDto> searchHotelStar(List<HotelListDto> hotelListDtos) {
+		if (hotelListDtos.size() == 0) {
+			HotelListDto hotelListDto = new HotelListDto();
+			hotelListDto.setId(0L);
+			hotelListDtos.add(hotelListDto);
+		}
+		return mapper.findAllStars(hotelListDtos);
+	}
+
 
 }
 
