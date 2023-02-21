@@ -16,4 +16,6 @@ public interface HotelMapper {
 	HotelVo findByHotelId(long id);
 	HotelVo findByHoteluserId(Long userId);
 	int selectCntForHotelList(HotelSearchDto hotelSearchDto);
+	void updateHotel(HotelVo hotelvo);
+
 }

@@ -20,7 +20,6 @@ public class HotelVo {
 	private String sigungu;
 	private String address;
 	private String detail;
-	private int star;
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private LocalDateTime removeDate;
 }
