@@ -74,7 +74,7 @@
             <div class="col-md-12">
                 <h2 class="mb-4">${hotelvo.name}</h2>
                 <div class="star-rating">
-                    <div class="rating" data-rate="${hotelvo.star}">
+                    <div class="rating" data-rate="<%--${hotelvo.star}--%>">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -92,7 +92,7 @@
             <!-- Rooms Section Begin -->
             <section class="rooms-section spad" id="selectroom">
                 <div class="container">
-                    <div class="row">
+                    <div class="row" style="width:800px;">
                         <c:forEach items="${roomList}" var="list">
                             <div class="col-md-6">
                                 <div class="room-item" style="width: 400px;">
