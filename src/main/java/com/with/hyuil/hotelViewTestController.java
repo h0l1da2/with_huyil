@@ -174,6 +174,7 @@ public class hotelViewTestController {
 	@PostMapping("/host/hotelForm")
 	public ModelAndView lionelmessi(HttpServletRequest req, @AuthenticationPrincipal CustomUserDetails userDetails,
 									MultipartHttpServletRequest mhsq, HotelVo hotelvo, HotelInfoVo infovo, MultipartFile file) throws IllegalStateException, IOException {
+
 		String userId = userDetails.getUsername();
 		UsersVo usersvo = usersService.loginForFind(userId);
 		infoService.addInfo(infovo);
