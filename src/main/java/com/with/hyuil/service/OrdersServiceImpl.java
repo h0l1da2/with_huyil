@@ -12,7 +12,8 @@ public class OrdersServiceImpl implements OrderService {
 
 	@Autowired
 	private OrdersMapper mapper;
-	
+
+	@Override
 	public void addOrders(OrdersVo ordersvo) {
 		mapper.insertOrders(ordersvo);
 	}

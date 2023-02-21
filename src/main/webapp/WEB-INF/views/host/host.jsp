@@ -28,9 +28,6 @@
 
 <body style="height: 600px;">
 <!-- Navigation-->
-</button>
-<body style="height: 600px;">
-<!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
   <div class="container title">
     <a class="navbar-brand title" href="<c:url value='/'/>">위드휴일</a>
@@ -111,12 +108,30 @@
 <footer class="py-5 bg-dark foot" style="height: 255px;">
   <div class="container"><p class="m-0 text-center text-white">Copyright &copy; WithHyuil 2023</p></div>
 </footer>
-<!-- Bootstrap core JS-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Core theme JS-->
-<script src="<c:url value='/resources/static/host/js/scripts.js'/>"></script>
-<!-- 카카오맵 -->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9093f985faa6566619ee93146e47c723"></script>
+
+
+
+<!-- loader -->
+<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+<script src="<c:url value='/resources/static/home/js/jquery.min.js'/>"></script>
+<script src="<c:url value='/resources/static/home/js/jquery-migrate-3.0.1.min.js'/>"></script>
+<script src="<c:url value='/resources/static/home/js/popper.min.js'/>"></script>
+<script src="<c:url value='/resources/static/home/js/bootstrap.min.js'/>"></script>
+<script src="<c:url value='/resources/static/home/js/jquery.easing.1.3.js'/>"></script>
+<script src="<c:url value='/resources/static/home/js/jquery.waypoints.min.js'/>"></script>
+<script src="<c:url value='/resources/static/home/js/jquery.stellar.min.js'/>"></script>
+<script src="<c:url value='/resources/static/home/js/owl.carousel.min.js'/>"></script>
+<script src="<c:url value='/resources/static/home/js/jquery.magnific-popup.min.js'/>"></script>
+<script src="<c:url value='/resources/static/home/js/aos.js'/>"></script>
+<script src="<c:url value='/resources/static/home/js/jquery.animateNumber.min.js'/>"></script>
+<script src="<c:url value='/resources/static/home/js/bootstrap-datepicker.js'/>"></script>
+<script src="<c:url value='/resources/static/home/js/jquery.timepicker.min.js'/>"></script>
+<script src="<c:url value='/resources/static/home/js/scrollax.min.js'/>"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+<script src="<c:url value='/resources/static/home/js/google-map.js'/>"></script>
+<script src="<c:url value='/resources/static/home/js/main.js'/>"></script>
 <script>
   var container = document.getElementById('map');
   var options = {
