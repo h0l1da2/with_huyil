@@ -38,6 +38,11 @@ public class HotelServiceImpl implements HotelService {
 		log.info("CheckIn = {}", hotelSearchDto.getCheckOut());
 		return mapper.selectForHotelList(hotelSearchDto);
 	}
+	
+	@Override
+	public void updateHotel(HotelVo hotelvo) {
+		mapper.updateHotel(hotelvo);
+	}
 
 }
 

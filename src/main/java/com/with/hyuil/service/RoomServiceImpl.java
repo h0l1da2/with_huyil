@@ -38,5 +38,9 @@ public class RoomServiceImpl {
 	public RoomVo findByRoomId(long id) {
 		return mapper.findByRoomId(id);
 	}
+	
+	public void updateRoom(RoomVo roomvo) {
+		mapper.updateRoom(roomvo);
+	}
 
 }

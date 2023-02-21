@@ -85,7 +85,7 @@ public class hotelViewTestController {
 	@RequestMapping("/host/hotelDetail")
 	public String messi(@RequestParam long id, Model model, @AuthenticationPrincipal CustomUserDetails userDetails) {
 		HotelVo hotelvo = hotelService.findByHotelId(id);
-		HotelInfoVo infovo = infoService.findByInfoId(id);
+		HotelInfoVo infovo = infoService.findByInfoId(hotelvo.getHotelInfoId());
 		List<Map<String, Object>> roomList = new ArrayList<Map<String, Object>>();
 		roomList = roomService.getroomList(id);
 		String[] service = hotelvo.getService().split(" ");
@@ -107,7 +107,17 @@ public class hotelViewTestController {
 	public String lionel(Model model, @AuthenticationPrincipal CustomUserDetails userDetails) {
 		if (userDetails != null) {
 			String userId = userDetails.getUsername();
+			UsersVo usersvo = usersService.loginForFind(userId);
+			HotelVo hotelvo = hotelService.findByHotelUserId(usersvo.getId());
 			model.addAttribute("userId", userId);
+			if (hotelvo != null) {
+				HotelInfoVo infovo = infoService.findByInfoId(hotelvo.getHotelInfoId());
+				FileVo filevo = fileService.gethotelImg(infovo.getId());
+				model.addAttribute("filevo", filevo);
+				model.addAttribute("infovo", infovo);
+				model.addAttribute("hotelvo", hotelvo);
+				model.addAttribute("usersvo", usersvo);
+			}
 			return "/hotel/hotelForm";
 		} else {
 			return "/user/loginForm";
@@ -129,10 +139,15 @@ public class hotelViewTestController {
 	}
 
 	@GetMapping("/host/roomForm")
-	public String winner(Model model, HttpSession session) {
-		String userId = (String) session.getAttribute("userId");
-		if (userId != null) {
+	public String winner(Model model, @AuthenticationPrincipal CustomUserDetails userDetails) {
+		if (userDetails != null) {
+			String userId = userDetails.getUsername();
+			UsersVo usersvo = usersService.loginForFind(userId);
+			HotelVo hotelvo = hotelService.findByHotelUserId(usersvo.getId());
 			model.addAttribute("userId", userId);
+			if(hotelvo == null) {
+				return "/hotel/hotelForm";
+			}
 			return "/hotel/roomForm";
 		} else {
 			return "/user/loginForm";
@@ -156,6 +171,36 @@ public class hotelViewTestController {
 			return "/hotel/hotelReserve";
 		}
 	}
+	
+	@GetMapping("/host/roomList")
+	public String Harry(Model model, @AuthenticationPrincipal CustomUserDetails userDetails) {
+		if(userDetails == null) {
+			return "user/loginForm";
+		}else {
+			String userId = userDetails.getUsername();
+			UsersVo usersvo = usersService.loginForFind(userId);
+			HotelVo hotelvo = hotelService.findByHotelUserId(usersvo.getId());
+			List<Map<String, Object>> roomlist = roomService.getroomList(hotelvo.getId());
+			model.addAttribute("userId", userId);
+			model.addAttribute("roomlist", roomlist);
+			return "/hotel/roomList";
+		}
+	}
+	
+	@GetMapping("/host/roomEdit")
+	public String Kane(Model model, @AuthenticationPrincipal CustomUserDetails userDetails, @RequestParam("id")long id) {
+		if(userDetails == null) {
+			return "user/loginForm";
+		}else {
+			String userId = userDetails.getUsername();
+			RoomVo roomvo = roomService.findByRoomId(id);
+			FileVo filevo = fileService.getRoomImg(roomvo.getId());
+			model.addAttribute("roomvo", roomvo);
+			model.addAttribute("userId", userId);
+			model.addAttribute("filevo", filevo);
+			return "/hotel/roomEdit";
+		}
+	}
 
 	@PostMapping("/host/hostForm")
 	public String benzema(@AuthenticationPrincipal CustomUserDetails userDetails, HttpServletRequest req) {
@@ -173,22 +218,58 @@ public class hotelViewTestController {
 
 	@PostMapping("/host/hotelForm")
 	public ModelAndView lionelmessi(HttpServletRequest req, @AuthenticationPrincipal CustomUserDetails userDetails,
-									MultipartHttpServletRequest mhsq, HotelVo hotelvo, HotelInfoVo infovo, MultipartFile file) throws IllegalStateException, IOException {
-
+									MultipartHttpServletRequest mhsq, HotelInfoVo infovo, HotelVo hotelvo, MultipartFile file) throws IllegalStateException, IOException {
 		String userId = userDetails.getUsername();
 		UsersVo usersvo = usersService.loginForFind(userId);
-		infoService.addInfo(infovo);
-		String[] service = req.getParameterValues("service");
-		String textservice = "";
-		for (int i = 0; i < service.length; i++) {
-			textservice += service[i] + " ";
+		if(hotelService.findByHotelUserId(usersvo.getId()) == null) {
+			infoService.addInfo(infovo);
+			String hotelservice = req.getParameter("service");
+			if(hotelservice != null) {
+				String[] service = req.getParameterValues("service");
+				String textservice = "";
+				for (int i = 0; i < service.length; i++) {
+					textservice += service[i] + " ";
+				}
+				hotelvo.setUserId(usersvo.getId());
+				hotelvo.setHotelInfoId(infovo.getId());
+				hotelvo.setService(textservice);
+			}
+			hotelService.addHotel(hotelvo);
+			fileService.UploadImg(mhsq, usersvo, hotelvo, null);
+			return new ModelAndView("redirect:/host/roomForm");
+		}else {
+			hotelvo = hotelService.findByHotelUserId(usersvo.getId());
+			infovo = infoService.findByInfoId(hotelvo.getHotelInfoId());
+			List<MultipartFile> mf = mhsq.getFiles("uploadFile");
+			if(mhsq.getFile("uploadFile").getSize() != 0) {
+				fileService.deleteHotelImg(infovo.getId());
+				fileService.UploadImg(mhsq, usersvo, hotelvo, null);
+			}
+			String hotelservice = req.getParameter("service");
+			if(hotelservice != null) {
+				String[] service = req.getParameterValues("service");
+				String textservice = "";
+				for (int i = 0; i < service.length; i++) {
+					textservice += service[i] + " ";
+				}
+				hotelvo.setService(textservice);
+			}
+			hotelvo.setName(req.getParameter("name"));
+			hotelvo.setAddress(req.getParameter("address"));
+			hotelvo.setDetail(req.getParameter("detail"));
+			hotelvo.setSido(req.getParameter("sido"));
+			hotelvo.setSigungu(req.getParameter("sigungu"));
+			hotelvo.setZonecode(req.getParameter("zonecode"));
+			infovo.setCheckIn(req.getParameter("checkIn"));
+			infovo.setCheckOut(req.getParameter("checkOut"));
+			infovo.setIntro(req.getParameter("intro"));
+			infovo.setPolicy(req.getParameter("policy"));
+			infovo.setSpot(req.getParameter("spot"));
+			infovo.setTraffic(req.getParameter("traffic"));
+			infoService.updateInfo(infovo);
+			hotelService.updateHotel(hotelvo);
+			return new ModelAndView("redirect:/host/roomForm");
 		}
-		hotelvo.setUserId(usersvo.getId());
-		hotelvo.setService(textservice);
-		hotelvo.setHotelInfoId(infovo.getId());
-		hotelService.addHotel(hotelvo);
-		fileService.UploadImg(mhsq, usersvo, hotelvo, null);
-		return new ModelAndView("redirect:/host/roomForm");
 	}
 
 	@PostMapping("/host/roomForm")
@@ -201,7 +282,7 @@ public class hotelViewTestController {
 		roomvo.setHotelId(hotelvo.getId());
 		roomService.addRoom(roomvo);
 		fileService.UploadImg(mhsq, usersvo, hotelvo, roomvo);
-		return new ModelAndView("redirect:/host");
+		return new ModelAndView("redirect:/host/roomList");
 	}
 
 	@PostMapping("/reserve")
