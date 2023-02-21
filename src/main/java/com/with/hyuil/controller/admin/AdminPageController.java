@@ -1,4 +1,4 @@
-package com.with.hyuil.controller;
+package com.with.hyuil.controller.admin;
 
 import com.with.hyuil.config.auth.CustomUserDetails;
 import com.with.hyuil.dto.admin.AdminBookListDto;
@@ -18,9 +18,15 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/admin")
 @Slf4j
-public class AdminBookController {
+public class AdminPageController {
 
     private final BookService bookService;
+
+    @GetMapping
+    public String adminMain(@AuthenticationPrincipal CustomUserDetails userDetails, Model model) {
+        model.addAttribute("userId", userDetails.getUsername());
+        return "management/index";
+    }
 
     @GetMapping("/bookList")
     public String bookList(@AuthenticationPrincipal CustomUserDetails userDetails, @ModelAttribute BookPageDto bookPageDto, Model model) {

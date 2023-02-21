@@ -86,13 +86,13 @@
 					<c:forEach var="hotelList" items="${hotelListDtoList}">
 						<div class="col-sm col-md-6 col-lg-4 ftco-animate">
 							<div class="room">
-								<a href="rooms-single.html" class="img d-flex justify-content-center align-items-center" style="background-image: url(<c:url value='/resources/static/home/images/room-1.jpg'/>);">
+								<a href="<c:url value="/hotel/detail?id=${hotelList.id}"/>" class="img d-flex justify-content-center align-items-center" style="background-image: url(<c:url value='/resources/static/home/images/room-1.jpg'/>);">
 									<div class="icon d-flex justify-content-center align-items-center">
 										<span class="icon-search2"></span>
 									</div>
 								</a>
 								<div class="text p-3 text-center">
-									<h3 class="mb-3"><a href="rooms-single.html">${hotelList.name}</a></h3>
+									<h3 class="mb-3"><a href="<c:url value="/hotel/detail?id=${hotelList.id}"/>">${hotelList.name}</a></h3>
 									<p><span class="price mr-2">${hotelList.price}</span> <span class="per">1 박</span></p>
 									<ul class="list">
 										<li><span>리뷰</span></li>

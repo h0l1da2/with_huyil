@@ -2,7 +2,7 @@ package com.with.hyuil.service.interfaces;
 
 import com.with.hyuil.dto.hotel.HotelListDto;
 import com.with.hyuil.dto.hotel.HotelSearchDto;
-import com.with.hyuil.dto.hotel.StarDto;
+import com.with.hyuil.dto.review.StarDto;
 import com.with.hyuil.model.HotelVo;
 
 import java.util.List;

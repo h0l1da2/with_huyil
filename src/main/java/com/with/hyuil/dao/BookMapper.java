@@ -5,6 +5,7 @@ import com.with.hyuil.dto.info.BookListDto;
 import com.with.hyuil.dto.admin.BookPageDto;
 import com.with.hyuil.dto.info.BookSearchDto;
 import com.with.hyuil.dto.info.HostBookListDto;
+import com.with.hyuil.dto.review.ReviewBookDto;
 import com.with.hyuil.model.BookVo;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -12,7 +13,7 @@ import java.util.List;
 
 @Mapper
 public interface BookMapper {
-    BookVo findById(Long id);
+    com.with.hyuil.model.BookVo findById(Long id);
     List<BookListDto> findAllByUserId(BookSearchDto bookSearchDto);
     int countForBookList(BookSearchDto bookSearchDto);
     int countForHostInfo(BookSearchDto bookSearchDto);
@@ -20,4 +21,5 @@ public interface BookMapper {
     List<HostBookListDto> findAllForHostInfo(BookSearchDto bookSearchDto);
     List<AdminBookListDto> findAllForAdmin(BookPageDto bookPageDto);
     int updateRemoveDate(Long id);
+    List<BookVo> findBookForReview(ReviewBookDto bookVo);
 }

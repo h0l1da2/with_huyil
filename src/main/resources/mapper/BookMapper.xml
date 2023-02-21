@@ -113,4 +113,12 @@
         SET REMOVE_DATE = SYSDATE, STATUS = 'CANCEL'
         WHERE ID = #{id, jdbcType=VARCHAR}
     </update>
+    <select id="findBookForReview" parameterType="ReviewBookDto" resultType="BookVo">
+        SELECT B.ID
+        FROM BOOK B, ROOM R
+        WHERE B.USER_ID = #{userId}
+          AND R.HOTEL_ID = #{hotelId}
+          AND B.REVIEW_ID IS NULL
+        GROUP BY B.ID
+    </select>
 </mapper>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.with.hyuil.dao.ReviewMapper">
+	<insert id="insertReview" parameterType="ReviewVo">
+		<selectKey keyProperty="id" resultType="Long" order="BEFORE">
+			SELECT SEQ_REVIEW.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO REVIEW
+		(ID, USER_ID, BOOK_ID, USER_CREATE, CONTENT, STAR_ID, HOTEL_ID, USER_TYPE, TITLE)
+		VALUES
+		    (#{id, jdbcType=VARCHAR}, #{userId, jdbcType=VARCHAR}, #{bookId, jdbcType=VARCHAR},
+		    SYSDATE, #{content}, #{starId, jdbcType=VARCHAR}, #{hotelId, jdbcType=VARCHAR}, #{userType}, #{title})
+	</insert>
+	<insert id="insertStar" parameterType="StarVo">
+		<selectKey keyProperty="id" resultType="Long" order="BEFORE">
+			SELECT SEQ_STAR.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO STAR
+		(ID, CLEAN, FACILITIES, CONDITION, ORGANIC, USER_ID, HOTEL_ID)
+		VALUES
+		    (#{id, jdbcType=VARCHAR}, #{clean}, #{facilities}, #{condition}, #{organic}, #{userId, jdbcType=VARCHAR}, #{hotelId, jdbcType=VARCHAR})
+	</insert>
+</mapper>

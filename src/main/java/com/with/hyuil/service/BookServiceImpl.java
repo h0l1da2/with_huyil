@@ -8,6 +8,8 @@ import com.with.hyuil.dto.info.BookListDto;
 import com.with.hyuil.dto.admin.BookPageDto;
 import com.with.hyuil.dto.info.BookSearchDto;
 import com.with.hyuil.dto.info.HostBookListDto;
+import com.with.hyuil.dto.review.ReviewBookDto;
+import com.with.hyuil.model.BookVo;
 import com.with.hyuil.service.interfaces.BookService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -47,6 +49,15 @@ public class BookServiceImpl implements BookService {
         AdminPageHandler adminPageHandler = new AdminPageHandler(totalCnt, bookPageDto.getViewPage());
         bookPageDto.calcPage(adminPageHandler.getOffsetPost());
         return bookMapper.findAllForAdmin(bookPageDto);
+    }
+
+    @Override
+    public BookVo notReviewFind(ReviewBookDto reviewBookDto) {
+        List<BookVo> bookReviews = bookMapper.findBookForReview(reviewBookDto);
+        if (bookReviews.size() != 0) {
+            return bookReviews.get(0);
+        }
+        return null;
     }
 
     @Override

@@ -22,10 +22,14 @@ public class ViewTestController {
     public String admin2() {
         return "management/management";
     }
+
+    //호스트리스트
     @GetMapping("/a3")
     public String admin3() {
         return "management/hostlistForm";
     }
+
+    //유저리스트
     @GetMapping("/a4")
     public String admin4() {
         return "management/userlistForm";
