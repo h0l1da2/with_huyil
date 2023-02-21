@@ -69,7 +69,7 @@
 		<div class="row no-gutters slider-text d-flex align-itemd-end justify-content-center">
 			<div class="col-md-9 ftco-animate text-center d-flex align-items-end justify-content-center">
 				<div class="text">
-					<h1 class="mb-4 bread">지역</h1>
+					<h1 class="mb-4 bread">${where}</h1>
 				</div>
 			</div>
 		</div>
@@ -94,7 +94,13 @@
 									<h3 class="mb-3"><a href="rooms-single.html">${hotelList.name}</a></h3>
 									<p><span class="price mr-2">${hotelList.price}</span> <span class="per">1 박</span></p>
 									<ul class="list">
-										<li><span>리뷰</span> ${hotelList.star}</li>
+										<li><span>리뷰</span>${hotelList.star}</li>
+										<div class="form-check">
+											<input type="checkbox" class="form-check-input" id="exampleCheck1">
+											<label class="form-check-label" for="exampleCheck1">
+												<p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i></span></p>
+											</label>
+										</div>
 										<li>${hotelList.sigungu}</li>
 									</ul>
 									<hr>
@@ -110,8 +116,13 @@
 							<ul>
 								<c:if test="${ph.showPrev}"><li><a href="#">&lt;</a></li></c:if>
 								<c:forEach var="i" begin="${ph.beginPage}" end="${ph.endPage}">
-									<li<c:if test="${ph.viewPage eq i}"> class="active"</c:if>>
-										<a href="#">${i}</a></li>
+									<li<c:if test="${ph.viewPage eq i or null}"> class="active"</c:if>>
+										<c:if test="${hotelListDtoList ne null}">
+											<a href="#">
+													${i}
+											</a>
+										</c:if>
+									</li>
 								</c:forEach>
 								<c:if test="${ph.showNext}"><li><a href="#">&gt;</a></li></c:if>
 							</ul>
@@ -175,7 +186,7 @@
 					</form>
 				</div>
 				<div class="sidebar-wrap bg-light ftco-animate">
-					<h3 class="heading mb-4">Star Rating</h3>
+					<h3 class="heading mb-4">리뷰 순서</h3>
 					<form method="post" class="star-rating">
 						<div class="form-check">
 							<input type="checkbox" class="form-check-input" id="exampleCheck1">

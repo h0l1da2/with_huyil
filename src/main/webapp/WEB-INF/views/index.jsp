@@ -182,7 +182,6 @@
                     </a>
                     <div class="text p-3 text-center">
                         <h3 class="mb-3"><a href="<c:url value="/hotel/list/부산"/>">부산</a></h3>
-                        <!-- <p><span class="price mr-2">$20.00</span> <span class="per">per night</span></p> -->
                         <hr>
                         <p class="pt-1"><a href="<c:url value="/hotel/list/부산"/>" class="btn-custom">지금 찾아보기 <span class="icon-long-arrow-right"></span></a></p>
                     </div>

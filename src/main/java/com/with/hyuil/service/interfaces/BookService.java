@@ -1,5 +1,7 @@
 package com.with.hyuil.service.interfaces;
 
+import com.with.hyuil.dto.admin.AdminBookListDto;
+import com.with.hyuil.dto.admin.BookPageDto;
 import com.with.hyuil.dto.info.HostBookListDto;
 import com.with.hyuil.dto.info.BookListDto;
 import com.with.hyuil.dto.info.BookSearchDto;
@@ -10,5 +12,6 @@ public interface BookService {
 
     List<BookListDto> userBookList(BookSearchDto bookSearchDto);
     List<HostBookListDto> hostBookList(BookSearchDto bookSearchDto);
-    String hostBookCancel(Long id);
+    List<AdminBookListDto> adminBookList(BookPageDto bookPageDto);
+    String bookCancel(Long id);
 }

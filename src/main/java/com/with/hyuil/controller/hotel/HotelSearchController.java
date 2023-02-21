@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import com.with.hyuil.dto.hotel.StarDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class HotelSearchController {
     private final HotelService hotelService;
+    private GlobalPageHandler globalPageHandler;
 
     @GetMapping("/list")
     public String hotelList(@ModelAttribute HotelSearchDto hotelSearchDto, Model model) {
@@ -43,18 +45,40 @@ public class HotelSearchController {
     }
 
     private String searchHotels(Model model, HotelSearchDto hotelSearchDto) {
-
         List<HotelListDto> hotelList = hotelService.searchHotels(hotelSearchDto);
+        List<StarDto> starList = hotelService.searchHotelStar(hotelList);
         log.info("hotelListDto = {}", hotelList);
+        log.info("starList = {}", starList);
+
+        if (starList != null) {
+            for(StarDto star : starList) {
+                star.calcForHotelList();
+                for(HotelListDto hotelListDto : hotelList) {
+                    if(star.getId().equals(hotelListDto.getId())) {
+                        hotelListDto.setStar(star.getReviewStars());
+                    }
+                }
+            }
+        }
         try {
-            GlobalPageHandler globalPageHandler = new GlobalPageHandler(hotelList.get(0).getTotcnt(), 1);
+            globalPageHandler = new GlobalPageHandler(hotelList.get(0).getTotcnt(), 1);
             log.info("핸들러 = {}", globalPageHandler);
-            model.addAttribute("ph", globalPageHandler);
-            model.addAttribute(hotelList);
+            log.info("hotelSearchDto = {}", hotelSearchDto);
+            addModelForList(model, hotelSearchDto, hotelList, globalPageHandler);
         } catch (IndexOutOfBoundsException e) {
             log.info("검색 결과가 없습니다");
+            addModelForList(model, hotelSearchDto, hotelList, globalPageHandler);
             return "hotel/hotelList";
         }
         return "hotel/hotelList";
+    }
+
+    private void addModelForList(Model model, HotelSearchDto hotelSearchDto, List<HotelListDto> hotelList, GlobalPageHandler globalPageHandler) {
+        if (globalPageHandler == null) {
+            globalPageHandler =  new GlobalPageHandler(0, 1);
+        }
+        model.addAttribute("ph", globalPageHandler);
+        model.addAttribute(hotelList);
+        model.addAttribute("where", hotelSearchDto.getSido());
     }
 }

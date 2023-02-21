@@ -45,13 +45,27 @@ public class HostBookController {
     @ResponseBody
     @PostMapping("/book/cancel")
     public String cancelBook(@RequestBody HostBookListDto hostBookListDto) {
-        return bookService.hostBookCancel(hostBookListDto.getId());
+        return bookService.bookCancel(hostBookListDto.getId());
     }
 
     @GetMapping("/book/complete")
     public String completeBookList(@AuthenticationPrincipal CustomUserDetails userDetails, @ModelAttribute BookSearchDto bookSearchDto, Model model) {
         UsersVo usersVo = getUsersVo(userDetails.getUsername());
         List<HostBookListDto> bookList = getBookList(bookSearchDto, Status.COMPLETE, usersVo);
+        try {
+            getPage(bookSearchDto, model, bookList);
+            sendIdRole(userDetails, model);
+        } catch (IndexOutOfBoundsException e) {
+            log.info("검색 결과 없음");
+            return "book/hostBookComplete";
+        }
+        return "book/hostBookComplete";
+    }
+
+    @GetMapping("/book/cancel")
+    public String cancelBookList(@AuthenticationPrincipal CustomUserDetails userDetails, @ModelAttribute BookSearchDto bookSearchDto, Model model) {
+        UsersVo usersVo = getUsersVo(userDetails.getUsername());
+        List<HostBookListDto> bookList = getBookList(bookSearchDto, Status.CANCEL, usersVo);
         try {
             getPage(bookSearchDto, model, bookList);
             sendIdRole(userDetails, model);

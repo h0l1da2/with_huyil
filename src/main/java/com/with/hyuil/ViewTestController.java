@@ -13,4 +13,21 @@ public class ViewTestController {
     public String test1() {
         return "GOOD";
     }
+
+    @GetMapping("/a1")
+    public String admin1() {
+        return "management/index";
+    }
+    @GetMapping("/a2")
+    public String admin2() {
+        return "management/management";
+    }
+    @GetMapping("/a3")
+    public String admin3() {
+        return "management/hostlistForm";
+    }
+    @GetMapping("/a4")
+    public String admin4() {
+        return "management/userlistForm";
+    }
 }
