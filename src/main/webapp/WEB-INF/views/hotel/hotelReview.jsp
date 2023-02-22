@@ -178,11 +178,6 @@
                                 <span class="title text-type" id="noContent" name="noContent">내용을 입력해주세요</span>
                             </div>
                             <div class="form-group">
-                                <input type="text" name="hotelId" class="form-control" value="${hotelVo.id}" hidden>
-                                <input type="text" name="userId" class="form-control" value="${userLongId}" hidden>
-                                <input type="text" name="bookId" class="form-control" value="${bookId}" hidden>
-                            </div>
-                            <div class="form-group">
                                 <input type="button" id="reviewBtn" class="btn btn-primary py-3 px-5" value="리뷰 쓰기">
                             </div>
                         </ul>
@@ -217,6 +212,32 @@
                                     <br>
                                 </div>
                             </div>
+                                    <c:if test="${hotelVo.userId eq userLongId}">
+                        <form id="form" action="<c:url value="/hotel/review/write/host"/>" method="POST" class="bg-white p-5 contact-form" onsubmit="return formCheck(this)">
+                            <div class="menu">
+                                <h2><label class="h3 menuBtn">댓글 쓰기</label></h2>
+                                <ul>
+                                                <div class="form-group">
+                                                    <input type="text" name="title" id="hostTitle" class="form-control" placeholder="제목">
+                                                    <span class="title text-type" id="noHostTitle" name="noTitle">제목을 입력해주세요</span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <textarea id="hostContent" name="content" cols="30" rows="7" class="form-control msg-box" placeholder="내용"></textarea>
+                                                    <span class="title text-type" id="noHostContent" name="noHostContent">내용을 입력해주세요</span>
+                                                </div>
+                                    <div class="form-group">
+                                        <input type="text" name="hotelId" class="form-control" value="${hotelVo.id}" hidden>
+                                        <input type="text" name="replyId" class="form-control" value="${review.id}" hidden>
+                                        <input type="text" name="userLongId" class="form-control" value="${userLongId}" hidden>
+                                    </div>
+
+                                    <div class="form-group">
+                                                    <input type="submit" id="reviewHostBtn" class="btn btn-primary py-3 px-5" value="댓글 쓰기">
+                                                </div>
+                                            </ul>
+                            </div>
+                        </form>
+                                    </c:if>
                                     <hr class="lines">
                                     <c:forEach items="${reviewDtoList}" var="reviewHost">
                                         <c:if test="${reviewHost.userType eq 'HOST' && review.id eq reviewHost.replyId}">
@@ -330,6 +351,20 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"></script>
 <script src="https://kit.fontawesome.com/d89e70aecc.js"></script>
 <script>
+    function formCheck() {
+        $('#noHostTitle').css('display', 'block');
+        $('#noHostContent').css('display', 'block');
+        let title = document.getElementById('hostTitle').value;
+        if (title == "") {
+            $('#noHostTitle').css('display', 'none');
+            return false;
+        }
+        let content = document.getElementById('hostContent').value;
+        if (content == "") {
+            $('#noHostContent').css('display', 'none');
+            return false;
+        }
+    }
     $(document).ready(function() {
         $("#reviewBtn").click(function () {
             $('#noTitle').css('display', 'block');
@@ -366,7 +401,38 @@
                 error: function(result) {
                     alert("확인실패");
                 }})
-        })
+        });
+
+        <%--$("#reviewHostBtn").click(function () {--%>
+        <%--    $('#noHostTitle').css('display', 'block');--%>
+        <%--    $('#noHostContent').css('display', 'block');--%>
+        <%--    let title = document.getElementById('hostTitle').value;--%>
+        <%--    if (title == "") {--%>
+        <%--        $('#noHostTitle').css('display', 'none');--%>
+        <%--        return false;--%>
+        <%--    }--%>
+        <%--    let content = document.getElementById('hostContent').value;--%>
+        <%--    if (content == "") {--%>
+        <%--        $('#noHostContent').css('display', 'none');--%>
+        <%--        return false;--%>
+        <%--    }--%>
+        <%--    $.ajax({--%>
+        <%--        type: 'POST',--%>
+        <%--        url: '/hotel/review/write/host',--%>
+        <%--        contentType: "application/json",--%>
+        <%--        data: JSON.stringify({userId:${userLongId}, hotelId:${hotelVo.id}, title:title, content:content, reviewId:${}}),--%>
+        <%--        dataType: 'text',--%>
+        <%--        success: function (result) {--%>
+        <%--            if(result=='리뷰 성공') {--%>
+        <%--                location.href = '/hotel/review?id=${hotelVo.id}';--%>
+        <%--            } else {--%>
+        <%--                alert("리뷰 작성 실패");--%>
+        <%--            }--%>
+        <%--        },--%>
+        <%--        error: function(result) {--%>
+        <%--            alert("확인실패");--%>
+        <%--        }})--%>
+        <%--})--%>
             $(".menu>h2").click(function () {
             var submenu = $(this).next("ul");
             if (submenu.is(":visible")) {

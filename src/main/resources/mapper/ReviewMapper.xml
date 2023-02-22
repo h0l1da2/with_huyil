@@ -10,8 +10,18 @@
 		INSERT INTO REVIEW
 		(ID, USER_ID, BOOK_ID, USER_CREATE, CONTENT, STAR_ID, HOTEL_ID, USER_TYPE, TITLE)
 		VALUES
-		    (#{id, jdbcType=VARCHAR}, #{userLongId, jdbcType=VARCHAR}, #{bookId, jdbcType=VARCHAR},
+		    (#{id, jdbcType=VARCHAR}, #{userId, jdbcType=VARCHAR}, #{bookId, jdbcType=VARCHAR},
 		    SYSDATE, #{content}, #{starId, jdbcType=VARCHAR}, #{hotelId, jdbcType=VARCHAR}, #{userType}, #{title})
+	</insert>
+	<insert id="insertHostReview" parameterType="ReviewVo">
+		<selectKey keyProperty="id" resultType="Long" order="BEFORE">
+			SELECT SEQ_REVIEW.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO REVIEW
+		(ID, USER_ID, BOOK_ID, USER_CREATE, CONTENT, HOTEL_ID, USER_TYPE, TITLE, REPLY_ID)
+		VALUES
+		    (#{id, jdbcType=VARCHAR}, #{userId, jdbcType=VARCHAR}, #{bookId, jdbcType=VARCHAR},
+		    SYSDATE, #{content}, #{hotelId, jdbcType=VARCHAR}, #{userType}, #{title}, #{replyId, jdbcType=VARCHAR})
 	</insert>
 	<insert id="insertStar" parameterType="StarVo">
 		<selectKey keyProperty="id" resultType="Long" order="BEFORE">
@@ -28,8 +38,9 @@
 			   S.CLEAN, S.FACILITIES, S.CONDITION, S.ORGANIC
 		FROM USERS U, REVIEW R, STAR S
 		WHERE U.ID = R.USER_ID
-		  AND R.STAR_ID = S.ID
 		  AND R.HOTEL_ID = #{hotelId, jdbcType=VARCHAR}
+		GROUP BY R.ID, U.USER_ID, R.USER_CREATE, R.TITLE, R.CONTENT, R.USER_TYPE, R.REPLY_ID,
+		         S.CLEAN, S.FACILITIES, S.CONDITION, S.ORGANIC
 		ORDER BY R.USER_CREATE , R.ID DESC
 	</select>
 	<select id="selectReviewsCnt" parameterType="Long" resultType="Integer">
@@ -38,5 +49,10 @@
 		WHERE U.ID = R.USER_ID
 		  AND R.STAR_ID = S.ID
 		  AND R.HOTEL_ID = #{hotelId, jdbcType=VARCHAR}
+	</select>
+	<select id="selectFromId" parameterType="Long" resultType="ReviewVo">
+		SELECT *
+		FROM REVIEW
+		WHERE ID = #{id, jdbcType = VARCHAR}
 	</select>
 </mapper>

@@ -35,7 +35,19 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
+    public ReviewVo writeHostReview(ReviewVo reviewVo) {
+        reviewMapper.insertHostReview(reviewVo);
+        return reviewVo;
+    }
+
+    @Override
     public List<ReviewDto> findHotelReviews(Long hotelId) {
         return reviewMapper.selectAllReviews(hotelId);
+    }
+
+    @Override
+    public ReviewDto findReviewBook(Long id) {
+        ReviewVo reviewVo = reviewMapper.selectFromId(id);
+        return new ReviewDto(reviewVo);
     }
 }

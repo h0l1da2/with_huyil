@@ -1,6 +1,7 @@
 package com.with.hyuil.controller.hotel;
 
 import com.with.hyuil.config.auth.CustomUserDetails;
+import com.with.hyuil.dto.review.HostReviewDto;
 import com.with.hyuil.dto.review.ReviewBookDto;
 import com.with.hyuil.dto.review.ReviewDto;
 import com.with.hyuil.dto.review.ReviewMainDto;
@@ -17,9 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @Slf4j
@@ -80,13 +79,40 @@ public class HotelReviewController {
         StarVo starVo = reviewService.saveStar(new StarVo(reviewDto));
         reviewDto.setStarId(starVo.getId());
         ReviewVo reviewVo = reviewService.writeReview(new ReviewVo(reviewDto));
-        // book 에 해당 review Id ㄱㅏ져와서 넣기ㅎㅎ
 
+        // book 에 해당 review Id ㄱㅏ져와서 넣기ㅎㅎ
         int result = bookService.writeBookReview(reviewVo);
         if (result == 0) {
             log.info("리뷰 안써짐");
             return "리뷰 실패";
         }
         return "리뷰 성공";
+    }
+
+//    @PostMapping("/write/host")
+//    public String hostReview(@ModelAttribute HostReviewDto hostReviewDto, @AuthenticationPrincipal CustomUserDetails userDetails, Model model) {
+//        log.info("리뷰디티오들어옴 = {}", hostReviewDto);
+//        // 어썬티케이션 자르기
+//        hostReviewDto.setUserType(
+//                Type.HOST
+//        );
+//        hostReviewDto.setUserLongId(91L);
+//        ReviewDto reviewBook = reviewService.findReviewBook(hostReviewDto.getReplyId());
+//        hostReviewDto.setBookId(reviewBook.getBookId());
+//        reviewService.writeHostReview(new ReviewVo(hostReviewDto));
+//        return "redirect:/hotel/review?id="+hostReviewDto.getHotelId();
+//    }
+    @PostMapping("/write/host")
+    public String hostReview(@ModelAttribute HostReviewDto hostReviewDto, @AuthenticationPrincipal CustomUserDetails userDetails, Model model) {
+        log.info("리뷰디티오들어옴 = {}", hostReviewDto);
+        // 어썬티케이션 자르기
+        hostReviewDto.setUserType(
+                userDetails.getAuthorities().toString().contains(Type.USER.toString()) ? Type.USER : Type.HOST
+        );
+        hostReviewDto.setUserLongId(hostReviewDto.getUserLongId());
+        ReviewDto reviewBook = reviewService.findReviewBook(hostReviewDto.getReplyId());
+        hostReviewDto.setBookId(reviewBook.getBookId());
+        reviewService.writeHostReview(new ReviewVo(hostReviewDto));
+        return "redirect:/hotel/review?id="+hostReviewDto.getHotelId();
     }
 }

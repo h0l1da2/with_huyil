@@ -12,5 +12,7 @@ public interface ReviewMapper {
 
     int insertStar(StarVo starVo);
     int insertReview(ReviewVo reviewVo);
+    int insertHostReview(ReviewVo reviewVo);
     List<ReviewDto> selectAllReviews(Long hotelId1);
+    ReviewVo selectFromId(Long id);
 }
