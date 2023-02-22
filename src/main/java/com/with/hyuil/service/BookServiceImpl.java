@@ -10,16 +10,19 @@ import com.with.hyuil.dto.info.BookSearchDto;
 import com.with.hyuil.dto.info.HostBookListDto;
 import com.with.hyuil.dto.review.ReviewBookDto;
 import com.with.hyuil.model.BookVo;
+import com.with.hyuil.model.ReviewVo;
 import com.with.hyuil.service.interfaces.BookService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @RequiredArgsConstructor
 @Service
 @Slf4j
+@Transactional
 public class BookServiceImpl implements BookService {
 
     private final BookMapper bookMapper;
@@ -58,6 +61,11 @@ public class BookServiceImpl implements BookService {
             return bookReviews.get(0);
         }
         return null;
+    }
+
+    @Override
+    public int writeBookReview(ReviewVo reviewVo) {
+        return bookMapper.updateReviewId(reviewVo);
     }
 
     @Override

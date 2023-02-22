@@ -16,6 +16,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @Slf4j
 @RequestMapping("/hotel/review")
@@ -27,48 +29,41 @@ public class HotelReviewController {
     private final BookService bookService;
     private final HotelService hotelService;
 
-//    @GetMapping
-//    public String reviewPage(@RequestParam Long id, @AuthenticationPrincipal CustomUserDetails userDetails, Model model) {
-//        if(userDetails != null) {
-//            UsersVo usersVo = usersService.loginForFind(userDetails.getUsername());
-//            BookVo bookVo = bookService.notReviewFind(new ReviewBookDto(id, usersVo.getId()));
-//            model.addAttribute("userLongId", usersVo.getId());
-//            if (bookVo != null) {
-//                model.addAttribute("bookId", bookVo.getId());
-//            }
-//        }
-//        HotelVo hotelVo = hotelService.findByHotelId(id);
-//        model.addAttribute("hotelVo", hotelVo);
-//        return "hotel/hotelReview";
-//    }
-
     @GetMapping
-    public String reviewPage(@RequestParam Long id, Model model) {
-        UsersVo usersVo = usersService.loginForFind("KAKAO_2616028737");
-        BookVo bookVo = bookService.notReviewFind(new ReviewBookDto(id, usersVo.getId()));
-        HotelVo hotelVo = hotelService.findByHotelId(id);
-        model.addAttribute(hotelVo);
-        model.addAttribute("userLongId", usersVo.getId());
-        if (bookVo != null) {
-            model.addAttribute("bookId", bookVo.getId());
+    public String reviewPage(@RequestParam Long id, @AuthenticationPrincipal CustomUserDetails userDetails, Model model) {
+        if(userDetails != null) {
+            UsersVo usersVo = usersService.loginForFind(userDetails.getUsername());
+            BookVo bookVo = bookService.notReviewFind(new ReviewBookDto(id, usersVo.getId()));
+            model.addAttribute("userLongId", usersVo.getId());
+            if (bookVo != null) {
+                model.addAttribute("bookId", bookVo.getId());
+            }
         }
+        HotelVo hotelVo = hotelService.findByHotelId(id);
+        model.addAttribute("hotelVo", hotelVo);
+
+        List<ReviewDto> reviewDto = reviewService.findHotelReviews(hotelVo.getId());
+        model.addAttribute(reviewDto);
         return "hotel/hotelReview";
     }
 
-//    @PostMapping("/write")
-//    public String userReview(@ModelAttribute ReviewDto reviewDto, @AuthenticationPrincipal CustomUserDetails userDetails) {
-//        log.info("리뷰디티오들어옴 = {}", reviewDto);
-//        reviewDto.setUserType(
-//                userDetails.getAuthorities().contains(Type.USER) ? Type.USER : Type.HOST
-//        );
-//        StarVo starVo = reviewService.saveStar(new StarVo(reviewDto));
-//        reviewDto.setStarId(starVo.getId());
-//        ReviewVo reviewVo = reviewService.writeReview(new ReviewVo(reviewDto));
-//        return null;
+//    @GetMapping
+//    public String reviewPage(@RequestParam Long id, Model model) {
+//        UsersVo usersVo = usersService.loginForFind("KAKAO_2616028737");
+//        BookVo bookVo = bookService.notReviewFind(new ReviewBookDto(id, usersVo.getId()));
+//        HotelVo hotelVo = hotelService.findByHotelId(id);
+//        model.addAttribute(hotelVo);
+//        model.addAttribute("userLongId", usersVo.getId());
+//        if (bookVo != null) {
+//            model.addAttribute("bookId", bookVo.getId());
+//        }
+//        return "hotel/hotelReview";
 //    }
 
+
+    @ResponseBody
     @PostMapping("/write")
-    public String userReview(@ModelAttribute ReviewDto reviewDto, @AuthenticationPrincipal CustomUserDetails userDetails) {
+    public String userReview(@RequestBody ReviewDto reviewDto, @AuthenticationPrincipal CustomUserDetails userDetails) {
         log.info("리뷰디티오들어옴 = {}", reviewDto);
         // 어썬티케이션 자르기
         reviewDto.setUserType(
@@ -77,8 +72,14 @@ public class HotelReviewController {
         log.info("리뷰디티오? = {}", reviewDto);
         StarVo starVo = reviewService.saveStar(new StarVo(reviewDto));
         reviewDto.setStarId(starVo.getId());
-        reviewService.writeReview(new ReviewVo(reviewDto));
+        ReviewVo reviewVo = reviewService.writeReview(new ReviewVo(reviewDto));
         // book 에 해당 review Id ㄱㅏ져와서 넣기ㅎㅎ
-        return "hotel/hotelReview";
+
+        int result = bookService.writeBookReview(reviewVo);
+        if (result == 0) {
+            log.info("리뷰 안써짐");
+            return "리뷰 실패";
+        }
+        return "리뷰 성공";
     }
 }

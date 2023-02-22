@@ -19,7 +19,7 @@ public class ReviewVo {
     private Long revId;
 
     public ReviewVo(ReviewDto reviewDto) {
-        this.userId = reviewDto.getUserId();
+        this.userId = reviewDto.getUserLongId();
         this.bookId = reviewDto.getBookId();
         this.starId = reviewDto.getStarId();
         this.title = reviewDto.getTitle();

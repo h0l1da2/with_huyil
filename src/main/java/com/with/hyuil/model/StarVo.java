@@ -20,7 +20,7 @@ public class StarVo {
         this.condition = reviewDto.getCondition();
         this.organic = reviewDto.getOrganic();
         this.hotelId = reviewDto.getHotelId();
-        this.userId = reviewDto.getUserId();
+        this.userId = reviewDto.getUserLongId();
     }
 
     public void myUserId(Long userId) {

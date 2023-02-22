@@ -10,9 +10,11 @@ public class ReviewDto {
     private Long hotelId;
     private Long bookId;
     private Long starId;
-    private Long userId;
+    private Long userLongId;
+    private String userId;
     private String title;
     private String content;
+    private String userCreate;
     private Type userType;
     private Integer clean;
     private Integer facilities;

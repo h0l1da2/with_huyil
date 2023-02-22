@@ -10,7 +10,7 @@
 		INSERT INTO REVIEW
 		(ID, USER_ID, BOOK_ID, USER_CREATE, CONTENT, STAR_ID, HOTEL_ID, USER_TYPE, TITLE)
 		VALUES
-		    (#{id, jdbcType=VARCHAR}, #{userId, jdbcType=VARCHAR}, #{bookId, jdbcType=VARCHAR},
+		    (#{id, jdbcType=VARCHAR}, #{userLongId, jdbcType=VARCHAR}, #{bookId, jdbcType=VARCHAR},
 		    SYSDATE, #{content}, #{starId, jdbcType=VARCHAR}, #{hotelId, jdbcType=VARCHAR}, #{userType}, #{title})
 	</insert>
 	<insert id="insertStar" parameterType="StarVo">
@@ -22,4 +22,12 @@
 		VALUES
 		    (#{id, jdbcType=VARCHAR}, #{clean}, #{facilities}, #{condition}, #{organic}, #{userId, jdbcType=VARCHAR}, #{hotelId, jdbcType=VARCHAR})
 	</insert>
+	<select id="selectAllReviews" parameterType="Long" resultType="ReviewDto">
+		SELECT U.USER_ID, TO_CHAR(R.USER_CREATE, 'YYYY-MM-DD') USER_CREATE, R.TITLE, R.CONTENT, S.CLEAN, R.USER_TYPE, R.REV_ID
+		FROM USERS U, REVIEW R, STAR S
+		WHERE U.ID = R.USER_ID
+		  AND R.STAR_ID = S.ID
+		  AND R.HOTEL_ID = #{hotelId, jdbcType=VARCHAR}
+		ORDER BY R.USER_CREATE , R.ID DESC
+	</select>
 </mapper>

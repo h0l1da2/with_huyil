@@ -121,4 +121,9 @@
           AND B.REVIEW_ID IS NULL
         GROUP BY B.ID
     </select>
+    <update id="updateReviewId" parameterType="ReviewVo">
+        UPDATE BOOK
+        SET REVIEW_ID = #{id, jdbcType=VARCHAR}
+        WHERE USER_ID = #{userId, jdbcType=VARCHAR}
+    </update>
 </mapper>

@@ -110,10 +110,12 @@
                         <i class="fas fa-star"></i>
                     </div>
                 </div>
-                <p>${infovo.intro}</p> <br>
+<%--                <p>${infovo.intro}</p>--%>
+                <br>
                 <table>
                     <tr> <td style="padding: 0 20px 0 20px;"><a href="<c:url value="/hotel/detail?id=${hotelVo.id}"/>">호텔 정보</a></td>
                 </table>
+                <br>
             </div>
             <c:if test="${bookId ne null}">
             <div class="row block-9 info-menu" style="text-align: center;">
@@ -169,7 +171,7 @@
                                 <input type="text" name="bookId" class="form-control" value="${bookId}" hidden>
                             </div>
                             <div class="form-group">
-                                <input type="submit" class="btn btn-primary py-3 px-5" value="리뷰 쓰기">
+                                <input type="button" id="reviewBtn" class="btn btn-primary py-3 px-5" value="리뷰 쓰기">
                             </div>
                         </ul>
                     </div>
@@ -180,30 +182,22 @@
             <section class="rooms-section spad" id="selectroom">
                 <div class="container">
                     <div class="row" style="width:800px;">
-                        <c:forEach items="${roomList}" var="list">
+                        <c:forEach items="${reviewDtoList}" var="review">
                             <div class="col-md-6">
                                 <div class="room-item" style="width: 400px;">
                                     <div class="ri-text">
-                                        <h3>${list.NAME }</h3>
-                                        <h4>${list.NORMAL_PRICE } /1박</h4>
+                                        <h3>${review.title}</h3>
+                                        <h5>${review.userId}</h5>
                                         <table>
-                                            <tbody>
                                             <tr>
-                                                <td class="r-o" width="70">상세정보:</td>
-                                                <td>${list.CONTENT }</td>
+                                                <td>${review.userCreate}</td>
                                             </tr>
                                             <tr>
-                                                <td class="r-o" width="70">최대인원:</td>
-                                                <td>${list.MAX }인</td>
+                                                <td>${review.content}</td>
                                             </tr>
-                                            <tr>
-                                                <td class="r-o" width="70">침대크기:</td>
-                                                <td>${list.BED }</td>
-                                            </tr>
-                                            </tbody>
                                         </table>
-                                        <a href="/reserve?id=${list.ID }" class="primary-btn" style="margin-left:5px;">예약하기</a>
                                     </div>
+                                    <br>
                                 </div>
                             </div>
                         </c:forEach>
@@ -299,22 +293,44 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"></script>
 <script src="https://kit.fontawesome.com/d89e70aecc.js"></script>
 <script>
-    function formCheck() {
-        $('#noTitle').css('display', 'block');
-        $('#noContent').css('display', 'block');
-        let title = document.getElementById('title').value;
-        if (title == "") {
-            $('#noTitle').css('display', 'none');
-            return false;
-        }
-        let content = document.getElementById('content').value;
-        if (content == "") {
-            $('#noContent').css('display', 'none');
-            return false;
-        }
-    }
     $(document).ready(function() {
-        $(".menu>h2").click(function () {
+        $("#reviewBtn").click(function () {
+            $('#noTitle').css('display', 'block');
+            $('#noContent').css('display', 'block');
+            let title = document.getElementById('title').value;
+            if (title == "") {
+                $('#noTitle').css('display', 'none');
+                return false;
+            }
+            let content = document.getElementById('content').value;
+            if (content == "") {
+                $('#noContent').css('display', 'none');
+                return false;
+            }
+            let clean = document.querySelector('input[name="clean"]:checked').value;
+            let facilities = document.querySelector('input[name="facilities"]:checked').value;
+            let condition = document.querySelector('input[name="condition"]:checked').value;
+            let organic = document.querySelector('input[name="organic"]:checked').value;
+
+            $.ajax({
+                type: 'POST',
+                url: '/hotel/review/write',
+                contentType: "application/json",
+                data: JSON.stringify({userId:${userLongId}, hotelId:${hotelVo.id}, bookId:${bookId},
+                clean:clean, facilities:facilities, condition:condition, organic:organic, title:title, content:content}),
+                dataType: 'text',
+                success: function (result) {
+                    if(result=='리뷰 성공') {
+                        location.href = '/hotel/review?id=${hotelVo.id}';
+                    } else {
+                        alert("리뷰 작성 실패");
+                    }
+                },
+                error: function(result) {
+                    alert("확인실패");
+                }})
+        })
+            $(".menu>h2").click(function () {
             var submenu = $(this).next("ul");
             if (submenu.is(":visible")) {
                 submenu.slideUp();
