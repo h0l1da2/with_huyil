@@ -2,7 +2,7 @@ package com.with.hyuil.controller.admin;
 
 import com.with.hyuil.config.auth.CustomUserDetails;
 import com.with.hyuil.dto.admin.AdminBookListDto;
-import com.with.hyuil.dto.admin.AdminPageHandler;
+import com.with.hyuil.dto.admin.TenPageHandler;
 import com.with.hyuil.dto.admin.BookPageDto;
 import com.with.hyuil.service.interfaces.BookService;
 import lombok.RequiredArgsConstructor;
@@ -32,9 +32,9 @@ public class AdminPageController {
     public String bookList(@AuthenticationPrincipal CustomUserDetails userDetails, @ModelAttribute BookPageDto bookPageDto, Model model) {
         model.addAttribute("userId", userDetails.getUsername());
         List<AdminBookListDto> adminBookList = bookService.adminBookList(bookPageDto);
-        AdminPageHandler adminPageHandler = new AdminPageHandler(adminBookList.get(0).getTotcnt(), bookPageDto.getNowPage());
+        TenPageHandler tenPageHandler = new TenPageHandler(adminBookList.get(0).getTotcnt(), bookPageDto.getNowPage());
         model.addAttribute(adminBookList);
-        model.addAttribute("ph", adminPageHandler);
+        model.addAttribute("ph", tenPageHandler);
         return "book/adminBook";
     }
 

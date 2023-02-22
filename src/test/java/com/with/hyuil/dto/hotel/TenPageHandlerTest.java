@@ -1,19 +1,18 @@
 package com.with.hyuil.dto.hotel;
 
-import com.with.hyuil.dto.admin.AdminPageHandler;
+import com.with.hyuil.dto.admin.TenPageHandler;
 import com.with.hyuil.dto.admin.BookPageDto;
-import com.with.hyuil.dto.info.BookSearchDto;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 @Slf4j
-public class AdminPageHandlerTest {
+public class TenPageHandlerTest {
 
     @Test
     void pageTest() {
         int totalPost = 101;
         int viewPage = 10;
-        AdminPageHandler globalPageHandler = new AdminPageHandler(totalPost, viewPage);
+        TenPageHandler globalPageHandler = new TenPageHandler(totalPost, viewPage);
         BookPageDto bookPageDto = new BookPageDto();
         bookPageDto.setViewPage(viewPage);
         bookPageDto.setLimit(totalPost);

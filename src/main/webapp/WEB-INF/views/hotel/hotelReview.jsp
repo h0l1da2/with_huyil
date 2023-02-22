@@ -51,6 +51,17 @@
             color: #dc3545;
             display: none;
         }
+        .tdReview {
+            color: black;
+        }
+        .reviews {
+            margin-left: 10px;
+        }
+        .lines {
+            border: solid;
+            width: 800px;
+            color: black;
+        }
     </style>
 </head>
 <body>
@@ -94,15 +105,16 @@
             <div class="col-md-12 ftco-animate">
                 <div class="single-slider owl-carousel">
                     <div class="item">
-                        <img class="room-img" src="/host/img?filename=${filevo.uuid }"></img>
+                        <a href="/hotel/detail?id=${hotelVo.id}">
+                            <img class="room-img" src="/host/img?filename=${filevo.uuid }"></img></a>
                     </div>
                 </div>
             </div>
             <div class="col-md-12">
-                <h2 class="mb-4">${hotelVo.name}</h2>
+                <h2 class="mb-4"><a href="/hotel/detail?id=${hotelVo.id}"> ${hotelVo.name}</a></h2>
                 <div class="star-rating">
                     <div class="rating" data-rate="<%--${hotelvo.star}--%>">
-                        <i><a href="/host/hostForm">리뷰</a></i>
+                        <i><a href="/hotel/review?id=${hotelVo.id}">리뷰</a></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -110,13 +122,13 @@
                         <i class="fas fa-star"></i>
                     </div>
                 </div>
-<%--                <p>${infovo.intro}</p>--%>
                 <br>
                 <table>
-                    <tr> <td style="padding: 0 20px 0 20px;"><a href="<c:url value="/hotel/detail?id=${hotelVo.id}"/>">호텔 정보</a></td>
+                    <tr> <td style="padding: 0 20px 0 20px;"><a href="<c:url value="/hotel/detail?id=${hotelVo.id}"/>" style="font-size: 30px; color: #002a80;">호텔 정보</a></td>
                 </table>
                 <br>
             </div>
+            <hr class="lines">
             <c:if test="${bookId ne null}">
             <div class="row block-9 info-menu" style="text-align: center;">
                 <form id="form" action="<c:url value="/hotel/review/write"/>" method="POST" class="bg-white p-5 contact-form" onsubmit="return formCheck(this)">
@@ -181,25 +193,50 @@
             <!-- Rooms Section Begin -->
             <section class="rooms-section spad" id="selectroom">
                 <div class="container">
+                    <h1>리뷰</h1>
                     <div class="row" style="width:800px;">
+                        <hr class="lines">
                         <c:forEach items="${reviewDtoList}" var="review">
-                            <div class="col-md-6">
+                                <c:if test="${review.userType eq 'USER'}">
+                            <div class="col-md-6 reviews">
                                 <div class="room-item" style="width: 400px;">
                                     <div class="ri-text">
                                         <h3>${review.title}</h3>
-                                        <h5>${review.userId}</h5>
+                                        <h6>${review.userId}</h6>
+                                        <a>청결 ${review.clean}점 | 시설 ${review.facilities}점 | </a>
+                                        <a>방 상태 ${review.condition}점 | 주변 환경 ${review.organic}점</a>
                                         <table>
                                             <tr>
-                                                <td>${review.userCreate}</td>
+                                                <td class="tdReview">${review.userCreate}</td>
                                             </tr>
                                             <tr>
-                                                <td>${review.content}</td>
+                                                <td class="tdReview">${review.content}</td>
                                             </tr>
                                         </table>
                                     </div>
                                     <br>
                                 </div>
                             </div>
+                                    <hr class="lines">
+                                    <c:forEach items="${reviewDtoList}" var="reviewHost">
+                                        <c:if test="${reviewHost.userType eq 'HOST' && review.id eq reviewHost.replyId}">
+                                            <div class="col-md-6 reviews">
+                                                <div class="room-item" style="width: 400px;">
+                                                    <div class="ri-text">
+                                                        <h6>사장님의 댓글</h6>
+                                                        <table>
+                                                            <tr>
+                                                                <td class="tdReview">${reviewHost.content}</td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                    <br>
+                                                </div>
+                                            </div>
+                                            <hr class="lines">
+                                        </c:if>
+                                    </c:forEach>
+                                </c:if>
                         </c:forEach>
                     </div>
                 </div>

@@ -3,6 +3,7 @@ package com.with.hyuil.controller.hotel;
 import com.with.hyuil.config.auth.CustomUserDetails;
 import com.with.hyuil.dto.review.ReviewBookDto;
 import com.with.hyuil.dto.review.ReviewDto;
+import com.with.hyuil.dto.review.ReviewMainDto;
 import com.with.hyuil.model.*;
 import com.with.hyuil.model.enumaration.Type;
 import com.with.hyuil.service.interfaces.BookService;
@@ -16,7 +17,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @Slf4j
@@ -30,20 +33,24 @@ public class HotelReviewController {
     private final HotelService hotelService;
 
     @GetMapping
-    public String reviewPage(@RequestParam Long id, @AuthenticationPrincipal CustomUserDetails userDetails, Model model) {
+    public String reviewPage(@ModelAttribute ReviewMainDto reviewMainDto, @AuthenticationPrincipal CustomUserDetails userDetails, Model model) {
         if(userDetails != null) {
             UsersVo usersVo = usersService.loginForFind(userDetails.getUsername());
-            BookVo bookVo = bookService.notReviewFind(new ReviewBookDto(id, usersVo.getId()));
+            BookVo bookVo = bookService.notReviewFind(new ReviewBookDto(reviewMainDto.getId(), usersVo.getId()));
             model.addAttribute("userLongId", usersVo.getId());
             if (bookVo != null) {
                 model.addAttribute("bookId", bookVo.getId());
             }
         }
-        HotelVo hotelVo = hotelService.findByHotelId(id);
+        HotelVo hotelVo = hotelService.findByHotelId(reviewMainDto.getId());
         model.addAttribute("hotelVo", hotelVo);
-
         List<ReviewDto> reviewDto = reviewService.findHotelReviews(hotelVo.getId());
         model.addAttribute(reviewDto);
+        /**
+         * 1.Reply_id 가 null 인 해당 hotel_id 를 가진 ReviewDto 받아옴
+         * 2.Reply_id 가 null 이 아닌 것들 중에서 WHERE ID IN (?,?, ...) 를 가져옴
+         * 3.둘 다 데려와서 페이징
+         */
         return "hotel/hotelReview";
     }
 

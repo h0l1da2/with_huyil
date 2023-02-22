@@ -11,6 +11,7 @@ public class ReviewDto {
     private Long bookId;
     private Long starId;
     private Long userLongId;
+    private Long replyId;
     private String userId;
     private String title;
     private String content;

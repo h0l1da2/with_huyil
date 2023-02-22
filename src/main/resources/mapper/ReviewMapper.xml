@@ -23,11 +23,20 @@
 		    (#{id, jdbcType=VARCHAR}, #{clean}, #{facilities}, #{condition}, #{organic}, #{userId, jdbcType=VARCHAR}, #{hotelId, jdbcType=VARCHAR})
 	</insert>
 	<select id="selectAllReviews" parameterType="Long" resultType="ReviewDto">
-		SELECT U.USER_ID, TO_CHAR(R.USER_CREATE, 'YYYY-MM-DD') USER_CREATE, R.TITLE, R.CONTENT, S.CLEAN, R.USER_TYPE, R.REV_ID
+		SELECT R.ID, U.USER_ID, TO_CHAR(R.USER_CREATE, 'YYYY-MM-DD') USER_CREATE,
+			   R.TITLE, R.CONTENT, R.USER_TYPE, R.REPLY_ID,
+			   S.CLEAN, S.FACILITIES, S.CONDITION, S.ORGANIC
 		FROM USERS U, REVIEW R, STAR S
 		WHERE U.ID = R.USER_ID
 		  AND R.STAR_ID = S.ID
 		  AND R.HOTEL_ID = #{hotelId, jdbcType=VARCHAR}
 		ORDER BY R.USER_CREATE , R.ID DESC
+	</select>
+	<select id="selectReviewsCnt" parameterType="Long" resultType="Integer">
+		SELECT COUNT(*)
+		FROM USERS U, REVIEW R, STAR S
+		WHERE U.ID = R.USER_ID
+		  AND R.STAR_ID = S.ID
+		  AND R.HOTEL_ID = #{hotelId, jdbcType=VARCHAR}
 	</select>
 </mapper>
