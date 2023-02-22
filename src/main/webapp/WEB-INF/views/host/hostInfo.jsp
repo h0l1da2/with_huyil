@@ -136,7 +136,7 @@
     <div class="row block-9 info-menu" style="text-align: center;">
       <form action="#" class="bg-white p-5 contact-form">
         <div>
-          <h2><a href="" class="infoBtn">매출 내역</a></h2>
+          <h2><a href="" id="noComplete" class="infoBtn">매출 내역</a></h2>
         </div>
         </ul>
       </form>
@@ -299,7 +299,10 @@
     }
   }
   $(document).ready(function(){
-
+      $('#noComplete').click(function () {
+        alert("준비 중입니다");
+        return false;
+      });
     $('#newPasswordCheck').on("propertychange change keyup paste input", function (frm) {
       $('#newPasswordFail').css('display', 'block');
       if(document.getElementById('newPassword').value == document.getElementById('newPasswordCheck').value) {

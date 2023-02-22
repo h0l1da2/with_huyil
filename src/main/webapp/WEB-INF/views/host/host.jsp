@@ -24,6 +24,8 @@
       margin-right: 10px;
     }
   </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+
 </head>
 
 <body style="height: 600px;">
@@ -90,7 +92,7 @@
               <button type="button" class="form-control btn btn-primary submit px-3 infoBtn">내 숙소 보기</button>
             </div>
             <div class="d-flex afterLogin">
-              <button type="button" class="form-control btn btn-primary submit px-3 infoBtn">매출 확인</button>
+              <button type="button" id="noComplete" class="form-control btn btn-primary submit px-3 infoBtn">매출 확인</button>
               <button onclick="location.href='<c:url value='/hosts/info'/>'" type="button" class="form-control btn btn-primary submit px-3 infoBtn">마이페이지</button>
             </div>
           </div>
@@ -122,6 +124,13 @@
             };
 
             var map = new kakao.maps.Map(container, options);
+            $(document).ready(function(){
+              $('#noComplete').click(function () {
+                alert("준비 중입니다");
+                return false;
+              });
+            })
+
         </script>
 </body>
 </html>

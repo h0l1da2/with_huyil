@@ -40,11 +40,11 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#index">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">위드휴일 <sup>ADMIN</sup></div>
+                <div class="sidebar-brand-text mx-3"> 위드휴일 <sup>ADMIN</sup></div>
             </a>
 
             <!-- Divider -->
@@ -52,7 +52,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="#index">
+                <a class="nav-link" href="/admin">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>관리자페이지</span></a>
             </li>
@@ -91,7 +91,7 @@
                 예약관리
             </div>
             <li class="nav-item">
-                <a class="nav-link" href="/">
+                <a class="nav-link" href="/admin/bookList">
                     <i class="fas fa-fw fa-table"></i>
                     <span>예약승인/거절</span></a>
             </li>
@@ -101,7 +101,7 @@
                 매출관리
             </div>
             <li class="nav-item">
-                <a class="nav-link" href="/">
+                <a class="nav-link" id="noComplete">
                     <i class="fas fa-fw fa-table"></i>
                     <span>매출내역확인</span></a>
             </li>
@@ -371,6 +371,8 @@
             </div>
         </div>
     </div>
+        </div>
+    </div>
 
     <!-- Bootstrap core JavaScript-->
     <script src="/resources/static/management/js/jquery.min.js"></script>
@@ -388,7 +390,14 @@
     <!-- Page level custom scripts -->
     <script src="/resources/static/management/js/demo/chart-area-demo.js"></script>
     <script src="/resources/static/management/js/demo/chart-pie-demo.js"></script>
-
+<script>
+    $(document).ready(function() {
+        $('#noComplete').click(function () {
+            alert("준비 중입니다");
+            return false;
+        });
+    })
+</script>
 </body>
 
 </html>
