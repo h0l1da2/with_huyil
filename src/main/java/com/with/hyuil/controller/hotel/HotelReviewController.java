@@ -53,18 +53,6 @@ public class HotelReviewController {
         return "hotel/hotelReview";
     }
 
-//    @GetMapping
-//    public String reviewPage(@RequestParam Long id, Model model) {
-//        UsersVo usersVo = usersService.loginForFind("KAKAO_2616028737");
-//        BookVo bookVo = bookService.notReviewFind(new ReviewBookDto(id, usersVo.getId()));
-//        HotelVo hotelVo = hotelService.findByHotelId(id);
-//        model.addAttribute(hotelVo);
-//        model.addAttribute("userLongId", usersVo.getId());
-//        if (bookVo != null) {
-//            model.addAttribute("bookId", bookVo.getId());
-//        }
-//        return "hotel/hotelReview";
-//    }
 
 
     @ResponseBody
@@ -89,19 +77,6 @@ public class HotelReviewController {
         return "리뷰 성공";
     }
 
-//    @PostMapping("/write/host")
-//    public String hostReview(@ModelAttribute HostReviewDto hostReviewDto, @AuthenticationPrincipal CustomUserDetails userDetails, Model model) {
-//        log.info("리뷰디티오들어옴 = {}", hostReviewDto);
-//        // 어썬티케이션 자르기
-//        hostReviewDto.setUserType(
-//                Type.HOST
-//        );
-//        hostReviewDto.setUserLongId(91L);
-//        ReviewDto reviewBook = reviewService.findReviewBook(hostReviewDto.getReplyId());
-//        hostReviewDto.setBookId(reviewBook.getBookId());
-//        reviewService.writeHostReview(new ReviewVo(hostReviewDto));
-//        return "redirect:/hotel/review?id="+hostReviewDto.getHotelId();
-//    }
     @PostMapping("/write/host")
     public String hostReview(@ModelAttribute HostReviewDto hostReviewDto, @AuthenticationPrincipal CustomUserDetails userDetails, Model model) {
         log.info("리뷰디티오들어옴 = {}", hostReviewDto);

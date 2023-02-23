@@ -32,6 +32,68 @@
     <link rel="stylesheet" href="/resources/static/home/css/style.css">
     
 </head>
+<script>
+	function addPrice() {
+		var checkIndate = new Date(document.getElementById("checkIn").value);
+		var checkOutdate = new Date(document.getElementById("checkOut").value);	
+		var diff = checkOutdate.getTime() - checkIndate.getTime();
+		var day = Math.abs(diff / (1000 * 60 * 60 * 24));
+		if(diff > 0) {
+			var totalPrice = ${roomvo.normalPrice } * day;
+			if(document.getElementById("seePrice")){
+				document.getElementById("seePrice").remove();
+				$("#price").append("<div id='seePrice'><h3>총금액 : "+totalPrice+"원</h3></div>");
+			}else {
+				$("#price").append("<div id='seePrice'><h3>총금액 : "+totalPrice+"원</h3></div>");
+			}
+		}
+		if(diff <= 0) {
+			document.getElementById("seePrice").remove();	
+		}
+	}
+	
+	function addPrice2() {
+		var checkIndate = new Date(document.getElementById("checkIn").value);
+		var checkOutdate = new Date(document.getElementById("checkOut").value);	
+		var diff = checkOutdate.getTime() - checkIndate.getTime();
+		var day = Math.abs(diff / (1000 * 60 * 60 * 24));
+		if(diff > 0) {
+			var totalPrice = ${roomvo.normalPrice } * day;
+			if(document.getElementById("seePrice")){
+				document.getElementById("seePrice").remove();
+				$("#price").append("<div id='seePrice'><h3>총금액 : "+totalPrice+"원</h3></div>");
+			}else {
+				$("#price").append("<div id='seePrice'><h3>총금액 : "+totalPrice+"원</h3></div>");
+			}
+		}
+		if(diff <= 0) {
+			document.getElementById("seePrice").remove();	
+		}
+	}
+
+	function checkForm() {
+		var checkIn = document.getElementById("checkIn");
+		var checkOut = document.getElementById("checkOut");
+		if(checkIn.value == "" || checkIn.value == null){
+			alert("체크인 날짜를 입력해주세요.");
+			checkIn.focus();
+			return false;
+		}
+		if(checkOut.value == "" || checkOut.value == null){
+			alert("체크아웃 날짜를 입력해주세요.");
+			checkOut.focus();
+			return false;
+		}
+		var checkIndate = new Date(checkIn.value);
+		var checkOutdate = new Date(checkOut.value);	
+		var diff = checkOutdate.getTime() - checkIndate.getTime();
+		if(diff <= 0){
+			alert("체크인/체크아웃 날짜를 확인해주세요.");
+			checkIn.focus();
+			return false;
+		}
+	}
+</script>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
@@ -61,17 +123,17 @@
         </div>
       </div>
     </div>
-<section id="reserve">
-<form action="/reserve" method="post">
+<section id="hotelForm">
+<form method="post" action="/kakaoPay" onsubmit="return checkForm();">
   <div style="margin:50px 0 30px 300px;" class="form-group">
   <br>
   <label for="exampleFormControlInput1">---------------------회원정보---------------------</label> <br><br>
   	<label for="exampleFormControlInput1" style="width:50px;">아이디</label>
-    <input type="text" value="${usersvo.userId }" style="width:300px; height:50px;" readonly><br> <br>
+    <input type="text" name="userId" value="${usersvo.userId }" style="width:300px; height:50px;" readonly><br> <br>
     <label for="exampleFormControlInput1" style="width:50px;">이 름</label> 
-    <input type="text" value="${usersvo.name }" style="width:300px; height:50px;" readonly><br> <br>
+    <input type="text" name="userName" value="${usersvo.name }" style="width:300px; height:50px;" readonly><br> <br>
     <label for="exampleFormControlInput1" style="width:50px;">연락처</label> 
-    <input type="text" value="${usersvo.tel }" style="width:300px; height:50px;" readonly><br> <br> <br>
+    <input type="text" name="userTel" value="${usersvo.tel }" style="width:300px; height:50px;" readonly><br> <br> <br>
     <label for="exampleFormControlInput1">---------------------예약상품---------------------</label> 
 	 <section class="rooms-section spad" id="selectroom">
         <div class="container" style="padding-left: 0px;">
@@ -79,12 +141,12 @@
                 <div class="col-md-6" style="padding-left: 0px;">
                     <div class="room-item" style="width: 600px;" style="padding-left: 0px;"> <br>                
                     	<label for="#">Check-in</label>
-                    	<input type="date" name="checkin" style="width:120px;">               
+                    	<input type="date" id="checkIn" name="checkin" style="width:120px;" oninput="addPrice2()">               
                      	<label for="#">Check-out</label>
-                     	<input type="date" name="checkout" style="width:120px;"> <br>                     
+                     	<input type="date" id="checkOut" name="checkout" style="width:120px;" oninput="addPrice()"> <br>                     
                      	<img src="/host/img?filename=${filevo.uuid }" width="370" height="240">
                      	<div class="ri-text">
-                      	<h3>호텔이름</h3>
+                      	<h3>${hotelvo.name }</h3>
                         <h3>${roomvo.name }</h3>
                         <h4>${roomvo.normalPrice } /1박</h4>
                         <table>
@@ -102,7 +164,9 @@
                                     <td>${roomvo.bed }</td>
                                 </tr>
                             </tbody>
-                        </table>
+                        </table> <br>
+                        <label for="exampleFormControlInput1">---------------------결제금액---------------------</label>
+                        <div id="price"></div>
                         </div>
                     </div>
                 </div>
@@ -112,6 +176,9 @@
 	<button class="w-btn-neon2" type="submit">결제하기</button>
     <br> <br>
   </div>
+  <input type="hidden" name="price" value="${roomvo.normalPrice }">
+  <input type="hidden" name="name" value="${hotelvo.name } / ${roomvo.name }">
+  <input type="hidden" name="roomId" value="${roomvo.id }">
 </form>
 </section>
     <!-- footer -->

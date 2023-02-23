@@ -46,6 +46,16 @@ public class HotelServiceImpl implements HotelService {
 	public void updateHotel(HotelVo hotelvo) {
 		mapper.updateHotel(hotelvo);
 	}
+	
+	@Override
+	public HotelVo getRoomId(long id) {
+		return mapper.findByRoomId(id);
+	}
+	
+	@Override
+	public long getHostId(long id) {
+		return mapper.findHostId(id);
+	}
 
 	@Override
 	public List<StarDto> searchHotelStar(List<HotelListDto> hotelListDtos) {

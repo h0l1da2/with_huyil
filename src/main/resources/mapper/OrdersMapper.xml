@@ -8,16 +8,29 @@
 		<result property="userId" column="USER_ID"/>
 		<result property="totalPrice" column="TOTAL_PRICE"/>
 		<result property="orderDate" column="ORDER_DATE"/>
-		<result property="payCompleteId" column="PAY_COMPLETE_ID"/>
 		<result property="checkin" column="CHECKIN"/>
 		<result property="checkout" column="CHECKOUT"/>
+		<result property="hostId" column="HOST_ID"/>
+		<result property="tid" column="TID"/>
+		<result property="userName" column="USER_NAME"/>
+		<result property="hotel" column="HOTEL"/>
+		<result property="room" column="ROOM"/>
+		<result property="pgToken" column="PG_TOKEN"/>
 	</resultMap>
 	
 	<insert id="insertOrders" parameterType="OrdersVo">
 		INSERT INTO ORDERS
-		 (ID, USER_ID, TOTAL_PRICE, ORDER_DATE, PAY_COMPLETE_ID, CHECKIN, CHECKOUT)
+		 (ID, USER_ID, TOTAL_PRICE, ORDER_DATE, CHECKIN, CHECKOUT, HOST_ID, TID, USER_NAME, HOTEL, ROOM, PG_TOKEN)
 		  VALUES
-		   (seq_orders.nextval, #{userId}, #{totalPrice}, sysdate, null, #{checkin, jdbcType=TIMESTAMP}, #{checkout, jdbcType=TIMESTAMP}) 
+		   (seq_orders.nextval, #{userId}, #{totalPrice}, sysdate, #{checkin}, #{checkout}, #{hostId}, #{tid}, #{userName}, #{hotel}, #{room}, #{pgToken}) 
 	</insert>
+	
+	<select id="findByUserId" parameterType="Long" resultType="Map">
+		SELECT * FROM ORDERS WHERE ORDERS_ID = #{id}
+	</select>
+	
+	<select id="findByToken" parameterType="String" resultType="OrdersVo">
+		SELECT * FROM ORDERS WHERE PG_TOKEN = #{pgToken}
+	</select>
 	
 </mapper>
