@@ -201,7 +201,7 @@
                                         <td>${userList.lastLogin}</td>
                                         <td>${userList.out}</td>
                                         <td>
-                                            <button type="button" class="btn btn-primary" onclick="bookCancel(${userList.id})" <c:if test="${userList.out eq 'STOP'}">hidden</c:if>>정지</button>
+                                            <button type="button" class="btn btn-primary" onclick="stopCancel('${userList.userId}')" <c:if test="${userList.out eq 'STOP'}">hidden</c:if>>정지</button>
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -287,6 +287,31 @@
             return false;
         });
     })
+    function stopCancel(result) {
+        if (!confirm("회원을 정지시킵니까?")) {
+            return false;
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: '/admin/stopUsers',
+            contentType: "application/json",
+            data: JSON.stringify({userId: result}),
+            dataType: 'text',
+            success: function (result) {
+                if (result == '정지 완료') {
+                    alert("정지 완료")
+                    location.reload();
+                } else {
+                    alert(result);
+                }
+            },
+            error: function (result) {
+                alert("확인실패");
+            }
+        })
+    }
+
 </script>
 </body>
 

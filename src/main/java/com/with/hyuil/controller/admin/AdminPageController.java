@@ -1,10 +1,8 @@
 package com.with.hyuil.controller.admin;
 
 import com.with.hyuil.config.auth.CustomUserDetails;
-import com.with.hyuil.dto.admin.AdminBookListDto;
-import com.with.hyuil.dto.admin.AdminPageDto;
-import com.with.hyuil.dto.admin.AdminUserListDto;
-import com.with.hyuil.dto.admin.TenPageHandler;
+import com.with.hyuil.dto.admin.*;
+import com.with.hyuil.dto.info.DeleteDto;
 import com.with.hyuil.service.interfaces.BookService;
 import com.with.hyuil.service.interfaces.UsersService;
 import lombok.RequiredArgsConstructor;
@@ -65,5 +63,11 @@ public class AdminPageController {
         model.addAttribute(adminUserList);
         model.addAttribute("ph", tenPageHandler);
         return "management/userListForm";
+    }
+
+    @ResponseBody
+    @PostMapping("/stopUsers")
+    public String stopUser(@RequestBody StopDto stopDto) {
+        return usersService.stopUser(stopDto);
     }
 }

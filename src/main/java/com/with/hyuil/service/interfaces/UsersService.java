@@ -2,6 +2,7 @@ package com.with.hyuil.service.interfaces;
 
 import com.with.hyuil.dto.admin.AdminPageDto;
 import com.with.hyuil.dto.admin.AdminUserListDto;
+import com.with.hyuil.dto.admin.StopDto;
 import com.with.hyuil.dto.info.DeleteDto;
 import com.with.hyuil.dto.info.EmailDto;
 import com.with.hyuil.dto.info.FindIdDto;
@@ -30,6 +31,7 @@ public interface UsersService {
     String findPassword(PasswordDto passwordDto);
     BusinessDto findBusinessDto(Long id);
     String deleteUser(DeleteDto deleteDto);
+    String stopUser(StopDto stopDto);
     UsersVo findId(FindIdDto findIdDto);
     UsersVo findTel(FindIdDto findIdDto);
     List<AdminUserListDto> adminHostList(AdminPageDto adminPageDto);

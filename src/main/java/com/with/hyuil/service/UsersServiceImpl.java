@@ -3,6 +3,7 @@ package com.with.hyuil.service;
 import com.with.hyuil.dao.UsersMapper;
 import com.with.hyuil.dto.admin.AdminPageDto;
 import com.with.hyuil.dto.admin.AdminUserListDto;
+import com.with.hyuil.dto.admin.StopDto;
 import com.with.hyuil.dto.admin.TenPageHandler;
 import com.with.hyuil.dto.info.DeleteDto;
 import com.with.hyuil.dto.info.EmailDto;
@@ -186,6 +187,18 @@ public class UsersServiceImpl implements UsersService {
             return "WhyDelete 추가 실패";
         }
         return "탈퇴 성공";
+    }
+
+    @Override
+    public String stopUser(StopDto stopDto) {
+        Map map = new HashMap<>();
+        map.put("userId", stopDto.getUserId());
+        map.put("out", Out.STOP);
+        int result = usersMapper.updateForDelete(map);
+        if (result == 1) {
+            return "정지 완료";
+        }
+        return "정지 실패";
     }
 
     @Override
