@@ -1,5 +1,7 @@
 package com.with.hyuil.dao;
 
+import com.with.hyuil.dto.admin.AdminPageDto;
+import com.with.hyuil.dto.admin.AdminUserListDto;
 import com.with.hyuil.dto.info.DeleteDto;
 import com.with.hyuil.dto.info.EmailDto;
 import com.with.hyuil.dto.info.FindIdDto;
@@ -9,9 +11,11 @@ import com.with.hyuil.dto.users.UsersDto;
 import com.with.hyuil.model.BusinessVo;
 import com.with.hyuil.model.RolesVo;
 import com.with.hyuil.model.UsersVo;
+import com.with.hyuil.model.enumaration.Type;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Map;
 
 @Mapper
@@ -35,8 +39,12 @@ public interface UsersMapper {
     int updateForDelete(Map map); //
     BusinessVo findByBusinessId(Long id);
     UsersVo findByTel(FindIdDto findIdDto);
+    List<AdminUserListDto> selectAllHost(AdminPageDto adminPageDto);
+    List<AdminUserListDto> selectAllUser(AdminPageDto adminPageDto);
+    int selectAllUsersCnt(AdminPageDto adminPageDto);
 
     void updatehost(UsersDto usersdto);
     void updatebusiness(BusinessDto businessdto);
+
     UsersDto getId(String userId);
 }

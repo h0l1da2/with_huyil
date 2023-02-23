@@ -4,35 +4,71 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.with.hyuil.dao.UsersMapper">
+    <select id="selectAllHost" parameterType="AdminPageDto" resultType="AdminUserListDto">
+        SELECT *
+        FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER () AS TOTCNT
+              FROM (
+        SELECT U.ID, U.USER_ID, U.NAME, U.EMAIL, U.TEL,
+               B.ACCOUNT, U.JOIN_DATE, U.LAST_LOGIN, U.OUT
+        FROM USERS U, BUSINESS B
+        WHERE U.BUSINESS_ID = B.ID
+          AND U.TYPE = 'HOST'
+        ORDER BY JOIN_DATE DESC)A)
+        WHERE RNUM >= #{viewPage}
+          AND RNUM &lt;= #{limit}
+    </select>
+    <select id="selectAllUsersCnt" parameterType="AdminPageDto" resultType="Integer">
+        SELECT COUNT(*)
+        FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER () AS TOTCNT
+              FROM (
+        SELECT *
+        FROM USERS
+        WHERE TYPE = #{type}
+        ORDER BY JOIN_DATE DESC)A)
+        WHERE RNUM >= #{viewPage}
+          AND RNUM &lt;= #{limit}
+    </select>
+    <select id="selectAllUser" parameterType="AdminPageDto" resultType="AdminUserListDto">
+        SELECT *
+        FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER () AS TOTCNT
+              FROM (
+        SELECT ID, USER_ID, NAME, EMAIL, TEL,
+               JOIN_DATE, LAST_LOGIN, OUT
+        FROM USERS
+        WHERE TYPE = 'USER'
+        ORDER BY JOIN_DATE DESC)A)
+        WHERE RNUM >= #{viewPage}
+          AND RNUM &lt;= #{limit}
+    </select>
     <insert id="insertUser" parameterType="UsersVo">
         INSERT INTO USERS
         ( ID, USER_ID, PASSWORD, EMAIL, TEL, NAME, WHERES, JOIN_DATE, LAST_LOGIN, TYPE )
         VALUES
-            ( USERS_SEQ.NEXTVAL, #{userId}, #{password}, #{email}, #{tel}, #{name}, #{wheres}, SYSDATE, SYSDATE, #{type} )
+            ( SEQ_USERS.NEXTVAL, #{userId}, #{password}, #{email}, #{tel}, #{name}, #{wheres}, SYSDATE, SYSDATE, #{type} )
     </insert>
     <insert id="insertAdmin" parameterType="UsersVo">
         INSERT INTO USERS
             ( ID, USER_ID, PASSWORD, NAME, JOIN_DATE, LAST_LOGIN, TYPE )
         VALUES
-            ( ADMIN_SEQ.NEXTVAL, #{userId}, #{password}, #{name}, SYSDATE, SYSDATE, #{type} )
+            ( SEQ_USERS.NEXTVAL, #{userId}, #{password}, #{name}, SYSDATE, SYSDATE, #{type} )
     </insert>
     <insert id="insertHost" parameterType="UsersVo">
         INSERT INTO USERS
         ( ID, USER_ID, PASSWORD, EMAIL, TEL, NAME, WHERES, JOIN_DATE, LAST_LOGIN, BUSINESS_ID, TYPE )
         VALUES
-            ( USERS_SEQ.NEXTVAL, #{userId}, #{password}, #{email}, #{tel}, #{name}, #{wheres}, SYSDATE, SYSDATE, #{businessVo.id, jdbcType=VARCHAR}, #{type} )
+            ( SEQ_USERS.NEXTVAL, #{userId}, #{password}, #{email}, #{tel}, #{name}, #{wheres}, SYSDATE, SYSDATE, #{businessVo.id, jdbcType=VARCHAR}, #{type} )
     </insert>
     <insert id="insertBusiness" parameterType="BusinessVo">
         INSERT INTO BUSINESS
             ( ID, ACCOUNT, BANK_NUMBER, BANK )
         VALUES
-            ( BUSINESS_SEQ.NEXTVAL, #{account}, #{bankNumber}, #{bank} )
+            ( SEQ_BUSINESS.NEXTVAL, #{account}, #{bankNumber}, #{bank} )
     </insert>
     <insert id="insertRoles" parameterType="RolesVo">
         INSERT INTO ROLES
             ( ID, ROLE_NAME, USER_ID )
         VALUES
-            ( ROLES_SEQ.NEXTVAL, #{roleName}, #{usersVo.id, jdbcType=VARCHAR} )
+            ( SEQ_ROLES.NEXTVAL, #{roleName}, #{usersVo.id, jdbcType=VARCHAR} )
     </insert>
     <insert id="insertWhyDelete" parameterType="DeleteDto">
         INSERT INTO WHY_DELETE

@@ -1,4 +1,4 @@
-package com.with.hyuil.dto.hotel;
+package com.with.hyuil.dto.review;
 
 import lombok.Data;
 
