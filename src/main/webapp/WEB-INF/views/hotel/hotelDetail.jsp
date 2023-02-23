@@ -116,7 +116,7 @@
                                             </tr>
                                             </tbody>
                                         </table>
-                                        <a href="/reserve?id=${list.ID }" class="primary-btn" style="margin-left:5px;">예약하기</a>
+                                        <a href="/hotel/reserve?id=${list.ID }" class="primary-btn" style="margin-left:5px;">예약하기</a>
                                     </div>
                                 </div>
                             </div>

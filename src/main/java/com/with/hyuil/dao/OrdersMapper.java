@@ -1,5 +1,8 @@
 package com.with.hyuil.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.with.hyuil.model.OrdersVo;
@@ -8,5 +11,6 @@ import com.with.hyuil.model.OrdersVo;
 public interface OrdersMapper {
 
 	void insertOrders(OrdersVo ordersvo);
-	
+	List<Map<String, Object>> findByUserId(Long id);
+	OrdersVo findByToken(String pgToken);
 }

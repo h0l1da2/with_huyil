@@ -17,6 +17,10 @@
 	<select id="findByHotelId" parameterType="long" resultType="HotelVo">
 		select * from hotel where id = #{id}
 	</select>
+	
+	<select id="findByRoomId" parameterType="long" resultType="HotelVo">
+		select a.name from hotel a left join room b on(a.id = b.hotel_id) where b.id = #{id}
+	</select>
 
 	<select id="selectForHotelList" parameterType="HotelSearchDto" resultType="HotelListDto">
 		SELECT *
@@ -39,6 +43,10 @@
 		ORDER BY H.ID) A)
 		WHERE RNUM > #{offset}
 		AND RNUM &lt;= #{limit}
+	</select>
+	
+	<select id="findHostId" parameterType="long" resultType="long">
+		select a.user_id from hotel a left join users b on (a.user_id = b.id) where a.id = #{id}
 	</select>
 	
 	<update id="updateHotel" parameterType="HotelVo">
