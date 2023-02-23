@@ -1,6 +1,9 @@
 package com.with.hyuil.service;
 
 import com.with.hyuil.dao.UsersMapper;
+import com.with.hyuil.dto.admin.AdminPageDto;
+import com.with.hyuil.dto.admin.AdminUserListDto;
+import com.with.hyuil.dto.admin.TenPageHandler;
 import com.with.hyuil.dto.info.DeleteDto;
 import com.with.hyuil.dto.info.EmailDto;
 import com.with.hyuil.dto.info.FindIdDto;
@@ -195,6 +198,18 @@ public class UsersServiceImpl implements UsersService {
         return usersMapper.findByTel(findIdDto);
     }
 
+    @Override
+    public List<AdminUserListDto> adminHostList(AdminPageDto adminPageDto) {
+        pagingList(adminPageDto, Type.HOST);
+        return usersMapper.selectAllHost(adminPageDto);
+    }
+
+    @Override
+    public List<AdminUserListDto> adminUserList(AdminPageDto adminPageDto) {
+        pagingList(adminPageDto, Type.USER);
+        return usersMapper.selectAllUser(adminPageDto);
+    }
+
     private void dtoNoArgSet(DeleteDto deleteDto) {
 
         List<String> list = Arrays.stream(deleteDto.getWhyDelete()).collect(Collectors.toList());
@@ -251,5 +266,15 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public UsersDto getId(String userId) {
         return usersMapper.getId(userId);
+    }
+
+    private void pagingList(AdminPageDto adminPageDto, Type type) {
+        log.info("어드민페이지카운트 = {}", adminPageDto);
+        adminPageDto.setType(type);
+        int totalCnt = usersMapper.selectAllUsersCnt(adminPageDto);
+        TenPageHandler tenPageHandler = new TenPageHandler(totalCnt, adminPageDto.getViewPage());
+        log.info("텐페이지핸들러 = {}",tenPageHandler);
+        adminPageDto.calcPage(tenPageHandler.getOffsetPost());
+        log.info("어드민페이지카운트 = {}", adminPageDto);
     }
 }

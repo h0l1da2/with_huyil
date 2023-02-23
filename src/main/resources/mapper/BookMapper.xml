@@ -63,7 +63,7 @@
         WHERE RNUM >= #{viewPage}
           AND RNUM &lt;= #{limit}
     </select>
-    <select id="countForAdminBook" resultType="Integer" parameterType="BookPageDto">
+    <select id="countForAdminBook" resultType="Integer" parameterType="AdminPageDto">
         SELECT COUNT(*)
         FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER () AS TOTCNT
               FROM (
@@ -77,7 +77,7 @@
         WHERE RNUM >= #{viewPage}
           AND RNUM &lt;= #{limit}
     </select>
-    <select id="findAllForAdmin" resultType="AdminBookListDto" parameterType="BookPageDto">
+    <select id="findAllForAdmin" resultType="AdminBookListDto" parameterType="AdminPageDto">
         SELECT *
         FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER () AS TOTCNT
               FROM (

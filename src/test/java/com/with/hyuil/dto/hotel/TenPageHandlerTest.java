@@ -1,7 +1,7 @@
 package com.with.hyuil.dto.hotel;
 
 import com.with.hyuil.dto.admin.TenPageHandler;
-import com.with.hyuil.dto.admin.BookPageDto;
+import com.with.hyuil.dto.admin.AdminPageDto;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
@@ -13,12 +13,12 @@ public class TenPageHandlerTest {
         int totalPost = 101;
         int viewPage = 10;
         TenPageHandler globalPageHandler = new TenPageHandler(totalPost, viewPage);
-        BookPageDto bookPageDto = new BookPageDto();
-        bookPageDto.setViewPage(viewPage);
-        bookPageDto.setLimit(totalPost);
-        log.info("북페이지디티오 = {}", bookPageDto);
+        AdminPageDto adminPageDto = new AdminPageDto();
+        adminPageDto.setViewPage(viewPage);
+        adminPageDto.setLimit(totalPost);
+        log.info("북페이지디티오 = {}", adminPageDto);
 //        bookSearchDto.calcPage();
-        log.info("다시 북페이지 디티오 = {}", bookPageDto);
+        log.info("다시 북페이지 디티오 = {}", adminPageDto);
         log.info("총게시물 = {}", totalPost);
         log.info("지금보는페이지 = {}", viewPage);
         log.info("getTotalPost = {}", globalPageHandler.getTotalPost());

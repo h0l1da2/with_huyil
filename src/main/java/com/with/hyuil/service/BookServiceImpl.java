@@ -2,10 +2,10 @@ package com.with.hyuil.service;
 
 import com.with.hyuil.dao.BookMapper;
 import com.with.hyuil.dto.admin.AdminBookListDto;
+import com.with.hyuil.dto.admin.AdminPageDto;
 import com.with.hyuil.dto.admin.TenPageHandler;
 import com.with.hyuil.dto.hotel.GlobalPageHandler;
 import com.with.hyuil.dto.info.BookListDto;
-import com.with.hyuil.dto.admin.BookPageDto;
 import com.with.hyuil.dto.info.BookSearchDto;
 import com.with.hyuil.dto.info.HostBookListDto;
 import com.with.hyuil.dto.review.ReviewBookDto;
@@ -46,12 +46,12 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<AdminBookListDto> adminBookList(BookPageDto bookPageDto) {
-        int totalCnt = bookMapper.countForAdminBook(bookPageDto);
+    public List<AdminBookListDto> adminBookList(AdminPageDto adminPageDto) {
+        int totalCnt = bookMapper.countForAdminBook(adminPageDto);
         log.info("totalCnt = {}", totalCnt);
-        TenPageHandler tenPageHandler = new TenPageHandler(totalCnt, bookPageDto.getViewPage());
-        bookPageDto.calcPage(tenPageHandler.getOffsetPost());
-        return bookMapper.findAllForAdmin(bookPageDto);
+        TenPageHandler tenPageHandler = new TenPageHandler(totalCnt, adminPageDto.getViewPage());
+        adminPageDto.calcPage(tenPageHandler.getOffsetPost());
+        return bookMapper.findAllForAdmin(adminPageDto);
     }
 
     @Override
