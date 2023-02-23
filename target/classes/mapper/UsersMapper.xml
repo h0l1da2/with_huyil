@@ -32,11 +32,10 @@
         SELECT *
         FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER () AS TOTCNT
               FROM (
-        SELECT U.ID, U.USER_ID, U.NAME, U.EMAIL, U.TEL,
-               U.JOIN_DATE, U.LAST_LOGIN, U.OUT
-        FROM USERS U, BUSINESS B
-        WHERE U.BUSINESS_ID = B.ID
-          AND U.TYPE = 'USER'
+        SELECT ID, USER_ID, NAME, EMAIL, TEL,
+               JOIN_DATE, LAST_LOGIN, OUT
+        FROM USERS
+        WHERE TYPE = 'USER'
         ORDER BY JOIN_DATE DESC)A)
         WHERE RNUM >= #{viewPage}
           AND RNUM &lt;= #{limit}

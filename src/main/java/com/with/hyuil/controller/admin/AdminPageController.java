@@ -56,4 +56,14 @@ public class AdminPageController {
         model.addAttribute("ph", tenPageHandler);
         return "management/hostListForm";
     }
+
+    @GetMapping("/userList")
+    public String userList(@AuthenticationPrincipal CustomUserDetails userDetails, @ModelAttribute AdminPageDto adminPageDto, Model model) {
+        model.addAttribute("userId", userDetails.getUsername());
+        List<AdminUserListDto> adminUserList = usersService.adminUserList(adminPageDto);
+        TenPageHandler tenPageHandler = new TenPageHandler(adminUserList.get(0).getTotcnt(), adminPageDto.getNowPage());
+        model.addAttribute(adminUserList);
+        model.addAttribute("ph", tenPageHandler);
+        return "management/userListForm";
+    }
 }
