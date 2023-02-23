@@ -53,7 +53,6 @@ public class HotelReviewController {
         return "hotel/hotelReview";
     }
 
-
     @ResponseBody
     @PostMapping("/write")
     public String userReview(@RequestBody ReviewDto reviewDto, @AuthenticationPrincipal CustomUserDetails userDetails) {
