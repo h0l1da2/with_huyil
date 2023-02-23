@@ -4,33 +4,35 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.with.hyuil.config.auth.CustomUserDetails;
 import com.with.hyuil.dto.users.BusinessDto;
@@ -48,7 +50,11 @@ import com.with.hyuil.service.OrdersServiceImpl;
 import com.with.hyuil.service.RoomServiceImpl;
 import com.with.hyuil.service.UsersServiceImpl;
 
+import lombok.Setter;
+import lombok.extern.java.Log;
+
 @Controller
+@Log
 public class hotelViewTestController {
 
 	@Autowired
@@ -81,8 +87,73 @@ public class hotelViewTestController {
 		}
 		return new ResponseEntity<Resource>(resource, header, HttpStatus.OK);
 	}
-
-	@RequestMapping("/host/hotelDetail")
+	
+	@Setter(onMethod_ = @Autowired)
+    private KakaoPay kakaopay;
+    
+    
+ 
+    @PostMapping("/kakaoPay")
+    public String kakaoPay(HttpServletRequest req, @RequestParam("checkin") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDate checkin,
+    		@RequestParam("checkout") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDate checkout, @RequestParam("roomId") long roomId) {
+        log.info("kakaoPay post............................................");
+        String userId = req.getParameter("userId");
+        String userName = req.getParameter("userName");
+        int price = Integer.parseInt(req.getParameter("price"));
+        String name = req.getParameter("name");
+		int date = (ordersService.getDatesBetweenTwoDates(checkin, checkout)).size();
+		int total_amountint = price * date;
+		String day = String.valueOf(date);
+		String total_amount = Integer.toString(total_amountint);
+		String checkinstr = checkin.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		String checkoutstr = checkout.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		String daytoday = checkinstr + " ~ " + checkoutstr;
+		return "redirect:" + kakaopay.kakaoPayReady(name, userId, userName, total_amount, day, daytoday, roomId);
+    }
+    
+    @RequestMapping("/kakaoPaySuccess")
+    public String Kim(HttpServletRequest req, Model model,@RequestParam("pg_token") String pg_token, @RequestParam("userId") String userId, @RequestParam("totalPrice") int totalPrice,
+    		@RequestParam("userName") String userName, @RequestParam("day") String day, @RequestParam("item") String item, @RequestParam("roomId") long roomId, RedirectAttributes re) {
+    	UsersVo usersvo = usersService.loginForFind(userId);
+    	RoomVo roomvo = roomService.findByRoomId(roomId);
+    	HotelVo hotelvo = hotelService.findByHotelId(roomvo.getHotelId());
+    	String total_amount = String.valueOf(totalPrice);
+    	OrdersVo ordersvo = new OrdersVo();
+    	ordersvo.setUserId(usersvo.getId());
+    	ordersvo.setTotalPrice(totalPrice);
+    	String date[] = day.split(" ~ ");
+    	LocalDate checkIn = LocalDate.parse(date[0], DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    	LocalDate checkOut = LocalDate.parse(date[1], DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    	ordersvo.setCheckin(checkIn);
+    	ordersvo.setCheckout(checkOut);
+    	long hostId = hotelService.getHostId(hotelvo.getId());
+    	ordersvo.setHostId(hostId);
+    	ordersvo.setTid(kakaopay.kakaoPayInfo(pg_token, total_amount).getTid());
+    	ordersvo.setUserName(userName);
+    	String hotelRoom[] = item.split(" / ");
+    	ordersvo.setHotel(hotelRoom[0]);
+    	ordersvo.setRoom(hotelRoom[1]);
+    	ordersvo.setPgToken(pg_token);
+    	ordersService.addOrders(ordersvo);
+    	re.addAttribute("pg_token", pg_token);
+    	return "redirect:/hotel/orderComplete";
+    }
+    
+    @GetMapping("/hotel/orderComplete")
+    public String MinJae(Model model, @RequestParam("pg_token") String pgToken){
+    	OrdersVo ordersvo = ordersService.findByToken(pgToken);
+    	String now = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH시 mm분 ss초").format(ordersvo.getOrderDate());
+    	model.addAttribute("now", now);
+    	model.addAttribute("orders", ordersvo);
+    	return "/order/orderComplete";
+    }
+    
+    @GetMapping("hotel/kakaoPayCancel")
+    public String Wall() {
+    	return "/order/kakaoPayCancel";
+    }
+	
+	@GetMapping("/hotel/Detail")
 	public String messi(@RequestParam long id, Model model, @AuthenticationPrincipal CustomUserDetails userDetails) {
 		HotelVo hotelvo = hotelService.findByHotelId(id);
 		HotelInfoVo infovo = infoService.findByInfoId(hotelvo.getHotelInfoId());
@@ -154,7 +225,7 @@ public class hotelViewTestController {
 		}
 	}
 
-	@GetMapping("/reserve")
+	@GetMapping("/hotel/reserve")
 	public String reserve(Model model, @AuthenticationPrincipal CustomUserDetails userDetails, HttpServletRequest req, @RequestParam long id) {
 		if(userDetails == null) {
 			return "user/loginForm";
@@ -164,10 +235,12 @@ public class hotelViewTestController {
 			long roomId = Long.parseLong(req.getParameter("id"));
 			RoomVo roomvo = roomService.findByRoomId(roomId);
 			FileVo filevo = fileService.getRoomImg(roomId);
+			HotelVo hotelvo = hotelService.getRoomId(roomId);
 			model.addAttribute("userId", userId);
 			model.addAttribute("filevo", filevo);
 			model.addAttribute("roomvo", roomvo);
 			model.addAttribute("usersvo", usersvo);
+			model.addAttribute("hotelvo", hotelvo);
 			return "/hotel/hotelReserve";
 		}
 	}
@@ -199,6 +272,21 @@ public class hotelViewTestController {
 			model.addAttribute("userId", userId);
 			model.addAttribute("filevo", filevo);
 			return "/hotel/roomEdit";
+		}
+	}
+	
+	@GetMapping("/cashUp")
+	public String Karim(Model model, @AuthenticationPrincipal CustomUserDetails userDetails) {
+		if(userDetails == null) {
+			return "user/loginForm";
+		}else {
+			String userId = userDetails.getUsername();
+			UsersVo usersvo = usersService.loginForFind(userId);
+			List<Map<String, Object>> list = ordersService.getOrderList(usersvo.getId());
+			model.addAttribute("list", list);
+			model.addAttribute("userId", userId);
+			
+			return "/hotel/cashUp";
 		}
 	}
 
@@ -283,16 +371,6 @@ public class hotelViewTestController {
 		roomService.addRoom(roomvo);
 		fileService.UploadImg(mhsq, usersvo, hotelvo, roomvo);
 		return new ModelAndView("redirect:/host/roomList");
-	}
-
-	@PostMapping("/reserve")
-	public String rashford(@AuthenticationPrincipal CustomUserDetails userDetails, OrdersVo ordersvo, HttpServletRequest req) {
-		String userId = userDetails.getUsername();
-		UsersVo usersvo = usersService.loginForFind(userId);
-		System.out.println(req.getParameter("checkin"));
-		ordersvo.setUserId(usersvo.getId());
-		ordersService.addOrders(ordersvo);
-		return "redirect:/";
 	}
 
 }

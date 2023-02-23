@@ -15,8 +15,15 @@ public class OrdersVo {
 	private int totalPrice;
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime orderDate;
+	@DateTimeFormat(pattern = "YYYY-MM-dd")
 	private LocalDate checkin;
+	@DateTimeFormat(pattern = "YYYY-MM-dd")
 	private LocalDate checkout;
-	private long payCompleteId;
+	private long hostId;
+	private String tid;
+	private String userName;
+	private String hotel;
+	private String room;
+	private String pgToken;
 	
 }
