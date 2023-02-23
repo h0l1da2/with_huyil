@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html lang="ko">
 <head>
 	<title>Deluxe - Free Bootstrap 4 Template by Colorlib</title>
@@ -85,22 +86,36 @@
 					<c:forEach var="hotelList" items="${hotelListDtoList}">
 						<div class="col-sm col-md-6 col-lg-4 ftco-animate">
 							<div class="room">
-								<a href="rooms-single.html" class="img d-flex justify-content-center align-items-center" style="background-image: url(<c:url value='/resources/static/home/images/room-1.jpg'/>);">
+								<a href="<c:url value="/hotel/detail?id=${hotelList.id}"/>" class="img d-flex justify-content-center align-items-center" style="background-image: url(<c:url value='/resources/static/home/images/room-1.jpg'/>);">
 									<div class="icon d-flex justify-content-center align-items-center">
 										<span class="icon-search2"></span>
 									</div>
 								</a>
 								<div class="text p-3 text-center">
-									<h3 class="mb-3"><a href="rooms-single.html">${hotelList.name}</a></h3>
+									<h3 class="mb-3"><a href="<c:url value="/hotel/detail?id=${hotelList.id}"/>">${hotelList.name}</a></h3>
 									<p><span class="price mr-2">${hotelList.price}</span> <span class="per">1 박</span></p>
 									<ul class="list">
-										<li><span>리뷰</span>${hotelList.star}</li>
-										<div class="form-check">
-											<input type="checkbox" class="form-check-input" id="exampleCheck1">
-											<label class="form-check-label" for="exampleCheck1">
-												<p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i></span></p>
-											</label>
-										</div>
+										<li><span>리뷰</span></li>
+										<p class="rate"><span>
+											<c:if test="${0.0 < hotelList.star && hotelList.star <= 1.5}">
+												<i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i>
+											</c:if>
+											<c:if test="${1.5 < hotelList.star && hotelList.star <= 2.5}">
+												<i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i>
+											</c:if>
+											<c:if test="${2.5 < hotelList.star && hotelList.star <= 3.5}">
+												<i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i>
+											</c:if>
+											<c:if test="${3.5 < hotelList.star && hotelList.star <= 4.5}">
+												<i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i>
+											</c:if>
+											<c:if test="${4.5 < hotelList.star && hotelList.star <= 5.0}">
+												<i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i>
+											</c:if>
+											<c:if test="${hotelList.star == 0.0}">
+												<i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i>
+											</c:if>
+											</span></p>
 										<li>${hotelList.sigungu}</li>
 									</ul>
 									<hr>
