@@ -63,7 +63,7 @@
         WHERE RNUM >= #{viewPage}
           AND RNUM &lt;= #{limit}
     </select>
-    <select id="countForAdminBook" resultType="Integer" parameterType="BookPageDto">
+    <select id="countForAdminBook" resultType="Integer" parameterType="AdminPageDto">
         SELECT COUNT(*)
         FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER () AS TOTCNT
               FROM (
@@ -77,7 +77,7 @@
         WHERE RNUM >= #{viewPage}
           AND RNUM &lt;= #{limit}
     </select>
-    <select id="findAllForAdmin" resultType="AdminBookListDto" parameterType="BookPageDto">
+    <select id="findAllForAdmin" resultType="AdminBookListDto" parameterType="AdminPageDto">
         SELECT *
         FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER () AS TOTCNT
               FROM (
@@ -112,5 +112,18 @@
         UPDATE BOOK
         SET REMOVE_DATE = SYSDATE, STATUS = 'CANCEL'
         WHERE ID = #{id, jdbcType=VARCHAR}
+    </update>
+    <select id="findBookForReview" parameterType="ReviewBookDto" resultType="BookVo">
+        SELECT B.ID
+        FROM BOOK B, ROOM R
+        WHERE B.USER_ID = #{userId}
+          AND R.HOTEL_ID = #{hotelId}
+          AND B.REVIEW_ID IS NULL
+        GROUP BY B.ID
+    </select>
+    <update id="updateReviewId" parameterType="ReviewVo">
+        UPDATE BOOK
+        SET REVIEW_ID = #{id, jdbcType=VARCHAR}
+        WHERE USER_ID = #{userId, jdbcType=VARCHAR}
     </update>
 </mapper>

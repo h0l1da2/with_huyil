@@ -4,7 +4,7 @@ import lombok.Data;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @Data
-public class AdminPageHandler {
+public class TenPageHandler {
 
     private final int postCount = 10; // 화면에 보여줄 게시글 갯수
     private final int listSize = 10; // 목록 갯수
@@ -19,7 +19,7 @@ public class AdminPageHandler {
     private boolean showNext = false;
     private boolean showPrev = false;
 
-    public AdminPageHandler(int totalPost, int viewPage) {
+    public TenPageHandler(int totalPost, int viewPage) {
         this.totalPost = totalPost;
         this.viewPage = viewPage;
 
