@@ -18,6 +18,8 @@ public class EmailServiceImpl implements EmailService {
     private final JavaMailSender javaMailSender;
     private MimeMessage message;
     private String randomCode;
+    private final String charSet = "UTF-8";
+    private final String subType = "html";
     @Value("${spring.mail.username}")
     private String fromEmail;
 
@@ -31,10 +33,7 @@ public class EmailServiceImpl implements EmailService {
         createCode();
         try {
             message = javaMailSender.createMimeMessage();
-            message.addRecipients(Message.RecipientType.TO, toEmail);
-            message.setSubject(title);
-            message.setFrom(fromEmail);
-            message.setText(contextJoin(title, randomCode), "UTF-8", "html");
+            setMailContent(toEmail, title, contextJoin(title, randomCode));
         } catch (MessagingException e) {
             log.error("이메일 전송 오류 = {}", e);
         }
@@ -45,10 +44,7 @@ public class EmailServiceImpl implements EmailService {
     public MimeMessage passwordMainForm(String title, String newPwd, String toEmail) {
         try {
             message = javaMailSender.createMimeMessage();
-            message.addRecipients(Message.RecipientType.TO, toEmail);
-            message.setSubject(title);
-            message.setFrom(fromEmail);
-            message.setText(contextPwd(newPwd), "UTF-8", "html");
+            setMailContent(toEmail, title, contextPwd(newPwd));
         } catch (MessagingException e) {
             log.error("이메일 전송 오류 = {}", e);
         }
@@ -59,10 +55,7 @@ public class EmailServiceImpl implements EmailService {
     public MimeMessage idMailForm(String title, String userId, String toEmail) {
         try {
             message = javaMailSender.createMimeMessage();
-            message.addRecipients(Message.RecipientType.TO, toEmail);
-            message.setSubject(title);
-            message.setFrom(fromEmail);
-            message.setText(contextId(title, userId), "UTF-8", "html");
+            setMailContent(toEmail, title, contextId(title, userId));
         } catch (MessagingException e) {
             log.error("이메일 전송 오류 = {}", e);
         }
@@ -147,4 +140,11 @@ public class EmailServiceImpl implements EmailService {
         randomCode = buffer.append(code).toString();
     }
 
+
+    private void setMailContent(String toEmail, String title, String title1) throws MessagingException {
+        message.addRecipients(Message.RecipientType.TO, toEmail);
+        message.setSubject(title);
+        message.setFrom(fromEmail);
+        message.setText(title1, charSet, subType);
+    }
 }

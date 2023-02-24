@@ -40,6 +40,17 @@
         WHERE RNUM >= #{viewPage}
           AND RNUM &lt;= #{limit}
     </select>
+    <select id="selectAllCnt" resultType="Integer" parameterType="OutTypeDto">
+        SELECT COUNT(*)
+        FROM USERS
+        WHERE OUT = #{out}
+    </select>
+    <select id="selectAllUserCntForAdmin" resultType="Integer" parameterType="OutTypeDto">
+        SELECT COUNT(*)
+        FROM USERS
+        WHERE OUT = #{out}
+          AND TYPE = #{type}
+    </select>
     <insert id="insertUser" parameterType="UsersVo">
         INSERT INTO USERS
         ( ID, USER_ID, PASSWORD, EMAIL, TEL, NAME, WHERES, JOIN_DATE, LAST_LOGIN, TYPE )

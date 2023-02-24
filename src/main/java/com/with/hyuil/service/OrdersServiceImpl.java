@@ -42,4 +42,9 @@ public class OrdersServiceImpl implements OrderService {
 		return mapper.findByToken(pgToken);
 	}
 
+	@Override
+	public Integer sumTotalPrice() {
+		return mapper.selectAllPrice();
+	}
+
 }

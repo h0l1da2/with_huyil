@@ -30,25 +30,20 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<BookListDto> userBookList(BookSearchDto bookSearchDto) {
         int totalCnt = bookMapper.countForBookList(bookSearchDto);
-        GlobalPageHandler globalPageHandler = new GlobalPageHandler(totalCnt, bookSearchDto.getViewPage());
-        bookSearchDto.calcPage(globalPageHandler.getOffsetPost());
+        getBookCount(bookSearchDto, totalCnt);
         return bookMapper.findAllByUserId(bookSearchDto);
     }
 
     @Override
     public List<HostBookListDto> hostBookList(BookSearchDto bookSearchDto) {
         int totalCnt = bookMapper.countForHostInfo(bookSearchDto);
-        GlobalPageHandler globalPageHandler = new GlobalPageHandler(totalCnt, bookSearchDto.getViewPage());
-        log.info("글로벌핸들러서비스 ? = {}", globalPageHandler);
-        bookSearchDto.calcPage(globalPageHandler.getOffsetPost());
-        log.info("북서치디티오 ? = {}", bookSearchDto);
+        getBookCount(bookSearchDto, totalCnt);
         return bookMapper.findAllForHostInfo(bookSearchDto);
     }
 
     @Override
     public List<AdminBookListDto> adminBookList(AdminPageDto adminPageDto) {
         int totalCnt = bookMapper.countForAdminBook(adminPageDto);
-        log.info("totalCnt = {}", totalCnt);
         TenPageHandler tenPageHandler = new TenPageHandler(totalCnt, adminPageDto.getViewPage());
         adminPageDto.calcPage(tenPageHandler.getOffsetPost());
         return bookMapper.findAllForAdmin(adminPageDto);
@@ -76,5 +71,10 @@ public class BookServiceImpl implements BookService {
             return "업데이트 실패";
         }
         return "예약 취소 완료";
+    }
+
+    private void getBookCount(BookSearchDto bookSearchDto, int totalCnt) {
+        GlobalPageHandler globalPageHandler = new GlobalPageHandler(totalCnt, bookSearchDto.getViewPage());
+        bookSearchDto.calcPage(globalPageHandler.getOffsetPost());
     }
 }

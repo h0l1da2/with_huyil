@@ -14,7 +14,7 @@ import java.util.List;
 
 @Mapper
 public interface BookMapper {
-    com.with.hyuil.model.BookVo findById(Long id);
+    BookVo findById(Long id);
     List<BookListDto> findAllByUserId(BookSearchDto bookSearchDto);
     int countForBookList(BookSearchDto bookSearchDto);
     int countForHostInfo(BookSearchDto bookSearchDto);
