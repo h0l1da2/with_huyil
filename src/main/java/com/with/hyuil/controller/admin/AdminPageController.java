@@ -3,6 +3,7 @@ package com.with.hyuil.controller.admin;
 import com.with.hyuil.config.auth.CustomUserDetails;
 import com.with.hyuil.dto.admin.*;
 import com.with.hyuil.service.interfaces.BookService;
+import com.with.hyuil.service.interfaces.OrderService;
 import com.with.hyuil.service.interfaces.UsersService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,10 +22,10 @@ public class AdminPageController {
 
     private final BookService bookService;
     private final UsersService usersService;
+    private final OrderService orderService;
 
     @GetMapping
     public String adminMain(@AuthenticationPrincipal CustomUserDetails userDetails, Model model) {
-        model.addAttribute("userId", userDetails.getUsername());
         // 총 회원
         Integer allUsers = usersService.allCntForAdmin();
         // 일반 유저 수
@@ -32,9 +33,14 @@ public class AdminPageController {
         // 호스트 유저 수
         Integer hosts = usersService.hostCntForAdmin();
 
+        Integer totalPrice = orderService.sumTotalPrice();
+
+        //list 사이즈만큼 돌려서 모델 집어넣기
+        model.addAttribute("userId", userDetails.getUsername());
         model.addAttribute("allUsers", allUsers);
         model.addAttribute("users", users);
         model.addAttribute("hosts", hosts);
+        model.addAttribute("totalPrice", totalPrice);
         return "management/index";
     }
 

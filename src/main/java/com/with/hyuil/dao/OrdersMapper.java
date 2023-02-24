@@ -13,4 +13,5 @@ public interface OrdersMapper {
 	void insertOrders(OrdersVo ordersvo);
 	List<Map<String, Object>> findByUserId(Long id);
 	OrdersVo findByToken(String pgToken);
+	Integer selectAllPrice();
 }
