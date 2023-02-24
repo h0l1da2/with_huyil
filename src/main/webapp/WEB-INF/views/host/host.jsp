@@ -88,8 +88,8 @@
           </div>
           <div class="fs-5 mb-5">
             <div class="d-flex afterLogin">
-              <button type="button" class="form-control btn btn-primary submit px-3 infoBtn">숙소 등록</button>
-              <button type="button" class="form-control btn btn-primary submit px-3 infoBtn">내 숙소 보기</button>
+              <button type="button" onclick="location.href='<c:url value='/hosts/hotelForm'/>'" class="form-control btn btn-primary submit px-3 infoBtn">내 숙소 확인</button>
+              <button type="button" onclick="location.href='<c:url value='/hosts/roomList'/>'" class="form-control btn btn-primary submit px-3 infoBtn">방 보기</button>
             </div>
             <div class="d-flex afterLogin">
               <button type="button" id="noComplete" class="form-control btn btn-primary submit px-3 infoBtn">매출 확인</button>
