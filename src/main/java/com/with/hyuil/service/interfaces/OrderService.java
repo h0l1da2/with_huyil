@@ -6,7 +6,6 @@ import java.util.Map;
 import com.with.hyuil.model.OrdersVo;
 
 public interface OrderService {
-
 	
 	void addOrders(OrdersVo ordersvo);
 	List<Map<String, Object>> getOrderList(Long id);
