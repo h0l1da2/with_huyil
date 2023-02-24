@@ -101,15 +101,15 @@
 <div class="step-box">
     <div class="step-state step3">
         <ul>
-            <li onclick="location.href='/host/hostForm'" style="cursor:pointer;"><p>마이페이지</p></li>
-            <li onclick="location.href='/host/hotelForm'" style="cursor:pointer;"><p>호텔등록</p></li>
+            <li onclick="location.href='/hosts/hostForm'" style="cursor:pointer;"><p>마이페이지</p></li>
+            <li onclick="location.href='/hosts/hotelForm'" style="cursor:pointer;"><p>호텔등록</p></li>
             <li><p>객실등록</p></li>
         </ul>
     </div>
 </div><br>
 
 <section id="hotelForm">
-    <form name="roomForm" action="/host/roomForm" method="post" enctype="multipart/form-data" onsubmit="return checkForm();">
+    <form name="roomForm" action="/hosts/roomForm" method="post" enctype="multipart/form-data" onsubmit="return checkForm();">
         <div style="margin:0 0 30px 100px;" class="form-group">
             <br>
             <label for="exampleFormControlInput1">객실명</label> &nbsp;&nbsp;

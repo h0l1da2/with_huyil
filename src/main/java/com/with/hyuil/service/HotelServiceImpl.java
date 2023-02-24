@@ -53,6 +53,11 @@ public class HotelServiceImpl implements HotelService {
 	public long getHostId(long id) {
 		return mapper.findHostId(id);
 	}
+	
+	@Override
+	public void delHotel(HotelVo hotelvo) {
+		mapper.delHotel(hotelvo);
+	}
 
 }
 

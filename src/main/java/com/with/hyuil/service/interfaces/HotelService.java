@@ -15,4 +15,5 @@ public interface HotelService {
     void updateHotel(HotelVo hotelvo);
     HotelVo getRoomId(long id);
     long getHostId(long id);
+    void delHotel(HotelVo hotelvo);
 }

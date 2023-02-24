@@ -19,18 +19,27 @@
 	</resultMap>
 	
 	<insert id="insertOrders" parameterType="OrdersVo">
+		<selectKey keyProperty="id" resultType="long" order="BEFORE">
+			select seq_orders.nextval from dual
+		</selectKey>
 		INSERT INTO ORDERS
 		 (ID, USER_ID, TOTAL_PRICE, ORDER_DATE, CHECKIN, CHECKOUT, HOST_ID, TID, USER_NAME, HOTEL, ROOM, PG_TOKEN)
 		  VALUES
-		   (seq_orders.nextval, #{userId}, #{totalPrice}, sysdate, #{checkin}, #{checkout}, #{hostId}, #{tid}, #{userName}, #{hotel}, #{room}, #{pgToken}) 
+		   (#{id}, #{userId}, #{totalPrice}, sysdate, #{checkin}, #{checkout}, #{hostId}, #{tid}, #{userName}, #{hotel}, #{room}, #{pgToken}) 
 	</insert>
 	
-	<select id="findByUserId" parameterType="Long" resultType="Map">
-		SELECT * FROM ORDERS WHERE ORDERS_ID = #{id}
+	<select id="findByHostId" parameterType="Long" resultType="Map">
+		SELECT ID, USER_ID, TOTAL_PRICE, ORDER_DATE, TO_CHAR(checkin, 'YYYY-MM-DD') AS CHECKIN, 
+		TO_CHAR(checkout, 'YYYY-MM-DD') AS CHECKOUT, HOST_ID, TID, USER_NAME, HOTEL, ROOM, PG_TOKEN
+		FROM ORDERS WHERE HOST_ID = #{hostId} AND REMOVE_DATE IS NULL
 	</select>
 	
 	<select id="findByToken" parameterType="String" resultType="OrdersVo">
-		SELECT * FROM ORDERS WHERE PG_TOKEN = #{pgToken}
+		SELECT * FROM ORDERS WHERE PG_TOKEN = #{pgToken} AND REMOVE_DATE IS NULL
 	</select>
+	
+	<update id="delOrder" parameterType="OrdersVo">
+		UPDATE ORDERS SET REMOVE_DATE = sysdate WHERE ID = #{id}
+	</update>
 	
 </mapper>

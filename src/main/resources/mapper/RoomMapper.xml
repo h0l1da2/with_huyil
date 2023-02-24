@@ -26,19 +26,23 @@
 
 	<select id="getroomList" parameterType="long" resultType="Map">
 		select a.id, a.name, a.content, a.max, a.bed, a.normal_price, b.uuid
-		from room a left join files b on(a.id = b.room_id) where a.hotel_id = #{hotel_id}
+		from room a left join files b on(a.id = b.room_id) where a.hotel_id = #{hotel_id} and a.remove_date is null
 	</select>
 
 	<select id="getRoom" parameterType="long" resultType="RoomVo">
-		select * from room where hotel_id = #{hotelId}
+		select * from room where hotel_id = #{hotelId} and remove_date is null
 	</select>
 
 	<select id="findByRoomId" parameterType="long" resultType="RoomVo">
-		select * from room where id = #{id}
+		select * from room where id = #{id} and remove_date is null
 	</select>
 	
 	<update id="updateRoom" parameterType="RoomVo">
-		
+		update room set name = #{name}, content = #{content}, max = #{max}, bed = #{bed}, normal_price = #{normalPrice} where id = #{id}
+	</update>
+	
+	<update id="delRoom" parameterType="RoomVo">
+		update room set remove_date = sysdate where id = #{id}
 	</update>
 
 </mapper>

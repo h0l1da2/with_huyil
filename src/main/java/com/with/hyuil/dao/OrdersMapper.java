@@ -11,6 +11,6 @@ import com.with.hyuil.model.OrdersVo;
 public interface OrdersMapper {
 
 	void insertOrders(OrdersVo ordersvo);
-	List<Map<String, Object>> findByUserId(Long id);
+	List<Map<String, Object>> findByHostId(Long id);
 	OrdersVo findByToken(String pgToken);
 }

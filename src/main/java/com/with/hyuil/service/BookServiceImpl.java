@@ -2,9 +2,11 @@ package com.with.hyuil.service;
 
 import com.with.hyuil.dao.BookMapper;
 import com.with.hyuil.dto.hotel.GlobalPageHandler;
+import com.with.hyuil.dto.info.BookAddDto;
 import com.with.hyuil.dto.info.BookListDto;
 import com.with.hyuil.dto.info.BookSearchDto;
 import com.with.hyuil.dto.info.HostBookListDto;
+import com.with.hyuil.model.BookVo;
 import com.with.hyuil.model.enumaration.Status;
 import com.with.hyuil.service.interfaces.BookService;
 import lombok.RequiredArgsConstructor;
@@ -46,5 +48,10 @@ public class BookServiceImpl implements BookService {
             return "업데이트 실패";
         }
         return "예약 취소 완료";
+    }
+    
+    @Override
+    public void addBook(BookAddDto bookAddDto) {
+    	bookMapper.insertBook(bookAddDto);
     }
 }

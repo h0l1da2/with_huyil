@@ -3,6 +3,10 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.with.hyuil.dao.BookMapper">
+	<insert id="insertBook" parameterType="BookAddDto">
+		INSERT INTO BOOK(ID, USER_ID, HOTEL_ROOM_ID, PLEASE, COUNT, CHECK_IN, CHECK_OUT, STATUS, ORDER_ID)
+		 VALUES(seq_book.nextval, #{userId}, #{roomId}, #{please}, null, #{checkIn}, #{checkOut}, 0, #{orderId})
+	</insert>
     <select id="findById" resultType="BookVo" parameterType="Long">
         SELECT *
         FROM BOOK
