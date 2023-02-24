@@ -31,6 +31,7 @@
 <body id="page-top">
 
     <!-- Page Wrapper -->
+    <!-- Page Wrapper -->
     <div id="wrapper">
 
         <!-- Sidebar -->
@@ -41,7 +42,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3"> 위드휴일 <sup>ADMIN</sup></div>
+                <div class="sidebar-brand-text mx-3">위드휴일 <sup>ADMIN</sup></div>
             </a>
 
             <!-- Divider -->
@@ -62,25 +63,15 @@
                 회원관리
             </div>
             <li class="nav-item">
-                <a class="nav-link" href="#userlist">
+                <a class="nav-link" href="/admin/userList">
                     <i class="fas fa-fw fa-table"></i>
                     <span>일반회원관리</span></a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#bussinesslist">
+                <a class="nav-link" href="/admin/hostList">
                     <i class="fas fa-fw fa-table"></i>
                     <span>사업자회원관리</span></a>
-            </li>
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                등록관리
-            </div>
-            <li class="nav-item">
-                <a class="nav-link" href="#management">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>등록관리목록</span></a>
             </li>
 
             <!-- Heading -->
@@ -90,7 +81,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="/admin/bookList">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>예약승인/거절</span></a>
+                    <span>예약목록</span></a>
             </li>
 
             <!-- Heading -->
@@ -102,6 +93,7 @@
                     <i class="fas fa-fw fa-table"></i>
                     <span>매출내역확인</span></a>
             </li>
+
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
