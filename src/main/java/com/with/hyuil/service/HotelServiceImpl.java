@@ -37,8 +37,6 @@ public class HotelServiceImpl implements HotelService {
 	}
 	@Override
 	public List<HotelListDto> searchHotels(HotelSearchDto hotelSearchDto) {
-		log.info("CheckIn = {}", hotelSearchDto.getCheckIn());
-		log.info("CheckIn = {}", hotelSearchDto.getCheckOut());
 		return mapper.selectForHotelList(hotelSearchDto);
 	}
 	
@@ -60,8 +58,6 @@ public class HotelServiceImpl implements HotelService {
 	@Override
 	public List<StarDto> searchHotelStar(List<HotelListDto> hotelListDtos) {
 		try {
-			log.info("호텔리스트 ? = {}", hotelListDtos);
-			log.info("호텔리스트 사이즈 ? = {}", hotelListDtos.size());
 			if (hotelListDtos.size() == 0) {
 				hotelListDtos = new ArrayList<>();
 				HotelListDto hotelListDto = new HotelListDto();

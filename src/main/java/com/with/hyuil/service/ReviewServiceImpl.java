@@ -22,9 +22,7 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public StarVo saveStar(StarVo starVo) {
-        log.info("스타 있음 ? = {}", starVo.getOrganic());
         reviewMapper.insertStar(starVo);
-        log.info("스타브이오 아이디 드감? = {}", starVo.getId());
         return starVo;
     }
 

@@ -42,9 +42,6 @@ public class AdminJoinController {
 
     @PostMapping("/join")
     public String adminJoin(@ModelAttribute AdminJoinDto adminJoinDto) { //1111
-        log.info("어드민코드 = {}", adminJoinDto.getAdminCode());
-        log.info("어드민id = {}", adminJoinDto.getUserId());
-        log.info("어드민이름 = {}", adminJoinDto.getName());
         int result = usersService.saveAdmin(new UsersVo(adminJoinDto), adminJoinDto.getAdminCode());
         if(result == 1) {
             return "redirect:/admins";
@@ -53,7 +50,7 @@ public class AdminJoinController {
     }
 
     @GetMapping("/loginForm")
-    public String loginHost(HttpServletRequest request, HttpServletResponse response) {
+    public String loginHost() {
         return "host/hostLoginForm";
     }
 

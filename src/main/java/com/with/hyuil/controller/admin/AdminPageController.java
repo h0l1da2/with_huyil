@@ -30,11 +30,9 @@ public class AdminPageController {
 
     @GetMapping("/bookList")
     public String bookList(@AuthenticationPrincipal CustomUserDetails userDetails, @ModelAttribute AdminPageDto adminPageDto, Model model) {
-        model.addAttribute("userId", userDetails.getUsername());
         List<AdminBookListDto> adminBookList = bookService.adminBookList(adminPageDto);
-        TenPageHandler tenPageHandler = new TenPageHandler(adminBookList.get(0).getTotcnt(), adminPageDto.getNowPage());
-        model.addAttribute(adminBookList);
-        model.addAttribute("ph", tenPageHandler);
+        TenPageHandler tenPageHandler = getTenPageHandler(adminBookList.get(0).getTotcnt(), adminPageDto);
+        modelAddList(model, adminBookList, tenPageHandler, userDetails);
         return "book/adminBook";
     }
 
@@ -46,21 +44,17 @@ public class AdminPageController {
 
     @GetMapping("/hostList")
     public String hostList(@AuthenticationPrincipal CustomUserDetails userDetails, @ModelAttribute AdminPageDto adminPageDto, Model model) {
-        model.addAttribute("userId", userDetails.getUsername());
         List<AdminUserListDto> adminHostList = usersService.adminHostList(adminPageDto);
-        TenPageHandler tenPageHandler = new TenPageHandler(adminHostList.get(0).getTotcnt(), adminPageDto.getNowPage());
-        model.addAttribute(adminHostList);
-        model.addAttribute("ph", tenPageHandler);
+        TenPageHandler tenPageHandler = getTenPageHandler(adminHostList.get(0).getTotcnt(), adminPageDto);
+        modelAddList(model, adminHostList, tenPageHandler, userDetails);
         return "management/hostListForm";
     }
 
     @GetMapping("/userList")
     public String userList(@AuthenticationPrincipal CustomUserDetails userDetails, @ModelAttribute AdminPageDto adminPageDto, Model model) {
-        model.addAttribute("userId", userDetails.getUsername());
         List<AdminUserListDto> adminUserList = usersService.adminUserList(adminPageDto);
-        TenPageHandler tenPageHandler = new TenPageHandler(adminUserList.get(0).getTotcnt(), adminPageDto.getNowPage());
-        model.addAttribute(adminUserList);
-        model.addAttribute("ph", tenPageHandler);
+        TenPageHandler tenPageHandler = getTenPageHandler(adminUserList.get(0).getTotcnt(), adminPageDto);
+        modelAddList(model, adminUserList, tenPageHandler, userDetails);
         return "management/userListForm";
     }
 
@@ -68,5 +62,17 @@ public class AdminPageController {
     @PostMapping("/stopUsers")
     public String stopUser(@RequestBody StopDto stopDto) {
         return usersService.stopUser(stopDto);
+    }
+
+    private TenPageHandler getTenPageHandler(Integer adminUserList, AdminPageDto adminPageDto) {
+        TenPageHandler tenPageHandler = new TenPageHandler(adminUserList, adminPageDto.getNowPage());
+        return tenPageHandler;
+    }
+
+    private void modelAddList(
+            Model model, List<? extends Object> adminHostList, TenPageHandler tenPageHandler, CustomUserDetails userDetails) {
+        model.addAttribute("userId", userDetails.getUsername());
+        model.addAttribute(adminHostList);
+        model.addAttribute("ph", tenPageHandler);
     }
 }
