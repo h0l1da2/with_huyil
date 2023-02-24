@@ -47,8 +47,6 @@ public class HotelSearchController {
     private String searchHotels(Model model, HotelSearchDto hotelSearchDto) {
         List<HotelListDto> hotelList = hotelService.searchHotels(hotelSearchDto);
         List<StarDto> starList = hotelService.searchHotelStar(hotelList);
-        log.info("hotelListDto = {}", hotelList);
-        log.info("starList = {}", starList);
 
         if (starList != null) {
             for(StarDto star : starList) {

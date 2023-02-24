@@ -26,7 +26,7 @@ public class KakaoPay {
     private KakaoPayReadyVO kakaoPayReadyVO;
     private KakaoPayApprovalVO kakaoPayApprovalVO;
     
-    public String kakaoPayReady(String name, String userId, String userName, String total_amount, String day, String daytoday, long roomId) {
+    public String kakaoPayReady(String name, String userId, String userName, String total_amount, String day, String daytoday, long roomId, String please) {
  
         RestTemplate restTemplate = new RestTemplate();
  
@@ -45,7 +45,7 @@ public class KakaoPay {
         params.add("quantity", day);
         params.add("total_amount", total_amount);
         params.add("tax_free_amount", "100");
-        params.add("approval_url", "http://localhost:8081/kakaoPaySuccess?userId="+userId+"&userName="+userName+"&day="+daytoday+"&item="+name+"&totalPrice="+total_amount+"&roomId="+roomId);
+        params.add("approval_url", "http://localhost:8081/kakaoPaySuccess?userId="+userId+"&userName="+userName+"&day="+daytoday+"&item="+name+"&totalPrice="+total_amount+"&roomId="+roomId+"&please="+please);
         params.add("cancel_url", "http://localhost:8081/kakaoPayCancel");
         params.add("fail_url", "http://localhost:8081/kakaoPayCancel");
  

@@ -10,4 +10,5 @@ public interface HotelinfoMapper {
 	void insertInfo(HotelInfoVo infovo);
 	HotelInfoVo findByInfoId(long hotelInfoId);
 	void updateInfo(HotelInfoVo infovo);
+	void delInfo(HotelInfoVo infovo);
 }

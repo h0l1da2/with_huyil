@@ -66,8 +66,12 @@ public class FileServiceImpl {
 		}
 	}
 	
-	public long deleteHotelImg(long hotelInfoId) {
-		return mapper.deleteHotelImg(hotelInfoId);
+	public void deleteHotelImg(FileVo filevo) {
+		mapper.deleteHotelImg(filevo);
+	}
+	
+	public void deleteRoomImg(FileVo filevo) {
+		mapper.deleteRoomImg(filevo);
 	}
 	
 }

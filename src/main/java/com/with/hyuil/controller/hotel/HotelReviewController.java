@@ -53,6 +53,7 @@ public class HotelReviewController {
         return "hotel/hotelReview";
     }
 
+
     @ResponseBody
     @PostMapping("/write")
     public String userReview(@RequestBody ReviewDto reviewDto, @AuthenticationPrincipal CustomUserDetails userDetails) {
@@ -66,7 +67,7 @@ public class HotelReviewController {
         reviewDto.setStarId(starVo.getId());
         ReviewVo reviewVo = reviewService.writeReview(new ReviewVo(reviewDto));
 
-        // book 에 해당 review Id ㄱㅏ져와서 넣기ㅎㅎ
+        // book 에 해당 review Id 가져와서 넣기
         int result = bookService.writeBookReview(reviewVo);
         if (result == 0) {
             log.info("리뷰 안써짐");

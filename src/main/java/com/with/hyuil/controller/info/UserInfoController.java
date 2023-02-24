@@ -30,17 +30,9 @@ public class UserInfoController {
     private final EmailService emailService;
     private String code;
 
-    //테스트용
-//    @GetMapping
-//    public String userInfo(Model model) {
-//        model.addAttribute("userId", "user");
-//        model.addAttribute("username", "휴일");
-//        return "user/userInfo";
-//    }
     @GetMapping
     public String userInfo(@AuthenticationPrincipal CustomUserDetails userDetails, Model model) {
-        String username = userDetails.getUsername();
-        model.addAttribute("userId", username);
+        String username = addUserInModel(userDetails, model);
         UsersVo usersVo = findUser(username);
         if (usersVo == null) {
             return "user/loginForm";
@@ -84,8 +76,7 @@ public class UserInfoController {
 
     @GetMapping("/delete")
     public String deletePage(@AuthenticationPrincipal CustomUserDetails userDetails, Model model) {
-        String username = userDetails.getUsername();
-        model.addAttribute("userId", username);
+        addUserInModel(userDetails, model);
         return "user/userDelete";
     }
 
@@ -100,4 +91,9 @@ public class UserInfoController {
         return usersVo;
     }
 
+    private String addUserInModel(CustomUserDetails userDetails, Model model) {
+        String username = userDetails.getUsername();
+        model.addAttribute("userId", username);
+        return username;
+    }
 }

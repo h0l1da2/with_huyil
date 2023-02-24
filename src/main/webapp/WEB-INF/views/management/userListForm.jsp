@@ -78,7 +78,7 @@
         <li class="nav-item">
             <a class="nav-link" href="/admin/bookList">
                 <i class="fas fa-fw fa-table"></i>
-                <span>예약승인/거절</span></a>
+                <span>예약목록</span></a>
         </li>
 
         <!-- Heading -->

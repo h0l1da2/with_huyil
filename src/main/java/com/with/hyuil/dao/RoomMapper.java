@@ -14,4 +14,5 @@ public interface RoomMapper {
 	RoomVo getRoom(long hotelId);
 	RoomVo findByRoomId(long id);
 	void updateRoom(RoomVo roomvo);
+	void delRoom(RoomVo roomvo);
 }

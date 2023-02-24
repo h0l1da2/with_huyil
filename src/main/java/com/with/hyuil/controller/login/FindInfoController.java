@@ -64,7 +64,6 @@ public class FindInfoController {
     @ResponseBody
     @PostMapping("/findId")
     public String findIdForm(@RequestBody FindIdDto findIdDto) {
-        log.info("파인드Id Dto = {}", findIdDto);
         UsersVo user = usersService.findId(findIdDto);
         if (user == null) {
             return "유저 없음";

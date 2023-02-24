@@ -29,6 +29,7 @@
 <body id="page-top">
 
 <!-- Page Wrapper -->
+<!-- Page Wrapper -->
 <div id="wrapper">
 
   <!-- Sidebar -->
@@ -78,7 +79,7 @@
     <li class="nav-item">
       <a class="nav-link" href="/admin/bookList">
         <i class="fas fa-fw fa-table"></i>
-        <span>예약승인/거절</span></a>
+        <span>예약목록</span></a>
     </li>
 
     <!-- Heading -->
@@ -90,6 +91,7 @@
         <i class="fas fa-fw fa-table"></i>
         <span>매출내역확인</span></a>
     </li>
+
 
 
     <!-- Divider -->

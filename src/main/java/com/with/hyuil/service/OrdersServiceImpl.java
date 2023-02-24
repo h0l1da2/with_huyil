@@ -26,7 +26,7 @@ public class OrdersServiceImpl implements OrderService {
 	public List<Map<String, Object>> getOrderList(Long id){
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		try {
-			list = mapper.findByUserId(id);
+			list = mapper.findByHostId(id);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -40,6 +40,11 @@ public class OrdersServiceImpl implements OrderService {
 	
 	public OrdersVo findByToken(String pgToken) {
 		return mapper.findByToken(pgToken);
+	}
+
+	@Override
+	public Integer sumTotalPrice() {
+		return mapper.selectAllPrice();
 	}
 
 }

@@ -55,7 +55,6 @@ public class HostJoinController {
     @ResponseBody
     @PostMapping("/join/id")
     public String joinUser(@RequestBody UserIdDto userIdDto) {
-        log.info("유저아이디? = {}", userIdDto.getUserId());
         return String.valueOf(usersService.idCheck(userIdDto));
     }
 
@@ -77,7 +76,7 @@ public class HostJoinController {
             usersService.saveHost(usersVo);
             sessionRemoveCodeAndDto(session);
 
-            log.info("호스트 회원 가입 = {}", usersDto.getUserId());
+            log.info("New 호스트 회원 가입 = {}", usersDto);
             return "host/hostJoinComplete";
         }
         sessionRemoveCodeAndDto(session);

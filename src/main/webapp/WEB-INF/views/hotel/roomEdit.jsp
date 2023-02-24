@@ -102,15 +102,15 @@
 <div class="step-box">
     <div class="step-state step3">
         <ul>
-            <li onclick="location.href='/host/hostForm'" style="cursor:pointer;"><p>마이페이지</p></li>
-            <li onclick="location.href='/host/hotelForm'" style="cursor:pointer;"><p>호텔등록</p></li>
+            <li onclick="location.href='/hosts/hostForm'" style="cursor:pointer;"><p>마이페이지</p></li>
+            <li onclick="location.href='/hosts/hotelForm'" style="cursor:pointer;"><p>호텔등록</p></li>
             <li><p>객실등록</p></li>
         </ul>
     </div>
 </div><br>
 
 <section id="hotelForm">
-    <form name="editRoom" action="/host/roomEdit" method="post" enctype="multipart/form-data" onsubmit="return checkForm();">
+    <form name="editRoom" action="/hosts/roomEdit" method="post" enctype="multipart/form-data" onsubmit="return checkForm();">
         <div style="margin:0 0 30px 100px;" class="form-group">
             <br>
             <label for="exampleFormControlInput1">객실명</label> &nbsp;&nbsp;
@@ -122,7 +122,7 @@
                    name="uploadFile" id="product_image" onchange="setThumbnail(event);" style="width:300px; height:50px;"> <br>
             <div id="image_thumbnail"></div> <br>
             <c:if test="${not empty filevo }"> 
-            <img class="room-img" id="room_img" src="/host/img?filename=${filevo.uuid }" width="720px" height="480"/></c:if>
+            <img class="room-img" id="room_img" src="/img?filename=${filevo.uuid }" width="720px" height="480"/></c:if>
                 <br>
             <label for="exampleFormControlInput1">객실소개글</label> <br>
             <textArea style=resize:none; id="content" name="content" rows="7" cols="100">${roomvo.content }</textArea> <br> <br>
@@ -134,7 +134,7 @@
                 </tr>
                 <tr><td>
                     <select id="max" name="max">
-                    	<option value="${roomvo.max }인" selected>${roomvo.max }인</option>
+                    	<option value="${roomvo.max }" selected>${roomvo.max }인</option>
                         <option value="1">1인</option>
                         <option value="2">2인</option>
                         <option value="3">3인</option>
@@ -163,26 +163,26 @@
                 수정하기
             </button>
         </div>
+        <input type="hidden" name="roomId" value="${roomvo.id }">
     </form>
 </section> <br>
 <footer class="ftco-footer ftco-bg-dark ftco-section">
     <div class="container">
         <div class="row mb-5">
             <div class="col-md">
-                <div class="ftco-footer-widget mb-4">
-                    <h2 class="ftco-heading-2">놓칠 수 없다</h2>
-                    <p>진짜 개쩌는 호텔진짜 개쩌는 호텔진짜 개쩌는 호텔진짜 개쩌는 호텔진짜 개쩌는 호텔진짜 개쩌는 호텔진짜 개쩌는 호텔진짜 개쩌는 호텔진짜 개쩌는 호텔ㅇㅇ</p>
+                <div class="ftco-footer-widget mb-4 ml-md-5">
+                    <h2 class="ftco-heading-2">조원</h2>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="py-2 d-block">강휴일</a></li>
+                        <li><a href="#" class="py-2 d-block">김남수</a></li>
+                    </ul>
                 </div>
             </div>
             <div class="col-md">
                 <div class="ftco-footer-widget mb-4 ml-md-5">
                     <h2 class="ftco-heading-2">블로그</h2>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="py-2 d-block">강휴일</a></li>
-                        <li><a href="#" class="py-2 d-block">Rooms</a></li>
-                        <li><a href="#" class="py-2 d-block">Amenities</a></li>
-                        <li><a href="#" class="py-2 d-block">Gift Card</a></li>
-                        <li><a href="#" class="py-2 d-block">Services</a></li>
+                        <li><a href="https://hyuil.tistory.com/" class="py-2 d-block">강휴일</a></li>
                     </ul>
                 </div>
             </div>
@@ -190,11 +190,8 @@
                 <div class="ftco-footer-widget mb-4">
                     <h2 class="ftco-heading-2">깃허브</h2>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="py-2 d-block">강휴일</a></li>
-                        <li><a href="#" class="py-2 d-block">About Us</a></li>
-                        <li><a href="#" class="py-2 d-block">Contact Us</a></li>
-                        <li><a href="#" class="py-2 d-block">Services</a></li>
-                        <li><a href="#" class="py-2 d-block">Services</a></li>
+                        <li><a href="https://github.com/h0l1da2" class="py-2 d-block">강휴일</a></li>
+                        <li><a href="https://github.com/KimNamSu96" class="py-2 d-block">김남수</a></li>
                     </ul>
                 </div>
             </div>

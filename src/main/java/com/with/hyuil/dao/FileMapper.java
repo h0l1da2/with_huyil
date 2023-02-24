@@ -10,5 +10,6 @@ public interface FileMapper {
 	void uploadFile(FileVo filevo);
 	FileVo selecthotelImg(long hotelInfoId);
 	FileVo selectRoomImg(long roomId);
-	long deleteHotelImg(long hotelInfoId);
+	void deleteHotelImg(FileVo filevo);
+	void deleteRoomImg(FileVo filevo);
 }

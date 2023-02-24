@@ -161,7 +161,7 @@
         <div class="row">
             <div class="col-sm col-md-6 col-lg-4 ftco-animate">
                 <div class="room">
-                    <a href="<c:url value="/hotel/list/서울"/>" class="img d-flex justify-content-center align-items-center" style="background-image: url(/resources/static/home/images/room-1.jpg);">
+                    <a href="<c:url value="/hotel/list/서울"/>" class="img d-flex justify-content-center align-items-center" style="background-image: url(/resources/static/home/images/seoul.jpg);">
                         <div class="icon d-flex justify-content-center align-items-center">
                             <span class="icon-search2"></span>
                         </div>
@@ -175,7 +175,7 @@
             </div>
             <div class="col-sm col-md-6 col-lg-4 ftco-animate">
                 <div class="room">
-                    <a href="<c:url value="/hotel/list/부산"/>" class="img d-flex justify-content-center align-items-center" style="background-image: url(/resources/static/home/images/room-2.jpg);">
+                    <a href="<c:url value="/hotel/list/부산"/>" class="img d-flex justify-content-center align-items-center" style="background-image: url(/resources/static/home/images/busan.jpg);">
                         <div class="icon d-flex justify-content-center align-items-center">
                             <span class="icon-search2"></span>
                         </div>
@@ -189,7 +189,7 @@
             </div>
             <div class="col-sm col-md-6 col-lg-4 ftco-animate">
                 <div class="room">
-                    <a href="<c:url value="/hotel/list/제주"/>" class="img d-flex justify-content-center align-items-center" style="background-image: url(static/home/images/room-3.jpg);">
+                    <a href="<c:url value="/hotel/list/제주"/>" class="img d-flex justify-content-center align-items-center" style="background-image: url(resources/static/home/images/jeju.jpg);">
                         <div class="icon d-flex justify-content-center align-items-center">
                             <span class="icon-search2"></span>
                         </div>
@@ -204,7 +204,7 @@
             </div>
             <div class="col-sm col-md-6 col-lg-4 ftco-animate">
                 <div class="room">
-                    <a href="<c:url value="/hotel/list/경기"/>" class="img d-flex justify-content-center align-items-center" style="background-image: url(static/home/images/room-4.jpg);">
+                    <a href="<c:url value="/hotel/list/경기"/>" class="img d-flex justify-content-center align-items-center" style="background-image: url(resources/static/home/images/gyeongi.jpg);">
                         <div class="icon d-flex justify-content-center align-items-center">
                             <span class="icon-search2"></span>
                         </div>
@@ -219,7 +219,7 @@
             </div>
             <div class="col-sm col-md-6 col-lg-4 ftco-animate">
                 <div class="room">
-                    <a href="<c:url value="/hotel/list/인천"/>" class="img d-flex justify-content-center align-items-center" style="background-image: url(static/home/images/room-5.jpg);">
+                    <a href="<c:url value="/hotel/list/인천"/>" class="img d-flex justify-content-center align-items-center" style="background-image: url(resources/static/home/images/incheon.jpg);">
                         <div class="icon d-flex justify-content-center align-items-center">
                             <span class="icon-search2"></span>
                         </div>
@@ -234,7 +234,7 @@
             </div>
             <div class="col-sm col-md-6 col-lg-4 ftco-animate">
                 <div class="room">
-                    <a href="<c:url value="/hotel/list/강원"/>" class="img d-flex justify-content-center align-items-center" style="background-image: url(static/home/images/room-6.jpg);">
+                    <a href="<c:url value="/hotel/list/강원"/>" class="img d-flex justify-content-center align-items-center" style="background-image: url(resources/static/home/images/gangwon.jpg);">
                         <div class="icon d-flex justify-content-center align-items-center">
                             <span class="icon-search2"></span>
                         </div>
@@ -254,20 +254,19 @@
     <div class="container">
         <div class="row mb-5">
             <div class="col-md">
-                <div class="ftco-footer-widget mb-4">
-                    <h2 class="ftco-heading-2">놓칠 수 없다</h2>
-                    <p>진짜 개쩌는 호텔진짜 개쩌는 호텔진짜 개쩌는 호텔진짜 개쩌는 호텔진짜 개쩌는 호텔진짜 개쩌는 호텔진짜 개쩌는 호텔진짜 개쩌는 호텔진짜 개쩌는 호텔ㅇㅇ</p>
+                <div class="ftco-footer-widget mb-4 ml-md-5">
+                    <h2 class="ftco-heading-2">조원</h2>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="py-2 d-block">강휴일</a></li>
+                        <li><a href="#" class="py-2 d-block">김남수</a></li>
+                    </ul>
                 </div>
             </div>
             <div class="col-md">
                 <div class="ftco-footer-widget mb-4 ml-md-5">
                     <h2 class="ftco-heading-2">블로그</h2>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="py-2 d-block">강휴일</a></li>
-                        <li><a href="#" class="py-2 d-block">Rooms</a></li>
-                        <li><a href="#" class="py-2 d-block">Amenities</a></li>
-                        <li><a href="#" class="py-2 d-block">Gift Card</a></li>
-                        <li><a href="#" class="py-2 d-block">Services</a></li>
+                        <li><a href="https://hyuil.tistory.com/" class="py-2 d-block">강휴일</a></li>
                     </ul>
                 </div>
             </div>
@@ -275,11 +274,8 @@
                 <div class="ftco-footer-widget mb-4">
                     <h2 class="ftco-heading-2">깃허브</h2>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="py-2 d-block">강휴일</a></li>
-                        <li><a href="#" class="py-2 d-block">About Us</a></li>
-                        <li><a href="#" class="py-2 d-block">Contact Us</a></li>
-                        <li><a href="#" class="py-2 d-block">Services</a></li>
-                        <li><a href="#" class="py-2 d-block">Services</a></li>
+                        <li><a href="https://github.com/h0l1da2" class="py-2 d-block">강휴일</a></li>
+                        <li><a href="https://github.com/KimNamSu96" class="py-2 d-block">김남수</a></li>
                     </ul>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-package com.with.hyuil.service;
+	package com.with.hyuil.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +22,10 @@ public class HotelinfoServiceImpl {
 	
 	public void updateInfo(HotelInfoVo infovo) {
 		mapper.updateInfo(infovo);
+	}
+	
+	public void delInfo(HotelInfoVo infovo) {
+		mapper.delInfo(infovo);
 	}
 
 }

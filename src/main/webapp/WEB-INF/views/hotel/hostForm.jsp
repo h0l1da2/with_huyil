@@ -79,14 +79,14 @@
     <div class="step-state step">
         <ul>
             <li><p>마이페이지</p></li>
-            <li onclick="location.href='/host/hotelForm'" style="cursor:pointer;"><p>호텔등록</p></li>
-            <li onclick="location.href='/host/roomForm'" style="cursor:pointer;"><p>객실등록</p></li>
+            <li onclick="location.href='/hosts/hotelForm'" style="cursor:pointer;"><p>호텔등록</p></li>
+            <li onclick="location.href='/hosts/roomForm'" style="cursor:pointer;"><p>객실등록</p></li>
         </ul>
     </div>
 </div>
 
 <section id="hotelForm">
-    <form name="hostForm" action="/host/hostForm" method="post" onsubmit="return checkForm();">
+    <form name="hostForm" action="/hosts/hostForm" method="post" onsubmit="return checkForm();">
         <div style="margin:0 0 30px 100px;" class="form-group">
             <br>
             <label for="exampleFormControlInput1">이 름</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -128,20 +128,19 @@
     <div class="container">
         <div class="row mb-5">
             <div class="col-md">
-                <div class="ftco-footer-widget mb-4">
-                    <h2 class="ftco-heading-2">놓칠 수 없다</h2>
-                    <p>진짜 개쩌는 호텔진짜 개쩌는 호텔진짜 개쩌는 호텔진짜 개쩌는 호텔진짜 개쩌는 호텔진짜 개쩌는 호텔진짜 개쩌는 호텔진짜 개쩌는 호텔진짜 개쩌는 호텔ㅇㅇ</p>
+                <div class="ftco-footer-widget mb-4 ml-md-5">
+                    <h2 class="ftco-heading-2">조원</h2>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="py-2 d-block">강휴일</a></li>
+                        <li><a href="#" class="py-2 d-block">김남수</a></li>
+                    </ul>
                 </div>
             </div>
             <div class="col-md">
                 <div class="ftco-footer-widget mb-4 ml-md-5">
                     <h2 class="ftco-heading-2">블로그</h2>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="py-2 d-block">강휴일</a></li>
-                        <li><a href="#" class="py-2 d-block">Rooms</a></li>
-                        <li><a href="#" class="py-2 d-block">Amenities</a></li>
-                        <li><a href="#" class="py-2 d-block">Gift Card</a></li>
-                        <li><a href="#" class="py-2 d-block">Services</a></li>
+                        <li><a href="https://hyuil.tistory.com/" class="py-2 d-block">강휴일</a></li>
                     </ul>
                 </div>
             </div>
@@ -149,11 +148,8 @@
                 <div class="ftco-footer-widget mb-4">
                     <h2 class="ftco-heading-2">깃허브</h2>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="py-2 d-block">강휴일</a></li>
-                        <li><a href="#" class="py-2 d-block">About Us</a></li>
-                        <li><a href="#" class="py-2 d-block">Contact Us</a></li>
-                        <li><a href="#" class="py-2 d-block">Services</a></li>
-                        <li><a href="#" class="py-2 d-block">Services</a></li>
+                        <li><a href="https://github.com/h0l1da2" class="py-2 d-block">강휴일</a></li>
+                        <li><a href="https://github.com/KimNamSu96" class="py-2 d-block">김남수</a></li>
                     </ul>
                 </div>
             </div>
