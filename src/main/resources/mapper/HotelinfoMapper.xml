@@ -12,16 +12,28 @@
 		<result property="policy" column="policy"/>
 		<result property="checkIn" column="checkIn"/>
 		<result property="checkOut" column="checkOut"/>
+		<result property="removeDate" column="removeDate"/>
 	</resultMap>
 
 	<insert id="insertInfo" parameterType="HotelInfoVo">
 		<selectKey keyProperty="id" resultType="long" order="BEFORE">
 			select seq_hotelinfo.nextval from dual
 		</selectKey>
-		insert into hotel_info values(#{id}, #{traffic}, #{intro}, #{spot}, #{policy}, #{checkIn}, #{checkOut})
+		insert into hotel_info values(#{id}, #{traffic}, #{intro}, #{spot}, #{policy}, #{checkIn}, #{checkOut}, null)
 	</insert>
 
 	<select id="findByInfoId" parameterType="long" resultType="HotelInfoVo">
-		select * from hotel_info where id = #{hotelId}
+		select * from hotel_info where id = #{hotelInfoId} AND remove_date is null
 	</select>
+	
+	<update id="updateInfo" parameterType="HotelInfoVo">
+		update hotel_info set
+		traffic = #{traffic}, intro = #{intro}, spot = #{spot}, policy = #{policy}, check_in = #{checkIn}, check_out = #{checkOut}
+		where id = #{id}
+	</update>
+	
+	<update id="delInfo" parameterType="HotelInfoVo">	
+		update hotel_info set remove_date = sysdate where id = #{id}
+	</update>
+	
 </mapper>

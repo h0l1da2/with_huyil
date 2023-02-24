@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<<<<<<< HEAD
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-=======
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
->>>>>>> 56faafe70a379487f8eb151a98050c4d748bb164
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,11 +23,6 @@
 
     <link rel="stylesheet" href="/resources/static/hotelDetail/css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="/resources/static/hotelDetail/css/jquery.timepicker.css">
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 56faafe70a379487f8eb151a98050c4d748bb164
     <link rel="stylesheet" href="/resources/static/hotelDetail/css/flaticon.css">
     <link rel="stylesheet" href="/resources/static/hotelDetail/css/icomoon.css">
     <link rel="stylesheet" href="/resources/static/hotelDetail/css/style.css">
@@ -50,7 +41,7 @@
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a href="/host" class="nav-link">호스트등록</a></li>
-                <li class="nav-item"><a href="/user/loginForm" class="nav-link">로그인</a></li>
+                <li class="nav-item"><a href="/user/loginForm" class="nav-link">${userId }</a></li>
             </ul>
         </div>
     </div>
@@ -76,20 +67,20 @@
             <div class="col-md-12 ftco-animate">
                 <div class="single-slider owl-carousel">
                     <div class="item">
-                        <img class="room-img" src="/host/img?filename=${filevo.uuid }"></img>
+                        <img class="room-img" src="/img?filename=${filevo.uuid }"></img>
                     </div>
                 </div>
             </div>
             <div class="col-md-12">
                 <h2 class="mb-4">${hotelvo.name}</h2>
                 <div class="star-rating">
-                    <div class="rating" data-rate="${hotelvo.star}">
+                    <div class="rating" data-rate="<%--${hotelvo.star}--%>">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
-                        <i><a href="/host/hostForm">리뷰 더 보기</a></i>
+                        <i><a href="/hosts/hostForm">리뷰 더 보기</a></i>
                     </div>
                 </div>
                 <p>${infovo.intro}</p> <br>
@@ -101,11 +92,11 @@
             <!-- Rooms Section Begin -->
             <section class="rooms-section spad" id="selectroom">
                 <div class="container">
-                    <div class="row">
+                    <div class="row" style="width:800px;">
                         <c:forEach items="${roomList}" var="list">
                             <div class="col-md-6">
                                 <div class="room-item" style="width: 400px;">
-                                    <img src="/host/img?filename=${list.UUID }" width="370" height="240">
+                                    <img src="/img?filename=${list.UUID }" width="370" height="240">
                                     <div class="ri-text">
                                         <h3>${list.NAME }</h3>
                                         <h4>${list.NORMAL_PRICE } /1박</h4>

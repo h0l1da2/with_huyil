@@ -13,4 +13,6 @@ public interface RoomMapper {
 	List<Map<String, Object>> getroomList(long hotelId);
 	RoomVo getRoom(long hotelId);
 	RoomVo findByRoomId(long id);
+	void updateRoom(RoomVo roomvo);
+	void delRoom(RoomVo roomvo);
 }

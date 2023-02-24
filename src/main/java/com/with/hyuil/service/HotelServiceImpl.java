@@ -41,6 +41,26 @@ public class HotelServiceImpl implements HotelService {
 		log.info("CheckIn = {}", hotelSearchDto.getCheckOut());
 		return mapper.selectForHotelList(hotelSearchDto);
 	}
+	
+	@Override
+	public void updateHotel(HotelVo hotelvo) {
+		mapper.updateHotel(hotelvo);
+	}
+	
+	@Override
+	public HotelVo getRoomId(long id) {
+		return mapper.findByRoomId(id);
+	}
+	
+	@Override
+	public long getHostId(long id) {
+		return mapper.findHostId(id);
+	}
+	
+	@Override
+	public void delHotel(HotelVo hotelvo) {
+		mapper.delHotel(hotelvo);
+	}
 
 	@Override
 	public List<StarDto> searchHotelStar(List<HotelListDto> hotelListDtos) {

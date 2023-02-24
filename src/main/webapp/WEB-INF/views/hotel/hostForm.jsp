@@ -18,6 +18,31 @@
     <!-- 네비바, 풋 css따오기 -->
     <link rel="stylesheet" href="/resources/static/home/css/style.css">
 </head>
+<script>
+	function checkForm() {
+		var f = document.hostForm;
+		if(f.tel.value == "" || f.tel.value == null){
+			alert("전화번호를 확인해주세요.");
+			f.tel.focus();
+			return false;
+		}
+		if(f.bank.value == "" || f.bank.value == null){
+			alert("은행을 확인해주세요");
+			f.tel.focus();
+			return false;
+		}
+		if(f.bankNumber.value == "" || f.bankNumber.value == null){
+			alert("계좌번호를 확인해주세요.");
+			f.bankNumber.focus();
+			return false;
+		}
+		if(f.account.value == "" || f.account.value == null){
+			alert("사업자번호를 확인해주세요.");
+			f.account.focus();
+			return false;
+		}		
+	}
+</script>
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
@@ -30,7 +55,7 @@
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a href="/host" class="nav-link title">호스트등록</a></li>
-                <li class="nav-item"><a href="/user/loginForm" class="nav-link title">로그인</a></li>
+                <li class="nav-item"><a href="/user/loginForm" class="nav-link title">${userId }</a></li>
             </ul>
         </div>
     </div>
@@ -54,14 +79,14 @@
     <div class="step-state step">
         <ul>
             <li><p>마이페이지</p></li>
-            <li onclick="location.href='/host/hotelForm'" style="cursor:pointer;"><p>호텔등록</p></li>
-            <li onclick="location.href='/host/roomForm'" style="cursor:pointer;"><p>객실등록</p></li>
+            <li onclick="location.href='/hosts/hotelForm'" style="cursor:pointer;"><p>호텔등록</p></li>
+            <li onclick="location.href='/hosts/roomForm'" style="cursor:pointer;"><p>객실등록</p></li>
         </ul>
     </div>
 </div>
 
 <section id="hotelForm">
-    <form action="/host/hostForm" method="post">
+    <form name="hostForm" action="/hosts/hostForm" method="post" onsubmit="return checkForm();">
         <div style="margin:0 0 30px 100px;" class="form-group">
             <br>
             <label for="exampleFormControlInput1">이 름</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -69,20 +94,20 @@
             <br> <br>
 
             <label for="exampleFormControlInput1">전화번호</label>  &nbsp;&nbsp;&nbsp;
-            <input type="text" name="tel" value="${users.getTel() }" placeholder="숫자만입력해주세요" style="width:300px; height:50px;">
+            <input type="text" id="tel" name="tel" value="${users.getTel() }" placeholder="숫자만입력해주세요" style="width:300px; height:50px;">
             <div class="form-group">
                 <br>
 
                 <label for="exampleFormControlInput1">거래은행</label>  &nbsp;&nbsp;&nbsp;
-                <input type="text" name="bank" value="${business.bank }" placeholder="예)국민은행" style="width:300px; height:50px;">
+                <input type="text" id="bank" name="bank" value="${business.bank }" placeholder="예)국민은행" style="width:300px; height:50px;">
                 <div class="form-group"> <br> <br>
 
                     <label for="exampleFormControlInput1">계좌번호</label> &nbsp;&nbsp;&nbsp;
-                    <input type="text" name="bankNumber" placeholder="숫자만 입력해주세요" value="${business.account }" style="width:300px; height:50px">
+                    <input type="text" id="bankNumber" name="bankNumber" placeholder="숫자만 입력해주세요" value="${business.account }" style="width:300px; height:50px">
                     <br> <br>
 
                     <label for="exampleFormControlInput1">사업자번호</label>
-                    <input type="text" name="account" placeholder="숫자만 입력해주세요" value="${business.bankNumber }" style="width:300px; height:50px">
+                    <input type="text" id="account" name="account" placeholder="숫자만 입력해주세요" value="${business.bankNumber }" style="width:300px; height:50px">
                     <br> <br>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 

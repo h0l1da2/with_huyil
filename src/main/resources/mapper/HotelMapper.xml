@@ -5,17 +5,21 @@
 <mapper namespace="com.with.hyuil.dao.HotelMapper">
 	<insert id="insertHotel" parameterType="HotelVo">
 		insert into hotel
-		(ID, NAME, HOTEL_INFO_ID, USER_ID, SERVICE, ZONECODE, SIDO, SIGUNGU, ADDRESS, DETAIL, STAR, REMOVE_DATE)
+		(ID, NAME, HOTEL_INFO_ID, USER_ID, SERVICE, ZONECODE, SIDO, SIGUNGU, ADDRESS, DETAIL, REMOVE_DATE)
 		values
-		(seq_hotel.nextval, #{name}, #{hotelInfoId}, #{userId}, #{service}, #{zonecode}, #{sido}, #{sigungu}, #{address}, #{detail}, null, null)
+		(seq_hotel.nextval, #{name}, #{hotelInfoId}, #{userId}, #{service, jdbcType=VARCHAR}, #{zonecode}, #{sido}, #{sigungu}, #{address}, #{detail}, null)
 	</insert>
 
 	<select id="findByHoteluserId" parameterType="Long" resultType="HotelVo">
-		select * from hotel where user_id=#{userId, jdbcType=VARCHAR}
+		select * from hotel where user_id=#{userId, jdbcType=VARCHAR} and remove_date is null 
 	</select>
 
 	<select id="findByHotelId" parameterType="long" resultType="HotelVo">
-		select * from hotel where id = #{id}
+		select * from hotel where id = #{id} and remove_date is null
+	</select>
+	
+	<select id="findByRoomId" parameterType="long" resultType="HotelVo">
+		select a.name, a.hotel_info_id from hotel a left join room b on(a.id = b.hotel_id) where b.id = #{id} and a.remove_date is null
 	</select>
 
 	<select id="selectForHotelList" parameterType="HotelSearchDto" resultType="HotelListDto">
@@ -40,6 +44,7 @@
 		WHERE RNUM > #{offset}
 		AND RNUM &lt;= #{limit}
 	</select>
+<<<<<<< HEAD
 	<select id="findAllStars" resultType="StarDto">
 		SELECT H.ID,
 		    SUM(S.CLEAN) CLEAN,
@@ -55,4 +60,19 @@
 		GROUP BY H.ID
 		ORDER BY H.ID
 	</select>
+	
+	<select id="findHostId" parameterType="long" resultType="long">
+		select a.user_id from hotel a left join users b on (a.user_id = b.id) where a.id = #{id} and a.remove_date is null
+	</select>
+	
+	<update id="updateHotel" parameterType="HotelVo">
+		update hotel set
+		name = #{name}, service = #{service}, zonecode = #{zonecode}, sido = #{sido}, sigungu = #{sigungu}, address = #{address}, detail = #{detail}
+		where id = #{id}
+	</update>
+	
+	<update id="delHotel" parameterType="HotelVo">
+		update hotel set remove_date = sysdate where id = #{id}
+	</update>
+
 </mapper>

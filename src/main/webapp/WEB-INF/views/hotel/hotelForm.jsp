@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
-<script>
-    function setThumbnail(event){
+<script>	
+    function setThumbnail(event) {
+    	var hotel_img = document.getElementById("hotel_img");
         var reader = new FileReader();
         reader.onload = function(event){
             var img = document.createElement("img");
@@ -12,6 +15,73 @@
             document.querySelector("div#image_container").appendChild(img);
         };
         reader.readAsDataURL(event.target.files[0]);
+        hotel_img.style.display = "none";
+    }
+
+    function checkForm() {
+    	var f = document.hotelForm;
+    	if(f.name.value == null || f.name.value == ""){
+    		alert("호텔명을 입력해주세요");
+    		f.name.focus();
+    		return false;
+    	}
+    	if(f.addr.value == null || f.addr.value == ""){
+    		alert("주소를 입력해주세요");
+    		f.addr.focus();
+    		return false;
+    	}
+    	if(f.content.value == null || f.content.value == ""){
+    		alert("상세주소를 입력해주세요");
+    		f.content.focus();
+    		return false;
+    	}
+    	if(${empty filevo} && f.uploadFile.value == ""){
+    		alert("호텔이미지를 입력해주세요");
+    		f.product_image.focus();
+    		return false;
+    	}
+    	if(f.intro.value == null || f.intro.value == ""){
+    		alert("호텔소개를 입력해주세요");
+    		f.intro.focus();
+    		return false;
+    	}
+    	if(f.traffic.value == null || f.traffic.value == ""){
+    		alert("교통정보를 입력해주세요");
+    		f.traffic.focus();
+    		return false;
+    	}
+    	if(f.policy.value == null || f.policy.value == ""){
+    		alert("호텔정책을 입력해주세요");
+    		f.policy.focus();
+    		return false;
+    	}
+    	if(f.checkIn.value == null || f.checkIn.value == ""){
+    		alert("체크인시간을 입력해주세요");
+    		f.checkIn.focus();
+    		return false;
+    	}
+    	if(f.checkOut.value == null || f.checkOut.value == ""){
+    		alert("체크아웃시간을 입력해주세요");
+    		f.checkOut.focus();
+    		return false;
+    	}
+    	var delForm = document.hotelForm;
+    	delForm.action = "/hosts/hotelForm"
+    	delForm.submit();
+    }
+    
+    function delCheck(){
+    	if(confirm("정말 삭제하시겠습니까?")){
+    		if(${not empty roomlist}){
+    			alert("객실을 먼저 삭제해주세요");
+    			return false;
+    		}
+    		var delForm = document.hotelForm;
+    		delForm.action = "/hosts/delHotel"
+    		delForm.submit();
+    	}else {
+    		return false;
+    	}
     }
 </script>
 <head>
@@ -42,7 +112,7 @@
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a href="/host" class="nav-link">호스트등록</a></li>
-                <li class="nav-item"><a href="/user/loginForm" class="nav-link">로그인</a></li>
+                <li class="nav-item"><a href="/user/loginForm" class="nav-link">${userId }</a></li>
             </ul>
         </div>
     </div>
@@ -65,29 +135,29 @@
 <div class="step-box">
     <div class="step-state step2">
         <ul>
-            <li onclick="location.href='/host/hostForm'" style="cursor:pointer;"><p>마이페이지</p></li>
+            <li onclick="location.href='/hosts/hostForm'" style="cursor:pointer;"><p>마이페이지</p></li>
             <li><p>호텔등록</p></li>
-            <li onclick="location.href='/host/roomForm'" style="cursor:pointer;"><p>객실등록</p></li>
+            <li onclick="location.href='/hosts/roomForm'" style="cursor:pointer;"><p>객실등록</p></li>
         </ul>
     </div>
 </div>
 
 <section id="hotelForm">
-    <form action="/host/hotelForm" method="post" enctype="multipart/form-data">
+    <form name="hotelForm" method="post" enctype="multipart/form-data">
         <div style="margin:0 0 30px 100px;" class="form-group">
             <br>
             <label for="exampleFormControlInput1">호텔명</label>
-            <input type="text" name="name" style="width:300px; height:50px;">
+            <input type="text" id="name" name="name" value="${hotelvo.name }" style="width:300px; height:50px;">
             <br> <br>
 
             <label for="exampleFormControlInput1">주소 &nbsp;&nbsp;</label>
-            <input type="text" id="postcode" name="zonecode" placeholder="우편번호" style="width:200px; height:50px;"> &nbsp;&nbsp;
-            <input type="text" id="sido" name="sido" placeholder="시/도" style="width:100px; height:50px;"> &nbsp;&nbsp;
-            <input type="text" id="sigu" name="sigungu" placeholder="시/군/구" style="width:200px; height:50px;">
+            <input type="text" id="postcode" name="zonecode" value="${hotelvo.zonecode }" placeholder="우편번호" style="width:200px; height:50px;" readonly> &nbsp;&nbsp;
+            <input type="text" id="sido" name="sido" value="${hotelvo.sido }" placeholder="시/도" style="width:100px; height:50px;" readonly> &nbsp;&nbsp;
+            <input type="text" id="sigu" name="sigungu" value="${hotelvo.sigungu }" placeholder="시/군/구" style="width:200px; height:50px;" readonly>
             <button class="w-btn w-btn-green" type="button" onclick="sample4_execDaumPostcode()">
                 우편번호 찾기
             </button> <br> <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="text" id="addr" name="address" placeholder="도로명주소" size="40" style="width:400px; height:50px;"> &nbsp;&nbsp;
+            <input type="text" id="addr" name="address" value="${hotelvo.address }" placeholder="도로명주소" size="40" style="width:400px; height:50px;"> &nbsp;&nbsp;
             <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
             <script>
                 function sample4_execDaumPostcode(){
@@ -102,43 +172,48 @@
                     }).open();
                 }
             </script>
-            <input type="text" id="content" name="detail" placeholder="상세주소" style="width:200px; height:50px;"><br><br>
+            <input type="text" id="content" name="detail" value="${hotelvo.detail }" placeholder="상세주소" style="width:200px; height:50px;"><br><br>
 
             <div class="form-group">
                 <label for="exampleFormControlInput1">호탤소개 이미지(1장)</label>
                 <input class="form-control form-control-user" type="file"
                        name="uploadFile" id="product_image" onchange="setThumbnail(event);" style="width:300px; height:50px;">
 
-                <div id="image_container">
-                </div>
+                <div id="image_container"></div>
+                <c:if test="${not empty filevo }"> 
+                <img class="room-img" id="hotel_img" src="/img?filename=${filevo.uuid }" width="720px" height="480"/></c:if>
                 <br>
 
                 <label for="exampleFormControlInput1">서비스</label>
                 <table style='margin-top:0px; border:1px solid #000; height:60px;' cellspacing=0 cellpadding=10>
                     <tr>
-                        <td style="padding:0 20px 0 20px"> <input type="checkbox" name="service" value=Breakfast>Breakfast</td>
-                        <td style="padding:0 20px 0 20px"> <input type="checkbox" name="service" value=Pool>Pool</td>
-                        <td style="padding:0 20px 0 20px"> <input type="checkbox" name="service" value=Parking>Parking</td>
-                        <td style="padding:0 20px 0 20px"> <input type="checkbox" name="service" value=WiFi>WiFi</td>
-                        <td style="padding:0 20px 0 20px"> <input type="checkbox" name="service" value=Fitness>Fitness</td>
+                    	<c:set var="service" value="${hotelvo.service }"/>
+                        <td style="padding:0 20px 0 20px"> <input type="checkbox" name="service" value=Breakfast <c:if test="${fn:contains(service, 'Breakfast')}">checked</c:if>>Breakfast</td>
+                        <td style="padding:0 20px 0 20px"> <input type="checkbox" name="service" value=Pool <c:if test="${fn:contains(service, 'Pool')}">checked</c:if>>Pool</td>
+                        <td style="padding:0 20px 0 20px"> <input type="checkbox" name="service" value=Parking <c:if test="${fn:contains(service, 'Parking')}">checked</c:if>>Parking</td>
+                        <td style="padding:0 20px 0 20px"> <input type="checkbox" name="service" value=WiFi <c:if test="${fn:contains(service, 'WiFi')}">checked</c:if>>WiFi</td>
+                        <td style="padding:0 20px 0 20px"> <input type="checkbox" name="service" value=Fitness <c:if test="${fn:contains(service, 'Fitness')}">checked</c:if>>Fitness</td>
                     </tr>
                 </table> <br>
 
                 <label for="exampleFormControlInput1">호텔소개글</label> <br>
-                <textArea style=resize:none; name="intro" rows="7" cols="100"></textArea> <br> <br>
+                <textArea style=resize:none; id="intro" name="intro" rows="7" cols="100">${infovo.intro }</textArea> <br> <br>
 
                 <label for="exampleFormControlInput1">교통안내</label> <br>
-                <textArea style=resize:none; name="traffic" rows="5" cols="70"></textArea> <br> <br>
+                <textArea style=resize:none; id="traffic" name="traffic" rows="5" cols="70">${infovo.traffic }</textArea> <br> <br>
 
                 <label for="exampleFormControlInput1">주변명소</label> <br>
-                <textArea style=resize:none; name="spot" rows="5" cols="70"></textArea> <br> <br>
+                <textArea style=resize:none; id="spot" name="spot" rows="5" cols="70">${infovo.spot }</textArea> <br> <br>
 
                 <label for="exampleFormControlInput1">호텔정책</label> <br>
-                <textArea style=resize:none; name="policy" rows="7" cols="100"></textArea> <br> <br>
+                <textArea style=resize:none; id="policy" name="policy" rows="7" cols="100">${infovo.policy }</textArea> <br> <br>
 
                 <label for="exampleFormControlInput1">이용시간</label> <br>
-                <select name="checkIn">
-                    <option value="" selected>체크인 가능시간</option>
+                <select id="checkIn" name="checkIn">
+               		<c:choose> <c:when test="${not empty infovo.checkIn }">
+                    <option value="${infovo.checkIn }" selected>${infovo.checkIn }</option> </c:when>
+                    <c:when test="${empty infovo.checkIn  }">
+                    <option value="" selected>체크인 가능시간</option> </c:when> </c:choose>
                     <option value="오후 01:00">오후 01:00</option>
                     <option value="오후 02:00">오후 02:00</option>
                     <option value="오후 03:00">오후 03:00</option>
@@ -149,8 +224,11 @@
                     <option value="오후 08:00">오후 08:00</option>
                 </select> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-                <select name="checkOut">
-                    <option value="" selected>체크아웃 가능시간</option>
+                <select id="checkOut" name="checkOut">
+                	<c:choose> <c:when test="${not empty infovo.checkOut }">
+                    <option value="${infovo.checkOut }" selected>${infovo.checkOut }</option> </c:when>
+                    <c:when test="${empty infovo.checkOut  }">
+                    <option value="" selected>체크아웃 가능시간</option> </c:when> </c:choose>
                     <option value="오전 10:00">오전 10:00</option>
                     <option value="오전 11:00">오전 11:00</option>
                     <option value="오전 12:00">오전 12:00</option>
@@ -162,11 +240,12 @@
                 </select> <br><br>
 
                 <br> <br>
-                <button class="w-btn-neon2" type="submit">
-                    다음단계
-                </button>
+                <input type="button" class="w-btn-outline w-btn-red-outline" value="다음단계" onclick="return checkForm()"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="button" class="w-btn-outline w-btn-red-outline" value="삭제" onclick="return delCheck();">
             </div>
         </div>
+        <input type="hidden" name="infoId" value="${infovo.id }">
+        <input type="hidden" name="hotelId" value="${hotelvo.id }">
     </form>
 </section>
 

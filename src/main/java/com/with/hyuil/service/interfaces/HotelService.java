@@ -14,6 +14,8 @@ public interface HotelService {
     List<StarDto> searchHotelStar(List<HotelListDto> hotelListDtos);
     HotelVo findByHotelUserId(Long userId);
     HotelVo findByHotelId(long id);
-
+    void updateHotel(HotelVo hotelvo);
+    HotelVo getRoomId(long id);
+    long getHostId(long id);
+    void delHotel(HotelVo hotelvo);
 }
-
