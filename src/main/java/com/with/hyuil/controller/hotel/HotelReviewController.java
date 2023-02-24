@@ -24,7 +24,8 @@ import java.util.List;
 @Slf4j
 @RequestMapping("/hotel/review")
 @RequiredArgsConstructor
-public class HotelReviewController {
+public class
+HotelReviewController {
 
     private final ReviewService reviewService;
     private final UsersService usersService;
