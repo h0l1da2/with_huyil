@@ -36,6 +36,9 @@ public interface UsersService {
     UsersVo findTel(FindIdDto findIdDto);
     List<AdminUserListDto> adminHostList(AdminPageDto adminPageDto);
     List<AdminUserListDto> adminUserList(AdminPageDto adminPageDto);
+    Integer userCntForAdmin();
+    Integer hostCntForAdmin();
+    Integer allCntForAdmin();
 
     void updatehost(UsersDto usersdto);
     void updatebusiness(BusinessDto businessdto);

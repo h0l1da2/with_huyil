@@ -166,7 +166,7 @@
     </form>
 
   </div>
-  
+
 
   <div class="row block-9 info-menu" style="text-align: center;">
     <form action="#" class="bg-white p-5 contact-form">

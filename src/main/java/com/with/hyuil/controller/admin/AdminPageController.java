@@ -25,6 +25,16 @@ public class AdminPageController {
     @GetMapping
     public String adminMain(@AuthenticationPrincipal CustomUserDetails userDetails, Model model) {
         model.addAttribute("userId", userDetails.getUsername());
+        // 총 회원
+        Integer allUsers = usersService.allCntForAdmin();
+        // 일반 유저 수
+        Integer users = usersService.userCntForAdmin();
+        // 호스트 유저 수
+        Integer hosts = usersService.hostCntForAdmin();
+
+        model.addAttribute("allUsers", allUsers);
+        model.addAttribute("users", users);
+        model.addAttribute("hosts", hosts);
         return "management/index";
     }
 

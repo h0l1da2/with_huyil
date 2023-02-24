@@ -2,6 +2,7 @@ package com.with.hyuil.dao;
 
 import com.with.hyuil.dto.admin.AdminPageDto;
 import com.with.hyuil.dto.admin.AdminUserListDto;
+import com.with.hyuil.dto.admin.OutTypeDto;
 import com.with.hyuil.dto.info.DeleteDto;
 import com.with.hyuil.dto.info.EmailDto;
 import com.with.hyuil.dto.info.FindIdDto;
@@ -42,6 +43,8 @@ public interface UsersMapper {
     List<AdminUserListDto> selectAllHost(AdminPageDto adminPageDto);
     List<AdminUserListDto> selectAllUser(AdminPageDto adminPageDto);
     int selectAllUsersCnt(AdminPageDto adminPageDto);
+    int selectAllCnt(OutTypeDto outTypeDto);
+    int selectAllUserCntForAdmin(OutTypeDto outTypeDto);
 
     void updatehost(UsersDto usersdto);
     void updatebusiness(BusinessDto businessdto);

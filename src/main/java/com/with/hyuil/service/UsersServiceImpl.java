@@ -1,10 +1,7 @@
 package com.with.hyuil.service;
 
 import com.with.hyuil.dao.UsersMapper;
-import com.with.hyuil.dto.admin.AdminPageDto;
-import com.with.hyuil.dto.admin.AdminUserListDto;
-import com.with.hyuil.dto.admin.StopDto;
-import com.with.hyuil.dto.admin.TenPageHandler;
+import com.with.hyuil.dto.admin.*;
 import com.with.hyuil.dto.info.DeleteDto;
 import com.with.hyuil.dto.info.EmailDto;
 import com.with.hyuil.dto.info.FindIdDto;
@@ -222,6 +219,24 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
+    public Integer userCntForAdmin() {
+        OutTypeDto outTypeDto = getOutTypeDto(Out.SECESSION, Type.USER);
+        return usersMapper.selectAllUserCntForAdmin(outTypeDto);
+    }
+
+    @Override
+    public Integer hostCntForAdmin() {
+        OutTypeDto outTypeDto = getOutTypeDto(Out.SECESSION, Type.HOST);
+        return usersMapper.selectAllUserCntForAdmin(outTypeDto);
+    }
+
+    @Override
+    public Integer allCntForAdmin() {
+        OutTypeDto outTypeDto = getOutTypeDto(Out.SECESSION, Type.USER);
+        return usersMapper.selectAllCnt(outTypeDto);
+    }
+
+    @Override
     public void updatehost(UsersDto usersdto) {
         usersMapper.updatehost(usersdto);
     }
@@ -291,5 +306,12 @@ public class UsersServiceImpl implements UsersService {
             deleteDto.setEtc(none);
         }
 
+    }
+
+    private OutTypeDto getOutTypeDto(Out out, Type type) {
+        OutTypeDto outTypeDto = new OutTypeDto();
+        outTypeDto.setOut(out);
+        outTypeDto.setType(type);
+        return outTypeDto;
     }
 }
