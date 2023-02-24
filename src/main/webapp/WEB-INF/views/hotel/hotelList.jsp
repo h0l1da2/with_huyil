@@ -91,7 +91,7 @@
 									</div>
 								</a>
 								<div class="text p-3 text-center">
-									<h3 class="mb-3"><a href="rooms-single.html">${hotelList.name}</a></h3>
+									<h3 class="mb-3"><a href="<c:url value="/hotel/Detail?id=${hotelList.id}"/>">${hotelList.name}</a></h3>
 									<p><span class="price mr-2">${hotelList.price}</span> <span class="per">1 박</span></p>
 									<ul class="list">
 										<li><span>리뷰</span>${hotelList.star}</li>

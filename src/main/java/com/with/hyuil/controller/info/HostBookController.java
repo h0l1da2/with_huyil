@@ -62,7 +62,6 @@ public class HostBookController {
         return "book/hostBookComplete";
     }
 
-<<<<<<< HEAD
     @GetMapping("/book/cancel")
     public String cancelBookList(@AuthenticationPrincipal CustomUserDetails userDetails, @ModelAttribute BookSearchDto bookSearchDto, Model model) {
         UsersVo usersVo = getUsersVo(userDetails.getUsername());
@@ -77,8 +76,6 @@ public class HostBookController {
         return "book/hostBookComplete";
     }
 
-=======
->>>>>>> c3c0dad9ef57c4812c6913cc3f18fef57ba4d00e
     private List<HostBookListDto> getBookList(BookSearchDto bookSearchDto, Status complete, UsersVo usersVo) {
         bookSearchDto.setStatus(complete);
         bookSearchDto.setUserId(usersVo.getId());

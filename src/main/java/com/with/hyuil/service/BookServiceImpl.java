@@ -59,7 +59,12 @@ public class BookServiceImpl implements BookService {
         }
         return "예약 취소 완료";
     }
-    
+
+    @Override
+    public String hostBookCancel(Long id) {
+        return null;
+    }
+
     @Override
     public void addBook(BookAddDto bookAddDto) {
     	bookMapper.insertBook(bookAddDto);
