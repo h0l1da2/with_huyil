@@ -166,28 +166,7 @@
     </form>
 
   </div>
-
-  <div class="row block-9 info-menu" style="text-align: center;">
-    <form action="#" class="bg-white p-5 contact-form">
-      <div class="menu">
-        <h2><label class="h3 menuBtn">SNS 연결 정보</label></h2>
-        <ul class="hide">
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="카카오톡">
-          </div>
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="페이스북">
-          </div>
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="구글">
-          </div>
-          <div class="form-group">
-            <input type="submit" value="연결 끊기" class="btn btn-primary py-3 px-5">
-          </div>
-        </ul>
-      </div>
-    </form>
-  </div>
+  
 
   <div class="row block-9 info-menu" style="text-align: center;">
     <form action="#" class="bg-white p-5 contact-form">
