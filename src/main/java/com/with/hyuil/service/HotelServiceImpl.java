@@ -56,6 +56,11 @@ public class HotelServiceImpl implements HotelService {
 	}
 
 	@Override
+	public Integer allHotelCnt() {
+		return mapper.selectAllCnt();
+	}
+
+	@Override
 	public List<StarDto> searchHotelStar(List<HotelListDto> hotelListDtos) {
 		try {
 			if (hotelListDtos.size() == 0) {
