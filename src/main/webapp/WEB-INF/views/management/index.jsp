@@ -1,7 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
 
@@ -21,11 +21,16 @@ pageEncoding="UTF-8"%>
 
     <!-- Custom styles for this template-->
     <link href="/resources/static/management/css/sb-admin-2.min.css" rel="stylesheet">
-
+    <style>
+        .chart {
+            margin-top: -15px !important;
+        }
+    </style>
 </head>
 
 <body id="page-top">
 
+    <!-- Page Wrapper -->
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -33,7 +38,7 @@ pageEncoding="UTF-8"%>
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#index">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -45,7 +50,7 @@ pageEncoding="UTF-8"%>
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="#index">
+                <a class="nav-link" href="/admin">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>관리자페이지</span></a>
             </li>
@@ -58,25 +63,15 @@ pageEncoding="UTF-8"%>
                 회원관리
             </div>
             <li class="nav-item">
-                <a class="nav-link" href="#userlist">
+                <a class="nav-link" href="/admin/userList">
                     <i class="fas fa-fw fa-table"></i>
                     <span>일반회원관리</span></a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#bussinesslist">
+                <a class="nav-link" href="/admin/hostList">
                     <i class="fas fa-fw fa-table"></i>
                     <span>사업자회원관리</span></a>
-            </li>
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                등록관리
-            </div>
-            <li class="nav-item">
-                <a class="nav-link" href="#management">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>등록관리목록</span></a>
             </li>
 
             <!-- Heading -->
@@ -84,9 +79,9 @@ pageEncoding="UTF-8"%>
                 예약관리
             </div>
             <li class="nav-item">
-                <a class="nav-link" href="/">
+                <a class="nav-link" href="/admin/bookList">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>예약승인/거절</span></a>
+                    <span>예약목록</span></a>
             </li>
 
             <!-- Heading -->
@@ -94,10 +89,11 @@ pageEncoding="UTF-8"%>
                 매출관리
             </div>
             <li class="nav-item">
-                <a class="nav-link" href="/">
+                <a class="nav-link" id="noComplete">
                     <i class="fas fa-fw fa-table"></i>
                     <span>매출내역확인</span></a>
             </li>
+
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -152,57 +148,6 @@ pageEncoding="UTF-8"%>
                             </div>
                         </li>
 
-                        <!-- Nav Item - Alerts -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">3+</span>
-                            </a>
-                            <!-- Dropdown - Alerts -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
-                                <h6 class="dropdown-header">
-                                    알람
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-success">
-                                            <i class="fas fa-donate text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 7, 2019</div>
-                                        $290.29 has been deposited into your account!
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 2, 2019</div>
-                                        Spending Alert: We've noticed unusually high spending for your account.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                            </div>
-                        </li>
-
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -210,32 +155,9 @@ pageEncoding="UTF-8"%>
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle"
-                                    src="main/resources/static/management/images/undraw_profile.svg">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">${userId}</span>
+
                             </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
-                            </div>
-                        </li>
 
                     </ul>
 
@@ -247,9 +169,7 @@ pageEncoding="UTF-8"%>
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">관리자페이지</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> 매출내역</a>
+                        <h1 class="h3 mb-0 text-gray-800">위드휴일 관리자</h1>
                     </div>
 
                     <!-- Content Row -->
@@ -262,8 +182,8 @@ pageEncoding="UTF-8"%>
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                한달 매출</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">4000만원</div>
+                                                총 회원</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">${allUsers} 명</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -280,8 +200,8 @@ pageEncoding="UTF-8"%>
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                1년 매출</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">3.0000만원</div>
+                                                등록 호텔</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">${allHotelCnt} 개</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -299,8 +219,8 @@ pageEncoding="UTF-8"%>
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                숙박등록대기목록</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">3</div>
+                                                총 매출</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">${totalPrice} 원</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -319,27 +239,19 @@ pageEncoding="UTF-8"%>
                         <div class="col-xl-8 col-lg-7">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">매출그래프</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">
+                                        <script>
+                                            date = new Date().toLocaleDateString();
+                                            document.write(date);
+                                        </script>공지사항</h6>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
                                     <div class="chart-area">
+                                        <p>매출 그래프 관련 준비중 안내</p>
+                                        <p>예약 임의 취소시 면담</p>
+                                        <p>어드민 시크릿키 잊어버리신 분 담당자에게 연락 주세요</p>
                                         <canvas id="myAreaChart"></canvas>
                                     </div>
                                 </div>
@@ -350,38 +262,22 @@ pageEncoding="UTF-8"%>
                         <div class="col-xl-4 col-lg-5">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">회원탈퇴</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">회원 인원</h6>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
+                                    <div id="chart" style="width: 100%; height:330px;">
                                     <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="myPieChart"></canvas>
+                                        <!-- 차트를 그려줄 영역 -->
+                                        <canvas id="myChart"></canvas>
                                     </div>
-                                    <div class="mt-4 text-center small">
+                                    <div class="mt-4 text-center small chart">
                                         <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> 사이트 이용 불만족으로 탈퇴
+                                            <i class="fas fa-circle text-primary"></i> 일반 회원
                                         </span>
                                         <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> 타사이트 이용으로 인한 탈퇴
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> 별이유없음
+                                            <i class="fas fa-circle text-success"></i> 호스트
                                         </span>
                                     </div>
                                 </div>
@@ -405,7 +301,7 @@ pageEncoding="UTF-8"%>
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span>Copyright &copy; WithHyuil 2023</span>
                     </div>
                 </div>
             </footer>
@@ -441,6 +337,10 @@ pageEncoding="UTF-8"%>
             </div>
         </div>
     </div>
+        </div>
+    </div>
+    </div>
+
 
     <!-- Bootstrap core JavaScript-->
     <script src="/resources/static/management/js/jquery.min.js"></script>
@@ -458,7 +358,51 @@ pageEncoding="UTF-8"%>
     <!-- Page level custom scripts -->
     <script src="/resources/static/management/js/demo/chart-area-demo.js"></script>
     <script src="/resources/static/management/js/demo/chart-pie-demo.js"></script>
+    <script src="/resources/static/management/js/echarts.min.js"></script>
+        <!-- 차트 링크 -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script>
 
+    var ctx = document.getElementById('myChart');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['총 회원', '유저', '호스트'],
+            datasets: [{
+                label: '총 회원',
+                data: [${allUsers}, ${users}, ${hosts}],
+                backgroundColor: [
+                    'rgba(234,86,149,0.2)',
+                    'rgba(75,138,255,0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                ],
+                borderColor: [
+                    'rgb(255,55,132)',
+                    'rgb(55,88,255)',
+                    'rgba(75, 192, 192, 1)',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+
+    $(document).ready(function() {
+        $('#noComplete').click(function () {
+            alert("준비 중입니다");
+            return false;
+        });
+    })
+</script>
 </body>
 
 </html>

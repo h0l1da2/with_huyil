@@ -1,5 +1,8 @@
 package com.with.hyuil.service.interfaces;
 
+import com.with.hyuil.dto.admin.AdminPageDto;
+import com.with.hyuil.dto.admin.AdminUserListDto;
+import com.with.hyuil.dto.admin.StopDto;
 import com.with.hyuil.dto.info.DeleteDto;
 import com.with.hyuil.dto.info.EmailDto;
 import com.with.hyuil.dto.info.FindIdDto;
@@ -9,6 +12,8 @@ import com.with.hyuil.dto.users.UserIdDto;
 import com.with.hyuil.dto.users.UsersDto;
 import com.with.hyuil.model.RolesVo;
 import com.with.hyuil.model.UsersVo;
+
+import java.util.List;
 
 
 public interface UsersService {
@@ -26,8 +31,14 @@ public interface UsersService {
     String findPassword(PasswordDto passwordDto);
     BusinessDto findBusinessDto(Long id);
     String deleteUser(DeleteDto deleteDto);
+    String stopUser(StopDto stopDto);
     UsersVo findId(FindIdDto findIdDto);
     UsersVo findTel(FindIdDto findIdDto);
+    List<AdminUserListDto> adminHostList(AdminPageDto adminPageDto);
+    List<AdminUserListDto> adminUserList(AdminPageDto adminPageDto);
+    Integer userCntForAdmin();
+    Integer hostCntForAdmin();
+    Integer allCntForAdmin();
 
     void updatehost(UsersDto usersdto);
     void updatebusiness(BusinessDto businessdto);

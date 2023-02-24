@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html lang="ko">
 <head>
 	<title>Deluxe - Free Bootstrap 4 Template by Colorlib</title>
@@ -85,7 +86,7 @@
 					<c:forEach var="hotelList" items="${hotelListDtoList}">
 						<div class="col-sm col-md-6 col-lg-4 ftco-animate">
 							<div class="room">
-								<a href="rooms-single.html" class="img d-flex justify-content-center align-items-center" style="background-image: url(<c:url value='/resources/static/home/images/room-1.jpg'/>);">
+								<a href="<c:url value="/hotel/Detail?id=${hotelList.id}"/>" class="img d-flex justify-content-center align-items-center" style="background-image: url(<c:url value='/resources/static/home/images/room-1.jpg'/>);">
 									<div class="icon d-flex justify-content-center align-items-center">
 										<span class="icon-search2"></span>
 									</div>
@@ -94,13 +95,27 @@
 									<h3 class="mb-3"><a href="<c:url value="/hotel/Detail?id=${hotelList.id}"/>">${hotelList.name}</a></h3>
 									<p><span class="price mr-2">${hotelList.price}</span> <span class="per">1 박</span></p>
 									<ul class="list">
-										<li><span>리뷰</span>${hotelList.star}</li>
-										<div class="form-check">
-											<input type="checkbox" class="form-check-input" id="exampleCheck1">
-											<label class="form-check-label" for="exampleCheck1">
-												<p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i></span></p>
-											</label>
-										</div>
+										<li><span>리뷰</span></li>
+										<p class="rate"><span>
+											<c:if test="${0.0 < hotelList.star && hotelList.star <= 1.5}">
+												<i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i>
+											</c:if>
+											<c:if test="${1.5 < hotelList.star && hotelList.star <= 2.5}">
+												<i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i>
+											</c:if>
+											<c:if test="${2.5 < hotelList.star && hotelList.star <= 3.5}">
+												<i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i>
+											</c:if>
+											<c:if test="${3.5 < hotelList.star && hotelList.star <= 4.5}">
+												<i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i>
+											</c:if>
+											<c:if test="${4.5 < hotelList.star && hotelList.star <= 5.0}">
+												<i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i>
+											</c:if>
+											<c:if test="${hotelList.star == 0.0}">
+												<i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i>
+											</c:if>
+											</span></p>
 										<li>${hotelList.sigungu}</li>
 									</ul>
 									<hr>
@@ -185,41 +200,41 @@
 						</div>
 					</form>
 				</div>
-				<div class="sidebar-wrap bg-light ftco-animate">
-					<h3 class="heading mb-4">리뷰 순서</h3>
-					<form method="post" class="star-rating">
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input" id="exampleCheck1">
-							<label class="form-check-label" for="exampleCheck1">
-								<p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i></span></p>
-							</label>
-						</div>
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input" id="exampleCheck1">
-							<label class="form-check-label" for="exampleCheck1">
-								<p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i></span></p>
-							</label>
-						</div>
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input" id="exampleCheck1">
-							<label class="form-check-label" for="exampleCheck1">
-								<p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i></span></p>
-							</label>
-						</div>
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input" id="exampleCheck1">
-							<label class="form-check-label" for="exampleCheck1">
-								<p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i></span></p>
-							</label>
-						</div>
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input" id="exampleCheck1">
-							<label class="form-check-label" for="exampleCheck1">
-								<p class="rate"><span><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i></span></p>
-							</label>
-						</div>
-					</form>
-				</div>
+<%--				<div class="sidebar-wrap bg-light ftco-animate">--%>
+<%--					<h3 class="heading mb-4">리뷰 순서</h3>--%>
+<%--					<form method="post" class="star-rating">--%>
+<%--						<div class="form-check">--%>
+<%--							<input type="checkbox" class="form-check-input" id="exampleCheck1">--%>
+<%--							<label class="form-check-label" for="exampleCheck1">--%>
+<%--								<p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i></span></p>--%>
+<%--							</label>--%>
+<%--						</div>--%>
+<%--						<div class="form-check">--%>
+<%--							<input type="checkbox" class="form-check-input" id="exampleCheck1">--%>
+<%--							<label class="form-check-label" for="exampleCheck1">--%>
+<%--								<p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i></span></p>--%>
+<%--							</label>--%>
+<%--						</div>--%>
+<%--						<div class="form-check">--%>
+<%--							<input type="checkbox" class="form-check-input" id="exampleCheck1">--%>
+<%--							<label class="form-check-label" for="exampleCheck1">--%>
+<%--								<p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i></span></p>--%>
+<%--							</label>--%>
+<%--						</div>--%>
+<%--						<div class="form-check">--%>
+<%--							<input type="checkbox" class="form-check-input" id="exampleCheck1">--%>
+<%--							<label class="form-check-label" for="exampleCheck1">--%>
+<%--								<p class="rate"><span><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i></span></p>--%>
+<%--							</label>--%>
+<%--						</div>--%>
+<%--						<div class="form-check">--%>
+<%--							<input type="checkbox" class="form-check-input" id="exampleCheck1">--%>
+<%--							<label class="form-check-label" for="exampleCheck1">--%>
+<%--								<p class="rate"><span><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i></span></p>--%>
+<%--							</label>--%>
+<%--						</div>--%>
+<%--					</form>--%>
+<%--				</div>--%>
 			</div>
 		</div>
 	</div>
@@ -229,20 +244,19 @@
 	<div class="container">
 		<div class="row mb-5">
 			<div class="col-md">
-				<div class="ftco-footer-widget mb-4">
-					<h2 class="ftco-heading-2">놓칠 수 없다</h2>
-					<p>진짜 개쩌는 호텔진짜 개쩌는 호텔진짜 개쩌는 호텔진짜 개쩌는 호텔진짜 개쩌는 호텔진짜 개쩌는 호텔진짜 개쩌는 호텔진짜 개쩌는 호텔진짜 개쩌는 호텔ㅇㅇ</p>
+				<div class="ftco-footer-widget mb-4 ml-md-5">
+					<h2 class="ftco-heading-2">조원</h2>
+					<ul class="list-unstyled">
+						<li><a href="#" class="py-2 d-block">강휴일</a></li>
+						<li><a href="#" class="py-2 d-block">김남수</a></li>
+					</ul>
 				</div>
 			</div>
 			<div class="col-md">
 				<div class="ftco-footer-widget mb-4 ml-md-5">
 					<h2 class="ftco-heading-2">블로그</h2>
 					<ul class="list-unstyled">
-						<li><a href="#" class="py-2 d-block">강휴일</a></li>
-						<li><a href="#" class="py-2 d-block">Rooms</a></li>
-						<li><a href="#" class="py-2 d-block">Amenities</a></li>
-						<li><a href="#" class="py-2 d-block">Gift Card</a></li>
-						<li><a href="#" class="py-2 d-block">Services</a></li>
+						<li><a href="https://hyuil.tistory.com/" class="py-2 d-block">강휴일</a></li>
 					</ul>
 				</div>
 			</div>
@@ -250,11 +264,8 @@
 				<div class="ftco-footer-widget mb-4">
 					<h2 class="ftco-heading-2">깃허브</h2>
 					<ul class="list-unstyled">
-						<li><a href="#" class="py-2 d-block">강휴일</a></li>
-						<li><a href="#" class="py-2 d-block">About Us</a></li>
-						<li><a href="#" class="py-2 d-block">Contact Us</a></li>
-						<li><a href="#" class="py-2 d-block">Services</a></li>
-						<li><a href="#" class="py-2 d-block">Services</a></li>
+						<li><a href="https://github.com/h0l1da2" class="py-2 d-block">강휴일</a></li>
+						<li><a href="https://github.com/KimNamSu96" class="py-2 d-block">김남수</a></li>
 					</ul>
 				</div>
 			</div>

@@ -1,6 +1,7 @@
 package com.with.hyuil.service;
 
 import com.with.hyuil.dao.UsersMapper;
+import com.with.hyuil.dto.admin.*;
 import com.with.hyuil.dto.info.DeleteDto;
 import com.with.hyuil.dto.info.EmailDto;
 import com.with.hyuil.dto.info.FindIdDto;
@@ -115,7 +116,6 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public int modifyEmail(EmailDto emailDto) {
-        log.info("이메일 들어왔다 ㅋㅋ");
         return usersMapper.updateEmail(emailDto);
     }
 
@@ -166,10 +166,10 @@ public class UsersServiceImpl implements UsersService {
         if(!matches) {
             return "비밀번호가 틀립니다";
         }
-        Map map = new HashMap();
-        map.put("userId", user.getUserId());
-        map.put("out", Out.SECESSION);
-        int i = usersMapper.updateForDelete(map);
+
+        int i = usersMapper.updateForDelete(setMap(
+                user.getUserId(), Out.SECESSION)
+        );
         if (i == 0) {
             return "유저 탈퇴 정보 업데이트 실패";
         }
@@ -186,6 +186,17 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
+    public String stopUser(StopDto stopDto) {
+        int result = usersMapper.updateForDelete(
+                setMap(stopDto.getUserId(), Out.STOP)
+        );
+        if (result == 1) {
+            return "정지 완료";
+        }
+        return "정지 실패";
+    }
+
+    @Override
     public UsersVo findId(FindIdDto findIdDto) {
         return usersMapper.findByNameEmail(findIdDto);
     }
@@ -193,6 +204,69 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public UsersVo findTel(FindIdDto findIdDto) {
         return usersMapper.findByTel(findIdDto);
+    }
+
+    @Override
+    public List<AdminUserListDto> adminHostList(AdminPageDto adminPageDto) {
+        pagingList(adminPageDto, Type.HOST);
+        return usersMapper.selectAllHost(adminPageDto);
+    }
+
+    @Override
+    public List<AdminUserListDto> adminUserList(AdminPageDto adminPageDto) {
+        pagingList(adminPageDto, Type.USER);
+        return usersMapper.selectAllUser(adminPageDto);
+    }
+
+    @Override
+    public Integer userCntForAdmin() {
+        OutTypeDto outTypeDto = getOutTypeDto(Out.SECESSION, Type.USER);
+        return usersMapper.selectAllUserCntForAdmin(outTypeDto);
+    }
+
+    @Override
+    public Integer hostCntForAdmin() {
+        OutTypeDto outTypeDto = getOutTypeDto(Out.SECESSION, Type.HOST);
+        return usersMapper.selectAllUserCntForAdmin(outTypeDto);
+    }
+
+    @Override
+    public Integer allCntForAdmin() {
+        OutTypeDto outTypeDto = getOutTypeDto(Out.SECESSION, Type.USER);
+        return usersMapper.selectAllCnt(outTypeDto);
+    }
+
+    @Override
+    public void updatehost(UsersDto usersdto) {
+        usersMapper.updatehost(usersdto);
+    }
+
+    @Override
+    public void updatebusiness(BusinessDto businessdto) {
+        usersMapper.updatebusiness(businessdto);
+    }
+
+    @Override
+    public UsersDto getId(String userId) {
+        return usersMapper.getId(userId);
+    }
+
+    private String passwordEncoding(String password) {
+        return passwordEncoder.encode(password);
+    }
+
+    private void pagingList(AdminPageDto adminPageDto, Type type) {
+        adminPageDto.setType(type);
+        int totalCnt = usersMapper.selectAllUsersCnt(adminPageDto);
+        TenPageHandler tenPageHandler = new TenPageHandler(totalCnt, adminPageDto.getViewPage());
+        adminPageDto.calcPage(tenPageHandler.getOffsetPost());
+    }
+
+    private Map setMap(String stopDto, Out stop) {
+        HashMap<Object, Object> map = new HashMap<>();
+        map.put("userId", stopDto);
+        map.put("out", stop);
+        return map;
     }
 
     private void dtoNoArgSet(DeleteDto deleteDto) {
@@ -234,22 +308,10 @@ public class UsersServiceImpl implements UsersService {
 
     }
 
-    private String passwordEncoding(String password) {
-        return passwordEncoder.encode(password);
-    }
-
-    @Override
-    public void updatehost(UsersDto usersdto) {
-        usersMapper.updatehost(usersdto);
-    }
-
-    @Override
-    public void updatebusiness(BusinessDto businessdto) {
-        usersMapper.updatebusiness(businessdto);
-    }
-
-    @Override
-    public UsersDto getId(String userId) {
-        return usersMapper.getId(userId);
+    private OutTypeDto getOutTypeDto(Out out, Type type) {
+        OutTypeDto outTypeDto = new OutTypeDto();
+        outTypeDto.setOut(out);
+        outTypeDto.setType(type);
+        return outTypeDto;
     }
 }

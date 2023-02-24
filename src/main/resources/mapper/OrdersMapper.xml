@@ -41,5 +41,11 @@
 	<update id="delOrder" parameterType="OrdersVo">
 		UPDATE ORDERS SET REMOVE_DATE = sysdate WHERE ID = #{id}
 	</update>
-	
+
+	<select id="selectAllPrice" resultType="Integer">
+		SELECT SUM(TOTAL_PRICE) TOTAL_PRICE
+		FROM ORDERS
+	</select>
+
+
 </mapper>

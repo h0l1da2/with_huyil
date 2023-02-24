@@ -17,7 +17,8 @@ public class OrdersServiceImpl implements OrderService {
 
 	@Autowired
 	private OrdersMapper mapper;
-	
+
+	@Override
 	public void addOrders(OrdersVo ordersvo) {
 		mapper.insertOrders(ordersvo);
 	}
@@ -39,6 +40,11 @@ public class OrdersServiceImpl implements OrderService {
 	
 	public OrdersVo findByToken(String pgToken) {
 		return mapper.findByToken(pgToken);
+	}
+
+	@Override
+	public Integer sumTotalPrice() {
+		return mapper.selectAllPrice();
 	}
 
 }

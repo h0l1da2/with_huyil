@@ -75,7 +75,6 @@ public class HostInfoController {
     @ResponseBody
     @PostMapping("/modify/password")
     public String passwordModify(@RequestBody PasswordDto passwordDto) {
-        log.info("passwordDto = {}", passwordDto);
         return usersService.modifyPassword(passwordDto);
     }
 

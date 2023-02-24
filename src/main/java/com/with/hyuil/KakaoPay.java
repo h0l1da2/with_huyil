@@ -45,9 +45,9 @@ public class KakaoPay {
         params.add("quantity", day);
         params.add("total_amount", total_amount);
         params.add("tax_free_amount", "100");
-        params.add("approval_url", "http://localhost:8081/kakaoPaySuccess?userId="+userId+"&userName="+userName+"&day="+daytoday+"&item="+name+"&totalPrice="+total_amount+"&roomId="+roomId+"&please="+please);
-        params.add("cancel_url", "http://localhost:8081/kakaoPayCancel");
-        params.add("fail_url", "http://localhost:8081/kakaoPayCancel");
+        params.add("approval_url", "http://localhost:8080/kakaoPaySuccess?userId="+userId+"&userName="+userName+"&day="+daytoday+"&item="+name+"&totalPrice="+total_amount+"&roomId="+roomId+"&please="+please);
+        params.add("cancel_url", "http://localhost:8080/kakaoPayCancel");
+        params.add("fail_url", "http://localhost:8080/kakaoPayCancel");
  
          HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String, String>>(params, headers);
  

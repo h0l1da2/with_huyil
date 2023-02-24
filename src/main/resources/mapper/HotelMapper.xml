@@ -40,6 +40,17 @@
 		WHERE RNUM > #{offset}
 		AND RNUM &lt;= #{limit}
 	</select>
+
+	<select id="findHostId" parameterType="long" resultType="long">
+		select a.user_id from hotel a left join users b on (a.user_id = b.id) where a.id = #{id} and a.remove_date is null
+	</select>
+
+	<update id="updateHotel" parameterType="HotelVo">
+		update hotel
+		set name = #{name}, service = #{service}, zonecode = #{zonecode}, sido = #{sido}, sigungu = #{sigungu}, address = #{address}, detail = #{detail}
+		where id = #{id}
+	</update>
+
 	<select id="findAllStars" resultType="StarDto">
 		SELECT H.ID,
 		    SUM(S.CLEAN) CLEAN,
@@ -55,17 +66,15 @@
 		GROUP BY H.ID
 		ORDER BY H.ID
 	</select>
-	
-	<select id="findHostId" parameterType="long" resultType="long">
-		select a.user_id from hotel a left join users b on (a.user_id = b.id) where a.id = #{id} and a.remove_date is null
+
+
+
+	<select id="selectAllCnt" resultType="Integer">
+		SELECT COUNT(*)
+		FROM HOTEL
+		WHERE REMOVE_DATE IS NULL
 	</select>
-	
-	<update id="updateHotel" parameterType="HotelVo">
-		update hotel set
-		name = #{name}, service = #{service}, zonecode = #{zonecode}, sido = #{sido}, sigungu = #{sigungu}, address = #{address}, detail = #{detail}
-		where id = #{id}
-	</update>
-	
+
 	<update id="delHotel" parameterType="HotelVo">
 		update hotel set remove_date = sysdate where id = #{id}
 	</update>

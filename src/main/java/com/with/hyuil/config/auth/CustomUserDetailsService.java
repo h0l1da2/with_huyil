@@ -16,18 +16,13 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        log.info("1111");
         UsersVo user = usersService.loginForFind(username);
-        log.info("222");
         if (user == null) {
             log.info("....");
             throw new UsernameNotFoundException("아이디가 틀립니다");
         }
-        log.info("3333");
         RolesVo rolesVo = usersService.roleForLogin(user.getId());
-        log.info("4444");
         user.myRole(rolesVo);
-        log.info("5555");
         return new CustomUserDetails(user);
     }
 

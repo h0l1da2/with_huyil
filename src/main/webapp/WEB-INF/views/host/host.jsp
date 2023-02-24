@@ -25,7 +25,9 @@
     }
   </style>
   <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+
 </head>
+
 <body style="height: 600px;">
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
@@ -109,20 +111,24 @@
 <!-- Core theme JS-->
 <script src="js/scripts.js"></script>
 <!-- 카카오맵 -->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9093f985faa6566619ee93146e47c723"></script>
-<script>
-  var container = document.getElementById('map');
-  var options = {
-    center: new kakao.maps.LatLng(33.450701, 126.570667),
-    level: 3
-  };
-  var map = new kakao.maps.Map(container, options);
-  $(document).ready(function(){
-    $('#noComplete').click(function () {
-      alert("준비 중입니다");
-      return false;
-    });
-  })
-</script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9093f985faa6566619ee93146e47c723"></script>
+        <script>
+            var container = document.getElementById('map');
+            var options = {
+                center: new kakao.maps.LatLng(33.450701, 126.570667),
+                level: 3
+            };
+
+            var map = new kakao.maps.Map(container, options);
+
+            $(document).ready(function(){
+              $('#noComplete').click(function () {
+                alert("준비 중입니다");
+                return false;
+              });
+            })
+
+        </script>
+>>>>>>> 7598f74b0b4943e5b6fef1d75574f017d5af4520
 </body>
 </html>

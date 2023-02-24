@@ -63,7 +63,7 @@
 						</div>
 					</form>
 					<div class="social d-flex text-center">
-						<a href="<c:url value='/admin/join'/>" class="px-2 py-2 mr-md-1 rounded join"><span class="ion-logo-facebook mr-2"></span> 회원가입</a>
+						<a href="<c:url value='/admins/join'/>" class="px-2 py-2 mr-md-1 rounded join"><span class="ion-logo-facebook mr-2"></span> 회원가입</a>
 					</div>
 				</div>
 			</div>

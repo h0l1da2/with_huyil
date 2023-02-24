@@ -15,8 +15,7 @@
 
     <!-- Custom fonts for this template -->
     <link href="/resources/static/management/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
             rel="stylesheet">
 
     <!-- Custom styles for this template -->
@@ -40,7 +39,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#index">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
@@ -52,7 +51,7 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-            <a class="nav-link" href="#index">
+            <a class="nav-link" href="/admin">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>관리자페이지</span></a>
         </li>
@@ -65,25 +64,15 @@
             회원관리
         </div>
         <li class="nav-item">
-            <a class="nav-link" href="#userlistForm">
+            <a class="nav-link" href="/admin/userList">
                 <i class="fas fa-fw fa-table"></i>
                 <span>일반회원관리</span></a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="#hostlistForm">
+            <a class="nav-link" href="/admin/hostList">
                 <i class="fas fa-fw fa-table"></i>
                 <span>사업자회원관리</span></a>
-        </li>
-
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            등록관리
-        </div>
-        <li class="nav-item">
-            <a class="nav-link" href="#management">
-                <i class="fas fa-fw fa-table"></i>
-                <span>등록관리목록</span></a>
         </li>
 
         <!-- Heading -->
@@ -91,9 +80,9 @@
             예약관리
         </div>
         <li class="nav-item">
-            <a class="nav-link" href="/">
+            <a class="nav-link" href="/admin/bookList">
                 <i class="fas fa-fw fa-table"></i>
-                <span>예약승인/거절</span></a>
+                <span>예약목록</span></a>
         </li>
 
         <!-- Heading -->
@@ -101,7 +90,7 @@
             매출관리
         </div>
         <li class="nav-item">
-            <a class="nav-link" href="/">
+            <a class="nav-link" id="noComplete">
                 <i class="fas fa-fw fa-table"></i>
                 <span>매출내역확인</span></a>
         </li>
@@ -139,10 +128,6 @@
 
                     <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                     <li class="nav-item dropdown no-arrow d-sm-none">
-                        <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
                         <!-- Dropdown - Messages -->
                         <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
                              aria-labelledby="searchDropdown">
@@ -161,56 +146,6 @@
                         </div>
                     </li>
 
-                    <!-- Nav Item - Alerts -->
-                    <li class="nav-item dropdown no-arrow mx-1">
-                        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-bell fa-fw"></i>
-                            <!-- Counter - Alerts -->
-                            <span class="badge badge-danger badge-counter">3+</span>
-                        </a>
-                        <!-- Dropdown - Alerts -->
-                        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                             aria-labelledby="alertsDropdown">
-                            <h6 class="dropdown-header">
-                                알람
-                            </h6>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="mr-3">
-                                    <div class="icon-circle bg-primary">
-                                        <i class="fas fa-file-alt text-white"></i>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="small text-gray-500">December 12, 2019</div>
-                                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="mr-3">
-                                    <div class="icon-circle bg-success">
-                                        <i class="fas fa-donate text-white"></i>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="small text-gray-500">December 7, 2019</div>
-                                    $290.29 has been deposited into your account!
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="mr-3">
-                                    <div class="icon-circle bg-warning">
-                                        <i class="fas fa-exclamation-triangle text-white"></i>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="small text-gray-500">December 2, 2019</div>
-                                    Spending Alert: We've noticed unusually high spending for your account.
-                                </div>
-                            </a>
-                            <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                        </div>
-                    </li>
 
 
                     <div class="topbar-divider d-none d-sm-block"></div>
@@ -360,6 +295,14 @@
     <script src="/resources/static/management/js/demo/datatables-demo.js"></script>
 
     <script>
+
+        $(document).ready(function(){
+            $('#noComplete').click(function () {
+                alert("준비 중입니다");
+                return false;
+            })
+        })
+
         function bookCancel(result) {
             if(!confirm("정말 취소하시겠습니까?")) {
                 return false;

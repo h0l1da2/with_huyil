@@ -80,7 +80,7 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
-                        <i><a href="/hosts/hostForm">리뷰 더 보기</a></i>
+                        <i><a href="/hotel/review?id=${hotelvo.id}">리뷰 더 보기</a></i>
                     </div>
                 </div>
                 <p>${infovo.intro}</p> <br>
@@ -187,20 +187,19 @@
     <div class="container">
         <div class="row mb-5">
             <div class="col-md">
-                <div class="ftco-footer-widget mb-4">
-                    <h2 class="ftco-heading-2">놓칠 수 없다</h2>
-                    <p>진짜 개쩌는 호텔진짜 개쩌는 호텔진짜 개쩌는 호텔진짜 개쩌는 호텔진짜 개쩌는 호텔진짜 개쩌는 호텔진짜 개쩌는 호텔진짜 개쩌는 호텔진짜 개쩌는 호텔ㅇㅇ</p>
+                <div class="ftco-footer-widget mb-4 ml-md-5">
+                    <h2 class="ftco-heading-2">조원</h2>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="py-2 d-block">강휴일</a></li>
+                        <li><a href="#" class="py-2 d-block">김남수</a></li>
+                    </ul>
                 </div>
             </div>
             <div class="col-md">
                 <div class="ftco-footer-widget mb-4 ml-md-5">
                     <h2 class="ftco-heading-2">블로그</h2>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="py-2 d-block">강휴일</a></li>
-                        <li><a href="#" class="py-2 d-block">Rooms</a></li>
-                        <li><a href="#" class="py-2 d-block">Amenities</a></li>
-                        <li><a href="#" class="py-2 d-block">Gift Card</a></li>
-                        <li><a href="#" class="py-2 d-block">Services</a></li>
+                        <li><a href="https://hyuil.tistory.com/" class="py-2 d-block">강휴일</a></li>
                     </ul>
                 </div>
             </div>
@@ -208,11 +207,8 @@
                 <div class="ftco-footer-widget mb-4">
                     <h2 class="ftco-heading-2">깃허브</h2>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="py-2 d-block">강휴일</a></li>
-                        <li><a href="#" class="py-2 d-block">About Us</a></li>
-                        <li><a href="#" class="py-2 d-block">Contact Us</a></li>
-                        <li><a href="#" class="py-2 d-block">Services</a></li>
-                        <li><a href="#" class="py-2 d-block">Services</a></li>
+                        <li><a href="https://github.com/h0l1da2" class="py-2 d-block">강휴일</a></li>
+                        <li><a href="https://github.com/KimNamSu96" class="py-2 d-block">김남수</a></li>
                     </ul>
                 </div>
             </div>

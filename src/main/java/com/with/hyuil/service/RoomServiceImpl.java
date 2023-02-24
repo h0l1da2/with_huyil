@@ -42,7 +42,6 @@ public class RoomServiceImpl {
 	
 	public void updateRoom(RoomVo roomvo) {
 		mapper.updateRoom(roomvo);
-
 	}
 	
 	public void delRoom(RoomVo roomvo) {

@@ -10,4 +10,5 @@ public interface OrderService {
 	void addOrders(OrdersVo ordersvo);
 	List<Map<String, Object>> getOrderList(Long id);
 	OrdersVo findByToken(String pgToken);
+	Integer sumTotalPrice();
 }

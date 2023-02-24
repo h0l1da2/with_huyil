@@ -185,61 +185,57 @@
 </section>
     <!-- footer -->
     <footer class="ftco-footer ftco-bg-dark ftco-section">
-    <div class="container">
-        <div class="row mb-5">
-            <div class="col-md">
-                <div class="ftco-footer-widget mb-4">
-                    <h2 class="ftco-heading-2">놓칠 수 없다</h2>
-                    <p>진짜 개쩌는 호텔진짜 개쩌는 호텔진짜 개쩌는 호텔진짜 개쩌는 호텔진짜 개쩌는 호텔진짜 개쩌는 호텔진짜 개쩌는 호텔진짜 개쩌는 호텔진짜 개쩌는 호텔ㅇㅇ</p>
-                </div>
-            </div>
-            <div class="col-md">
-                <div class="ftco-footer-widget mb-4 ml-md-5">
-                    <h2 class="ftco-heading-2">블로그</h2>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="py-2 d-block">강휴일</a></li>
-                        <li><a href="#" class="py-2 d-block">Rooms</a></li>
-                        <li><a href="#" class="py-2 d-block">Amenities</a></li>
-                        <li><a href="#" class="py-2 d-block">Gift Card</a></li>
-                        <li><a href="#" class="py-2 d-block">Services</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md">
-                <div class="ftco-footer-widget mb-4">
-                    <h2 class="ftco-heading-2">깃허브</h2>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="py-2 d-block">강휴일</a></li>
-                        <li><a href="#" class="py-2 d-block">About Us</a></li>
-                        <li><a href="#" class="py-2 d-block">Contact Us</a></li>
-                        <li><a href="#" class="py-2 d-block">Services</a></li>
-                        <li><a href="#" class="py-2 d-block">Services</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md">
-                <div class="ftco-footer-widget mb-4">
-                    <h2 class="ftco-heading-2">고객지원</h2>
-                    <div class="block-23 mb-3">
-                        <ul>
-                            <li><span class="icon icon-map-marker"></span><span class="text">서울특별시 금천구<br/>가산디지털1로 70<br/>호서대벤처타워 4층</span></li>
-                            <li><a href="#"><span class="icon icon-phone"></span><span class="text">010 8346 8610</span></a></li>
-                            <li><a href="#"><span class="icon icon-envelope"></span><span class="text">whaleee@naver.com</span></a></li>
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-md">
+                    <div class="ftco-footer-widget mb-4 ml-md-5">
+                        <h2 class="ftco-heading-2">조원</h2>
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="py-2 d-block">강휴일</a></li>
+                            <li><a href="#" class="py-2 d-block">김남수</a></li>
                         </ul>
                     </div>
                 </div>
+                <div class="col-md">
+                    <div class="ftco-footer-widget mb-4 ml-md-5">
+                        <h2 class="ftco-heading-2">블로그</h2>
+                        <ul class="list-unstyled">
+                            <li><a href="https://hyuil.tistory.com/" class="py-2 d-block">강휴일</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">깃허브</h2>
+                        <ul class="list-unstyled">
+                            <li><a href="https://github.com/h0l1da2" class="py-2 d-block">강휴일</a></li>
+                            <li><a href="https://github.com/KimNamSu96" class="py-2 d-block">김남수</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="ftco-footer-widget mb-4">
+                        <h2 class="ftco-heading-2">고객지원</h2>
+                        <div class="block-23 mb-3">
+                            <ul>
+                                <li><span class="icon icon-map-marker"></span><span class="text">서울특별시 금천구<br/>가산디지털1로 70<br/>호서대벤처타워 4층</span></li>
+                                <li><a href="#"><span class="icon icon-phone"></span><span class="text">010 8346 8610</span></a></li>
+                                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">whaleee@naver.com</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12 text-center">
+            <div class="row">
+                <div class="col-md-12 text-center">
 
-                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                    <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                </div>
             </div>
         </div>
-    </div>
-</footer>   
+    </footer>
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
   <script src="/resources/static/hotelDetail/js/jquery.min.js"></script>

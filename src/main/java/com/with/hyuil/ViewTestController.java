@@ -22,12 +22,5 @@ public class ViewTestController {
     public String admin2() {
         return "management/management";
     }
-    @GetMapping("/a3")
-    public String admin3() {
-        return "management/hostlistForm";
-    }
-    @GetMapping("/a4")
-    public String admin4() {
-        return "management/userlistForm";
-    }
+
 }

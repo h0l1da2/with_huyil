@@ -34,7 +34,7 @@ public class HostBookController {
 
         try {
             getPage(bookSearchDto, model, bookList);
-            sendIdRole(userDetails, model);
+            addModelUser(userDetails, model);
         } catch (IndexOutOfBoundsException e) {
             log.info("검색 결과 없음");
             return "book/hostBook";
@@ -54,7 +54,7 @@ public class HostBookController {
         List<HostBookListDto> bookList = getBookList(bookSearchDto, Status.COMPLETE, usersVo);
         try {
             getPage(bookSearchDto, model, bookList);
-            sendIdRole(userDetails, model);
+            addModelUser(userDetails, model);
         } catch (IndexOutOfBoundsException e) {
             log.info("검색 결과 없음");
             return "book/hostBookComplete";
@@ -68,13 +68,14 @@ public class HostBookController {
         List<HostBookListDto> bookList = getBookList(bookSearchDto, Status.CANCEL, usersVo);
         try {
             getPage(bookSearchDto, model, bookList);
-            sendIdRole(userDetails, model);
+            addModelUser(userDetails, model);
         } catch (IndexOutOfBoundsException e) {
             log.info("검색 결과 없음");
             return "book/hostBookComplete";
         }
         return "book/hostBookComplete";
     }
+
 
     private List<HostBookListDto> getBookList(BookSearchDto bookSearchDto, Status complete, UsersVo usersVo) {
         bookSearchDto.setStatus(complete);
@@ -93,7 +94,7 @@ public class HostBookController {
         return usersService.loginForFind(userDetails);
     }
 
-    private void sendIdRole(CustomUserDetails userDetails, Model model) {
+    private void addModelUser(CustomUserDetails userDetails, Model model) {
         model.addAttribute("userId", userDetails.getUsername());
         model.addAttribute("role", userDetails.getAuthorities().toString());
     }
