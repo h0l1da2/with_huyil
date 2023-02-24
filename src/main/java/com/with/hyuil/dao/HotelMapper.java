@@ -19,4 +19,5 @@ public interface HotelMapper {
 	void updateHotel(HotelVo hotelvo);
 	HotelVo findByRoomId(long id);
 	long findHostId(long id);
+	void delHotel(HotelVo hotelvo);
 }

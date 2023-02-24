@@ -18,6 +18,13 @@
 
     <!-- 네비바, 풋 css따오기 -->
     <link rel="stylesheet" href="/resources/static/home/css/style.css">
+<script>
+	function delCheck(){
+		if(!confirm("객실을 삭제하시겠습니까?")){
+			return false;
+		}
+	}
+</script>
 </head>
 <body>
 
@@ -52,14 +59,20 @@
 </section><br><br><br>
 
 <section id="hotelForm">
+	<form method="post" action="/hosts/delRoom">
 	<h3>객실목록</h3> <br> <c:if test="${not empty roomlist }">
 	<table style="margin-left:auto; margin-right:auto; text-align:center;" border="1">
-	<tr> <th width="70px">번호</th> <th width="300px">객실명</th> <th width="500px">객실소개</th> <th>최대인원</th> <th width="150px">침대</th> <th width="100px">가격</th> </tr>
+	<tr> <th width="70px">번호</th> <th width="300px">객실명</th> <th width="500px">객실소개</th> <th width="100px">최대인원</th> 
+	<th width="150px">침대</th> <th width="100px">가격</th> <th width="100px">삭제</th> </tr>
 	<c:forEach var="list" items="${roomlist }" varStatus="status">
-	<tr> <td><a href="/host/roomEdit?id=${list.ID}">${status.count }</a></td> <td>${list.NAME }</td> <td>${list.CONTENT }</td> <td>${list.MAX }</td> <td>${list.BED }</td> <td>${list.NORMAL_PRICE }</td></tr>
+	<tr> <td><a href="/hosts/roomEdit?id=${list.ID}">${status.count }</a></td> <td>${list.NAME }</td>
+    <td>${list.CONTENT }</td> <td>${list.MAX }</td> <td>${list.BED }</td> <td>${list.NORMAL_PRICE }</td> 
+    <td><input type="submit" value="delete" onclick="return delCheck();"></td></tr>
+    <input type="hidden" name="roomId" value="${list.ID }">
 	</c:forEach>
 	</table> </c:if>
 	<c:if test="${empty roomlist }"> <h1 onclick="location.href='/host/roomForm'">객실을 추가해주세요</h1> </c:if>
+	</form>
 </section> <br><br><br><br>
 <footer class="ftco-footer ftco-bg-dark ftco-section">
     <div class="container">

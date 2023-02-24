@@ -5,6 +5,7 @@ import com.with.hyuil.dto.admin.AdminBookListDto;
 import com.with.hyuil.dto.admin.AdminPageDto;
 import com.with.hyuil.dto.admin.TenPageHandler;
 import com.with.hyuil.dto.hotel.GlobalPageHandler;
+import com.with.hyuil.dto.info.BookAddDto;
 import com.with.hyuil.dto.info.BookListDto;
 import com.with.hyuil.dto.info.BookSearchDto;
 import com.with.hyuil.dto.info.HostBookListDto;
@@ -77,4 +78,8 @@ public class BookServiceImpl implements BookService {
         GlobalPageHandler globalPageHandler = new GlobalPageHandler(totalCnt, bookSearchDto.getViewPage());
         bookSearchDto.calcPage(globalPageHandler.getOffsetPost());
     }
+        @Override
+        public void addBook(BookAddDto bookAddDto) {
+            bookMapper.insertBook(bookAddDto);
+        }
 }

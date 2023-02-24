@@ -10,28 +10,32 @@
 		<result property="uuid" column="uuid"/>
 		<result property="path" column="path"/>
 		<result property="size" column="volume"/>
-		<result property="removed" column="removed"/>
+		<result property="removeDate" column="removeDate"/>
 		<result property="hotelInfoId" column="hotel_info_id"/>
 		<result property="roomId" column="room_id"/>
 	</resultMap>
 
 	<insert id="uploadFile" parameterType="FileVo">
 		insert into files
-		(ID, TYPE, NAME, UUID, PATH, VOLUME, REMOVED, HOTEL_INFO_ID <if test="roomId != 0">, ROOM_ID </if>)
+		(ID, TYPE, NAME, UUID, PATH, VOLUME, REMOVE_DATE, HOTEL_INFO_ID <if test="roomId != 0">, ROOM_ID </if>)
 		values
 		(seq_files.nextval, #{type}, #{name}, #{uuid}, #{path}, #{size}, null, #{hotelInfoId} <if test="roomId != 0">, #{roomId} </if>)
 	</insert>
 
 	<select id="selecthotelImg" parameterType="long" resultType="FileVo">
-		select * from files where hotel_info_id = #{hotelInfoId} AND room_id IS NULL
+		select * from files where hotel_info_id = #{hotelInfoId} AND room_id IS NULL AND REMOVE_DATE IS NULL
 	</select>
 
 	<select id="selectRoomImg" parameterType="long" resultType="FileVo">
-		SELECT * FROM FILES WHERE ROOM_ID = #{roomId}
+		SELECT * FROM FILES WHERE ROOM_ID = #{roomId} AND REMOVE_DATE IS NULL
 	</select>
 	
-	<delete id="deleteHotelImg" parameterType="long">
-		delete from files where hotel_info_id = #{hotelInfoId} AND room_id IS NULL
-	</delete>
+	<update id="deleteHotelImg" parameterType="FileVo">
+		update files set remove_date = sysdate where hotel_info_id = #{hotelInfoId} and room_id IS NULL
+	</update>
+	
+	<update id="deleteRoomImg" parameterType="long">
+		update files set remove_date = sysdate where room_id = #{roomId}
+	</update>
 
 </mapper>
