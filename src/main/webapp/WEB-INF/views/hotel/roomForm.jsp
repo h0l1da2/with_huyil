@@ -91,7 +91,11 @@
             <div class="col-md-10 text-center" data-aos="fade">
                 <h1 class="heading mb-3">Rooms</h1>
                 <ul class="custom-breadcrumbs mb-4">
+<<<<<<< HEAD
+                    <li><a href="/hosts/roomList">객실목록</a></li>
+=======
                     <li><a href="/host/roomList">객실목록</a></li>
+>>>>>>> 7598f74b0b4943e5b6fef1d75574f017d5af4520
                 </ul>
             </div>
         </div>

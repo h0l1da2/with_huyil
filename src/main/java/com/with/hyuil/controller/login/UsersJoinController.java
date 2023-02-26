@@ -6,6 +6,7 @@ import com.with.hyuil.dto.users.UserIdDto;
 import com.with.hyuil.dto.users.UsersDto;
 import com.with.hyuil.dto.users.UsersLoginDto;
 import com.with.hyuil.model.UsersVo;
+import com.with.hyuil.model.enumaration.Type;
 import com.with.hyuil.service.interfaces.EmailService;
 import com.with.hyuil.service.interfaces.UsersService;
 import lombok.RequiredArgsConstructor;
@@ -58,6 +59,7 @@ public class UsersJoinController {
                     new UsersVo(
                             (UsersDto) session.getAttribute("userDto"));
             usersVo.userRoleWheres();
+            usersVo.userType(Type.USER);
             usersService.saveUser(usersVo);
             sessionRemoveCodeAndDto(session);
             log.info("유저 회원 가입 = {}", usersVo.getUserId());

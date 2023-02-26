@@ -31,7 +31,7 @@ public interface UsersMapper {
     int insertWhyDelete(DeleteDto deleteDto); //
     UsersVo findByUserId(String userId);
     UsersVo findByNameEmail(FindIdDto findIdDto);
-    BusinessVo findBusinessByAccount(String account);
+    List<BusinessVo> findBusinessByAccount(String account);
     RolesVo findRoles(Long id);
     void updateLastLogin(String userId);
     UsersVo findByUserIdEmail(EmailDto emailDto);

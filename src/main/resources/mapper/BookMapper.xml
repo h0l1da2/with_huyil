@@ -5,7 +5,7 @@
 <mapper namespace="com.with.hyuil.dao.BookMapper">
 	<insert id="insertBook" parameterType="BookAddDto">
 		INSERT INTO BOOK(ID, USER_ID, HOTEL_ROOM_ID, PLEASE, COUNT, CHECK_IN, CHECK_OUT, STATUS, ORDER_ID)
-		 VALUES(seq_book.nextval, #{userId}, #{roomId}, #{please}, null, #{checkIn}, #{checkOut}, 0, #{orderId})
+		 VALUES(seq_book.nextval, #{userId}, #{roomId}, #{please}, null, #{checkIn}, #{checkOut}, #{status}, #{orderId})
 	</insert>
     <select id="findById" resultType="BookVo" parameterType="Long">
         SELECT *
@@ -20,11 +20,10 @@
                               TO_CHAR(B.CHECK_OUT, 'YYMMDD') AS CHECK_OUT, R.NAME ROOM, B.PLEASE
                        FROM HOTEL H, BOOK B, ROOM R, ORDERS O
                        WHERE H.ID = R.HOTEL_ID
-                         AND R.ID = B.ROOM_ID
+                         AND R.ID = B.HOTEL_ROOM_ID
                          AND B.USER_ID = #{userId, jdbcType=VARCHAR}
                          AND B.STATUS = #{status}
                          AND B.ORDER_ID = O.ID
-                         AND O.PAY_COMPLETE_ID IS NOT NULL
                        ORDER BY B.CHECK_IN) A)
         WHERE RNUM >= #{viewPage}
           AND RNUM &lt;= #{limit}
@@ -38,11 +37,10 @@
                               TO_CHAR(B.CHECK_OUT, 'YYMMDD') AS CHECK_OUT, R.NAME ROOM, B.PLEASE
                        FROM HOTEL H, BOOK B, ROOM R, ORDERS O
                        WHERE H.ID = R.HOTEL_ID
-                         AND R.ID = B.ROOM_ID
+                         AND R.ID = B.HOTEL_ROOM_ID
                          AND B.USER_ID = #{userId, jdbcType=VARCHAR}
                          AND B.STATUS = #{status}
                          AND B.ORDER_ID = O.ID
-                         AND O.PAY_COMPLETE_ID IS NOT NULL
                        ORDER BY B.CHECK_IN) A)
         WHERE RNUM >= #{viewPage}
           AND RNUM &lt;= #{limit}
@@ -54,7 +52,7 @@
                        SELECT B.ID, R.NAME ROOM, U.NAME, B.COUNT, TO_CHAR(B.CHECK_IN, 'YYMMDD') AS CHECK_IN,
                               TO_CHAR(B.CHECK_OUT, 'YYMMDD') AS CHECK_OUT, B.PLEASE
                        FROM HOTEL H, BOOK B, ROOM R, USERS U
-                       WHERE B.ROOM_ID = R.ID
+                       WHERE B.HOTEL_ROOM_ID = R.ID
                          AND B.USER_ID = U.ID
                          AND H.USER_ID = #{userId, jdbcType=VARCHAR}
                          AND B.STATUS = #{status}
@@ -102,7 +100,7 @@
                        SELECT B.ID, R.NAME ROOM, U.NAME, B.COUNT, TO_CHAR(B.CHECK_IN, 'YYMMDD') AS CHECK_IN,
                               TO_CHAR(B.CHECK_OUT, 'YYMMDD') AS CHECK_OUT, B.PLEASE
                        FROM HOTEL H, BOOK B, ROOM R, USERS U
-                       WHERE B.ROOM_ID = R.ID
+                       WHERE B.HOTEL_ROOM_ID = R.ID
                          AND B.USER_ID = U.ID
                          AND H.USER_ID = #{userId, jdbcType=VARCHAR}
                          AND B.STATUS = #{status}

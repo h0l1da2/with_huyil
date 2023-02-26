@@ -106,6 +106,7 @@
                 <div class="single-slider owl-carousel">
                     <div class="item">
                         <a href="/hotel/detail?id=${hotelVo.id}">
+                            <!-- 컨트롤러에서 파일 받아오ㅏ야함 -->
                             <img class="room-img" src="/host/img?filename=${filevo.uuid }"></img></a>
                     </div>
                 </div>

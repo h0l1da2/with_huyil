@@ -59,9 +59,13 @@
     </insert>
     <insert id="insertAdmin" parameterType="UsersVo">
         INSERT INTO USERS
-            ( ID, USER_ID, PASSWORD, NAME, JOIN_DATE, LAST_LOGIN, TYPE )
+            ( ID, USER_ID, PASSWORD, NAME, JOIN_DATE, LAST_LOGIN, TYPE, WHERES )
         VALUES
+<<<<<<< HEAD
             ( SEQ_USERS.NEXTVAL, #{userId}, #{password}, #{name}, SYSDATE, SYSDATE, #{type} )
+=======
+            ( SEQ_USERS.NEXTVAL, #{userId}, #{password}, #{name}, SYSDATE, SYSDATE, #{type}, #{wheres} )
+>>>>>>> 5b20389cfdba9458cb144c66b81b3ecec5e92382
     </insert>
     <insert id="insertHost" parameterType="UsersVo">
         INSERT INTO USERS

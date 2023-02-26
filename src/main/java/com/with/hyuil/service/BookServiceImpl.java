@@ -78,8 +78,13 @@ public class BookServiceImpl implements BookService {
         GlobalPageHandler globalPageHandler = new GlobalPageHandler(totalCnt, bookSearchDto.getViewPage());
         bookSearchDto.calcPage(globalPageHandler.getOffsetPost());
     }
-        @Override
-        public void addBook(BookAddDto bookAddDto) {
+    @Override
+    public void addBook(BookAddDto bookAddDto) {
             bookMapper.insertBook(bookAddDto);
         }
+    @Override
+    public String hostBookCancel(Long id) {
+        return null;
+    }
+
 }

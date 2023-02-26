@@ -80,7 +80,7 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
-                        <i><a href="/hosts/hostForm">리뷰 더 보기</a></i>
+                        <i><a href="/hotel/review?id=${hotelvo.id}">리뷰 더 보기</a></i>
                     </div>
                 </div>
                 <p>${infovo.intro}</p> <br>

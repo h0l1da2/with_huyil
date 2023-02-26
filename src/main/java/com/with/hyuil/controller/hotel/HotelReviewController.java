@@ -33,18 +33,27 @@ public class HotelReviewController {
 
     @GetMapping
     public String reviewPage(@ModelAttribute ReviewMainDto reviewMainDto, @AuthenticationPrincipal CustomUserDetails userDetails, Model model) {
+        log.info("유저디테일 = {}", userDetails);
         if(userDetails != null) {
+            log.info("유저디테일 = {}", userDetails);
             UsersVo usersVo = usersService.loginForFind(userDetails.getUsername());
             BookVo bookVo = bookService.notReviewFind(new ReviewBookDto(reviewMainDto.getId(), usersVo.getId()));
             model.addAttribute("userLongId", usersVo.getId());
             if (bookVo != null) {
+                log.info("유저디테일 = {}", userDetails);
                 model.addAttribute("bookId", bookVo.getId());
             }
         }
+        log.info("reviewMainDto = {}", reviewMainDto);
         HotelVo hotelVo = hotelService.findByHotelId(reviewMainDto.getId());
+        log.info("유저디테일 = {}", userDetails);
         model.addAttribute("hotelVo", hotelVo);
+        log.info("유저디테일 = {}", userDetails);
         List<ReviewDto> reviewDto = reviewService.findHotelReviews(hotelVo.getId());
+        log.info("유저디테일 = {}", userDetails);
         model.addAttribute(reviewDto);
+        log.info("유저디테일 = {}", userDetails);
+        //파일Vo 가져오기
         /**
          * 1.Reply_id 가 null 인 해당 hotel_id 를 가진 ReviewDto 받아옴
          * 2.Reply_id 가 null 이 아닌 것들 중에서 WHERE ID IN (?,?, ...) 를 가져옴

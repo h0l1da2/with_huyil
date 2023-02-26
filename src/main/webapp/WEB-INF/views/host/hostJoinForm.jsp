@@ -26,7 +26,7 @@
 		}
 	</style>
 </head>
-<body class="img js-fullheight" style="background-image: url(<c:url value='/static/loginForm/images/bg.jpg'/>); height: 1000px">
+<body class="img js-fullheight" style="background-image: url(<c:url value='/resources/static/loginForm/images/bg.jpg'/>); height: 1000px">
 <section class="ftco-section">
 	<div class="container">
 		<div class="row justify-content-center">
@@ -57,6 +57,7 @@
 						</div>
 						<div class="form-group">
 							<input type="text" id="account" name="account" class="form-control" placeholder="사업자번호(10자리)" required>
+							<button type="button" id="accountCheck" name="accountCheck" class="form-control btn btn-primary submit px-3">중복확인</button>
 						</div>
 						<div class="form-group">
 							<input type="text" id="bank" name="bank" class="form-control" placeholder="은행" required>
@@ -111,6 +112,7 @@
 	function formCheck(form) {
 		let email = document.getElementById("email").value;
 		let account = document.getElementById("account").value;
+		let password = document.getElementById("password").value;
 		let regExp = /^[0-9]{10}$/;
 		let regNum = /^.{6,20}$/;
 		if(check == 0) {
@@ -141,7 +143,6 @@
 			document.getElementById("password").focus();
 			return false;
 		}
-
 	}
 	//아이디 중복 확인을 위한 변수
 	let check = 0;
@@ -246,6 +247,32 @@
 					alert("확인실패");
 				}})
 		});
+		$('#accountCheck').click(function () {
+			let account = document.getElementById("account").value;
+			if(account=="") {
+				alert("사업자 번호를 입력하세요");
+				document.getElementById("account").focus();
+				return false;
+			}
+			$.ajax({
+				type: 'POST',
+				url: '/host/join/accountValid',
+				contentType: "application/json",
+				data: JSON.stringify({account:account}),
+				dataType: 'text',
+				success: function (result) {
+					if(result=="중복") {
+						alert('사업자 번호가 중복입니다');
+					} else {
+						alert('중복이 아닙니다');
+					}
+				},
+				error: function(result) {
+					alert("확인실패");
+				}});
+		});
+
+
 	});
 </script>
 </body>
