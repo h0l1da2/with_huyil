@@ -115,12 +115,25 @@
                 <h2 class="mb-4"><a href="/hotel/detail?id=${hotelVo.id}"> ${hotelVo.name}</a></h2>
                 <div class="star-rating">
                     <div class="rating" data-rate="<%--${hotelvo.star}--%>">
-                        <i><a href="/hotel/review?id=${hotelVo.id}">리뷰 ${star.totcnt}</a></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
+                        <i><a href="/hotel/review?id=${hotelVo.id}">리뷰 ${star.totcnt}개</a></i>
+                        <c:if test="${0.0 < star.reviewStars && star.reviewStars <= 1.5}">
+                            <i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i>
+                        </c:if>
+                        <c:if test="${1.5 < star.reviewStars && star.reviewStars <= 2.5}">
+                            <i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i>
+                        </c:if>
+                        <c:if test="${2.5 < star.reviewStars && star.reviewStars <= 3.5}">
+                            <i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i>
+                        </c:if>
+                        <c:if test="${3.5 < star.reviewStars && star.reviewStars <= 4.5}">
+                            <i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i>
+                        </c:if>
+                        <c:if test="${4.5 < star.reviewStars && star.reviewStars <= 5.0}">
+                            <i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i>
+                        </c:if>
+                        <c:if test="${star.reviewStars == 0.0}">
+                            <i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i>
+                        </c:if>
                     </div>
                 </div>
                 <br>
