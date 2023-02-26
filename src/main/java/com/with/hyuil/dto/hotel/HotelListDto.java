@@ -10,6 +10,7 @@ public class HotelListDto {
     private Float star = 0f;
     private Integer price;
     private String sigungu;
-    private String path;
+    private String uuid;
+    private String imgSrc = "/img?filename=";
     private int totcnt;
 }

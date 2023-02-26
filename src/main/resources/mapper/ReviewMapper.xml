@@ -55,4 +55,11 @@
 		FROM REVIEW
 		WHERE ID = #{id, jdbcType = VARCHAR}
 	</select>
-</mapper>
+	<select id="selectSumStar" resultType="StarDto" parameterType="Long">
+		SELECT COUNT(*) TOTCNT,
+		       SUM(CLEAN) CLEAN, SUM(FACILITIES) FACILITIES,
+		       SUM(CONDITION) CONDITION, SUM(ORGANIC) ORGANIC
+		FROM STAR
+		WHERE HOTEL_ID = #{hotelId}
+	</select>
+ </mapper>

@@ -9,12 +9,14 @@ import com.with.hyuil.service.interfaces.HotelService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
 @Service
+@Transactional
 public class HotelServiceImpl implements HotelService {
 
 	@Autowired
@@ -64,10 +66,6 @@ public class HotelServiceImpl implements HotelService {
 		return mapper.selectAllCnt();
 	}
 
-	@Override
-	public Integer allHotelCnt() {
-		return mapper.selectAllCnt();
-	}
 
 	@Override
 	public List<StarDto> searchHotelStar(List<HotelListDto> hotelListDtos) {

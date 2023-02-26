@@ -107,7 +107,7 @@
                     <div class="item">
                         <a href="/hotel/detail?id=${hotelVo.id}">
                             <!-- 컨트롤러에서 파일 받아오ㅏ야함 -->
-                            <img class="room-img" src="/host/img?filename=${filevo.uuid }"></img></a>
+                            <img class="room-img" src="/img?filename=${filevo.uuid }"></img></a>
                     </div>
                 </div>
             </div>
@@ -115,7 +115,7 @@
                 <h2 class="mb-4"><a href="/hotel/detail?id=${hotelVo.id}"> ${hotelVo.name}</a></h2>
                 <div class="star-rating">
                     <div class="rating" data-rate="<%--${hotelvo.star}--%>">
-                        <i><a href="/hotel/review?id=${hotelVo.id}">리뷰</a></i>
+                        <i><a href="/hotel/review?id=${hotelVo.id}">리뷰 ${star.totcnt}</a></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
