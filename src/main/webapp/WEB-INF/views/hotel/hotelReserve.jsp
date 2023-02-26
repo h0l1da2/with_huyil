@@ -144,7 +144,7 @@
                     	<input type="date" id="checkIn" name="checkin" style="width:120px;" oninput="addPrice2()">               
                      	<label for="#">Check-out</label>
                      	<input type="date" id="checkOut" name="checkout" style="width:120px;" oninput="addPrice()"> <br>                     
-                     	<img src="/host/img?filename=${filevo.uuid }" width="370" height="240">
+                     	<img src="/img?filename=${filevo.uuid }" width="370" height="240">
                      	<div class="ri-text">
                       	<h3>${hotelvo.name }</h3>
                         <h3>${roomvo.name }</h3>
@@ -165,6 +165,8 @@
                                 </tr>
                             </tbody>
                         </table> <br>
+                        <label for="exampleFormControlInput1">---------------------요청사항---------------------</label>
+                        <textArea style=resize:none; name="please" rows="7" cols="55"></textArea> <br>
                         <label for="exampleFormControlInput1">---------------------결제금액---------------------</label>
                         <div id="price"></div>
                         </div>

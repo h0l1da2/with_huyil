@@ -72,9 +72,12 @@ public class UsersServiceImpl implements UsersService {
         String encodePwd = passwordEncoding(usersVo.getPassword());
         usersVo.passwordEncode(encodePwd);
         usersMapper.insertBusiness(usersVo.getBusinessVo());
-        BusinessVo businessByAccount = usersMapper.findBusinessByAccount(usersVo.getBusinessVo().getAccount());
+        List<BusinessVo> businessByAccount = usersMapper.findBusinessByAccount(usersVo.getBusinessVo().getAccount());
         usersVo.userType(Type.HOST);
-        usersVo.myBusiness(businessByAccount);
+        if (businessByAccount.size() != 1) {
+            return 13;
+        }
+        usersVo.myBusiness(businessByAccount.get(0));
         usersMapper.insertHost(usersVo);
         UsersVo findUsers = usersMapper.findByUserId(usersVo.getUserId());
         return usersMapper.insertRoles(new RolesVo(Role.ROLE_HOST, findUsers));
@@ -249,6 +252,12 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public UsersDto getId(String userId) {
         return usersMapper.getId(userId);
+    }
+
+    @Override
+    public List<BusinessVo> accountValid(BusinessDto businessDto) {
+        return usersMapper.findBusinessByAccount(businessDto.getAccount());
+
     }
 
     private String passwordEncoding(String password) {

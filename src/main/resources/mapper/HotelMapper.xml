@@ -11,15 +11,15 @@
 	</insert>
 
 	<select id="findByHoteluserId" parameterType="Long" resultType="HotelVo">
-		select * from hotel where user_id=#{userId, jdbcType=VARCHAR}
+		select * from hotel where user_id=#{userId, jdbcType=VARCHAR} and remove_date is null 
 	</select>
 
 	<select id="findByHotelId" parameterType="long" resultType="HotelVo">
-		select * from hotel where id = #{id}
+		select * from hotel where id = #{id} and remove_date is null
 	</select>
 	
 	<select id="findByRoomId" parameterType="long" resultType="HotelVo">
-		select a.name from hotel a left join room b on(a.id = b.hotel_id) where b.id = #{id}
+		select a.name, a.hotel_info_id from hotel a left join room b on(a.id = b.hotel_id) where b.id = #{id} and a.remove_date is null
 	</select>
 
 	<select id="selectForHotelList" parameterType="HotelSearchDto" resultType="HotelListDto">
@@ -27,31 +27,26 @@
 		FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER () AS TOTCNT
 		FROM (
 		SELECT H.ID, H.NAME, R.NORMAL_PRICE AS PRICE, H.SIGUNGU, F.PATH
-		FROM HOTEL H, ROOM R, BOOK B, FILES F, HOTEL_INFO I
+		FROM HOTEL H, ROOM R, FILES F, HOTEL_INFO I
 		WHERE H.ID = R.HOTEL_ID
-		AND R.ID = B.ROOM_ID
 		AND I.ID = F.HOTEL_INFO_ID
 		AND I.ID = H.HOTEL_INFO_ID
 		AND H.SIDO = #{sido}
 		AND R.MAX >= #{max}
-		AND ((B.CHECK_IN NOT BETWEEN TO_DATE(#{checkIn}, 'YYYY-MM-DD') AND TO_DATE(#{checkOut}, 'YYYY-MM-DD'))
-		AND (B.CHECK_OUT NOT BETWEEN TO_DATE(#{checkIn}, 'YYYY-MM-DD') AND TO_DATE(#{checkOut}, 'YYYY-MM-DD'))
-		AND (B.STATUS != 'READY'))
+		AND H.REMOVE_DATE IS NULL
 
-		OR B.ID = NULL
 		GROUP BY H.ID, H.NAME, R.NORMAL_PRICE, H.SIGUNGU, F.PATH, H.SIGUNGU
 		ORDER BY H.ID) A)
 		WHERE RNUM > #{offset}
 		AND RNUM &lt;= #{limit}
 	</select>
-	
 	<select id="findHostId" parameterType="long" resultType="long">
-		select a.user_id from hotel a left join users b on (a.user_id = b.id) where a.id = #{id}
+		select a.user_id from hotel a left join users b on (a.user_id = b.id) where a.id = #{id} and a.remove_date is null
 	</select>
-	
+
 	<update id="updateHotel" parameterType="HotelVo">
-		update hotel set
-		name = #{name}, service = #{service}, zonecode = #{zonecode}, sido = #{sido}, sigungu = #{sigungu}, address = #{address}, detail = #{detail}
+		update hotel
+		set name = #{name}, service = #{service}, zonecode = #{zonecode}, sido = #{sido}, sigungu = #{sigungu}, address = #{address}, detail = #{detail}
 		where id = #{id}
 	</update>
 
@@ -75,4 +70,8 @@
 		FROM HOTEL
 		WHERE REMOVE_DATE IS NULL
 	</select>
+	<update id="delHotel" parameterType="HotelVo">
+		update hotel set remove_date = sysdate where id = #{id}
+	</update>
+
 </mapper>

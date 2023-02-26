@@ -3,6 +3,8 @@ package com.with.hyuil.controller.login;
 import com.with.hyuil.dto.users.AdminJoinDto;
 import com.with.hyuil.dto.users.UserIdDto;
 import com.with.hyuil.model.UsersVo;
+import com.with.hyuil.model.enumaration.Type;
+import com.with.hyuil.model.enumaration.Wheres;
 import com.with.hyuil.service.interfaces.UsersService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -42,9 +44,11 @@ public class AdminJoinController {
 
     @PostMapping("/join")
     public String adminJoin(@ModelAttribute AdminJoinDto adminJoinDto) { //1111
+        adminJoinDto.setType(Type.ADMIN);
+        adminJoinDto.setWheres(Wheres.WITH_HYUIL);
         int result = usersService.saveAdmin(new UsersVo(adminJoinDto), adminJoinDto.getAdminCode());
         if(result == 1) {
-            return "redirect:/admins";
+            return "redirect:/admin";
         }
         return "admin/adminJoinError";
     }

@@ -41,7 +41,7 @@
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a href="/host" class="nav-link">호스트등록</a></li>
-                <li class="nav-item"><a href="/user/loginForm" class="nav-link">로그인</a></li>
+                <li class="nav-item"><a href="/user/loginForm" class="nav-link">${userId }</a></li>
             </ul>
         </div>
     </div>
@@ -67,7 +67,7 @@
             <div class="col-md-12 ftco-animate">
                 <div class="single-slider owl-carousel">
                     <div class="item">
-                        <img class="room-img" src="/host/img?filename=${filevo.uuid }"></img>
+                        <img class="room-img" src="/img?filename=${filevo.uuid }"></img>
                     </div>
                 </div>
             </div>
@@ -80,7 +80,7 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
-                        <i><a href="/host/hostForm">리뷰 더 보기</a></i>
+                        <i><a href="/hotel/review?id=${hotelvo.id}">리뷰 더 보기</a></i>
                     </div>
                 </div>
                 <p>${infovo.intro}</p> <br>
@@ -96,7 +96,7 @@
                         <c:forEach items="${roomList}" var="list">
                             <div class="col-md-6">
                                 <div class="room-item" style="width: 400px;">
-                                    <img src="/host/img?filename=${list.UUID }" width="370" height="240">
+                                    <img src="/img?filename=${list.UUID }" width="370" height="240">
                                     <div class="ri-text">
                                         <h3>${list.NAME }</h3>
                                         <h4>${list.NORMAL_PRICE } /1박</h4>
@@ -116,7 +116,7 @@
                                             </tr>
                                             </tbody>
                                         </table>
-                                        <a href="/hotel/reserve?id=${list.ID }" class="primary-btn" style="margin-left:5px;">예약하기</a>
+                                        <a href="/reserve?id=${list.ID }" class="primary-btn" style="margin-left:5px;">예약하기</a>
                                     </div>
                                 </div>
                             </div>

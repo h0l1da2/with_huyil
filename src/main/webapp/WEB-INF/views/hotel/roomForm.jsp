@@ -91,7 +91,11 @@
             <div class="col-md-10 text-center" data-aos="fade">
                 <h1 class="heading mb-3">Rooms</h1>
                 <ul class="custom-breadcrumbs mb-4">
+<<<<<<< HEAD
+                    <li><a href="/hosts/roomList">객실목록</a></li>
+=======
                     <li><a href="/host/roomList">객실목록</a></li>
+>>>>>>> 7598f74b0b4943e5b6fef1d75574f017d5af4520
                 </ul>
             </div>
         </div>
@@ -101,15 +105,15 @@
 <div class="step-box">
     <div class="step-state step3">
         <ul>
-            <li onclick="location.href='/host/hostForm'" style="cursor:pointer;"><p>마이페이지</p></li>
-            <li onclick="location.href='/host/hotelForm'" style="cursor:pointer;"><p>호텔등록</p></li>
+            <li onclick="location.href='/hosts/hostForm'" style="cursor:pointer;"><p>마이페이지</p></li>
+            <li onclick="location.href='/hosts/hotelForm'" style="cursor:pointer;"><p>호텔등록</p></li>
             <li><p>객실등록</p></li>
         </ul>
     </div>
 </div><br>
 
 <section id="hotelForm">
-    <form name="roomForm" action="/host/roomForm" method="post" enctype="multipart/form-data" onsubmit="return checkForm();">
+    <form name="roomForm" action="/hosts/roomForm" method="post" enctype="multipart/form-data" onsubmit="return checkForm();">
         <div style="margin:0 0 30px 100px;" class="form-group">
             <br>
             <label for="exampleFormControlInput1">객실명</label> &nbsp;&nbsp;

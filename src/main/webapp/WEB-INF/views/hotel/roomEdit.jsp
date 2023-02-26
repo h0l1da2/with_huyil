@@ -92,7 +92,7 @@
             <div class="col-md-10 text-center" data-aos="fade">
                 <h1 class="heading mb-3">Rooms</h1>
                 <ul class="custom-breadcrumbs mb-4">
-                    <li><a href="/">Home</a></li>
+                    <li><a href="/hosts/roomList">객실목록</a></li>
                 </ul>
             </div>
         </div>
@@ -102,15 +102,15 @@
 <div class="step-box">
     <div class="step-state step3">
         <ul>
-            <li onclick="location.href='/host/hostForm'" style="cursor:pointer;"><p>마이페이지</p></li>
-            <li onclick="location.href='/host/hotelForm'" style="cursor:pointer;"><p>호텔등록</p></li>
+            <li onclick="location.href='/hosts/hostForm'" style="cursor:pointer;"><p>마이페이지</p></li>
+            <li onclick="location.href='/hosts/hotelForm'" style="cursor:pointer;"><p>호텔등록</p></li>
             <li><p>객실등록</p></li>
         </ul>
     </div>
 </div><br>
 
 <section id="hotelForm">
-    <form name="editRoom" action="/host/roomEdit" method="post" enctype="multipart/form-data" onsubmit="return checkForm();">
+    <form name="editRoom" action="/hosts/roomEdit" method="post" enctype="multipart/form-data" onsubmit="return checkForm();">
         <div style="margin:0 0 30px 100px;" class="form-group">
             <br>
             <label for="exampleFormControlInput1">객실명</label> &nbsp;&nbsp;
@@ -122,7 +122,7 @@
                    name="uploadFile" id="product_image" onchange="setThumbnail(event);" style="width:300px; height:50px;"> <br>
             <div id="image_thumbnail"></div> <br>
             <c:if test="${not empty filevo }"> 
-            <img class="room-img" id="room_img" src="/host/img?filename=${filevo.uuid }" width="720px" height="480"/></c:if>
+            <img class="room-img" id="room_img" src="/img?filename=${filevo.uuid }" width="720px" height="480"/></c:if>
                 <br>
             <label for="exampleFormControlInput1">객실소개글</label> <br>
             <textArea style=resize:none; id="content" name="content" rows="7" cols="100">${roomvo.content }</textArea> <br> <br>
@@ -134,7 +134,7 @@
                 </tr>
                 <tr><td>
                     <select id="max" name="max">
-                    	<option value="${roomvo.max }인" selected>${roomvo.max }인</option>
+                    	<option value="${roomvo.max }" selected>${roomvo.max }인</option>
                         <option value="1">1인</option>
                         <option value="2">2인</option>
                         <option value="3">3인</option>
@@ -163,6 +163,7 @@
                 수정하기
             </button>
         </div>
+        <input type="hidden" name="roomId" value="${roomvo.id }">
     </form>
 </section> <br>
 <footer class="ftco-footer ftco-bg-dark ftco-section">

@@ -29,6 +29,7 @@ public class RoomServiceImpl {
 			e.printStackTrace();
 		}
 		return roomList;
+
 	}
 
 	public RoomVo getRoom(long hotelId) {
@@ -41,6 +42,10 @@ public class RoomServiceImpl {
 	
 	public void updateRoom(RoomVo roomvo) {
 		mapper.updateRoom(roomvo);
+	}
+	
+	public void delRoom(RoomVo roomvo) {
+		mapper.delRoom(roomvo);
 	}
 
 }

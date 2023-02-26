@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,12 +55,13 @@
 <section id="hotelForm">
 	<h3>매출목록</h3> <br> <c:if test="${not empty list }">
 	<table style="margin-left:auto; margin-right:auto; text-align:center;" border="1">
-	<tr> <th width="70px">번호</th> <th width="300px">아이디</th> <th width="500px">결제금액</th> <th>주문날짜</th> <th width="150px">체크인날짜</th> <th width="100px">체크아웃날짜</th> </tr>
+	<tr> <th width="70px">번호</th> <th width="150px">아이디</th> <th width="100px">이름</th> <th width="200px">객실</th>  <th width="150px">결제금액</th> <th width="200px">주문날짜</th> <th width="100px">체크인날짜</th> <th width="100px">체크아웃날짜</th> </tr>
 	<c:forEach var="list" items="${list }" varStatus="status">
-	<tr> <td><a href="/host/roomEdit?id=${list.ID}">${status.count }</a></td> <td>${list.NAME }</td> <td>${list.CONTENT }</td> <td>${list.MAX }</td> <td>${list.BED }</td> <td>${list.NORMAL_PRICE }</td></tr>
+	<tr> <td>${status.count }</td> <td>${userId }</td> <td>${list.USER_NAME }</td> <td>${list.ROOM }</td> <td>${list.TOTAL_PRICE }</td> <td>${list.ORDER_DATE }</td> 
+	<td>${list.CHECKIN }</td> <td>${list.CHECKOUT }</td> </tr>
 	</c:forEach>
 	</table> </c:if>
-	<c:if test="${empty roomlist }"> <h1 onclick="location.href='/host/roomForm'">객실을 추가해주세요</h1> </c:if>
+	<c:if test="${empty list }"> <h1>매출내역이 없습니다.</h1> </c:if>
 </section> <br><br><br><br>
 <footer class="ftco-footer ftco-bg-dark ftco-section">
     <div class="container">

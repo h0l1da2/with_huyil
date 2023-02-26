@@ -4,7 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
-<script>
+<script>	
     function setThumbnail(event) {
     	var hotel_img = document.getElementById("hotel_img");
         var reader = new FileReader();
@@ -20,7 +20,6 @@
 
     function checkForm() {
     	var f = document.hotelForm;
-    	
     	if(f.name.value == null || f.name.value == ""){
     		alert("호텔명을 입력해주세요");
     		f.name.focus();
@@ -64,6 +63,23 @@
     	if(f.checkOut.value == null || f.checkOut.value == ""){
     		alert("체크아웃시간을 입력해주세요");
     		f.checkOut.focus();
+    		return false;
+    	}
+    	var delForm = document.hotelForm;
+    	delForm.action = "/hosts/hotelForm"
+    	delForm.submit();
+    }
+    
+    function delCheck(){
+    	if(confirm("정말 삭제하시겠습니까?")){
+    		if(${not empty roomlist}){
+    			alert("객실을 먼저 삭제해주세요");
+    			return false;
+    		}
+    		var delForm = document.hotelForm;
+    		delForm.action = "/hosts/delHotel"
+    		delForm.submit();
+    	}else {
     		return false;
     	}
     }
@@ -119,15 +135,15 @@
 <div class="step-box">
     <div class="step-state step2">
         <ul>
-            <li onclick="location.href='/host/hostForm'" style="cursor:pointer;"><p>마이페이지</p></li>
+            <li onclick="location.href='/hosts/hostForm'" style="cursor:pointer;"><p>마이페이지</p></li>
             <li><p>호텔등록</p></li>
-            <li onclick="location.href='/host/roomForm'" style="cursor:pointer;"><p>객실등록</p></li>
+            <li onclick="location.href='/hosts/roomForm'" style="cursor:pointer;"><p>객실등록</p></li>
         </ul>
     </div>
 </div>
 
 <section id="hotelForm">
-    <form name="hotelForm" action="/host/hotelForm" method="post" enctype="multipart/form-data" onsubmit="return checkForm();">
+    <form name="hotelForm" method="post" enctype="multipart/form-data">
         <div style="margin:0 0 30px 100px;" class="form-group">
             <br>
             <label for="exampleFormControlInput1">호텔명</label>
@@ -165,7 +181,7 @@
 
                 <div id="image_container"></div>
                 <c:if test="${not empty filevo }"> 
-                <img class="room-img" id="hotel_img" src="/host/img?filename=${filevo.uuid }" width="720px" height="480"/></c:if>
+                <img class="room-img" id="hotel_img" src="/img?filename=${filevo.uuid }" width="720px" height="480"/></c:if>
                 <br>
 
                 <label for="exampleFormControlInput1">서비스</label>
@@ -224,9 +240,12 @@
                 </select> <br><br>
 
                 <br> <br>
-                <input type="submit" class="w-btn-neon2" value="다음단계">
+                <input type="button" class="w-btn-outline w-btn-red-outline" value="다음단계" onclick="return checkForm()"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="button" class="w-btn-outline w-btn-red-outline" value="삭제" onclick="return delCheck();">
             </div>
         </div>
+        <input type="hidden" name="infoId" value="${infovo.id }">
+        <input type="hidden" name="hotelId" value="${hotelvo.id }">
     </form>
 </section>
 
