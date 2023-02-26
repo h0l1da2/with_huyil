@@ -59,13 +59,15 @@ public class UsersVo {
         this.tel = usersDto.getTel();
         this.name = usersDto.getName();
         this.wheres = usersDto.getWheres();
+        this.type = usersDto.getType();
     }
 
     public UsersVo(AdminJoinDto adminJoinDto) {
         this.userId = adminJoinDto.getUserId();
         this.password = adminJoinDto.getPassword();
         this.name = adminJoinDto.getName();
-
+        this.wheres = adminJoinDto.getWheres();
+        this.type = adminJoinDto.getType();
     }
 
     public void userType(Type type) {

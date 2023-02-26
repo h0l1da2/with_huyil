@@ -29,6 +29,7 @@ public class RoomServiceImpl {
 			e.printStackTrace();
 		}
 		return roomList;
+
 	}
 
 	public RoomVo getRoom(long hotelId) {
