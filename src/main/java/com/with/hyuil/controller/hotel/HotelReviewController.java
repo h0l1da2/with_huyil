@@ -41,6 +41,8 @@ HotelReviewController {
             UsersVo usersVo = usersService.loginForFind(userDetails.getUsername());
             BookVo bookVo = bookService.notReviewFind(new ReviewBookDto(reviewMainDto.getId(), usersVo.getId()));
             model.addAttribute("userLongId", usersVo.getId());
+            model.addAttribute("userId", usersVo.getUserId());
+            model.addAttribute("role", userDetails.getAuthorities().toString());
             if (bookVo != null) {
                 log.info("유저디테일 = {}", userDetails);
                 model.addAttribute("bookId", bookVo.getId());

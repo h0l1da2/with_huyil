@@ -18,10 +18,10 @@
 			SELECT SEQ_REVIEW.NEXTVAL FROM DUAL
 		</selectKey>
 		INSERT INTO REVIEW
-		(ID, USER_ID, BOOK_ID, USER_CREATE, CONTENT, HOTEL_ID, USER_TYPE, TITLE, REPLY_ID)
+		(ID, USER_ID, BOOK_ID, USER_CREATE, CONTENT, HOTEL_ID, USER_TYPE, REPLY_ID)
 		VALUES
 		    (#{id, jdbcType=VARCHAR}, #{userId, jdbcType=VARCHAR}, #{bookId, jdbcType=VARCHAR},
-		    SYSDATE, #{content}, #{hotelId, jdbcType=VARCHAR}, #{userType}, #{title}, #{replyId, jdbcType=VARCHAR})
+		    SYSDATE, #{content}, #{hotelId, jdbcType=VARCHAR}, #{userType}, #{replyId, jdbcType=VARCHAR})
 	</insert>
 	<insert id="insertStar" parameterType="StarVo">
 		<selectKey keyProperty="id" resultType="Long" order="BEFORE">

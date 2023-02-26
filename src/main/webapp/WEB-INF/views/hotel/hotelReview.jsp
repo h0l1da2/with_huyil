@@ -232,10 +232,6 @@
                                 <h2><label class="h3 menuBtn">댓글 쓰기</label></h2>
                                 <ul>
                                                 <div class="form-group">
-                                                    <input type="text" name="title" id="hostTitle" class="form-control" placeholder="제목">
-                                                    <span class="title text-type" id="noHostTitle" name="noTitle">제목을 입력해주세요</span>
-                                                </div>
-                                                <div class="form-group">
                                                     <textarea id="hostContent" name="content" cols="30" rows="7" class="form-control msg-box" placeholder="내용"></textarea>
                                                     <span class="title text-type" id="noHostContent" name="noHostContent">내용을 입력해주세요</span>
                                                 </div>
@@ -398,7 +394,7 @@
                 type: 'POST',
                 url: '/hotel/review/write',
                 contentType: "application/json",
-                data: JSON.stringify({userId:${userLongId}, hotelId:${hotelVo.id}, bookId:${bookId},
+                data: JSON.stringify({userLongId:'${userLongId}', hotelId:${hotelVo.id}, bookId:${bookId},
                 clean:clean, facilities:facilities, condition:condition, organic:organic, title:title, content:content}),
                 dataType: 'text',
                 success: function (result) {

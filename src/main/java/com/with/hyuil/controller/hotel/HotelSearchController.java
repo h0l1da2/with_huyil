@@ -1,5 +1,6 @@
 package com.with.hyuil.controller.hotel;
 
+import com.with.hyuil.config.auth.CustomUserDetails;
 import com.with.hyuil.dto.hotel.GlobalPageHandler;
 import com.with.hyuil.dto.hotel.HotelListDto;
 import com.with.hyuil.dto.hotel.HotelSearchDto;
@@ -7,6 +8,7 @@ import com.with.hyuil.dto.review.StarDto;
 import com.with.hyuil.service.interfaces.HotelService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,16 +29,17 @@ public class HotelSearchController {
     private GlobalPageHandler globalPageHandler;
 
     @GetMapping("/list")
-    public String hotelList(@ModelAttribute HotelSearchDto hotelSearchDto, Model model) {
+    public String hotelList(@ModelAttribute HotelSearchDto hotelSearchDto, Model model, @AuthenticationPrincipal CustomUserDetails userDetails) {
+        addUserId(model, userDetails);
         log.info("호텔 제대로 들어왔음? = {}", hotelSearchDto);
         return searchHotels(model, hotelSearchDto);
     }
 
     @GetMapping("/list/{region}")
-    public String indexHotelList(@PathVariable String region, Model model) {
-        log.info("지역? = {}", region);
+    public String indexHotelList(@PathVariable String region, Model model, @AuthenticationPrincipal CustomUserDetails userDetails) {
         String today = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE);
         log.info("오늘은 ? = {}", today);
+        addUserId(model, userDetails);
         HotelSearchDto hotelSearchDto = new HotelSearchDto(region, 1, today, today);
         return searchHotels(model, hotelSearchDto);
     }
@@ -75,5 +78,11 @@ public class HotelSearchController {
         model.addAttribute("ph", globalPageHandler);
         model.addAttribute(hotelList);
         model.addAttribute("where", hotelSearchDto.getSido());
+    }
+
+    private void addUserId(Model model, CustomUserDetails userDetails) {
+        if (userDetails != null) {
+            model.addAttribute("userId", userDetails.getUsername());
+        }
     }
 }
