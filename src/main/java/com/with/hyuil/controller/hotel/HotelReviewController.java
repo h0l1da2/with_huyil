@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,8 +24,8 @@ import java.util.List;
 @Slf4j
 @RequestMapping("/hotel/review")
 @RequiredArgsConstructor
-public class
-HotelReviewController {
+@Transactional
+public class HotelReviewController {
 
     private final ReviewService reviewService;
     private final UsersService usersService;

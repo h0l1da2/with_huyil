@@ -27,7 +27,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class HotelSearchController {
     private final HotelService hotelService;
-    private final ReviewService reviewService;
     private GlobalPageHandler globalPageHandler;
 
     @GetMapping("/list")
@@ -49,18 +48,11 @@ public class HotelSearchController {
 
     private String searchHotels(Model model, HotelSearchDto hotelSearchDto) {
         List<HotelListDto> hotelList = hotelService.searchHotels(hotelSearchDto);
-        List<StarDto> starList = hotelService.searchHotelStar(hotelList);
 
-        if (starList != null) {
-            for(StarDto star : starList) {
-                star.calcForHotelList();
-                for(HotelListDto hotelListDto : hotelList) {
-                    if(star.getId().equals(hotelListDto.getId())) {
-                        hotelListDto.setStar(star.getReviewStars());
-                    }
-                }
-            }
+        for(HotelListDto hotelListDto : hotelList) {
+            hotelListDto.calcForHotelList();
         }
+
         try {
             globalPageHandler = new GlobalPageHandler(hotelList.get(0).getTotcnt(), 1);
             log.info("핸들러 = {}", globalPageHandler);

@@ -87,7 +87,6 @@
 						<div class="col-sm col-md-6 col-lg-4 ftco-animate">
 							<div class="room">
 								<a href="<c:url value="/hotel/Detail?id=${hotelList.id}"/>" class="img d-flex justify-content-center align-items-center" style="background-image: url(${hotelList.imgSrc}${hotelList.uuid});">
-<%--								<a href="<c:url value="/hotel/Detail?id=${hotelList.id}"/>" class="img d-flex justify-content-center align-items-center" style="background-image: url(<c:url value='/resources/static/home/images/room-1.jpg'/>);">--%>
 									<div class="icon d-flex justify-content-center align-items-center">
 										<span class="icon-search2"></span>
 									</div>
@@ -96,7 +95,7 @@
 									<h3 class="mb-3"><a href="<c:url value="/hotel/Detail?id=${hotelList.id}"/>">${hotelList.name}</a></h3>
 									<p><span class="price mr-2">${hotelList.price}</span> <span class="per">1 박</span></p>
 									<ul class="list">
-										<li><span>리뷰</span></li>
+										<li><span>리뷰 ${hotelList.totalStar}개</span></li>
 										<p class="rate"><span>
 											<c:if test="${0.0 < hotelList.star && hotelList.star <= 1.5}">
 												<i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i>
