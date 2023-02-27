@@ -1,6 +1,7 @@
 package com.with.hyuil.dao;
 
 import com.with.hyuil.dto.review.ReviewDto;
+import com.with.hyuil.dto.review.StarDto;
 import com.with.hyuil.model.ReviewVo;
 import com.with.hyuil.model.StarVo;
 import org.apache.ibatis.annotations.Mapper;
@@ -15,4 +16,5 @@ public interface ReviewMapper {
     int insertHostReview(ReviewVo reviewVo);
     List<ReviewDto> selectAllReviews(Long hotelId1);
     ReviewVo selectFromId(Long id);
+    StarDto selectSumStar(Long id);
 }

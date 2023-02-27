@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html lang="ko">
 <head>
-	<title>Deluxe - Free Bootstrap 4 Template by Colorlib</title>
+	<title>위드휴일</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -86,7 +86,8 @@
 					<c:forEach var="hotelList" items="${hotelListDtoList}">
 						<div class="col-sm col-md-6 col-lg-4 ftco-animate">
 							<div class="room">
-								<a href="<c:url value="/hotel/Detail?id=${hotelList.id}"/>" class="img d-flex justify-content-center align-items-center" style="background-image: url(<c:url value='/resources/static/home/images/room-1.jpg'/>);">
+								<a href="<c:url value="/hotel/Detail?id=${hotelList.id}"/>" class="img d-flex justify-content-center align-items-center" style="background-image: url(${hotelList.imgSrc}${hotelList.uuid});">
+<%--								<a href="<c:url value="/hotel/Detail?id=${hotelList.id}"/>" class="img d-flex justify-content-center align-items-center" style="background-image: url(<c:url value='/resources/static/home/images/room-1.jpg'/>);">--%>
 									<div class="icon d-flex justify-content-center align-items-center">
 										<span class="icon-search2"></span>
 									</div>
@@ -119,7 +120,7 @@
 										<li>${hotelList.sigungu}</li>
 									</ul>
 									<hr>
-									<p class="pt-1"><a href="room-single.html" class="btn-custom">상세보기 <span class="icon-long-arrow-right"></span></a></p>
+									<p class="pt-1"><a href="/hotel/Detail?id=${hotelList.id}" class="btn-custom">상세보기 <span class="icon-long-arrow-right"></span></a></p>
 								</div>
 							</div>
 						</div>

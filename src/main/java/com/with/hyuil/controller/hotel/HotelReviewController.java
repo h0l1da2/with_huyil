@@ -1,12 +1,11 @@
 package com.with.hyuil.controller.hotel;
 
 import com.with.hyuil.config.auth.CustomUserDetails;
-import com.with.hyuil.dto.review.HostReviewDto;
-import com.with.hyuil.dto.review.ReviewBookDto;
-import com.with.hyuil.dto.review.ReviewDto;
-import com.with.hyuil.dto.review.ReviewMainDto;
+import com.with.hyuil.dto.review.*;
 import com.with.hyuil.model.*;
 import com.with.hyuil.model.enumaration.Type;
+import com.with.hyuil.service.FileServiceImpl;
+import com.with.hyuil.service.HotelinfoServiceImpl;
 import com.with.hyuil.service.interfaces.BookService;
 import com.with.hyuil.service.interfaces.HotelService;
 import com.with.hyuil.service.interfaces.ReviewService;
@@ -24,12 +23,15 @@ import java.util.List;
 @Slf4j
 @RequestMapping("/hotel/review")
 @RequiredArgsConstructor
-public class HotelReviewController {
+public class
+HotelReviewController {
 
     private final ReviewService reviewService;
     private final UsersService usersService;
     private final BookService bookService;
     private final HotelService hotelService;
+    private final HotelinfoServiceImpl hotelinfoService;
+    private final FileServiceImpl fileService;
 
     @GetMapping
     public String reviewPage(@ModelAttribute ReviewMainDto reviewMainDto, @AuthenticationPrincipal CustomUserDetails userDetails, Model model) {
@@ -39,6 +41,8 @@ public class HotelReviewController {
             UsersVo usersVo = usersService.loginForFind(userDetails.getUsername());
             BookVo bookVo = bookService.notReviewFind(new ReviewBookDto(reviewMainDto.getId(), usersVo.getId()));
             model.addAttribute("userLongId", usersVo.getId());
+            model.addAttribute("userId", usersVo.getUserId());
+            model.addAttribute("role", userDetails.getAuthorities().toString());
             if (bookVo != null) {
                 log.info("유저디테일 = {}", userDetails);
                 model.addAttribute("bookId", bookVo.getId());
@@ -46,15 +50,17 @@ public class HotelReviewController {
         }
         log.info("reviewMainDto = {}", reviewMainDto);
         HotelVo hotelVo = hotelService.findByHotelId(reviewMainDto.getId());
-        log.info("유저디테일 = {}", userDetails);
+        // 호텔아이디로 호텔인포를  찾아오고, 그 다음에 호텔인포 아이디로 파일을 가져온다
+        HotelInfoVo hotelInfo = hotelinfoService.findByInfoId(hotelVo.getHotelInfoId());
+        FileVo filevo = fileService.gethotelImg(hotelInfo.getId());
+        StarDto star = reviewService.getHotelStar(hotelVo.getId());
+        star.calcForHotelList();
         model.addAttribute("hotelVo", hotelVo);
-        log.info("유저디테일 = {}", userDetails);
+        model.addAttribute("filevo", filevo);
+        model.addAttribute("star", star);
         List<ReviewDto> reviewDto = reviewService.findHotelReviews(hotelVo.getId());
         log.info("유저디테일 = {}", userDetails);
         model.addAttribute(reviewDto);
-        log.info("유저디테일 = {}", userDetails);
-        //파일Vo 가져오기
-        /**
          * 1.Reply_id 가 null 인 해당 hotel_id 를 가진 ReviewDto 받아옴
          * 2.Reply_id 가 null 이 아닌 것들 중에서 WHERE ID IN (?,?, ...) 를 가져옴
          * 3.둘 다 데려와서 페이징

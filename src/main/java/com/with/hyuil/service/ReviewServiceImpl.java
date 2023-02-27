@@ -2,6 +2,7 @@ package com.with.hyuil.service;
 
 import com.with.hyuil.dao.ReviewMapper;
 import com.with.hyuil.dto.review.ReviewDto;
+import com.with.hyuil.dto.review.StarDto;
 import com.with.hyuil.model.ReviewVo;
 import com.with.hyuil.model.StarVo;
 import com.with.hyuil.service.interfaces.ReviewService;
@@ -41,6 +42,11 @@ public class ReviewServiceImpl implements ReviewService {
     @Override
     public List<ReviewDto> findHotelReviews(Long hotelId) {
         return reviewMapper.selectAllReviews(hotelId);
+    }
+
+    @Override
+    public StarDto getHotelStar(Long id) {
+        return reviewMapper.selectSumStar(id);
     }
 
     @Override

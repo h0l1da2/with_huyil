@@ -10,8 +10,10 @@ import org.springframework.stereotype.Service;
 
 import com.with.hyuil.dao.RoomMapper;
 import com.with.hyuil.model.RoomVo;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class RoomServiceImpl {
 
 	@Autowired

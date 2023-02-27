@@ -107,7 +107,7 @@
                     <div class="item">
                         <a href="/hotel/detail?id=${hotelVo.id}">
                             <!-- 컨트롤러에서 파일 받아오ㅏ야함 -->
-                            <img class="room-img" src="/host/img?filename=${filevo.uuid }"></img></a>
+                            <img class="room-img" src="/img?filename=${filevo.uuid }"></img></a>
                     </div>
                 </div>
             </div>
@@ -115,12 +115,25 @@
                 <h2 class="mb-4"><a href="/hotel/detail?id=${hotelVo.id}"> ${hotelVo.name}</a></h2>
                 <div class="star-rating">
                     <div class="rating" data-rate="<%--${hotelvo.star}--%>">
-                        <i><a href="/hotel/review?id=${hotelVo.id}">리뷰</a></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
+                        <i><a href="/hotel/review?id=${hotelVo.id}">리뷰 ${star.totcnt}개</a></i>
+                        <c:if test="${0.0 < star.reviewStars && star.reviewStars <= 1.5}">
+                            <i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i>
+                        </c:if>
+                        <c:if test="${1.5 < star.reviewStars && star.reviewStars <= 2.5}">
+                            <i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i>
+                        </c:if>
+                        <c:if test="${2.5 < star.reviewStars && star.reviewStars <= 3.5}">
+                            <i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i>
+                        </c:if>
+                        <c:if test="${3.5 < star.reviewStars && star.reviewStars <= 4.5}">
+                            <i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i>
+                        </c:if>
+                        <c:if test="${4.5 < star.reviewStars && star.reviewStars <= 5.0}">
+                            <i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i>
+                        </c:if>
+                        <c:if test="${star.reviewStars == 0.0}">
+                            <i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i>
+                        </c:if>
                     </div>
                 </div>
                 <br>
@@ -218,10 +231,6 @@
                             <div class="menu">
                                 <h2><label class="h3 menuBtn">댓글 쓰기</label></h2>
                                 <ul>
-                                                <div class="form-group">
-                                                    <input type="text" name="title" id="hostTitle" class="form-control" placeholder="제목">
-                                                    <span class="title text-type" id="noHostTitle" name="noTitle">제목을 입력해주세요</span>
-                                                </div>
                                                 <div class="form-group">
                                                     <textarea id="hostContent" name="content" cols="30" rows="7" class="form-control msg-box" placeholder="내용"></textarea>
                                                     <span class="title text-type" id="noHostContent" name="noHostContent">내용을 입력해주세요</span>
@@ -385,7 +394,7 @@
                 type: 'POST',
                 url: '/hotel/review/write',
                 contentType: "application/json",
-                data: JSON.stringify({userId:${userLongId}, hotelId:${hotelVo.id}, bookId:${bookId},
+                data: JSON.stringify({userLongId:'${userLongId}', hotelId:${hotelVo.id}, bookId:${bookId},
                 clean:clean, facilities:facilities, condition:condition, organic:organic, title:title, content:content}),
                 dataType: 'text',
                 success: function (result) {
