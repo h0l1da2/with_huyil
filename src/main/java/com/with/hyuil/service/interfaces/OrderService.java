@@ -1,5 +1,6 @@
 package com.with.hyuil.service.interfaces;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -11,4 +12,6 @@ public interface OrderService {
 	List<Map<String, Object>> getOrderList(Long id);
 	OrdersVo findByToken(String pgToken);
 	Integer sumTotalPrice();
+	public List<LocalDate> getDatesBetweenTwoDates(LocalDate startDate, LocalDate endDate);
+
 }

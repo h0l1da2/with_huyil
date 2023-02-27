@@ -7,6 +7,8 @@ import java.util.UUID;
 
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,6 +22,7 @@ import com.with.hyuil.model.UsersVo;
 
 @Service
 @Transactional
+@PropertySource("classpath:application.properties")
 public class FileServiceImpl {
 
 	@Autowired
@@ -36,9 +39,10 @@ public class FileServiceImpl {
 	public FileVo getRoomImg(long roomId) {
 		return mapper.selectRoomImg(roomId);
 	}
+	@Value("${file.path}")
+	private String path;
 
 	public void UploadImg(MultipartHttpServletRequest mhsq, UsersVo usersvo, HotelVo hotelvo, RoomVo roomvo)throws IllegalStateException, IOException  {
-		String path = "C:/Imgs/";
 		File dir = new File(path);
 		if(!dir.isDirectory()) {
 			dir.mkdirs();

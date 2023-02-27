@@ -78,6 +78,7 @@ public class HotelSearchController {
         if (globalPageHandler == null) {
             globalPageHandler =  new GlobalPageHandler(0, 1);
         }
+        log.info("호텔리스트스타 = {}", hotelList.get(0).getStar());
         model.addAttribute("ph", globalPageHandler);
         model.addAttribute(hotelList);
         model.addAttribute("where", hotelSearchDto.getSido());
