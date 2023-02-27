@@ -38,14 +38,15 @@
 		SELECT * FROM ORDERS WHERE PG_TOKEN = #{pgToken} AND REMOVE_DATE IS NULL
 	</select>
 
+	<update id="delOrder" parameterType="OrdersVo">
+		UPDATE ORDERS SET REMOVE_DATE = sysdate WHERE ID = #{id}
+	</update>
+
 	<select id="selectAllPrice" resultType="Integer">
 		SELECT SUM(TOTAL_PRICE) TOTAL_PRICE
 		FROM ORDERS
 	</select>
 
-	<update id="delOrder" parameterType="OrdersVo">
-		UPDATE ORDERS SET REMOVE_DATE = sysdate WHERE ID = #{id}
-	</update>
 
 	<select id="selectAllPrice" resultType="Integer">
 		SELECT SUM(TOTAL_PRICE) TOTAL_PRICE

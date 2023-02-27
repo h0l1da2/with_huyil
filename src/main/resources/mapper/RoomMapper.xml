@@ -25,8 +25,12 @@
 	</insert>
 
 	<select id="getroomList" parameterType="long" resultType="Map">
-		select a.id, a.name, a.content, a.max, a.bed, a.normal_price, b.uuid
-		from room a left join files b on(a.id = b.room_id) where a.hotel_id = #{hotel_id} and a.remove_date is null
+		select r.id, r.name, r.content, r.max, r.bed, r.normal_price, f.uuid
+		from room r, files f, hotel h
+		where r.remove_date is null
+		  and h.id = r.hotel_id
+		  and f.room_id is not null
+		  and r.hotel_id = #{hotel_id}
 	</select>
 
 	<select id="getRoom" parameterType="long" resultType="RoomVo">

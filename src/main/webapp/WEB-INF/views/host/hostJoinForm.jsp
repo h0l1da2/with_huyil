@@ -114,7 +114,7 @@
 		let account = document.getElementById("account").value;
 		let password = document.getElementById("password").value;
 		let regExp = /^[0-9]{10}$/;
-		let regNum = /^.{6,20}$/;
+		let passwordNum = /^.{6,20}$/;
 		if(check == 0) {
 			alert("아이디 중복 확인을 해주세요");
 			return false;
@@ -138,7 +138,7 @@
 			document.getElementById("account").focus();
 			return false;
 		}
-		if(!regNum.test(password)) {
+		if(!passwordNum.test(password)) {
 			alert("비밀번호 글자수를 확인해주세요");
 			document.getElementById("password").focus();
 			return false;
