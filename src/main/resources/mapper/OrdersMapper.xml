@@ -48,4 +48,10 @@
 	</select>
 
 
+	<select id="selectAllPrice" resultType="Integer">
+		SELECT SUM(TOTAL_PRICE) TOTAL_PRICE
+		FROM ORDERS
+	</select>
+
+
 </mapper>

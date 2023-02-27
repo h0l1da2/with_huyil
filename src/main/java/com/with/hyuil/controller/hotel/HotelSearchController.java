@@ -6,6 +6,7 @@ import com.with.hyuil.dto.hotel.HotelListDto;
 import com.with.hyuil.dto.hotel.HotelSearchDto;
 import com.with.hyuil.dto.review.StarDto;
 import com.with.hyuil.service.interfaces.HotelService;
+import com.with.hyuil.service.interfaces.ReviewService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -26,12 +27,14 @@ import java.util.List;
 @RequiredArgsConstructor
 public class HotelSearchController {
     private final HotelService hotelService;
+    private final ReviewService reviewService;
     private GlobalPageHandler globalPageHandler;
 
     @GetMapping("/list")
     public String hotelList(@ModelAttribute HotelSearchDto hotelSearchDto, Model model, @AuthenticationPrincipal CustomUserDetails userDetails) {
         addUserId(model, userDetails);
         log.info("호텔 제대로 들어왔음? = {}", hotelSearchDto);
+        // 해당 호텔 리뷰 나오게 수정
         return searchHotels(model, hotelSearchDto);
     }
 
