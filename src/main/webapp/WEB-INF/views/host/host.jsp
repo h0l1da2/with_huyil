@@ -120,6 +120,7 @@
             };
 
             var map = new kakao.maps.Map(container, options);
+
             $(document).ready(function(){
               $('#noComplete').click(function () {
                 alert("준비 중입니다");
@@ -128,6 +129,5 @@
             })
 
         </script>
-
 </body>
 </html>
