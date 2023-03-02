@@ -3,9 +3,11 @@ package com.with.hyuil.controller.hotel;
 import com.with.hyuil.config.auth.CustomUserDetails;
 import com.with.hyuil.dto.hotel.GlobalPageHandler;
 import com.with.hyuil.dto.hotel.HotelListDto;
+import com.with.hyuil.dto.hotel.HotelPriceDto;
 import com.with.hyuil.dto.hotel.HotelSearchDto;
 import com.with.hyuil.dto.review.StarDto;
 import com.with.hyuil.service.interfaces.HotelService;
+import com.with.hyuil.service.interfaces.ReviewService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -32,6 +34,7 @@ public class HotelSearchController {
     public String hotelList(@ModelAttribute HotelSearchDto hotelSearchDto, Model model, @AuthenticationPrincipal CustomUserDetails userDetails) {
         addUserId(model, userDetails);
         log.info("호텔 제대로 들어왔음? = {}", hotelSearchDto);
+        // 해당 호텔 리뷰 나오게 수정
         return searchHotels(model, hotelSearchDto);
     }
 
@@ -46,18 +49,10 @@ public class HotelSearchController {
 
     private String searchHotels(Model model, HotelSearchDto hotelSearchDto) {
         List<HotelListDto> hotelList = hotelService.searchHotels(hotelSearchDto);
-        List<StarDto> starList = hotelService.searchHotelStar(hotelList);
-
-        if (starList != null) {
-            for(StarDto star : starList) {
-                star.calcForHotelList();
-                for(HotelListDto hotelListDto : hotelList) {
-                    if(star.getId().equals(hotelListDto.getId())) {
-                        hotelListDto.setStar(star.getReviewStars());
-                    }
-                }
-            }
+        for(HotelListDto hotelListDto : hotelList) {
+            hotelListDto.calcForHotelList();
         }
+
         try {
             globalPageHandler = new GlobalPageHandler(hotelList.get(0).getTotcnt(), 1);
             log.info("핸들러 = {}", globalPageHandler);
@@ -75,6 +70,7 @@ public class HotelSearchController {
         if (globalPageHandler == null) {
             globalPageHandler =  new GlobalPageHandler(0, 1);
         }
+        log.info("호텔리스트스타 = {}", hotelList.get(0).getStar());
         model.addAttribute("ph", globalPageHandler);
         model.addAttribute(hotelList);
         model.addAttribute("where", hotelSearchDto.getSido());

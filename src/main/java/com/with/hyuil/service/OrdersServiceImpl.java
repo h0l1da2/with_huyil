@@ -22,7 +22,8 @@ public class OrdersServiceImpl implements OrderService {
 	public void addOrders(OrdersVo ordersvo) {
 		mapper.insertOrders(ordersvo);
 	}
-	
+
+	@Override
 	public List<Map<String, Object>> getOrderList(Long id){
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		try {
@@ -32,12 +33,14 @@ public class OrdersServiceImpl implements OrderService {
 		}
 		return list;
 	}
-	
+	@Override
+
 	public List<LocalDate> getDatesBetweenTwoDates(LocalDate startDate, LocalDate endDate) {
 		return startDate.datesUntil(endDate)
         	.collect(Collectors.toList());
 	}
-	
+	@Override
+
 	public OrdersVo findByToken(String pgToken) {
 		return mapper.findByToken(pgToken);
 	}

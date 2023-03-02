@@ -87,7 +87,6 @@
 						<div class="col-sm col-md-6 col-lg-4 ftco-animate">
 							<div class="room">
 								<a href="<c:url value="/hotel/Detail?id=${hotelList.id}"/>" class="img d-flex justify-content-center align-items-center" style="background-image: url(${hotelList.imgSrc}${hotelList.uuid});">
-<%--								<a href="<c:url value="/hotel/Detail?id=${hotelList.id}"/>" class="img d-flex justify-content-center align-items-center" style="background-image: url(<c:url value='/resources/static/home/images/room-1.jpg'/>);">--%>
 									<div class="icon d-flex justify-content-center align-items-center">
 										<span class="icon-search2"></span>
 									</div>

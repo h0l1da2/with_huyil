@@ -30,6 +30,7 @@
 		where r.remove_date is null
 		  and h.id = r.hotel_id
 		  and f.room_id is not null
+		  and f.room_id = r.id
 		  and r.hotel_id = #{hotel_id}
 	</select>
 
