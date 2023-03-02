@@ -86,7 +86,6 @@
             <div class="col-md">
                 <div class="ftco-footer-widget mb-4">
                     <h2 class="ftco-heading-2">깃허브</h2>
-                    <ul class="list-unstyled">
                         <li><a href="https://github.com/h0l1da2" class="py-2 d-block">강휴일</a></li>
                         <li><a href="https://github.com/KimNamSu96" class="py-2 d-block">김남수</a></li>
                     </ul>
