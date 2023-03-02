@@ -58,7 +58,7 @@ public class CustomUserDetails implements UserDetails, OAuth2User {
 
     @Override
     public boolean isAccountNonLocked() {
-        if (usersVo.getOut() != null && usersVo.getOut().startsWith(Out.STOP.toString())) {
+        if (usersVo.getOut() != null && usersVo.getOut().equals(Out.STOP.toString())) {
             return false;
         }
         return true;
@@ -71,10 +71,10 @@ public class CustomUserDetails implements UserDetails, OAuth2User {
 
     @Override
     public boolean isEnabled() {
-        if (usersVo.getOut() == null) {
-            return true;
+        if (usersVo.getOut() != null && usersVo.getOut().equals(Out.SECESSION)) {
+            return false;
         }
-        return false;
+        return true;
     }
 
     @Override

@@ -1,21 +1,7 @@
 /target/
 /src/main/resources/application.properties
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 /src/main/resources/lig4jdbc.log4j2.properties
 /src/main/resources/lig4jdbc.log4j2.log4j2.xml
 /src/main/resources/log4j2.xml
 .vscode/
 .properties
-=======
->>>>>>> 1da4fc2 (수정수정수정)
-=======
-.vscode/
->>>>>>> c135fb5 (예약 작업중)
-=======
-/src/main/resources/lig4jdbc.log4j2.properties
-/src/main/resources/lig4jdbc.log4j2.log4j2.xml
-/src/main/resources/log4j2.xml
-.vscode/
->>>>>>> 5210103 (add : 호텔 등록 관련, 시큐리티 로그인 관련 (#16))

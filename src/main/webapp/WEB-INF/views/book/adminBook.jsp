@@ -213,7 +213,7 @@
                                     <td>${bookList.userId}</td>
                                     <td>${bookList.hotel}</td>
                                     <td>${bookList.orderDate}</td>
-                                    <td>${bookList.payDate}</td>
+                                    <td>${bookList.checkIn} - ${bookList.checkOut}</td>
                                     <td>${bookList.status}</td>
                                     <td>
                                         <button type="button" class="btn btn-primary" onclick="bookCancel(${bookList.id})" <c:if test="${bookList.status ne 'READY'}">hidden</c:if>>취소</button>

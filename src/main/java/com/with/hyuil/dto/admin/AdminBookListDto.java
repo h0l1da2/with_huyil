@@ -10,7 +10,8 @@ public class AdminBookListDto {
     private String userId;
     private String hotel;
     private String orderDate;
-    private String payDate;
+    private String checkIn;
+    private String checkOut;
     private Status status;
     private Integer totcnt;
 
