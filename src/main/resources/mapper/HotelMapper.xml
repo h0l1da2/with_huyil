@@ -26,24 +26,22 @@
 		SELECT *
 		FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER () AS TOTCNT
 		FROM (
-		SELECT H.ID, H.NAME, R.NORMAL_PRICE AS PRICE, H.SIGUNGU, F.UUID,
+		SELECT H.ID, H.NAME, H.SIGUNGU, F.UUID,
 			   SUM(S.CLEAN) CLEAN,
 			   SUM(S.FACILITIES) FACILITIES,
 			   SUM(S.CONDITION) CONDITION,
-			   SUM(S.ORGANIC) ORGANIC, COUNT(S.CLEAN) TOTAL_STAR
+			   SUM(S.ORGANIC) ORGANIC, COUNT(S.CLEAN) TOTAL_STAR,
+			   MIN(R.NORMAL_PRICE) PRICE
 		FROM HOTEL H, ROOM R, FILES F, HOTEL_INFO I, STAR S
 		WHERE H.ID = R.HOTEL_ID
 		  AND I.ID = F.HOTEL_INFO_ID
 		  AND I.ID = H.HOTEL_INFO_ID
-		AND H.SIDO = #{sido}
+		  AND H.ID = S.HOTEL_ID(+)
+		  AND H.SIDO = #{sido}
 		AND R.MAX >= #{max}
 		AND H.REMOVE_DATE IS NULL
 		AND F.ROOM_ID IS NULL
-		  AND R.NORMAL_PRICE = (
-		    SELECT MIN(NORMAL_PRICE) FROM ROOM
-			)
-
-		GROUP BY H.ID, H.NAME, R.NORMAL_PRICE, H.SIGUNGU, F.UUID
+		GROUP BY H.ID, H.NAME, H.SIGUNGU, F.UUID
 		ORDER BY H.ID) A)
 		WHERE RNUM > #{offset}
 		AND RNUM &lt;= #{limit}
@@ -73,6 +71,19 @@
 		GROUP BY H.ID
 		ORDER BY H.ID
 	</select>
+
+	<select id="findAllHotelPrice" resultType="HotelPriceDto">
+		SELECT H.ID, MIN(R.NORMAL_PRICE) PRICE
+		FROM HOTEL H, ROOM R
+		WHERE H.ID = R.HOTEL_ID
+		  AND H.ID IN
+		<foreach collection="hotelListDtos" item="hotel" open="(" close=")" separator=",">
+			#{hotel.id, jdbcType = VARCHAR}
+		</foreach>
+		GROUP BY H.ID, R.NORMAL_PRICE, R.ID, R.HOTEL_ID
+		ORDER BY H.ID, R.NORMAL_PRICE
+	</select>
+
 	<select id="selectAllCnt" resultType="Integer">
 		SELECT COUNT(*)
 		FROM HOTEL

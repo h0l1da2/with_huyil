@@ -3,6 +3,7 @@ package com.with.hyuil.controller.hotel;
 import com.with.hyuil.config.auth.CustomUserDetails;
 import com.with.hyuil.dto.hotel.GlobalPageHandler;
 import com.with.hyuil.dto.hotel.HotelListDto;
+import com.with.hyuil.dto.hotel.HotelPriceDto;
 import com.with.hyuil.dto.hotel.HotelSearchDto;
 import com.with.hyuil.dto.review.StarDto;
 import com.with.hyuil.service.interfaces.HotelService;
@@ -48,7 +49,6 @@ public class HotelSearchController {
 
     private String searchHotels(Model model, HotelSearchDto hotelSearchDto) {
         List<HotelListDto> hotelList = hotelService.searchHotels(hotelSearchDto);
-
         for(HotelListDto hotelListDto : hotelList) {
             hotelListDto.calcForHotelList();
         }

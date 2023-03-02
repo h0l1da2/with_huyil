@@ -95,7 +95,7 @@
 									<h3 class="mb-3"><a href="<c:url value="/hotel/Detail?id=${hotelList.id}"/>">${hotelList.name}</a></h3>
 									<p><span class="price mr-2">${hotelList.price}</span> <span class="per">1 박</span></p>
 									<ul class="list">
-										<li><span>리뷰 ${hotelList.totalStar}개</span></li>
+										<li><span>리뷰</span></li>
 										<p class="rate"><span>
 											<c:if test="${0.0 < hotelList.star && hotelList.star <= 1.5}">
 												<i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i>
