@@ -22,4 +22,5 @@ public interface BookService {
     String bookCancel(Long id);
     String hostBookCancel(Long id);
     void addBook(BookAddDto bookAddDto);
+    String bookComplete(HostBookListDto hostBookListDto);
 }

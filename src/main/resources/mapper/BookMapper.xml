@@ -128,4 +128,9 @@
         SET REVIEW_ID = #{id, jdbcType=VARCHAR}
         WHERE USER_ID = #{userId, jdbcType=VARCHAR}
     </update>
+    <update id="updateStatus" parameterType="HostBookListDto">
+        UPDATE BOOK
+        SET STATUS = #{status}
+        WHERE ID = #{id}
+    </update>
 </mapper>

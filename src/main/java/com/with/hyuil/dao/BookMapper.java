@@ -27,4 +27,5 @@ public interface BookMapper {
     List<BookVo> findBookForReview(ReviewBookDto bookVo);
     int updateReviewId(ReviewVo reviewVo);
     void insertBook(BookAddDto bookAddDto);
+    int updateStatus(HostBookListDto hostBookListDto);
 }
