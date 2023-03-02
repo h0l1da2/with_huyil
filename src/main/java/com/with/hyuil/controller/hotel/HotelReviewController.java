@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,8 +24,8 @@ import java.util.List;
 @Slf4j
 @RequestMapping("/hotel/review")
 @RequiredArgsConstructor
-public class
-HotelReviewController {
+@Transactional
+public class HotelReviewController {
 
     private final ReviewService reviewService;
     private final UsersService usersService;
@@ -61,10 +62,6 @@ HotelReviewController {
         List<ReviewDto> reviewDto = reviewService.findHotelReviews(hotelVo.getId());
         log.info("유저디테일 = {}", userDetails);
         model.addAttribute(reviewDto);
-         * 1.Reply_id 가 null 인 해당 hotel_id 를 가진 ReviewDto 받아옴
-         * 2.Reply_id 가 null 이 아닌 것들 중에서 WHERE ID IN (?,?, ...) 를 가져옴
-         * 3.둘 다 데려와서 페이징
-         */
         return "hotel/hotelReview";
     }
 

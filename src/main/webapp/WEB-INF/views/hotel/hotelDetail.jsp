@@ -75,11 +75,25 @@
                 <h2 class="mb-4">${hotelvo.name}</h2>
                 <div class="star-rating">
                     <div class="rating" data-rate="<%--${hotelvo.star}--%>">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
+                        <i><a href="/hotel/review?id=${hotelvo.id}">리뷰 ${star.totcnt}개</a></i>
+                        <c:if test="${0.0 < star.reviewStars && star.reviewStars <= 1.5}">
+                            <i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i>
+                        </c:if>
+                        <c:if test="${1.5 < star.reviewStars && star.reviewStars <= 2.5}">
+                            <i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i>
+                        </c:if>
+                        <c:if test="${2.5 < star.reviewStars && star.reviewStars <= 3.5}">
+                            <i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i><i class="icon-star-o"></i>
+                        </c:if>
+                        <c:if test="${3.5 < star.reviewStars && star.reviewStars <= 4.5}">
+                            <i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star-o"></i>
+                        </c:if>
+                        <c:if test="${4.5 < star.reviewStars && star.reviewStars <= 5.0}">
+                            <i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i>
+                        </c:if>
+                        <c:if test="${star.reviewStars == 0.0}">
+                            <i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i><i class="icon-star-o"></i>
+                        </c:if>
                         <i><a href="/hotel/review?id=${hotelvo.id}">리뷰 더 보기</a></i>
                     </div>
                 </div>

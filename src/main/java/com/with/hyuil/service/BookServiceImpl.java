@@ -12,6 +12,7 @@ import com.with.hyuil.dto.info.HostBookListDto;
 import com.with.hyuil.dto.review.ReviewBookDto;
 import com.with.hyuil.model.BookVo;
 import com.with.hyuil.model.ReviewVo;
+import com.with.hyuil.model.enumaration.Status;
 import com.with.hyuil.service.interfaces.BookService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -80,7 +81,8 @@ public class BookServiceImpl implements BookService {
     }
     @Override
     public void addBook(BookAddDto bookAddDto) {
-            bookMapper.insertBook(bookAddDto);
+        bookAddDto.setStatus(Status.READY);
+        bookMapper.insertBook(bookAddDto);
         }
     @Override
     public String hostBookCancel(Long id) {

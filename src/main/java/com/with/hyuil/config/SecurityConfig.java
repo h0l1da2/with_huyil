@@ -68,12 +68,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .mvcMatchers("/users/**")
                 .hasRole("USER")
-                .mvcMatchers("/user/info/**")
-                .hasAnyRole("HOST", "ADMIN", "USER")
-                .mvcMatchers("/hosts/**")
-                .hasAnyRole("ADMIN", "HOST")
                 .mvcMatchers("/admin/**")
                 .hasRole("ADMIN")
+                .mvcMatchers("/hosts/**")
+                .hasAnyRole("ADMIN", "HOST")
+                .mvcMatchers("/user/info/**", "/reserve/**")
+                .hasAnyRole("HOST", "ADMIN", "USER")
                 .anyRequest()
                 .permitAll()
 
@@ -112,7 +112,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring() // 정적파일들 필터 검사 ㄴㄴ
-                .mvcMatchers("/resources/static/**")
+                .mvcMatchers("/resources/static/**", "/img/**")
         ;
     }
 }

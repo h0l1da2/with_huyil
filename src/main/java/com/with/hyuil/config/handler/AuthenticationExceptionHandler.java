@@ -24,7 +24,7 @@ public class AuthenticationExceptionHandler implements AuthenticationEntryPoint 
         } else if (request.getServletPath().startsWith("/admin")) {
             log.info("admin 권한 없음");
             response.sendRedirect("/admins");
-        } else if (request.getServletPath().startsWith("/user")) {
+        } else {
             log.info("유저 권한 없음");
             response.sendRedirect("/user/loginForm");
         }
