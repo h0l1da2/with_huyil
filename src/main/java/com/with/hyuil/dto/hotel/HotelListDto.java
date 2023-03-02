@@ -13,6 +13,7 @@ public class HotelListDto {
     private Integer clean;
     private Integer facilities;
     private Integer condition;
+    private Integer organic;
     private String uuid;
     private String imgSrc = "/img?filename=";
     private int totcnt;

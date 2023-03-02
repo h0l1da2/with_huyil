@@ -69,12 +69,18 @@
         SELECT COUNT(*)
         FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER () AS TOTCNT
               FROM (
-                       SELECT B.ID, U.USER_ID, H.NAME HOTEL, O.ORDER_DATE, P.COMPLETE_DATE PAYDATE, B.STATUS
-                       FROM BOOK B, HOTEL H, ORDERS O, PAY_COMPLETE P, USERS U, ROOM R
-                       WHERE H.ID = R.HOTEL_ID
+                       SELECT B.ID, U.USER_ID, H.NAME HOTEL,
+                              TO_CHAR(O.ORDER_DATE, 'YYYY-MM-DD HH24:MI:SS') ORDER_DATE,
+                              TO_CHAR(B.CHECK_IN, 'YYMMDD') AS CHECK_IN,
+                              TO_CHAR(B.CHECK_OUT, 'YYMMDD') AS CHECK_OUT,
+                              B.STATUS
+                       FROM BOOK B, HOTEL H, ORDERS O, USERS U, ROOM R
+                       WHERE R.ID = B.HOTEL_ROOM_ID
                          AND U.ID = O.USER_ID
-                         AND O.ID = P.ORDERS_ID
-                       GROUP BY U.USER_ID, H.NAME, O.ORDER_DATE, P.COMPLETE_DATE, B.ID, B.STATUS
+                         AND U.ID = B.USER_ID
+                         AND H.ID = R.HOTEL_ID
+                         AND O.ID = B.ORDER_ID
+                       GROUP BY U.USER_ID, H.NAME, O.ORDER_DATE, B.STATUS, B.ID, B.CHECK_IN, B.CHECK_OUT
                        ORDER BY B.ID DESC)A)
         WHERE RNUM >= #{viewPage}
           AND RNUM &lt;= #{limit}
@@ -83,12 +89,18 @@
         SELECT *
         FROM (SELECT A.*, ROWNUM AS RNUM, COUNT(*) OVER () AS TOTCNT
               FROM (
-                       SELECT B.ID, U.USER_ID, H.NAME HOTEL, O.ORDER_DATE, P.COMPLETE_DATE PAYDATE, B.STATUS
-                       FROM BOOK B, HOTEL H, ORDERS O, PAY_COMPLETE P, USERS U, ROOM R
-                       WHERE H.ID = R.HOTEL_ID
+                       SELECT B.ID, U.USER_ID, H.NAME HOTEL,
+                              TO_CHAR(O.ORDER_DATE, 'YYYY-MM-DD HH24:MI:SS') ORDER_DATE,
+                              TO_CHAR(B.CHECK_IN, 'YYMMDD') AS CHECK_IN,
+                              TO_CHAR(B.CHECK_OUT, 'YYMMDD') AS CHECK_OUT,
+                              B.STATUS
+                       FROM BOOK B, HOTEL H, ORDERS O, USERS U, ROOM R
+                       WHERE R.ID = B.HOTEL_ROOM_ID
                          AND U.ID = O.USER_ID
-                         AND O.ID = P.ORDERS_ID
-                       GROUP BY U.USER_ID, H.NAME, O.ORDER_DATE, P.COMPLETE_DATE, B.STATUS, B.ID
+                         AND U.ID = B.USER_ID
+                         AND H.ID = R.HOTEL_ID
+                         AND O.ID = B.ORDER_ID
+                       GROUP BY U.USER_ID, H.NAME, O.ORDER_DATE, B.STATUS, B.ID, B.CHECK_IN, B.CHECK_OUT
                        ORDER BY B.ID DESC)A)
         WHERE RNUM >= #{viewPage}
           AND RNUM &lt;= #{limit}
@@ -127,5 +139,10 @@
         UPDATE BOOK
         SET REVIEW_ID = #{id, jdbcType=VARCHAR}
         WHERE USER_ID = #{userId, jdbcType=VARCHAR}
+    </update>
+    <update id="updateStatus" parameterType="HostBookListDto">
+        UPDATE BOOK
+        SET STATUS = #{status}
+        WHERE ID = #{id}
     </update>
 </mapper>

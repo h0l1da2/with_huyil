@@ -3,6 +3,7 @@ package com.with.hyuil.model;
 import com.with.hyuil.dto.users.AdminJoinDto;
 import com.with.hyuil.dto.users.UsersDto;
 import com.with.hyuil.dto.users.UsersLoginDto;
+import com.with.hyuil.model.enumaration.Out;
 import com.with.hyuil.model.enumaration.Type;
 import com.with.hyuil.model.enumaration.Wheres;
 import lombok.Builder;
@@ -25,7 +26,7 @@ public class UsersVo {
     private String name;
     private Type type;
     private Wheres wheres;
-    private String out;
+    private Out out;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime joinDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -68,10 +69,14 @@ public class UsersVo {
         this.name = adminJoinDto.getName();
         this.wheres = adminJoinDto.getWheres();
         this.type = adminJoinDto.getType();
+        this.out = Out.ADMIN;
     }
 
     public void userType(Type type) {
         this.type = type;
+    }
+    public void userOut(Out out) {
+        this.out = out;
     }
 
     public UsersVo(Long id) {
@@ -98,7 +103,7 @@ public class UsersVo {
         this.businessVo = businessVo;
     }
 
-    public UsersVo(Long id, String userId, String password, String email, String tel, String name, Type type, Wheres wheres, String out, LocalDateTime joinDate, LocalDateTime lastLogin, LocalDateTime removeDate, BusinessVo businessVo, Long businessId, RolesVo rolesVo) {
+    public UsersVo(Long id, String userId, String password, String email, String tel, String name, Type type, Wheres wheres, Out out, LocalDateTime joinDate, LocalDateTime lastLogin, LocalDateTime removeDate, BusinessVo businessVo, Long businessId, RolesVo rolesVo) {
         this.id = id;
         this.userId = userId;
         this.password = password;
