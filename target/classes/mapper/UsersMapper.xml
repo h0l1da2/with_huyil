@@ -43,12 +43,13 @@
     <select id="selectAllCnt" resultType="Integer" parameterType="OutTypeDto">
         SELECT COUNT(*)
         FROM USERS
-        WHERE OUT = #{out}
+        WHERE OUT IS NULL
+          AND TYPE != 'ADMIN'
     </select>
     <select id="selectAllUserCntForAdmin" resultType="Integer" parameterType="OutTypeDto">
         SELECT COUNT(*)
         FROM USERS
-        WHERE OUT = #{out}
+        WHERE OUT IS NULL
           AND TYPE = #{type}
     </select>
     <insert id="insertUser" parameterType="UsersVo">

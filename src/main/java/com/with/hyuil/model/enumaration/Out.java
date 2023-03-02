@@ -1,5 +1,5 @@
 package com.with.hyuil.model.enumaration;
 
 public enum Out {
-    SECESSION, STOP
+    SECESSION, STOP, ADMIN
 }

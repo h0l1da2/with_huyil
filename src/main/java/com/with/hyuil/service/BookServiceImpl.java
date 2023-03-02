@@ -84,6 +84,16 @@ public class BookServiceImpl implements BookService {
         bookAddDto.setStatus(Status.READY);
         bookMapper.insertBook(bookAddDto);
         }
+
+    @Override
+    public String bookComplete(HostBookListDto hostBookListDto) {
+        int i = bookMapper.updateStatus(hostBookListDto);
+        if (i == 0) {
+            return "실패";
+        }
+        return "완료";
+    }
+
     @Override
     public String hostBookCancel(Long id) {
         return null;
