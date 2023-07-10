@@ -9,7 +9,9 @@
 
 
 <h2>주소</h2>
-상세 페이지 확인 (https://hyuil.tistory.com/195)
+프로젝트 소개 <br>
+(https://hyuil.notion.site/hyuil/cf625f8928c84daf96a7f2a8cf6104c1?p=472c7ec708ca4da984aa7a3ebac6907f&pm=c) <br>
+상세 페이지 확인 (https://hyuil.tistory.com/195) <br>
 
 <h2>작업자</h2>
 
